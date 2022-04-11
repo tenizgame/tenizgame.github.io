@@ -361,7 +361,7 @@ if (localStorage.getItem('gameover' + days)==1){
 }
 else{
 		document.getElementById("answer").style.color = "cyan";
-		document.getElementById("answer").innerText = "Read the Game Rules to learn about how to play!\n Refresh page to load a New Game.";
+		document.getElementById("answer").innerText = "Read the Game Rules to learn about how to play!";
         for (let clueindex = 0; clueindex < 6; clueindex++) {
             // <span id="0-0" class="tile">P</span>
             let clue = document.createElement("span");
@@ -710,7 +710,7 @@ function update() {
 		}		
 		else if (!gameOver && clueCount > 6){  
 			document.getElementById("answer").style.color = "red";
-			document.getElementById("answer").innerText = "The player was "+firstname.toUpperCase()+" "+lastname.toUpperCase()+".\nGame Over! Refresh to Play Again!";
+			document.getElementById("answer").innerText = "The player was "+firstname.toUpperCase()+" "+lastname.toUpperCase()+".\nTry again tomorrow!";
 			localStorage.totaltgames = Number(localStorage.totaltgames)+1;
 			winpct = Math.round(localStorage.totaltwins/localStorage.totaltgames * 100);
 			localStorage.currenttstreak = 0;
