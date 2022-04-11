@@ -1,0 +1,16 @@
+{
+  "short_name": "Teniz",
+  "name": "Teniz",
+  "icons": [
+    {
+      "src": "https://tenizgame.github.io/tenizgame/tennisicon.jpg",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "https://tenizgame.github.io/",
+  "background_color": "#000000",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "description": "Tennis Quiz of GS Champions"
+}

@@ -1,0 +1,123 @@
+<html lang="en">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B1TW81HLYQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B1TW81HLYQ');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6ZCTZTEMJT"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti"></script>
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TENIZ - Tennis Quiz of GS Champions </title>
+  <link href="teniz.css" rel="stylesheet">
+  <script defer src="teniz.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <!-- add icon link -->
+  <link rel = "icon" href = "https://tenizgame.github.io/tenizgame/tennisicon.jpg" 
+        type = "image/x-icon">   
+  <link href="https://tenizgame.github.io/tenizgame/tennisicon.jpg" rel="icon shortcut" />
+  <link href="https://tenizgame.github.io/tenizgame/tennisicon.jpg" rel="apple-touch-icon" />	
+  <link rel="manifest" href="https://tenizgame.github.io/tenizgame/teniz_manifest.json" />			
+</head>
+<body>
+<button id="btnParty" type="button" hidden></button>
+<div id="tsparticles"></div>
+	<div id="title">TENIZ!
+		<div id="stats"> 
+			<div id="stats-item">
+				<span id="60" class="stats-item"><class data-modal-target="#modal"><img src="rulesicon.jpg"></span>		
+				<span id="70" class="stats-item"><class data-summary-target="#summary" id="statsbutton"><img src="statsicon.jpg"></span>			
+			</div>
+		</div>		
+	</div>	
+	<br>
+	<!-- <div id="mycounter"></div> -->
+	 
+	
+	<!-- <button data-modal-target="#modal">Start Game</button>  -->
+    <!--&nbsp; &nbsp;  MODE :-     <input type="button" id="mode" value="EASY" onclick="toggle(this); "></center>-->
+	<!-- &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  -->
+    <!--<button onclick="onTimer()">Clickme</button>-->
+	<div class="modal" id="modal">
+		<div class="modal-header">
+			<div class="title"><strong>How To Play</strong></div>	  
+				<button data-close-button class="close-button">&times;</button>
+		</div>
+		<div class ="modal-body">
+		  TENIZ is a spin-off on WORDLE, to test of your knowledge on Tennis Grand Slam Champions of the Open Era. The objective is to identify the Tennis Player.
+		  <br><br>
+		  Use the on-screen keyboard to key in your answer. Hit Enter to submit. A new clue will be revelaed after each incorrect guess. 
+		  <br><br>		  
+		  Hints include Year, Tournament, Nationality, Gender, First Name First Letter and Last Name First Letter. 		  
+		  <br><br>
+		  Pay attention to the number of letters in the players first and last names. This is another clue, that could be of help. 
+		  <br><br>		
+		  A <strong style="color:green;">Green Tile </strong>highlight indicates that the right letter is at the right position, while a <strong style="color:yellow;">Yellow Tile </strong>highlight indicates that the right letter is at the wrong position. First and Last name are evaluated separately. 	  
+		  <br><br>
+		  An <strong style="color:orange;">Orange Key </strong>highlight indicates a letter part of the name yet to be correctly placed . <strong style="color:green;">Green Letter Tracker</strong> helps keep track of correctly placed letters. 
+		  <br><br>			  
+		  <h5><center>Legend : GS - Grand Slam | AO - Australian Open | FO - French Open | WIM - Wimbledon | USO - US Open | FN FL - First Name First Letter | LN FL - Last Name First Letter</h5></center>
+		  <h5><center><a href="mailto: geowordle@gmail.com">Contact</a></h5></center>
+		</div>		
+	</div>
+	<div class="summary" id="summary">
+		<div class="summary-header">
+			<div class="title"><strong>Statistics</strong></div>  
+			<button data-close1-button class="close-button">&times;</button>
+		</div>
+		<div class ="summary-body">
+			<div id="stats-item">
+				<span id="6" class="summary-item"></span>		
+				<span id="7" class="summary-item"></span>			
+				<span id="8" class="summary-item"></span>		
+				<span id="9" class="summary-item"></span>		
+			</div>	
+			    <br>
+				<br>
+				<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+				<br>
+				
+				<!-- The button used to copy the text -->
+			<div class="button-row">
+					&nbsp; &nbsp; &nbsp; &nbsp
+					<button id="HTMLButton" onclick="myFunction()">Share Stats🔊</button>
+					<a href="https://www.buymeacoffee.com/sank0403/" target="_"><input type="button" value="Buy Me a Coffee❤️"/><a>
+			</div>
+		</div>		
+		<hr>
+		<div id="bb"></div>
+		<br>
+	</div>	
+	<div id="overlay"></div>
+	<div id="overlay1"></div>	
+		<hr>		
+    <div id="clue"> 
+		<div id="clue-ball">
+
+		</div>
+	</div>
+		<hr>
+        <br>
+    <div id="board">
+		<div id="glt"><strong style="color:black;"><u>Green Letter Tracker</u></strong></div>
+		<div id="historyfirst"></div>	
+		<div id="historylast"></div>
+		<div id="boardfirst"></div>
+		<div id ="boardlast"></div>	
+	</div>
+        <br>
+		<hr>		
+    <h1 id="answer"></h1>
+	   <br><br>
+    </body>
+</html>
