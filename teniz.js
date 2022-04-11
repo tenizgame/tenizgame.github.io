@@ -110,7 +110,7 @@ function myFunction() {
   else{
 	  cluehdr = "/6 Clues Used To Win!"
   }
-  var copyText = "🎾TENIZ! - Day "+days+"🎾 : "+localStorage.cluetcount+ cluehdr +"\n\n🟢Played: " + localStorage.totaltgames+ winhdr + Math.round(localStorage.totaltwins/localStorage.totaltgames*100)+ cshdr+ localStorage.currenttstreak+ mshdr + localStorage.longesttstreak+"\n\n💻https://sank0403.github.io/teniz/";
+  var copyText = "🎾TENIZ! - Day "+days+"🎾 : "+localStorage.cluetcount+ cluehdr +"\n\n🟢Played: " + localStorage.totaltgames+ winhdr + Math.round(localStorage.totaltwins/localStorage.totaltgames*100)+ cshdr+ localStorage.currenttstreak+ mshdr + localStorage.longesttstreak+"\n\n💻https://tenizgame.github.io/";
   /* Select the text field */
   //copyText.select();
   //copyText.setSelectionRange(0, 99999); /* For mobile devices */
