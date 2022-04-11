@@ -387,13 +387,6 @@ else{
 			}			
             document.getElementById("clue-ball").appendChild(clue);
         }	
-		var winpct = Math.round(localStorage.totaltwins/localStorage.totaltgames * 100);
-		document.getElementById(6).innerText = "Played: " + localStorage.totaltgames;
-		document.getElementById(7).innerText = "Win %: " + winpct;		
-		document.getElementById(8).innerText = "Current Streak: " + localStorage.currenttstreak;
-		document.getElementById(9).innerText = "Max Streak: " + localStorage.longesttstreak;
-
-
    // for (let r = 0; r < height; r++) {
 	    let f = 1
         for (let c = 0; c < fnwidth; c++) {
@@ -480,7 +473,12 @@ else{
     document.addEventListener("keyup", (e) => {
         processInput(e);
     })
-}
+  }
+		var winpct = Math.round(localStorage.totaltwins/localStorage.totaltgames * 100);
+		document.getElementById(6).innerText = "Played: " + localStorage.totaltgames;
+		document.getElementById(7).innerText = "Win %: " + winpct;		
+		document.getElementById(8).innerText = "Current Streak: " + localStorage.currenttstreak;
+		document.getElementById(9).innerText = "Max Streak: " + localStorage.longesttstreak;
 }
 
 
