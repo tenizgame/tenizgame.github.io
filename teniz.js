@@ -40,6 +40,7 @@ localStorage.setItem("ctrytopen",0);
 localStorage.setItem("gndrtopen",0);
 localStorage.setItem("fnfltopen",0);
 localStorage.setItem("lnfltopen",0);
+setTimeout(OpenRules,2000);	
 }
 
 
@@ -64,6 +65,10 @@ setInterval(function(){
 
 function OpenStats(){
 		document.getElementById("statsbutton").click();
+}
+
+function OpenRules(){
+		document.getElementById("rulesbutton").click();
 }
 
 function ResetButton(){
