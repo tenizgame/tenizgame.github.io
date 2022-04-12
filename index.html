@@ -13,8 +13,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti"></script>
-
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -27,12 +25,19 @@
         type = "image/x-icon">   
   <link href="https://tenizgame.github.io/tennisicon.jpg" rel="icon shortcut" />
   <link href="https://tenizgame.github.io/tennisicon.jpg" rel="apple-touch-icon" />	
-  <link rel="manifest" href="https://tenizgame.github.io/teniz_manifest.json" />			
+  <link rel="manifest" href="https://tenizgame.github.io/teniz_manifest.json" />
 </head>
 <body>
 <button id="btnParty" type="button" hidden></button>
 <div id="tsparticles"></div>
-	<div id="title">TENIZ!
+	<div id="title"> <div class="waviy1">
+					   <span style="--i:1">T</span>
+					   <span style="--i:2">E</span>
+					   <span style="--i:3">N</span>
+					   <span style="--i:4">I</span>
+					   <span style="--i:5">Z</span>
+					   <span style="--i:6">!</span>
+					</div>
 		<div id="stats"> 
 			<div id="stats-item">
 				<span id="60" class="stats-item"><class data-modal-target="#modal"><img src="rulesicon.jpg"></span>		
@@ -41,9 +46,30 @@
 		</div>		
 	</div>	
 	<br>
+	 <div class="waviy">
+		   <span style="--i:1">A</span>
+		   <span style="--i:2"> </span>
+		   <span style="--i:3">N</span>
+		   <span style="--i:4">e</span>
+		   <span style="--i:5">w</span>
+		   <span style="--i:6"> </span>
+		   <span style="--i:7">P</span>
+		   <span style="--i:8">l</span>
+		   <span style="--i:9">a</span>
+		   <span style="--i:10">y</span>
+		   <span style="--i:11">e</span>
+		   <span style="--i:12">r</span>
+		   <span style="--i:13"> </span>
+		   <span style="--i:14">E</span>
+		   <span style="--i:15">v</span>
+		   <span style="--i:16">e</span>
+		   <span style="--i:17">r</span>
+		   <span style="--i:18">y</span>
+		   <span style="--i:19">d</span> 
+		   <span style="--i:20">a</span>
+		   <span style="--i:21">y</span> 
+	</div>
 	<!-- <div id="mycounter"></div> -->
-	 
-	
 	<!-- <button data-modal-target="#modal">Start Game</button>  -->
     <!--&nbsp; &nbsp;  MODE :-     <input type="button" id="mode" value="EASY" onclick="toggle(this); "></center>-->
 	<!-- &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  -->
@@ -51,7 +77,7 @@
 	<div class="modal" id="modal">
 		<div class="modal-header">
 			<div class="title"><strong>How To Play</strong></div>	  
-				<button data-close-button class="close-button">&times;</button>
+			<button data-close-button class="close-button">&times;</button>
 		</div>
 		<div class ="modal-body">
 		  TENIZ is a spin-off on WORDLE, to test of your knowledge on Tennis Grand Slam Champions of the Open Era. The objective is to identify the Tennis Player every day.
@@ -65,7 +91,7 @@
 		  A <strong style="color:green;">Green Tile </strong>highlight indicates that the right letter is at the right position, while a <strong style="color:yellow;">Yellow Tile </strong>highlight indicates that the right letter is at the wrong position. First and Last name are evaluated separately. 	  
 		  <br><br>
 		  An <strong style="color:orange;">Orange Key </strong>highlight indicates a letter part of the name yet to be correctly placed . <strong style="color:green;">Green Letter Tracker</strong> helps keep track of correctly placed letters. 
-		  <br><br>			  
+		  <br>		  
 		  <h5><center>Legend : GS - Grand Slam | AO - Australian Open | FO - French Open | WIM - Wimbledon | USO - US Open | FN FL - First Name First Letter | LN FL - Last Name First Letter</h5></center>
 		  <h5><center><a href="mailto: geowordle@gmail.com">Contact</a></h5></center>
 		</div>		
@@ -103,7 +129,6 @@
 		<hr>		
     <div id="clue"> 
 		<div id="clue-ball">
-
 		</div>
 	</div>
 		<hr>
@@ -118,6 +143,6 @@
         <br>
 		<hr>		
     <h1 id="answer"></h1>
-	   <br><br>
+	   <br><br>  
     </body>
 </html>
