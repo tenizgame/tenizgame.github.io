@@ -34,6 +34,12 @@ localStorage.setItem("cluet6count",0);
 localStorage.setItem("cluetxcount",0);
 localStorage.setItem("cluetcount","");
 localStorage.setItem("gametwon",0);
+localStorage.setItem("yeartopen",0);
+localStorage.setItem("slamtopen",0);
+localStorage.setItem("ctrytopen",0);
+localStorage.setItem("gndrtopen",0);
+localStorage.setItem("fnfltopen",0);
+localStorage.setItem("lnfltopen",0);
 }
 
 
@@ -64,12 +70,26 @@ function ResetButton(){
 		let HTMLButton = document.getElementById("HTMLButton");
 		HTMLButton.innerText = "Share Stats🔊"
 }
+
+function SetClueCount(){
+			clueCount += 1;
+			if (clueCount == 6){
+				clueCount = 7;
+			}
+}
+
 var a = new Date(); // Current date now.
 var b = new Date(2022, 3, 11, 0, 0, 0, 0); // Start of TENIZ.
 var d = (a-b); // Difference in milliseconds.
 var days = parseInt((d/1000)/86400);
 if (localStorage.getItem('gameover' + days)!=0 && localStorage.getItem('gameover' + days)!=1){
 localStorage['gameover'+days] = 0;
+		localStorage.yeartopen = 0;
+		localStorage.slamtopen = 0;	
+		localStorage.ctrytopen = 0;
+		localStorage.gndrtopen = 0;
+		localStorage.fnfltopen = 0;
+		localStorage.lnfltopen = 0;
 }
 
 function myFunction() {
@@ -136,16 +156,22 @@ setTimeout(FetchData, 50000) */
 			elementid = Number(elementid);
 			switch (elementid){
 				case 0: document.getElementById(0).innerText = year;
+				localStorage.yeartopen = 1;
 				break;
 				case 1: document.getElementById(1).innerText = grandslam;
+				localStorage.slamtopen = 1;
 				break;				
 				case 2: document.getElementById(2).innerText = country;
+				localStorage.ctrytopen = 1;
 				break;
 				case 3: document.getElementById(3).innerText = gender;
+				localStorage.gndrtopen = 1;
 				break;
 				case 4: document.getElementById(4).innerText = fnfl;
+				localStorage.fnfltopen = 1;
 				break;
 				case 5: document.getElementById(5).innerText = lnfl;
+				localStorage.lnfltopen = 1;
 				break;	
 			}			
 			arrayid.splice(arrayid.indexOf(elementid),1);
@@ -415,6 +441,36 @@ if (localStorage.getItem('gameover' + days)==1){
 	}
 }
 else{
+		if (localStorage.yeartopen == 1){
+			document.getElementById(0).innerText = year;
+			arrayid.splice(arrayid.indexOf(0),1);
+			SetClueCount();
+		}
+		if (localStorage.slamtopen == 1){
+			document.getElementById(1).innerText = grandslam;
+			arrayid.splice(arrayid.indexOf(1),1);
+			SetClueCount();
+		}
+		if (localStorage.ctrytopen == 1){
+			document.getElementById(2).innerText = country;
+			arrayid.splice(arrayid.indexOf(2),1);
+			SetClueCount();
+		}
+		if (localStorage.gndrtopen  == 1){
+			document.getElementById(3).innerText = gender;
+			arrayid.splice(arrayid.indexOf(3),1);
+			SetClueCount();
+		}
+		if (localStorage.fnfltopen == 1){
+			document.getElementById(4).innerText = fnfl;
+			arrayid.splice(arrayid.indexOf(4),1);
+			SetClueCount();
+		}
+		if (localStorage.lnfltopen == 1){
+			document.getElementById(5).innerText = lnfl;
+			arrayid.splice(arrayid.indexOf(5),1);
+			SetClueCount();
+		}		
 		document.getElementById("answer").style.color = "cyan";
 		document.getElementById("answer").innerText = "Read the Game Rules to learn about how to play!";
     // Create the key board
