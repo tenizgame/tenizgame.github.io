@@ -18,6 +18,7 @@ btnParty.addEventListener("click", () => {
   });
 });
 //Confetti End
+//Local Storage Initial Setting
 window.localStorage;
 if (!localStorage.totaltgames){
 localStorage.setItem("totaltgames",0);
@@ -43,7 +44,7 @@ localStorage.setItem("lnfltopen",0);
 setTimeout(OpenRules,2000);	
 }
 
-
+//Counter Construct
 var div=document.getElementById("bb"); 
 setInterval(function(){ 
   var toDate=new Date();
@@ -63,19 +64,28 @@ setInterval(function(){
   }
 },1000);
 
+//Open Stats at end of game
 function OpenStats(){
 		document.getElementById("statsbutton").click();
 }
 
+//Open Rules the very first time
 function OpenRules(){
 		document.getElementById("rulesbutton").click();
 }
 
+//Confetti after game successfully completed 
+function ConfettiStart(){
+		document.getElementById("btnParty").click();
+}
+
+//Button Text
 function ResetButton(){
 		let HTMLButton = document.getElementById("HTMLButton");
 		HTMLButton.innerText = "Share Stats🔊"
 }
 
+//Adjustment of ClueCount for last guess
 function SetClueCount(){
 			clueCount += 1;
 			if (clueCount == 6){
@@ -83,6 +93,7 @@ function SetClueCount(){
 			}
 }
 
+//Baseline Date
 var a = new Date(); // Current date now.
 var b = new Date(2022, 3, 11, 0, 0, 0, 0); // Start of TENIZ.
 var d = (a-b); // Difference in milliseconds.
@@ -97,8 +108,9 @@ localStorage['gameover'+days] = 0;
 		localStorage.lnfltopen = 0;
 }
 
+//Clipboard Code
 function myFunction() {
-  /* Get the text field */
+
   if (Math.round(localStorage.totaltwins/localStorage.totaltgames*100)<50){
 	  var winhdr = "\n🔴Win %: "
   }
@@ -136,25 +148,17 @@ function myFunction() {
 	  cluehdr = "/6 Clues Used To Win!"
   } */
   var copyText = "🎾 TENIZ! - Day "+days+" 🎾: "+localStorage.cluetcount+ "/6" +"\n\n🟢Played: " + localStorage.totaltgames+ winhdr + Math.round(localStorage.totaltwins/localStorage.totaltgames*100)+ cshdr+ localStorage.currenttstreak+ mshdr + localStorage.longesttstreak+"\n\n💻https://tenizgame.github.io/";
-  /* Select the text field */
-  //copyText.select();
-  //copyText.setSelectionRange(0, 99999); /* For mobile devices */
 
    /* Copy the text inside the text field */
   navigator.clipboard.writeText(copyText);
 
-  /* Alert the copied text */
+  //Button Text
   let HTMLButton = document.getElementById("HTMLButton");
   HTMLButton.innerText = "Copied☑️"
   setTimeout(ResetButton,1000);
 }
 
-/* setTimeout(FetchData, 5000)
-setTimeout(FetchData, 10000)
-setTimeout(FetchData, 20000)
-setTimeout(FetchData, 30000)
-setTimeout(FetchData, 40000)
-setTimeout(FetchData, 50000) */
+//Array Manipulation for Clues
 	function FetchData(){
 		if (!gameOver){
 			var elementid = GetElemid(arrayid);
@@ -220,7 +224,7 @@ function GetElemid(){
 			}
 		}	 */
 
-// *****************************************************************************
+// *************************Initial Declaration******************************
 var enterHit = false;
 var clueCount = 0;
 var gameOver = false;
@@ -234,8 +238,8 @@ var GenList = ["He","He","She","She","She","She","He","He","She","He","He","He",
 var index = days-1;
 var firstname = firstnameList[index].toLowerCase();
 var lastname = lastnameList[index].toLowerCase();
-//var firstname = "naomi"
-//var lastname = "osaka"
+//var firstname = "martina"
+//var lastname = "navratilova"
 var year = yearList[index];
 var gender = GenList[index];
 var grandslam = GSList[index];
@@ -251,6 +255,7 @@ answername = firstname.concat(lastname).toLowerCase();
 var row = 0; //current guess (attempt #)
 var col = 0; //current letter for that attempt
 
+//Modal Code
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const closeModalButtons = document.querySelectorAll('[data-close-button]')
 const overlay = document.getElementById('overlay')
@@ -327,6 +332,7 @@ function closeSummary(summary) {
   overlay1.classList.remove('active')
 }
 
+//Chart Code
 color0 = "brown"
 color1 = "brown"
 color2 = "brown"
@@ -360,6 +366,7 @@ function UpdateChart(){
 	});	
 }	
 
+// Window Load
 window.onload = function(){
     intialize();
 	UpdateChart();
@@ -431,20 +438,32 @@ function intialize() {
 		document.getElementById(7).innerText = "Win %: " + winpct;		
 		document.getElementById(8).innerText = "Current Streak: " + localStorage.currenttstreak;
 		document.getElementById(9).innerText = "Max Streak: " + localStorage.longesttstreak;
-
+		
+//Current Day Game Over
 if (localStorage.getItem('gameover' + days)==1){
 	if (localStorage.gametwon == 1){
+		for (let c = 0; c < width; c++) {
+		let gameTile = document.getElementById(1 + '-' + c.toString());
+	    gameTile.innerText = answername[c];
+		gameTile.classList.add("correct", "animated");
+		}
 		document.getElementById("answer").style.color = "green";
-		document.getElementById("answer").innerText = "Player already identified. Try again tomorrow!\nToday's player was "+firstname.toUpperCase()+" "+lastname.toUpperCase()+".";
-		document.getElementById("btnParty").click();
-		setTimeout(OpenStats,3000);	
+		document.getElementById("answer").innerText = "You have already identified today's player.\nCome back again tomorrow!";
+		setTimeout(OpenStats,4000);
 	}
 	else{
+		for (let c = 0; c < width; c++) {
+		let gameTile = document.getElementById(1 + '-' + c.toString());
+	    gameTile.innerText = answername[c];
+		gameTile.classList.remove("correct");
+		gameTile.classList.add("absent", "animated");
+		}		
 		document.getElementById("answer").style.color = "red";
-		document.getElementById("answer").innerText = "Today's player was "+firstname.toUpperCase()+" "+lastname.toUpperCase()+".\nTry again tomorrow!";
-		setTimeout(OpenStats,3000);
+		document.getElementById("answer").innerText = "Hard luck today. Come back again tomorrow!";
+		setTimeout(OpenStats,4000);
 	}
 }
+// Default Path
 else{
 		if (localStorage.yeartopen == 1){
 			document.getElementById(0).innerText = year;
@@ -549,11 +568,12 @@ function processInput(e) {
 			for (let c = col-1; c >= 0; c--) {
 				let currTile = document.getElementById(1 + '-' + c.toString());
 				currTile.innerText = "";
-				currTile.classList.remove("correct","present");
+				currTile.classList.remove("correct","present","poptile");
 				col -= 1;
 			}
 			let currTile = document.getElementById(1 + '-' + 0);
 			currTile.innerText = e.code[3];
+			currTile.classList.add("poptile");
 			col = 1;
 			enterHit = false;
 		}
@@ -562,6 +582,7 @@ function processInput(e) {
 				let currTile = document.getElementById(1 + '-' + col.toString());
 				if (currTile.innerText == "") {
 					currTile.innerText = e.code[3];
+					currTile.classList.add("poptile");
 					col += 1;
 				}
 			}
@@ -573,7 +594,7 @@ function processInput(e) {
 			for (let c = col-1; c >= 0; c--) {
 				let currTile = document.getElementById(1 + '-' + c.toString());
 				currTile.innerText = "";
-				currTile.classList.remove("correct","present");
+				currTile.classList.remove("correct","present","poptile");
 				col -= 1;
 			}
 			enterHit = false;
@@ -584,7 +605,7 @@ function processInput(e) {
 			}
 			let currTile = document.getElementById(1 + '-' + col.toString());
 			currTile.innerText = "";
-			currTile.classList.remove("correct","present");
+			currTile.classList.remove("correct","present","poptile");
 		}
 		document.getElementById("answer").innerText = "";
     }
@@ -648,7 +669,6 @@ function update() {
            letterCount[letter] = 1;
         }
     } */
-
     //string up the guesses into the word
 	//first name
     for (let c = 0; c < fnwidth; c++) {
@@ -661,7 +681,8 @@ function update() {
 			historyTile.innerText = currTile.innerText;
 			fnletterCount[letter.toLowerCase()] -= 1;	
 			let keyTile = document.getElementById("Key" + letter);
-			keyTile.classList.remove("keypresent");					
+			keyTile.classList.remove("keypresent");	
+			
 		}			
         guess += letter;
     }
@@ -677,7 +698,8 @@ function update() {
 			lnletterCount[letter.toLowerCase()] -= 1;
 			let keyTile = document.getElementById("Key" + letter);
 			keyTile.classList.remove("keypresent");			
-		}				
+		}		
+	
         guess += letter;
     }	
 
@@ -693,7 +715,9 @@ function update() {
 			//currTile.classList.add("correct");
 			let keyTile = document.getElementById("Key" + letter);
 			keyTile.classList.remove("keypresent");
-			//keyTile.classList.add("correct");				
+			//keyTile.classList.add("correct");			
+			currTile.classList.remove("poptile");
+			currTile.classList.add("animated");			
 		}		
 		document.getElementById("answer").style.color = "green";
 		localStorage.totaltgames = Number(localStorage.totaltgames)+1;
@@ -737,13 +761,11 @@ function update() {
 		document.getElementById(8).innerText = "Current Streak: " + localStorage.currenttstreak;
 		document.getElementById(9).innerText = "Max Streak: " + localStorage.longesttstreak;	
 		document.getElementById("answer").innerText = "You have identified the player successfully.\nCongrats! Dont forget to share your results.";
-		document.getElementById("btnParty").click();
+		setTimeout(ConfettiStart,1000);
 		gameOver = true;
 		localStorage.gametwon = 1;
 		localStorage.setItem(('gameover' + days),1);
-		setTimeout(OpenStats,3300);
-/* 		var hidecounter = document.getElementById("mycounter");
-		hidecounter.style.color = "black"; */
+		setTimeout(OpenStats,4800);
 	}	
 	else if (guess == ""){
 		document.getElementById("answer").style.color = "red";
@@ -760,8 +782,14 @@ function update() {
 		clueCount += 1;
 		}		
 		else if (!gameOver && clueCount > 6){  
+			for (let c = 0; c < width; c++) {
+			let gameTile = document.getElementById(1 + '-' + c.toString());
+			gameTile.innerText = answername[c];
+			gameTile.classList.remove("correct","poptile");			
+			gameTile.classList.add("absent", "animated");
+			}		
 			document.getElementById("answer").style.color = "red";
-			document.getElementById("answer").innerText = "The player was "+firstname.toUpperCase()+" "+lastname.toUpperCase()+".\nTry again tomorrow!";
+			document.getElementById("answer").innerText = "Hard luck today. Come back again tomorrow!";
 			localStorage.totaltgames = Number(localStorage.totaltgames)+1;
 			winpct = Math.round(localStorage.totaltwins/localStorage.totaltgames * 100);
 			localStorage.currenttstreak = 0;
@@ -776,42 +804,38 @@ function update() {
 			localStorage.setItem(('gameover' + days),1);
 			setTimeout(OpenStats,3000);
 		}		
-/* 		for (let c = col-1; c >= 0; c--) {
-			let currTile = document.getElementById(1 + '-' + c.toString());
-			currTile.innerText = "";
-			col -= 1;
-		} */		
 	}
     //go again and mark which ones are present but in wrong position
 	//first name
-    for (let c = 0; c < fnwidth; c++) {
-        let currTile = document.getElementById(1 + '-' + c.toString());
-        let letter = currTile.innerText;
-        // skip the letter if it has been marked correct
-        if (!currTile.classList.contains("correct")) {
-            //Is it in the word?         //make sure we don't double count
-            if (firstname.includes(letter.toLowerCase()) && fnletterCount[letter.toLowerCase()] > 0) {
-                currTile.classList.add("present");	
-                fnletterCount[letter.toLowerCase()] -= 1;
+	if (gameOver) return; 
+	for (let c = 0; c < fnwidth; c++) {
+		let currTile = document.getElementById(1 + '-' + c.toString());
+		let letter = currTile.innerText;
+		// skip the letter if it has been marked correct
+		if (!currTile.classList.contains("correct")) {
+			//Is it in the word?         //make sure we don't double count
+			if (firstname.includes(letter.toLowerCase()) && fnletterCount[letter.toLowerCase()] > 0) {
+				currTile.classList.add("present");	
+				fnletterCount[letter.toLowerCase()] -= 1;
 				let keyTile = document.getElementById("Key" + letter);
 				keyTile.classList.add("keypresent");				
-            } 						
-        }
-    }
+			} 						
+		}
+	}
 	//last name
 	
-    for (let c = fnwidth; c < width; c++) {
-        let currTile = document.getElementById(1 + '-' + c.toString());
-        let letter = currTile.innerText;
-        // skip the letter if it has been marked correct
-        if (!currTile.classList.contains("correct")) {
-            //Is it in the word?         //make sure we don't double count
-            if (lastname.includes(letter.toLowerCase()) && lnletterCount[letter.toLowerCase()] > 0) {
-                currTile.classList.add("present");	
-                lnletterCount[letter.toLowerCase()] -= 1;
+	for (let c = fnwidth; c < width; c++) {
+		let currTile = document.getElementById(1 + '-' + c.toString());
+		let letter = currTile.innerText;
+		// skip the letter if it has been marked correct
+		if (!currTile.classList.contains("correct")) {
+			//Is it in the word?         //make sure we don't double count
+			if (lastname.includes(letter.toLowerCase()) && lnletterCount[letter.toLowerCase()] > 0) {
+				currTile.classList.add("present");	
+				lnletterCount[letter.toLowerCase()] -= 1;
 				let keyTile = document.getElementById("Key" + letter);
 				keyTile.classList.add("keypresent");	
-            } 					
-        }
-    }	
+			} 					
+		}
+	}	
 }
