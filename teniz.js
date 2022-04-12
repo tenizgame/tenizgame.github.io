@@ -338,28 +338,6 @@ window.onload = function(){
 function intialize() {
 
     // Create the game board
-
-
-if (localStorage.getItem('gameover' + days)==1){
-	if (localStorage.gametwon == 1){
-		document.getElementById("answer").style.color = "green";
-		document.getElementById("answer").innerText = "You have already identified today's player.\nToday's player was "+firstname.toUpperCase()+" "+lastname.toUpperCase()+".";
-		document.getElementById("btnParty").click();
-		var glt=document.getElementById("glt"); 
-		glt.innerHTML="";
-		setTimeout(OpenStats,3000);	
-	}
-	else{
-		document.getElementById("answer").style.color = "red";
-		document.getElementById("answer").innerText = "Today's player was "+firstname.toUpperCase()+" "+lastname.toUpperCase()+".\nTry again tomorrow!";
-		var glt=document.getElementById("glt"); 
-		glt.innerHTML="";
-		setTimeout(OpenStats,3000);
-	}
-}
-else{
-		document.getElementById("answer").style.color = "cyan";
-		document.getElementById("answer").innerText = "Read the Game Rules to learn about how to play!";
         for (let clueindex = 0; clueindex < 6; clueindex++) {
             // <span id="0-0" class="tile">P</span>
             let clue = document.createElement("span");
@@ -416,8 +394,29 @@ else{
             histile.innerText = "";				
             document.getElementById("historylast").appendChild(histile);
         }
-    //}	
-	
+    //}	  
+		var winpct = Math.round(localStorage.totaltwins/localStorage.totaltgames * 100);
+		document.getElementById(6).innerText = "Played: " + localStorage.totaltgames;
+		document.getElementById(7).innerText = "Win %: " + winpct;		
+		document.getElementById(8).innerText = "Current Streak: " + localStorage.currenttstreak;
+		document.getElementById(9).innerText = "Max Streak: " + localStorage.longesttstreak;
+
+if (localStorage.getItem('gameover' + days)==1){
+	if (localStorage.gametwon == 1){
+		document.getElementById("answer").style.color = "green";
+		document.getElementById("answer").innerText = "Player already identified. Try again tomorrow!\nToday's player was "+firstname.toUpperCase()+" "+lastname.toUpperCase()+".";
+		document.getElementById("btnParty").click();
+		setTimeout(OpenStats,3000);	
+	}
+	else{
+		document.getElementById("answer").style.color = "red";
+		document.getElementById("answer").innerText = "Today's player was "+firstname.toUpperCase()+" "+lastname.toUpperCase()+".\nTry again tomorrow!";
+		setTimeout(OpenStats,3000);
+	}
+}
+else{
+		document.getElementById("answer").style.color = "cyan";
+		document.getElementById("answer").innerText = "Read the Game Rules to learn about how to play!";
     // Create the key board
     let keyboard = [
         ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
@@ -472,11 +471,6 @@ else{
         processInput(e);
     })
   }
-		var winpct = Math.round(localStorage.totaltwins/localStorage.totaltgames * 100);
-		document.getElementById(6).innerText = "Played: " + localStorage.totaltgames;
-		document.getElementById(7).innerText = "Win %: " + winpct;		
-		document.getElementById(8).innerText = "Current Streak: " + localStorage.currenttstreak;
-		document.getElementById(9).innerText = "Max Streak: " + localStorage.longesttstreak;
 }
 
 
@@ -681,7 +675,7 @@ function update() {
 		document.getElementById(7).innerText = "Win %: " + winpct;		
 		document.getElementById(8).innerText = "Current Streak: " + localStorage.currenttstreak;
 		document.getElementById(9).innerText = "Max Streak: " + localStorage.longesttstreak;	
-		document.getElementById("answer").innerText = "You have identified the player successfully.\nCongrats!";
+		document.getElementById("answer").innerText = "You have identified the player successfully.\nCongrats! Dont forget to share your results.";
 		document.getElementById("btnParty").click();
 		gameOver = true;
 		localStorage.gametwon = 1;
@@ -717,6 +711,7 @@ function update() {
 			document.getElementById(7).innerText = "Win %: " + winpct;	
 			document.getElementById(8).innerText = "Current Streak: " + localStorage.currenttstreak;		
 			gameOver = true;
+			localStorage.gametwon = 0;
 			localStorage.setItem(('gameover' + days),1);
 			setTimeout(OpenStats,3000);
 		}		
