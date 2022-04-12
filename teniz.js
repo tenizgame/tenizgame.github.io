@@ -129,13 +129,13 @@ function myFunction() {
 	  var mshdr = "\n🟢Max Streak: "
   }    
   //
-  if (localStorage.cluetcount == "X"){
+/*   if (localStorage.cluetcount == "X"){
 	  cluehdr = "/6. All Clues Exhausted!"
   }
   else{
 	  cluehdr = "/6 Clues Used To Win!"
-  }
-  var copyText = "🎾TENIZ! - Day "+days+"🎾 : "+localStorage.cluetcount+ cluehdr +"\n\n🟢Played: " + localStorage.totaltgames+ winhdr + Math.round(localStorage.totaltwins/localStorage.totaltgames*100)+ cshdr+ localStorage.currenttstreak+ mshdr + localStorage.longesttstreak+"\n\n💻https://tenizgame.github.io/";
+  } */
+  var copyText = "🎾 TENIZ! - Day "+days+" 🎾: "+localStorage.cluetcount+ "/6" +"\n\n🟢Played: " + localStorage.totaltgames+ winhdr + Math.round(localStorage.totaltwins/localStorage.totaltgames*100)+ cshdr+ localStorage.currenttstreak+ mshdr + localStorage.longesttstreak+"\n\n💻https://tenizgame.github.io/";
   /* Select the text field */
   //copyText.select();
   //copyText.setSelectionRange(0, 99999); /* For mobile devices */
