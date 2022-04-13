@@ -110,15 +110,29 @@ hr {
   justify-content: space-around;
 }
 
-#bbhdr, #pzlhdr, #pzl {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, Helvetica, sans-serif;
-  font-size: small;
+#pzlhdr, #pzl {
+  font-weight: bold;
+  font-size: 11px;
+} 
+
+#bbhdr {
+  font-weight: bold;
+  font-size: 11px;
+  margin-left: 15px;
 } 
 
 #bb{
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, Helvetica, sans-serif;
-  font-size: medium;
+  font-weight: bold;
+  font-size: 14px;
+  margin-left: 15px;
 } 
+
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 
 
 #board {
@@ -474,14 +488,6 @@ hr {
   font-weight: bold;
   font-size: 12px;
 }
-
-.button-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-
 
 #overlay {
   position: fixed;
