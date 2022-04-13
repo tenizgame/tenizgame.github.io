@@ -24,7 +24,7 @@ hr {
   color: #fff;
   text-transform: uppercase;
   animation: flipmain 2s;
-  animation-delay: calc(.1s * var(--i))
+  animation-delay: calc(.075s * var(--i))
 }
 @keyframes flipmain {
   0%,80% {

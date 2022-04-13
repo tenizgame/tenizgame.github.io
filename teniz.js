@@ -41,7 +41,7 @@ localStorage.setItem("ctrytopen",0);
 localStorage.setItem("gndrtopen",0);
 localStorage.setItem("fnfltopen",0);
 localStorage.setItem("lnfltopen",0);
-setTimeout(OpenRules,2000);	
+setTimeout(OpenRules,1100);	
 }
 
 //Counter Construct
@@ -400,7 +400,9 @@ window.onload = function(){
 
 
 function intialize() {
-
+	
+        let ele = document.getElementById("daycount");
+        ele.innerHTML += (days);
     // Create the game board
         for (let clueindex = 0; clueindex < 6; clueindex++) {
             // <span id="0-0" class="tile">P</span>
