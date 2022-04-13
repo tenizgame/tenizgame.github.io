@@ -158,28 +158,54 @@ function myFunction() {
   setTimeout(ResetButton,1000);
 }
 
+//clue reveal 
+function ballvanish0(){
+		document.getElementById(0).innerText = year;			
+}
+function ballvanish1(){
+		document.getElementById(1).innerText = grandslam;			
+}
+function ballvanish2(){
+		document.getElementById(2).innerText = country;			
+}
+function ballvanish3(){
+		document.getElementById(3).innerText = gender;			
+}
+function ballvanish4(){
+		document.getElementById(4).innerText = fnfl;			
+}
+function ballvanish5(){
+		document.getElementById(5).innerText = lnfl;			
+}
+
 //Array Manipulation for Clues
 	function FetchData(){
 		if (!gameOver){
 			var elementid = GetElemid(arrayid);
 			elementid = Number(elementid);
 			switch (elementid){
-				case 0: document.getElementById(0).innerText = year;
+				case 0: document.getElementById(0).classList.add("zoom-in-out-box");
+				setTimeout(ballvanish0,950);
 				localStorage.yeartopen = 1;
 				break;
-				case 1: document.getElementById(1).innerText = grandslam;
+				case 1: document.getElementById(1).classList.add("zoom-in-out-box");
+				setTimeout(ballvanish1,950);
 				localStorage.slamtopen = 1;
 				break;				
-				case 2: document.getElementById(2).innerText = country;
+				case 2: document.getElementById(2).classList.add("zoom-in-out-box");
+				setTimeout(ballvanish2,950);
 				localStorage.ctrytopen = 1;
 				break;
-				case 3: document.getElementById(3).innerText = gender;
+				case 3: document.getElementById(3).classList.add("zoom-in-out-box");
+				setTimeout(ballvanish3,950);
 				localStorage.gndrtopen = 1;
 				break;
-				case 4: document.getElementById(4).innerText = fnfl;
+				case 4: document.getElementById(4).classList.add("zoom-in-out-box");
+				setTimeout(ballvanish4,950);
 				localStorage.fnfltopen = 1;
 				break;
-				case 5: document.getElementById(5).innerText = lnfl;
+				case 5: document.getElementById(5).classList.add("zoom-in-out-box");
+				setTimeout(ballvanish5,950);
 				localStorage.lnfltopen = 1;
 				break;	
 			}			

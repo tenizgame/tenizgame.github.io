@@ -229,6 +229,28 @@ hr {
 	font-weight: bold;
 }
 
+.zoom-in-out-box {
+    animation: zoom-in-zoom-out 1s  ;
+  }
+  
+  @keyframes zoom-in-zoom-out {
+    0% {
+      transform: scale(1, 1);
+    }
+   25% {
+      transform: scale(1.5, 1.5);
+    }
+   50% {
+      transform: scale(.7, .7);
+    }
+   75% {
+      transform: scale(.35, .35);
+    }
+    100% {
+      transform: scale(0, 0);
+    }
+  }
+
 .animated {
     animation: flip 0.5s ease;
 }
