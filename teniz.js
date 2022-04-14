@@ -79,6 +79,11 @@ function ConfettiStart() {
 	document.getElementById("btnParty").click();
 }
 
+//Final Clue Text Attenion 
+function FinalClue() {
+	document.getElementById("answer").classList.add("poptile");
+}
+
 //Button Text
 function ResetButton() {
 	let HTMLButton = document.getElementById("HTMLButton");
@@ -828,6 +833,7 @@ function update() {
 		if (!gameOver && clueCount == 6) {
 			document.getElementById("answer").style.color = "red";
 			document.getElementById("answer").innerText = "Final Clue Revealed! Players may be repeated across days if they have won multiple GSs.";
+			setTimeout(FinalClue, 2000);
 			clueCount += 1;
 		}
 		else if (!gameOver && clueCount > 6) {
