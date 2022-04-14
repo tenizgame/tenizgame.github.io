@@ -111,15 +111,15 @@ if (localStorage.getItem('gameover' + days) != 0 && localStorage.getItem('gameov
 //Clipboard Code
 function myFunction() {
 
-	// if (Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) < 50) {
-	// 	var winhdr = "\n🔴Win %: "
-	// }
-	// else if (Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) >= 50 && Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) < 75) {
-	// 	var winhdr = "\n🟡Win %: "
-	// }
-	// else if (Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) >= 75) {
-	// 	var winhdr = "\n🟢Win %: "
-	// }
+	if (Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) < 50) {
+	 	var winhdr = "🔴"
+	 }
+	 else if (Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) >= 50 && Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) < 75) {
+	 	var winhdr = "🟡"
+	 }
+	 else if (Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) >= 75) {
+	 	var winhdr = "🟢"
+	 }
 	// //
 	// if (localStorage.currenttstreak == 0) {
 	// 	var cshdr = "\n🔴Current Streak: "
@@ -168,7 +168,7 @@ function myFunction() {
 	}
 
 	//var copyText = "🎾 TENIZ! - Day " + days + " 🎾: " + localStorage.cluetcount + "/6" + "\n\n🟢Played: " + localStorage.totaltgames + winhdr + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + cshdr + localStorage.currenttstreak + mshdr + localStorage.longesttstreak + "\n\n💻https://tenizgame.github.io/";
-	var copyText = "Can you beat me at 🎾 TENIZ 🎾?\n\nDay " + days + " : " + localStorage.cluetcount + cluehdr + "\n" +  clueicon + "\n\n💻https://tenizgame.github.io/";
+	var copyText = "Can you beat me at 🎾 TENIZ 🎾?\n\nDay " + days + " : " + localStorage.cluetcount + cluehdr + "\n" +  clueicon + " (Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + ")" + "\n\n💻https://tenizgame.github.io/";
 	/* Copy the text inside the text field */
 	navigator.clipboard.writeText(copyText);
 
@@ -817,7 +817,7 @@ function update() {
 	}
 	else if (guess == "") {
 		document.getElementById("answer").style.color = "red";
-		document.getElementById("answer").innerText = "Please enter a Name to Submit!";
+		document.getElementById("answer").innerText = "Please enter any Name to Submit!";
 	}
 	else {
 		document.getElementById("answer").style.color = "red";
@@ -826,7 +826,8 @@ function update() {
 			FetchData();
 		}
 		if (!gameOver && clueCount == 6) {
-			document.getElementById("answer").innerText = "Incorrect Guess! Last Clue Revealed. \n Hit any key to clear and then try again.";
+			document.getElementById("answer").style.color = "red";
+			document.getElementById("answer").innerText = "Final Clue Revealed! Players may be repeated across days if they have won multiple GSs.";
 			clueCount += 1;
 		}
 		else if (!gameOver && clueCount > 6) {
