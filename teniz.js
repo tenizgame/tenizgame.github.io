@@ -111,44 +111,64 @@ if (localStorage.getItem('gameover' + days) != 0 && localStorage.getItem('gameov
 //Clipboard Code
 function myFunction() {
 
-	if (Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) < 50) {
-		var winhdr = "\n🔴Win %: "
+	// if (Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) < 50) {
+	// 	var winhdr = "\n🔴Win %: "
+	// }
+	// else if (Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) >= 50 && Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) < 75) {
+	// 	var winhdr = "\n🟡Win %: "
+	// }
+	// else if (Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) >= 75) {
+	// 	var winhdr = "\n🟢Win %: "
+	// }
+	// //
+	// if (localStorage.currenttstreak == 0) {
+	// 	var cshdr = "\n🔴Current Streak: "
+	// }
+	// else if (localStorage.currenttstreak > 0 && localStorage.currenttstreak < 10) {
+	// 	var cshdr = "\n🟡Current Streak: "
+	// }
+	// else if (localStorage.currenttstreak >= 10) {
+	// 	var cshdr = "\n🟢Current Streak: "
+	// }
+	// //
+	// if (localStorage.longesttstreak == 0) {
+	// 	var mshdr = "\n🔴Max Streak: "
+	// }
+	// else if (localStorage.longesttstreak > 0 && localStorage.longesttstreak < 20) {
+	// 	var mshdr = "\n🟡Max Streak: "
+	// }
+	// else if (localStorage.longesttstreak >= 20) {
+	// 	var mshdr = "\n🟢Max Streak: "
+	// }
+    cluehdr = "/6 Clues Used To Win!"
+	if (localStorage.cluetcount == 0) {
+		var clueicon = "🟢";
 	}
-	else if (Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) >= 50 && Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) < 75) {
-		var winhdr = "\n🟡Win %: "
+	else if (localStorage.cluetcount == 1) {
+		var clueicon = "🔴🟢";
 	}
-	else if (Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) >= 75) {
-		var winhdr = "\n🟢Win %: "
+	else if (localStorage.cluetcount == 2) {
+		var clueicon = "🔴🔴🟢";
 	}
-	//
-	if (localStorage.currenttstreak == 0) {
-		var cshdr = "\n🔴Current Streak: "
+	else if (localStorage.cluetcount == 3) {
+		var clueicon = "🔴🔴🔴🟢";
 	}
-	else if (localStorage.currenttstreak > 0 && localStorage.currenttstreak < 10) {
-		var cshdr = "\n🟡Current Streak: "
+	else if (localStorage.cluetcount == 4) {
+		var clueicon = "🔴🔴🔴🔴🟢";
 	}
-	else if (localStorage.currenttstreak >= 10) {
-		var cshdr = "\n🟢Current Streak: "
+	else if (localStorage.cluetcount == 5) {
+		var clueicon = "🔴🔴🔴🔴🔴🟢";
 	}
-	//
-	if (localStorage.longesttstreak == 0) {
-		var mshdr = "\n🔴Max Streak: "
+	else if (localStorage.cluetcount == 6) {
+		var clueicon = "🔴🔴🔴🔴🔴🔴🟢";
 	}
-	else if (localStorage.longesttstreak > 0 && localStorage.longesttstreak < 20) {
-		var mshdr = "\n🟡Max Streak: "
+	else if (localStorage.cluetcount == "X") {
+		var clueicon = "🔴🔴🔴🔴🔴🔴🔴";
+		cluehdr = "/6. All Clues Exhausted!";
 	}
-	else if (localStorage.longesttstreak >= 20) {
-		var mshdr = "\n🟢Max Streak: "
-	}
-	//
-	/*   if (localStorage.cluetcount == "X"){
-		  cluehdr = "/6. All Clues Exhausted!"
-	  }
-	  else{
-		  cluehdr = "/6 Clues Used To Win!"
-	  } */
-	var copyText = "🎾 TENIZ! - Day " + days + " 🎾: " + localStorage.cluetcount + "/6" + "\n\n🟢Played: " + localStorage.totaltgames + winhdr + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + cshdr + localStorage.currenttstreak + mshdr + localStorage.longesttstreak + "\n\n💻https://tenizgame.github.io/";
 
+	//var copyText = "🎾 TENIZ! - Day " + days + " 🎾: " + localStorage.cluetcount + "/6" + "\n\n🟢Played: " + localStorage.totaltgames + winhdr + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + cshdr + localStorage.currenttstreak + mshdr + localStorage.longesttstreak + "\n\n💻https://tenizgame.github.io/";
+	var copyText = "Can you beat me at 🎾 TENIZ 🎾?\n\nDay " + days + " : " + localStorage.cluetcount + cluehdr + "\n" +  clueicon + "\n\n💻https://tenizgame.github.io/";
 	/* Copy the text inside the text field */
 	navigator.clipboard.writeText(copyText);
 
