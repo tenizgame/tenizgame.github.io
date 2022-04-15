@@ -104,6 +104,8 @@ function displayFooter() {
 	document.getElementById("pzl").style.display = "block";
 	document.getElementById("bbhdr").style.display = "block";
 	document.getElementById("bb").style.display = "block";
+	document.getElementById("HTMLButton").style.display = "block";
+	document.getElementById("CoffeButton").style.display = "block";	
 }
 
 //Baseline Date
@@ -440,6 +442,8 @@ function intialize() {
 	document.getElementById("pzl").style.display = "none";
 	document.getElementById("bbhdr").style.display = "none";
 	document.getElementById("bb").style.display = "none";
+	document.getElementById("HTMLButton").style.display = "none";
+	document.getElementById("CoffeButton").style.display = "none";
 	// Create the game board
 	for (let clueindex = 0; clueindex < 6; clueindex++) {
 		// <span id="0-0" class="tile">P</span>
