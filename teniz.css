@@ -235,12 +235,16 @@ hr {
   margin-top: 0;
 }
 
+.popanswer {
+  animation: pop 0.3s linear 1;
+}
 
 .tile {
   /* Box */
   width: 25px;
   height: 25px;
-  border: 3px solid #3a3a3c;
+  border: 3px solid #4b4b4e
+;
   margin: 2px;
   color: black;
   text-transform: uppercase;
@@ -256,7 +260,7 @@ hr {
   /* Box */
   width: 10px;
   height: 10px;
-  border: 2px solid #3a3a3c;
+  border: 2px solid #4b4b4e;
   margin: 1px;
   color: black;
   text-transform: uppercase;
@@ -317,6 +321,7 @@ hr {
 
 .poptile {
   animation: pop 0.3s linear 1;
+  border: 3px solid  #3a3a3c;
 }
 
 @keyframes pop {
