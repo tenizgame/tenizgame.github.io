@@ -18,6 +18,8 @@ hr {
   width: 400px;
 }
 
+.buttonrad {border-radius: 8px;}
+
 .waviy {
   position: relative;
 }

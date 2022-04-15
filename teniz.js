@@ -98,6 +98,14 @@ function SetClueCount() {
 	}
 }
 
+//Display Footer after game
+function displayFooter() {
+	document.getElementById("pzlhdr").style.display = "block";
+	document.getElementById("pzl").style.display = "block";
+	document.getElementById("bbhdr").style.display = "block";
+	document.getElementById("bb").style.display = "block";
+}
+
 //Baseline Date
 var a = new Date(); // Current date now.
 var b = new Date(2022, 3, 11, 0, 0, 0, 0); // Start of TENIZ.
@@ -428,6 +436,10 @@ function intialize() {
 
 	let ele = document.getElementById("daycount");
 	ele.innerHTML += (days);
+	document.getElementById("pzlhdr").style.display = "none";
+	document.getElementById("pzl").style.display = "none";
+	document.getElementById("bbhdr").style.display = "none";
+	document.getElementById("bb").style.display = "none";
 	// Create the game board
 	for (let clueindex = 0; clueindex < 6; clueindex++) {
 		// <span id="0-0" class="tile">P</span>
@@ -515,6 +527,7 @@ function intialize() {
 			document.getElementById("answer").innerText = "Hard luck today. Come back again tomorrow!";
 			setTimeout(OpenStats, 1100);
 		}
+		displayFooter();		
 	}
 	// Default Path
 	else {
@@ -816,6 +829,7 @@ function update() {
 		document.getElementById("answer").innerText = "You have identified the player successfully.\nCongrats! Dont forget to share your results.";
 		setTimeout(ConfettiStart, 1000);
 		gameOver = true;
+		displayFooter();
 		localStorage.gametwon = 1;
 		localStorage.setItem(('gameover' + days), 1);
 		setTimeout(OpenStats, 4800);
@@ -855,6 +869,7 @@ function update() {
 			document.getElementById(7).innerText = "Win %: " + winpct;
 			document.getElementById(8).innerText = "Current Streak: " + localStorage.currenttstreak;
 			gameOver = true;
+			displayFooter();
 			localStorage.gametwon = 0;
 			localStorage.setItem(('gameover' + days), 1);
 			setTimeout(OpenStats, 3000);
