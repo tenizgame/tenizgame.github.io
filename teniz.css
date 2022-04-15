@@ -243,8 +243,7 @@ hr {
   /* Box */
   width: 25px;
   height: 25px;
-  border: 3px solid #4b4b4e
-;
+  border: 3px solid #4b4b4e;
   margin: 2px;
   color: black;
   text-transform: uppercase;
@@ -260,7 +259,7 @@ hr {
   /* Box */
   width: 10px;
   height: 10px;
-  border: 2px solid #4b4b4e;
+  border: 2px solid #3a3a3c;
   margin: 1px;
   color: black;
   text-transform: uppercase;
