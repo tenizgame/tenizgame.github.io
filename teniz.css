@@ -13,6 +13,7 @@ body {
 
 a { color: #fff; } /* CSS link color */
 a:hover { color: #fff; } /* CSS link color */
+a { text-decoration: none; }
 
 hr {
   width: 400px;
