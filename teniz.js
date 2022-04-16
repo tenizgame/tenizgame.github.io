@@ -454,7 +454,7 @@ function intialize() {
 			clue.innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">Year</div>';
 		}
 		else if (clueindex == 1) {
-			clue.innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">Grand Slam</div>';
+			clue.innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">Slam</div>';
 		}
 		else if (clueindex == 2) {
 			clue.innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">Country</div>';
