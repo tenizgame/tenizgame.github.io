@@ -566,7 +566,7 @@ function intialize() {
 			SetClueCount();
 		}
 		document.getElementById("answer").style.color = "cyan";
-		document.getElementById("answer").innerText = "Read the Game Rules to learn about how to play!";
+		document.getElementById("answer").innerText = "READ THE GAME RULES BEFORE PLAYING!";
 		// Create the key board
 		let keyboard = [
 			["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
