@@ -700,6 +700,8 @@ function processInput(e) {
 
 function update() {
 	enterHit = true;
+	document.getElementById("boardfirst").classList.remove("shaketile");	
+	document.getElementById("boardlast").classList.remove("shaketile");		
 	let guess = "";
 	document.getElementById("answer").innerText = "";
 
@@ -839,16 +841,22 @@ function update() {
 		setTimeout(OpenStats, 4800);
 	}
 	else if (guess == "") {
+		document.getElementById("boardfirst").classList.add("shaketile");	
+		document.getElementById("boardlast").classList.add("shaketile");	
 		document.getElementById("answer").style.color = "red";
 		document.getElementById("answer").innerText = "Please enter any Name to Submit!";
 	}
 	else {
 		document.getElementById("answer").style.color = "red";
 		if (!gameOver && clueCount < 6) {
+			document.getElementById("boardfirst").classList.add("shaketile");	
+			document.getElementById("boardlast").classList.add("shaketile");			
 			document.getElementById("answer").innerText = "Incorrect Guess! New Clue Revealed. \n Hit any key to clear and then try again.";
 			FetchData();
 		}
 		if (!gameOver && clueCount == 6) {
+			document.getElementById("boardfirst").classList.add("shaketile");	
+			document.getElementById("boardlast").classList.add("shaketile");			
 			document.getElementById("answer").style.color = "red";
 			document.getElementById("answer").innerText = "Final Clue Revealed! Players may be repeated across days if they have won multiple GSs.";
 			setTimeout(FinalClue, 2000);
