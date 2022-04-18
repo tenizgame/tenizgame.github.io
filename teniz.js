@@ -2,14 +2,14 @@
 btnParty.addEventListener("click", () => {
 	confetti("tsparticles", {
 		angle: 90,
-		count: 200,
+		count: 20,
 		position: { x: 50, y: 50 },
 		spread: 90,
 		startVelocity: 60,
 		decay: 0.9,
 		gravity: 1,
 		drift: 0,
-		ticks: 200,
+		ticks: 100,
 		colors: ["#fff", "#f00"],
 		shapes: ["square", "circle"],
 		scalar: 1,
