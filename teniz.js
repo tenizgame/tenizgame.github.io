@@ -518,8 +518,8 @@ function intialize() {
 			}
 			document.getElementById("answer").style.color = "green";
 			document.getElementById("answer").innerText = "You have already identified today's player.\nCome back again tomorrow!";
-			setTimeout(ConfettiStart, 1000);
-			setTimeout(OpenStats, 4800);
+			/* setTimeout(ConfettiStart, 1000); */
+			setTimeout(OpenStats, 1100);
 		}
 		else {
 			for (let c = 0; c < width; c++) {
