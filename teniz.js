@@ -2,14 +2,14 @@
 btnParty.addEventListener("click", () => {
 	confetti("tsparticles", {
 		angle: 90,
-		count: 20,
+		count: 250,
 		position: { x: 50, y: 50 },
 		spread: 90,
 		startVelocity: 60,
 		decay: 0.9,
 		gravity: 1,
 		drift: 0,
-		ticks: 100,
+		ticks: 200,
 		colors: ["#fff", "#f00"],
 		shapes: ["square", "circle"],
 		scalar: 1,
@@ -518,7 +518,8 @@ function intialize() {
 			}
 			document.getElementById("answer").style.color = "green";
 			document.getElementById("answer").innerText = "You have already identified today's player.\nCome back again tomorrow!";
-			setTimeout(OpenStats, 1100);
+			setTimeout(ConfettiStart, 1000);
+			setTimeout(OpenStats, 4800);
 		}
 		else {
 			for (let c = 0; c < width; c++) {
