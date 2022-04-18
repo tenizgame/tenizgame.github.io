@@ -2,10 +2,10 @@
 btnParty.addEventListener("click", () => {
   confetti("tsparticles", {
     angle: 90,
-    count: 250,
+    count: 300,
     position: { x: 50, y: 50 },
     spread: 90,
-    startVelocity: 60,
+    startVelocity: 50,
     decay: 0.9,
     gravity: 1,
     drift: 0,
