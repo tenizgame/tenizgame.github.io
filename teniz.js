@@ -194,7 +194,7 @@ function myFunction() {
 	 	var avggsshdr = "🔴"
 	 }
 	//var copyText = "🎾 TENIZ! - Day " + days + " 🎾: " + localStorage.cluetcount + "/6" + "\n\n🟢Played: " + localStorage.totaltgames + winhdr + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + cshdr + localStorage.currenttstreak + mshdr + localStorage.longesttstreak + "\n\n💻https://tenizgame.github.io/";
-	var copyText = "🎾 Can you beat me at TENIZ? 🎾\n\nDay " + days + " : " + localStorage.cluetcount + cluehdr + "\n" +  clueicon + "\nGames: " + localStorage.totaltgames + " | Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + " | Avg. Clues: " + avggss + avggsshdr + "\n\n💻https://tenizgame.github.io/";
+	var copyText = "🎾 TENIZ - Day " + days + " 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" +  clueicon + " | Avg. Clues: " + avggss + avggsshdr +  "\nPlayed: " + localStorage.totaltgames + " | Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr  + "\n\n💻https://tenizgame.github.io/";
 	/* Copy the text inside the text field */
 	navigator.clipboard.writeText(copyText);
 
