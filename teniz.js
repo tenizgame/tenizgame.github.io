@@ -181,9 +181,20 @@ function myFunction() {
 		var clueicon = "🔴🔴🔴🔴🔴🔴🔴";
 		cluehdr = "/6. All Clues Exhausted!";
 	}
-
+	//console.log((localStorage.cluet0count * 0) + (localStorage.cluet1count * 1) + (localStorage.cluet2count * 2) + (localStorage.cluet3count * 3) + (localStorage.cluet4count * 4) + (localStorage.cluet5count * 5) + (localStorage.cluet6count * 6) + (localStorage.cluetxcount * 7));
+	//console.log((Number(localStorage.cluet0count) + Number(localStorage.cluet1count) + Number(localStorage.cluet2count) + Number(localStorage.cluet3count) + Number(localStorage.cluet4count) + Number(localStorage.cluet5count) + Number(localStorage.cluet6count) + Number(localStorage.cluetxcount)));
+	var avggss = Math.round(((localStorage.cluet0count * 0) + (localStorage.cluet1count * 1) + (localStorage.cluet2count * 2) + (localStorage.cluet3count * 3) + (localStorage.cluet4count * 4) + (localStorage.cluet5count * 5) + (localStorage.cluet6count * 6) + (localStorage.cluetxcount * 7))/(Number(localStorage.cluet0count) + Number(localStorage.cluet1count) + Number(localStorage.cluet2count) + Number(localStorage.cluet3count) + Number(localStorage.cluet4count) + Number(localStorage.cluet5count) + Number(localStorage.cluet6count) + Number(localStorage.cluetxcount)));
+	if (avggss <= 2) {
+	 	var avggsshdr = "🟢"
+	 }
+	 else if (avggss > 2 && avggss < 6) {
+	 	var avggsshdr = "🟡"
+	 }
+	 else if (avggss >= 6) {
+	 	var avggsshdr = "🔴"
+	 }
 	//var copyText = "🎾 TENIZ! - Day " + days + " 🎾: " + localStorage.cluetcount + "/6" + "\n\n🟢Played: " + localStorage.totaltgames + winhdr + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + cshdr + localStorage.currenttstreak + mshdr + localStorage.longesttstreak + "\n\n💻https://tenizgame.github.io/";
-	var copyText = "🎾 Can you beat me at TENIZ? 🎾\n\nDay " + days + " : " + localStorage.cluetcount + cluehdr + "\n" +  clueicon + "\nPlayed: " + localStorage.totaltgames + " | Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "\n\n💻https://tenizgame.github.io/";
+	var copyText = "🎾 Can you beat me at TENIZ? 🎾\n\nDay " + days + " : " + localStorage.cluetcount + cluehdr + "\n" +  clueicon + "\nPlayed: " + localStorage.totaltgames + " | Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + " | Avg. Clues: " + avggss + avggsshdr + "\n\n💻https://tenizgame.github.io/";
 	/* Copy the text inside the text field */
 	navigator.clipboard.writeText(copyText);
 

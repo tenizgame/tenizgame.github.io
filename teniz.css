@@ -21,7 +21,11 @@ hr {
 
 
 
-.buttonrad {border-radius: 8px;}
+.buttonrad {
+border-radius: 12px;
+  font-weight: bold;
+  font-size: 12px;
+}
 
 .waviy {
   position: relative;
@@ -131,13 +135,13 @@ hr {
 #bbhdr {
   font-weight: bold;
   font-size: 11px;
-  margin-left: 15px;
+  margin-left: 20px;
 } 
 
 #bb{
   font-weight: bold;
   font-size: 14px;
-  margin-left: 15px;
+  margin-left: 20px;
 } 
 
 
