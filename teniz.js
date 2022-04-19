@@ -529,7 +529,7 @@ function intialize() {
 				gameTile.classList.add("absent", "animated");
 			}
 			document.getElementById("answer").style.color = "red";
-			document.getElementById("answer").innerText = "Hard luck today. Come back again tomorrow!";
+			document.getElementById("answer").innerText = "HARD LUCK TODAY. TRY AGAIN TOMORROW!";
 			setTimeout(OpenStats, 1100);
 		}
 		displayFooter();		
@@ -845,7 +845,7 @@ function update() {
 		document.getElementById("boardfirst").classList.add("shaketile");	
 		document.getElementById("boardlast").classList.add("shaketile");	
 		document.getElementById("answer").style.color = "red";
-		document.getElementById("answer").innerText = "Please enter any Name to Submit!";
+		document.getElementById("answer").innerText = "PLEASE ENTER ANY NAME TO SUBMIT!";
 	}
 	else {
 		document.getElementById("answer").style.color = "red";
@@ -871,7 +871,7 @@ function update() {
 				gameTile.classList.add("absent", "animated");
 			}
 			document.getElementById("answer").style.color = "red";
-			document.getElementById("answer").innerText = "Hard luck today. Come back again tomorrow!";
+			document.getElementById("answer").innerText = "HARD LUCK TODAY. TRY AGAIN TOMORROW!";
 			localStorage.totaltgames = Number(localStorage.totaltgames) + 1;
 			winpct = Math.round(localStorage.totaltwins / localStorage.totaltgames * 100);
 			localStorage.currenttstreak = 0;
