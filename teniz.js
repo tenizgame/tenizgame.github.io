@@ -157,22 +157,22 @@ function myFunction() {
 	// }
     cluehdr = "/6 Clues Used To Win!"
 	if (localStorage.cluetcount == 0) {
-		var clueicon = "🟢🟢🟢🟢🟢🟢🟢";
+		var clueicon = "🟢⚪⚪⚪⚪⚪⚪";
 	}
 	else if (localStorage.cluetcount == 1) {
-		var clueicon = "🔴🟢🟢🟢🟢🟢🟢";
+		var clueicon = "🔴🟢⚪⚪⚪⚪⚪";
 	}
 	else if (localStorage.cluetcount == 2) {
-		var clueicon = "🔴🔴🟢🟢🟢🟢🟢";
+		var clueicon = "🔴🔴🟢⚪⚪⚪⚪";
 	}
 	else if (localStorage.cluetcount == 3) {
-		var clueicon = "🔴🔴🔴🟢🟢🟢🟢";
+		var clueicon = "🔴🔴🔴🟢⚪⚪⚪";
 	}
 	else if (localStorage.cluetcount == 4) {
-		var clueicon = "🔴🔴🔴🔴🟢🟢🟢";
+		var clueicon = "🔴🔴🔴🔴🟢⚪⚪";
 	}
 	else if (localStorage.cluetcount == 5) {
-		var clueicon = "🔴🔴🔴🔴🔴🟢🟢";
+		var clueicon = "🔴🔴🔴🔴🔴🟢⚪";
 	}
 	else if (localStorage.cluetcount == 6) {
 		var clueicon = "🔴🔴🔴🔴🔴🔴🟢";
