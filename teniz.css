@@ -19,14 +19,25 @@ hr {
   width: 400px;
 }
 
+.howtogif {
+  width: 250px;
+  height: auto;
+}
+
 .buttonrad {
   border-radius: 12px;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
     color: black;
     border-style: solid;
     background-color: #fff;
     border-color: #fff;
+	width:145px;
+}
+
+.bluebutton {
+    font-weight: bold;
+    font-size: 14px;
 }
 
 .waviy {
@@ -131,7 +142,7 @@ hr {
 #pzlhdr, #pzl {
   font-weight: bold;
   font-size: 11px;
-  margin-right: 7px;
+  margin-right: 0px;
 } 
 
 #bbhdr {
