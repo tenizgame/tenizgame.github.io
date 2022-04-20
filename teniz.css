@@ -19,12 +19,14 @@ hr {
   width: 400px;
 }
 
-
-
 .buttonrad {
-border-radius: 12px;
-  font-weight: bold;
-  font-size: 12px;
+  border-radius: 12px;
+    font-weight: bold;
+    font-size: 12px;
+    color: black;
+    border-style: solid;
+    background-color: #fff;
+    border-color: #fff;
 }
 
 .waviy {

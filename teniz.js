@@ -1,21 +1,21 @@
 //Confetti Begin
 btnParty.addEventListener("click", () => {
-  confetti("tsparticles", {
-    angle: 90,
-    count: 300,
-    position: { x: 50, y: 50 },
-    spread: 90,
-    startVelocity: 50,
-    decay: 0.9,
-    gravity: 1,
-    drift: 0,
-    ticks: 200,
-    colors: ["#fff", "#f00"],
-    shapes: ["square", "circle"],
-    scalar: 1,
-    zIndex: 2000,
-    disableForReducedMotion: true
-  });
+	confetti("tsparticles", {
+		angle: 90,
+		count: 300,
+		position: { x: 50, y: 50 },
+		spread: 90,
+		startVelocity: 50,
+		decay: 0.9,
+		gravity: 1,
+		drift: 0,
+		ticks: 200,
+		colors: ["#fff", "#f00"],
+		shapes: ["square", "circle"],
+		scalar: 1,
+		zIndex: 2000,
+		disableForReducedMotion: true
+	});
 });
 //Confetti End
 //Local Storage Initial Setting
@@ -105,7 +105,7 @@ function displayFooter() {
 	document.getElementById("bbhdr").style.display = "block";
 	document.getElementById("bb").style.display = "block";
 	document.getElementById("HTMLButton").style.display = "block";
-	document.getElementById("CoffeButton").style.display = "block";	
+	document.getElementById("CoffeButton").style.display = "block";
 }
 
 //Baseline Date
@@ -127,14 +127,14 @@ if (localStorage.getItem('gameover' + days) != 0 && localStorage.getItem('gameov
 function myFunction() {
 
 	if (Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) < 50) {
-	 	var winhdr = "🔴"
-	 }
-	 else if (Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) >= 50 && Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) < 75) {
-	 	var winhdr = "🟡"
-	 }
-	 else if (Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) >= 75) {
-	 	var winhdr = "🟢"
-	 }
+		var winhdr = "🔴"
+	}
+	else if (Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) >= 50 && Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) < 75) {
+		var winhdr = "🟡"
+	}
+	else if (Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) >= 75) {
+		var winhdr = "🟢"
+	}
 	// //
 	if (localStorage.currenttstreak == 0) {
 		var cshdr = "🔴"
@@ -155,7 +155,7 @@ function myFunction() {
 	// else if (localStorage.longesttstreak >= 20) {
 	// 	var mshdr = "\n🟢Max Streak: "
 	// }
-    cluehdr = "/6 Clues Used To Win!"
+	cluehdr = "/6 Clues Used To Win!"
 	if (localStorage.cluetcount == 0) {
 		var clueicon = "🟢⚪⚪⚪⚪⚪⚪";
 	}
@@ -181,18 +181,18 @@ function myFunction() {
 		var clueicon = "🔴🔴🔴🔴🔴🔴🔴";
 		cluehdr = "/6. All Clues Exhausted!";
 	}
-	var avggss = Math.round(((localStorage.cluet0count * 0) + (localStorage.cluet1count * 1) + (localStorage.cluet2count * 2) + (localStorage.cluet3count * 3) + (localStorage.cluet4count * 4) + (localStorage.cluet5count * 5) + (localStorage.cluet6count * 6) + (localStorage.cluetxcount * 7))/(Number(localStorage.cluet0count) + Number(localStorage.cluet1count) + Number(localStorage.cluet2count) + Number(localStorage.cluet3count) + Number(localStorage.cluet4count) + Number(localStorage.cluet5count) + Number(localStorage.cluet6count) + Number(localStorage.cluetxcount)));
+	var avggss = Math.round(((localStorage.cluet0count * 0) + (localStorage.cluet1count * 1) + (localStorage.cluet2count * 2) + (localStorage.cluet3count * 3) + (localStorage.cluet4count * 4) + (localStorage.cluet5count * 5) + (localStorage.cluet6count * 6) + (localStorage.cluetxcount * 7)) / (Number(localStorage.cluet0count) + Number(localStorage.cluet1count) + Number(localStorage.cluet2count) + Number(localStorage.cluet3count) + Number(localStorage.cluet4count) + Number(localStorage.cluet5count) + Number(localStorage.cluet6count) + Number(localStorage.cluetxcount)));
 	if (avggss <= 2) {
-	 	var avggsshdr = "🟢"
-	 }
-	 else if (avggss > 2 && avggss < 6) {
-	 	var avggsshdr = "🟡"
-	 }
-	 else if (avggss >= 6) {
-	 	var avggsshdr = "🔴"
-	 }
+		var avggsshdr = "🟢"
+	}
+	else if (avggss > 2 && avggss < 6) {
+		var avggsshdr = "🟡"
+	}
+	else if (avggss >= 6) {
+		var avggsshdr = "🔴"
+	}
 	//var copyText = "🎾 TENIZ! - Day " + days + " 🎾: " + localStorage.cluetcount + "/6" + "\n\n🟢Played: " + localStorage.totaltgames + winhdr + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + cshdr + localStorage.currenttstreak + mshdr + localStorage.longesttstreak + "\n\n💻https://tenizgame.github.io/";
-	var copyText = "🎾 TENIZ - Day " + days + " 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" +  clueicon +  "\nPlayed: " + localStorage.totaltgames + "|Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "|Avg. Clues: " + avggss + avggsshdr + "\n\n💻https://tenizgame.github.io/";
+	var copyText = "🎾 TENIZ - Day " + days + " 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\nPlayed: " + localStorage.totaltgames + "|Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "|Avg. Clues: " + avggss + avggsshdr + "\n\n💻https://tenizgame.github.io/";
 	/* Copy the text inside the text field */
 	navigator.clipboard.writeText(copyText);
 
@@ -541,7 +541,7 @@ function intialize() {
 			document.getElementById("answer").innerText = "HARD LUCK TODAY. TRY AGAIN TOMORROW!";
 			setTimeout(OpenStats, 1100);
 		}
-		displayFooter();		
+		displayFooter();
 	}
 	// Default Path
 	else {
@@ -624,7 +624,18 @@ function intialize() {
 			}
 			document.body.appendChild(keyboardRow);
 		}
-
+		var mybr = document.createElement('br');
+		document.body.appendChild(mybr);
+		var mybr = document.createElement('br');
+		document.body.appendChild(mybr);
+		var button = document.createElement("button");
+		button.innerText = "Buy Me a Coffee❤️";
+		// attach the event
+		button.addEventListener('click', function(){
+		  window.open('https://www.buymeacoffee.com/sank0403/', '_blank'); // _blank will open the site in a new tab
+		});
+		document.body.appendChild(button);
+		button.classList.add("buttonrad");
 
 		// Listen for Key Press
 		document.addEventListener("keyup", (e) => {
@@ -710,8 +721,8 @@ function processInput(e) {
 
 function update() {
 	enterHit = true;
-	document.getElementById("boardfirst").classList.remove("shaketile");	
-	document.getElementById("boardlast").classList.remove("shaketile");		
+	document.getElementById("boardfirst").classList.remove("shaketile");
+	document.getElementById("boardlast").classList.remove("shaketile");
 	let guess = "";
 	document.getElementById("answer").innerText = "";
 
@@ -851,22 +862,22 @@ function update() {
 		setTimeout(OpenStats, 4800);
 	}
 	else if (guess == "") {
-		document.getElementById("boardfirst").classList.add("shaketile");	
-		document.getElementById("boardlast").classList.add("shaketile");	
+		document.getElementById("boardfirst").classList.add("shaketile");
+		document.getElementById("boardlast").classList.add("shaketile");
 		document.getElementById("answer").style.color = "red";
 		document.getElementById("answer").innerText = "PLEASE ENTER ANY NAME TO SUBMIT!";
 	}
 	else {
 		document.getElementById("answer").style.color = "red";
 		if (!gameOver && clueCount < 6) {
-			document.getElementById("boardfirst").classList.add("shaketile");	
-			document.getElementById("boardlast").classList.add("shaketile");			
+			document.getElementById("boardfirst").classList.add("shaketile");
+			document.getElementById("boardlast").classList.add("shaketile");
 			document.getElementById("answer").innerText = "Incorrect Guess! New Clue Revealed. \n Hit any key to clear and then try again.";
 			FetchData();
 		}
 		if (!gameOver && clueCount == 6) {
-			document.getElementById("boardfirst").classList.add("shaketile");	
-			document.getElementById("boardlast").classList.add("shaketile");			
+			document.getElementById("boardfirst").classList.add("shaketile");
+			document.getElementById("boardlast").classList.add("shaketile");
 			document.getElementById("answer").style.color = "red";
 			document.getElementById("answer").innerText = "Final Clue Revealed! Players may be repeated across days if they have won multiple GSs.";
 			setTimeout(FinalClue, 2000);
