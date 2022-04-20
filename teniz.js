@@ -204,22 +204,22 @@ function myFunction() {
 
 //clue reveal 
 function ballvanish0() {
-	document.getElementById(0).innerText = year;
+	document.getElementById(0).innerHTML = "<span class='revealcol'>" + year +"</span><br><br><span class='revealsiz'>(Year)</span>";
 }
 function ballvanish1() {
-	document.getElementById(1).innerText = grandslam;
+	document.getElementById(1).innerHTML = "<span class='revealcol'>" + grandslam +"</span><br><br><span class='revealsiz'>(Slam)</span>";
 }
 function ballvanish2() {
-	document.getElementById(2).innerText = country;
+	document.getElementById(2).innerHTML = "<span class='revealcol'>" + country +"</span><br><br><span class='revealsiz'>(Country)</span>";
 }
 function ballvanish3() {
-	document.getElementById(3).innerText = gender;
+	document.getElementById(3).innerHTML = "<span class='revealcol'>" + gender +"</span><br><br><span class='revealsiz'>(Gender)</span>";
 }
 function ballvanish4() {
-	document.getElementById(4).innerText = fnfl;
+	document.getElementById(4).innerHTML = "<span class='revealcol'>" + fnfl +"</span><br><br><span class='revealsiz'>(FN FL)</span>";
 }
 function ballvanish5() {
-	document.getElementById(5).innerText = lnfl;
+	document.getElementById(5).innerHTML = "<span class='revealcol'>" + lnfl +"</span><br><br><span class='revealsiz'>(LN FL)</span>";
 }
 
 //Array Manipulation for Clues
@@ -546,36 +546,36 @@ function intialize() {
 	// Default Path
 	else {
 		if (localStorage.yeartopen == 1) {
-			document.getElementById(0).innerText = year;
+			document.getElementById(0).innerHTML = "<span class='revealcol'>" + year +"</span><br><br><span class='revealsiz'>(Year)</span>";
 			arrayid.splice(arrayid.indexOf(0), 1);
 			SetClueCount();
 		}
 		if (localStorage.slamtopen == 1) {
-			document.getElementById(1).innerText = grandslam;
+			document.getElementById(1).innerHTML = "<span class='revealcol'>" + grandslam +"</span><br><br><span class='revealsiz'>(Slam)</span>";
 			arrayid.splice(arrayid.indexOf(1), 1);
 			SetClueCount();
 		}
 		if (localStorage.ctrytopen == 1) {
-			document.getElementById(2).innerText = country;
+			document.getElementById(2).innerHTML = "<span class='revealcol'>" + country +"</span><br><br><span class='revealsiz'>(Country)</span>";
 			arrayid.splice(arrayid.indexOf(2), 1);
 			SetClueCount();
 		}
 		if (localStorage.gndrtopen == 1) {
-			document.getElementById(3).innerText = gender;
+			document.getElementById(3).innerHTML = "<span class='revealcol'>" + gender +"</span><br><br><span class='revealsiz'>(Gender)</span>";
 			arrayid.splice(arrayid.indexOf(3), 1);
 			SetClueCount();
 		}
 		if (localStorage.fnfltopen == 1) {
-			document.getElementById(4).innerText = fnfl;
+			document.getElementById(4).innerHTML = "<span class='revealcol'>" + fnfl +"</span><br><br><span class='revealsiz'>(FN FL)</span>";
 			arrayid.splice(arrayid.indexOf(4), 1);
 			SetClueCount();
 		}
 		if (localStorage.lnfltopen == 1) {
-			document.getElementById(5).innerText = lnfl;
+			document.getElementById(5).innerHTML = "<span class='revealcol'>" + lnfl +"</span><br><br><span class='revealsiz'>(LN FL)</span>";
 			arrayid.splice(arrayid.indexOf(5), 1);
 			SetClueCount();
 		}
-		document.getElementById("answer").style.color = "cyan";
+		document.getElementById("answer").style.color = "green";
 		document.getElementById("answer").innerText = "READ THE GAME RULES BEFORE PLAYING!";
 		// Create the key board
 		let keyboard = [

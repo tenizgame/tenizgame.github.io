@@ -19,6 +19,15 @@ hr {
   width: 400px;
 }
 
+.revealcol {
+    font-weight: bold;
+    color: #6AAA64;
+}
+
+.revealsiz {
+    font-size:12px;
+}
+
 .howtogif {
   width: 250px;
   height: auto;
