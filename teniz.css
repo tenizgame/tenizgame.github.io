@@ -261,9 +261,10 @@ hr {
   flex-wrap: wrap;
   color: red;
   font-size: 12px;
+  font-family: Georgia, serif;
   font-weight: bold;
   justify-content: center;
-  align-items: center;
+  align-items: center;  
 }
 
 .headerimage {
