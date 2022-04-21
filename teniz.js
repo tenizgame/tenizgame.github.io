@@ -525,7 +525,7 @@ function intialize() {
 				gameTile.innerText = answername[c];
 				gameTile.classList.add("correct", "animated");
 			}
-			document.getElementById("answer").style.color = "green";
+			document.getElementById("answer").style.color = "#FDFEFF";
 			document.getElementById("answer").innerText = "You have already identified today's player.\nCome back again tomorrow!";
 			/* setTimeout(ConfettiStart, 1000); */
 			setTimeout(OpenStats, 1100);
@@ -575,8 +575,13 @@ function intialize() {
 			arrayid.splice(arrayid.indexOf(5), 1);
 			SetClueCount();
 		}
-		document.getElementById("answer").style.color = "green";
+		document.getElementById("answer").classList.remove("popanswer");	
+		if (document.getElementById("answer").classList.contains("popanswer")){
+			console.log("has popanswer");
+		}		
+		document.getElementById("answer").style.color = "#FDFEFF";
 		document.getElementById("answer").innerText = "READ THE GAME RULES BEFORE PLAYING!";
+		setTimeout(FinalClue, 2000);
 		// Create the key board
 		let keyboard = [
 			["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
@@ -812,7 +817,7 @@ function update() {
 			currTile.classList.remove("poptile");
 			currTile.classList.add("animated");
 		}
-		document.getElementById("answer").style.color = "green";
+		document.getElementById("answer").style.color = "#FDFEFF";
 		localStorage.totaltgames = Number(localStorage.totaltgames) + 1;
 		localStorage.totaltwins = Number(localStorage.totaltwins) + 1;
 		localStorage.currenttstreak = Number(localStorage.currenttstreak) + 1;
@@ -878,6 +883,10 @@ function update() {
 		if (!gameOver && clueCount == 6) {
 			document.getElementById("boardfirst").classList.add("shaketile");
 			document.getElementById("boardlast").classList.add("shaketile");
+			document.getElementById("answer").classList.remove("popanswer");	
+			if (document.getElementById("answer").classList.contains("popanswer")){
+				console.log("has popanswer");
+			}			
 			document.getElementById("answer").style.color = "red";
 			document.getElementById("answer").innerText = "Final Clue Revealed! Players may be repeated across days if they have won multiple GSs.";
 			setTimeout(FinalClue, 2000);
