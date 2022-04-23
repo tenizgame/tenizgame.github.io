@@ -1,5 +1,4 @@
 <html lang="en">
-
 <head>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-B1TW81HLYQ"></script>
@@ -107,26 +106,23 @@
 			<button data-close-button class="close-button">&times;</button>
 		</div>
 		<div class="modal-body">
-			(i) <strong style="color:white;">TENIZ</strong> is a spin-off on <strong style="color:white;">WORDLE</strong>, to test your knowledge on Tennis Grand Slam Champions of the Open Era.
-			The objective is to identify the Tennis Player every day using the <strong style="color:white;">Least Number Of Clues.</strong>
-			<br><br>
-			(ii) Your <strong style="color:white;">Starting Clue </strong>is in the number of letters in the players First and Last Names 😀. 
-			<br><br>			
-			(iii) Use the on-screen keyboard to key in your answer. Hit Enter to submit. A new clue will be revelaed
+			(i) <strong style="color:white;">TENIZ</strong> a game inspired by <strong style="color:white;">WORDLE</strong>, tests your knowledge on Tennis Grand Slam Champions of the Open Era.
+			The objective is to identify the Champion Tennis Player every day, using the <strong style="color:white;">Least Number Of Clues.</strong>
+			<br><br>	
+			(ii) Use the search area to key in your answer and Enter. A new clue will be revelaed
 			after each <strong style="color:white;">INCORRECT</strong> guess. 
 			<br><br>
-			(iv) Hints include Year, Slam, Country, Gender, Total GS Singles Titles and Style of Play (RH vs LH).	
-			Clues are revealed as shown below. 
+			(iii) Hints include Year, Slam, Country, Gender, Total GS Singles Titles and Style of Play (RH vs LH).	
+			Clues are revealed as shown below after each guess. 
 			<center><img class="howtogif" src="howto.gif" alt="clue"></center>
 			<br>
-			(v) A <strong style="color:green;">Green Tile </strong>highlight indicates that the right letter is at the
-			right position, while a <strong style="color:yellow;">Yellow Tile </strong>highlight indicates that the
-			right letter is at the wrong position. First and Last name are evaluated separately.
+			(iv) After each wrong guess, you get secondary clues, to show how the player you entered matched against the original clues (evaluated in order of original clues even if they are not yet revealed).<br>
+			🟢: Indicates a match and 🔴: indicates a no-match. 
 			<br><br>
-			(vi) An <strong style="color:orange;">Orange Key </strong>highlight indicates a letter part of the name yet
-			to be correctly placed . <strong style="color:green;">Green Letter Tracker</strong> helps keep track of
-			correctly placed letters.
-			<br>
+			(v) For eg: a 🟢 in the first position (year), indicates that the person you entered has won a GS in the same year as in question. 
+			<br><br>
+			(vi) Similarly, a 🔴 in the second position (Slam), indicates that the person you entered has not won this particular slam in question. 
+			Secondary clues might help you get to the player sooner, as you might get to know what a main clue is before they are revealed. 
 			<h5>
 				<center>Legend :AO - Australian Open | FO - French Open | WIM - Wimbledon | USO - US
 					Open | GS - Grand Slam | RH - Right Handed | LH - Left Handed
@@ -199,16 +195,31 @@
 	<hr>
 	<br>
 	<div id="board">
-		<div id="glt">GREEN LETTER TRACKER</strong></div>
-		<div id="historyfirst"></div>
-		<div id="historylast"></div>
-		<div id="boardfirst"></div>
-		<div id="boardlast"></div>
+		<div id="glt"></div><br>		
+		<div id="try1"></div><br>
+		<div id="try2"></div><br>
+		<div id="try3"></div><br>
+		<div id="try4"></div><br>
+		<div id="try5"></div><br>
+		<div id="try6"></div><br>		
 	</div>
-	<br>
+		<div id="historyfirst"></div>
+		<div id="historylast"></div>		
 	<hr>
 	<h1 id="answer"></h1>
-	<br><br>
+	<br>
+	<br>
+    <div class="containers">
+      <form action="#" onsubmit="submitMe();return false" autocomplete="off" class="form">
+        <input type="text" placeholder="Search Player Name" class="search-field" / onKeyUp="showResults(this.value)" name="functioninput" id="answertext">
+        <!-- <button type="submit" class="search-button" name="submit" id="submitbutton" disabled="disabled" > -->
+		<span  onclick="disablederror();">
+			<button type="submit" class="search-button" name="submit" id="submitbutton" disabled="disabled" >
+			  <img src="search.png">
+			</button>
+		</span>
+      </form>
+    </div>
+	<div id="result"></div>
 </body>
-
 </html>

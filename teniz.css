@@ -11,12 +11,70 @@ body {
   margin: 0;
 }
 
+
 a { color: #fff; } /* CSS link color */
 a:hover { color: #fff; } /* CSS link color */
 a { text-decoration: none; }
 
 hr {
   width: 400px;
+}
+
+.containers {
+  margin: 0px auto;
+  width: 250px;
+}
+
+/* The point of this tutorial is here */
+.form {
+  display: flex;
+  margin:0;
+
+}
+
+.search-field {
+  width: 100%;
+  padding: 5px 35px 5px 15px;
+  border: none;
+  border-radius: 100px;
+  outline: none;
+}
+
+.search-button {
+  background: transparent;
+  border: none;
+  outline: none;
+  margin-left: -33px;
+}
+
+.search-button img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+
+
+#submitbutton, #answertext
+{ border: none;
+  border-radius: 0px;
+ }
+
+#result {
+  width:250px;
+  background-color: white;
+  color:black;
+  text-align:left;
+  margin: 0 auto;
+  font-size:10pt;
+}
+
+#result ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#result ul li {
+  padding: 1px 0;
 }
 
 .revealcol {
@@ -128,10 +186,11 @@ hr {
 }
 
 #glt {
-  font-size: 12px;
+  font-size: 16px;
   font-weight:bold;
-  text-decoration: underline; 
-  color:#3a3a3c;;
+  //text-decoration: underline; 
+  //color:#3a3a3c;;
+  color:#dc143c;;
 }
 
 #title {
@@ -176,7 +235,6 @@ hr {
 
 #board {
   width: 350;
-  height: 250px;
   margin: 0 auto;
   margin-top: 3px;
   background-image: url("pitch.jpg");
@@ -202,12 +260,12 @@ hr {
 #historyfirst {
   display: flex;
   flex-wrap: nowrap;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: center;
 }
 
 #historylast {
-  align-items: flex-end;
+  align-items: flex-start;
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
@@ -294,17 +352,27 @@ hr {
 
 .histile {
   /* Box */
-  width: 10px;
-  height: 10px;
-  border: 2px solid #3a3a3c;
+  width: 20px;
+  height: 20px;
+  /* border: 2px solid #3a3a3c; */
   margin: 1px;
   color: black;
   text-transform: uppercase;
   display: grid;
   place-items: center;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.6rem;
+  font-size: 1rem;
   font-weight: bold;
+}
+
+
+#try1,#try2, #try3, #try4, #try5, #try6 {
+  /* Box */
+  margin-left:100px;
+  margin-right:20px;
+  height: 20px;
+  //border: 2px solid #3a3a3c;
+  border: 2px solid #dc143c;
 }
 
 .email {
@@ -368,6 +436,7 @@ hr {
 
 
 .correct {
+  border: 2px solid;
   background-color: #6AAA64;
   color: white;
   border-color: white;
@@ -380,6 +449,7 @@ hr {
 }
 
 .absent {
+  border: 2px solid;
   background-color: #FF0000;
   color: white;
   border-color: white;
@@ -681,7 +751,3 @@ hr {
   }
 }
 
-@media screen and (max-height: 699px) {
-  #board {
-    height: 200px;
-  }
