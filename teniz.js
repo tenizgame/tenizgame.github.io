@@ -561,24 +561,6 @@ function intialize() {
 	document.getElementById('try5').innerText = localStorage.try5topen;
 	document.getElementById('try6').innerText = localStorage.try6topen;
 	document.getElementById('glt').innerText = localStorage.gltttext;
-	if (localStorage.try1topen == "-----"){
-		document.getElementById('try1').style.border = "2px solid #6AAA64"
-	}
-	else if (localStorage.try2topen == "-----"){
-		document.getElementById('try2').style.border = "2px solid #6AAA64"
-	}
-	else if (localStorage.try3topen == "-----"){
-		document.getElementById('try3').style.border = "2px solid #6AAA64"
-	}
-	else if (localStorage.try4topen == "-----"){
-		document.getElementById('try4').style.border = "2px solid #6AAA64"
-	}
-	else if (localStorage.try5topen == "-----"){
-		document.getElementById('try5').style.border = "2px solid #6AAA64"
-	}
-	else if (localStorage.try6topen == "-----"){
-		document.getElementById('try6').style.border = "2px solid #6AAA64"
-	}
 	//document.getElementById('try7').innerText = localStorage.try7topen;
 	// Create the game board
 	for (let clueindex = 0; clueindex < 6; clueindex++) {
@@ -699,7 +681,25 @@ function intialize() {
 				arrayid.splice(arrayid.indexOf(5), 1);
 				SetClueCount();
 			}
+		}	
+		if (localStorage.try1topen == "-----"){
+			document.getElementById('try1').style.border = "2px solid #6AAA64"
 		}
+		else if (localStorage.try2topen == "-----"){
+			document.getElementById('try2').style.border = "2px solid #6AAA64"
+		}
+		else if (localStorage.try3topen == "-----"){
+			document.getElementById('try3').style.border = "2px solid #6AAA64"
+		}
+		else if (localStorage.try4topen == "-----"){
+			document.getElementById('try4').style.border = "2px solid #6AAA64"
+		}
+		else if (localStorage.try5topen == "-----"){
+			document.getElementById('try5').style.border = "2px solid #6AAA64"
+		}
+		else if (localStorage.try6topen == "-----"){
+			document.getElementById('try6').style.border = "2px solid #6AAA64"
+		}	
 		document.getElementById("answer").classList.remove("popanswer");
 		document.getElementById("answer").style.color = "#FDFEFF";
 		document.getElementById("answer").innerText = "We have made some design changes.\nREAD THE GAME RULES BEFORE PLAYING!";
