@@ -1,95 +1,95 @@
 var search_terms = ["Adriano Panatta", "Albert Costa", "Amelie Mauresmo", "Ana Ivanovic", "Anastasia Myskina", "Andre Agassi", "Andres Gimeno", "Andres Gomez", "Andy Murray", "Andy Roddick", "Angelique Kerber", "Arantxa Sanchez", "Arthur Ashe", "Ashleigh Barty", "Barbara Jordan", "Barbora Krejcikova", "Bianca Andreescu", "BillieJean King", "Bjorn Borg", "Boris Becker", "Brian Teacher", "Carlos Moya", "Caroline Wozniacki", "Chris Evert", "Chris ONeil", "Conchita Martinez", "Daniil Medvedev", "Dominic Thiem", "Emma Raducanu", "Evonne Goolagong", "Flavia Pennetta", "Francesca Schiavone", "Gabriela Sabatini", "Garbine Muguruza", "Gaston Gaudio", "Goran Ivanisevic", "Guillermo Vilas", "Gustavo Kuerten", "Hana Mandlikova", "Iga Swiatek", "Ilie Nastase", "Iva Majoli", "Ivan Lendl", "Jan Kodes", "Jana Novotna", "Jelena Ostapenko", "Jennifer Capriati", "Jim Courier", "Jimmy Connors", "Johan Kriek", "John McEnroe", "John Newcombe", "JuanCarlos Ferrero", "JuanMartin DelPotro", "Justine Henin", "Ken Rosewall", "Kerry Reid", "Kim Clijsters", "Li Na", "Lindsay Davenport", "Lleyton Hewitt", "Manuel Orantes", "Marat Safin", "Margaret Court", "Maria Sharapova", "Marin Cilic", "Marion Bartoli", "Mark Edmondson", "Martina Hingis", "Martina Navratilova", "Mary Pierce", "Mats Wilander", "Michael Chang", "Michael Stich", "Mima Jausovec", "Monica Seles", "Nancy Richey", "Naomi Osaka", "Novak Djokovic", "Pat Cash", "Patrick Rafter", "Pete Sampras", "Petr Korda", "Petra Kvitova", "Rafael Nadal", "Richard Krajicek", "Rod Laver", "Roger Federer", "Roscoe Tanner", "Samantha Stosur", "Serena Williams", "Sergi Bruguera", "Simona Halep", "Sloane Stephens", "Sofia Kenin", "Stan Smith", "Stan Wawrinka", "Stefan Edberg", "Steffi Graf", "Sue Barker", "Svetlana Kuznetsova", "Thomas Johansson", "Thomas Muster", "Tracy Austin", "Venus Williams", "Victoria Azarenka", "Virginia Ruzici", "Virginia Wade", "Vitas Gerulaitis", "Yannick Noah", "Yevgeny Kafelnikov",];
 var ul = document.getElementById("result");
-  ul.onclick = function(event) {
-    var target = getEventTarget(event);
+ul.onclick = function (event) {
+	var target = getEventTarget(event);
 	document.getElementById("submitbutton").disabled = false;
-    document.getElementById("answertext").value = target.innerHTML;
-};	
+	document.getElementById("answertext").value = target.innerHTML;
+};
 function autocompleteMatch(input) {
-  input = input.toLowerCase();
-  if (input == '') {
-    return [];
-  }
-  var reg = new RegExp(input)
-  return search_terms.filter(function(term) {
-	  if (term.toLowerCase().match(reg)) {
-  	  return term;
-	  }
-  });
+	input = input.toLowerCase();
+	if (input == '') {
+		return [];
+	}
+	var reg = new RegExp(input)
+	return search_terms.filter(function (term) {
+		if (term.toLowerCase().match(reg)) {
+			return term;
+		}
+	});
 }
- 
+
 function showResults(val) {
-  document.getElementById("result").hidden = false;	
-  document.getElementById("submitbutton").disabled = true;
-  res = document.getElementById("result");
-  res.innerHTML = '';
-  let list = '';
-  let terms = autocompleteMatch(val);
-  for (i=0; i<terms.length; i++) {
-    if (i === 3) { break; }
-    list += '<li>' + terms[i] + '</li>';
-  }
-  res.innerHTML = '<ul>' + list + '</ul>';
-  document.getElementById("result").focus();  
-  document.getElementById("result").scrollIntoView(true);
+	document.getElementById("result").hidden = false;
+	document.getElementById("submitbutton").disabled = true;
+	res = document.getElementById("result");
+	res.innerHTML = '';
+	let list = '';
+	let terms = autocompleteMatch(val);
+	for (i = 0; i < terms.length; i++) {
+		if (i === 3) { break; }
+		list += '<li>' + terms[i] + '</li>';
+	}
+	res.innerHTML = '<ul>' + list + '</ul>';
+	document.getElementById("result").focus();
+	document.getElementById("result").scrollIntoView(true);
 }
 
 
 function getEventTarget(e) {
-  e = e || window.event;
-  return e.target || e.srcElement; 
+	e = e || window.event;
+	return e.target || e.srcElement;
 }
 
 
-function getindices(){
+function getindices() {
 	const indices = [];
 	const element = guess;
 	let idx = nameList.indexOf(element);
 	while (idx != -1) {
-	  indices.push(idx);
-	  idx = nameList.indexOf(element, idx + 1);
+		indices.push(idx);
+		idx = nameList.indexOf(element, idx + 1);
 	}
 	//console.log(indices);
 	var addon = "🔴";
 	for (let i = 0; i < indices.length; i++) {
-		if (yearList[indices[i]] == yearList[index]){
+		if (yearList[indices[i]] == yearList[index]) {
 			addon = "🟢";
 			break;
 		}
 	}
 	var addongs = "🔴";
 	for (let i = 0; i < indices.length; i++) {
-		if (GSList[indices[i]] == GSList[index]){
+		if (GSList[indices[i]] == GSList[index]) {
 			addongs = "🟢";
 			break;
 		}
 	}
 	var addonctry = "🔴";
 	for (let i = 0; i < indices.length; i++) {
-		if (countryList[indices[i]] == countryList[index]){
+		if (countryList[indices[i]] == countryList[index]) {
 			addonctry = "🟢";
 			break;
 		}
-	}	
+	}
 	var addongnder = "🔴";
-	if (GenList[indices[0]] == GenList[index]){
+	if (GenList[indices[0]] == GenList[index]) {
 		addongnder = "🟢";
-	}	
+	}
 	var addontitle = "🔴";
-	if (GSTitleList[indices[0]] == GSTitleList[index]){
+	if (GSTitleList[indices[0]] == GSTitleList[index]) {
 		addontitle = "🟢";
-	}	
+	}
 	var addonplays = "🔴";
-	if (PlaysList[indices[0]] == PlaysList[index]){
+	if (PlaysList[indices[0]] == PlaysList[index]) {
 		addonplays = "🟢";
-	}	
-    addon = addon + addongs + addonctry + addongnder + addontitle + addonplays;	
+	}
+	addon = addon + addongs + addonctry + addongnder + addontitle + addonplays;
 	return addon;
 }
 
 
 
-	
+
 //Confetti Begin
 btnParty.addEventListener("click", () => {
 	confetti("tsparticles", {
@@ -130,7 +130,7 @@ if (!localStorage.totaltgames) {
 	//setTimeout(OpenRules, 1100);
 }
 
-if (localStorage.cluet0count > 0){
+if (localStorage.cluet0count > 0) {
 	localStorage.cluet1count = Number(localStorage.cluet0count) + Number(localStorage.cluet1count);
 	localStorage.setItem("tempcluet0count", 0);
 	localStorage.tempcluet0count = localStorage.cluet0count;
@@ -178,9 +178,9 @@ function FinalClue() {
 }
 
 function disablederror() {
-	if (document.getElementById("submitbutton").disabled == true){
-	document.getElementById("answer").style.color = "#dc143c";
-	document.getElementById("answer").innerText = "SELECT PLAYER FROM SEARCH RESULTS!";
+	if (document.getElementById("submitbutton").disabled == true) {
+		document.getElementById("answer").style.color = "#dc143c";
+		document.getElementById("answer").innerText = "SELECT PLAYER FROM SEARCH RESULTS!";
 	}
 }
 
@@ -229,11 +229,11 @@ if (localStorage.getItem('gameover' + days) != 0 && localStorage.getItem('gameov
 	localStorage.try5topen = "-----";
 	localStorage.try6topen = "-----";
 	//localStorage.try7topen = "";	
-	localStorage.firsttload = 0;	
-	localStorage.gltttext = "ATTEMPT : 1/6";	
+	localStorage.firsttload = 0;
+	localStorage.gltttext = "ATTEMPT : 1/6";
 }
 
-function tryload(){
+function tryload() {
 	localStorage.try1topen = document.getElementById('try1').innerText;
 	localStorage.try2topen = document.getElementById('try2').innerText;
 	localStorage.try3topen = document.getElementById('try3').innerText;
@@ -325,22 +325,22 @@ function myFunction() {
 
 //clue reveal 
 function ballvanish0() {
-	document.getElementById(0).innerHTML = "<span class='revealcol'>" + year +"</span><br><br><span class='revealsiz'>(Year)</span>";
+	document.getElementById(0).innerHTML = "<span class='revealcol'>" + year + "</span><br><br><span class='revealsiz'>(Year)</span>";
 }
 function ballvanish1() {
-	document.getElementById(1).innerHTML = "<span class='revealcol'>" + grandslam +"</span><br><br><span class='revealsiz'>(Slam)</span>";
+	document.getElementById(1).innerHTML = "<span class='revealcol'>" + grandslam + "</span><br><br><span class='revealsiz'>(Slam)</span>";
 }
 function ballvanish2() {
-	document.getElementById(2).innerHTML = "<span class='revealcol'>" + country +"</span><br><br><span class='revealsiz'>(Country)</span>";
+	document.getElementById(2).innerHTML = "<span class='revealcol'>" + country + "</span><br><br><span class='revealsiz'>(Country)</span>";
 }
 function ballvanish3() {
-	document.getElementById(3).innerHTML = "<span class='revealcol'>" + gender +"</span><br><br><span class='revealsiz'>(Gender)</span>";
+	document.getElementById(3).innerHTML = "<span class='revealcol'>" + gender + "</span><br><br><span class='revealsiz'>(Gender)</span>";
 }
 function ballvanish4() {
-	document.getElementById(4).innerHTML = "<span class='revealcol'>" + titles +"</span><br><br><span class='revealsiz'>(Titles)</span>";
+	document.getElementById(4).innerHTML = "<span class='revealcol'>" + titles + "</span><br><br><span class='revealsiz'>(Titles)</span>";
 }
 function ballvanish5() {
-	document.getElementById(5).innerHTML = "<span class='revealcol'>" + plays +"</span><br><br><span class='revealsiz'>(Plays)</span>";
+	document.getElementById(5).innerHTML = "<span class='revealcol'>" + plays + "</span><br><br><span class='revealsiz'>(Plays)</span>";
 }
 
 //Array Manipulation for Clues
@@ -396,10 +396,10 @@ var yearList = ["1984", "2007", "2001", "2013", "1991", "2008", "1985", "1991", 
 var countryList = ["USA", "SWI", "USA", "USA", "GER", "SRB", "SWE", "GER", "USA", "USA", "ESP", "AUS", "SWE", "CRO", "USA", "CZE", "GER", "CHN", "ARG", "ESP", "JPN", "SWE", "USA", "USA", "RUS", "CZE", "SRB", "USA", "GER", "AUS", "ESP", "ESP", "USA", "USA", "POL", "ESP", "ARG", "GER", "GBR", "ROM", "USA", "USA", "GER", "ITA", "USA", "SWI", "AUS", "SRB", "SWI", "AUS", "USA", "USA", "USA", "GER", "CZE", "USA", "SWI", "JPN", "USA", "USA", "SWE", "ESP", "USA", "USA", "SWI", "USA", "USA", "SRB", "SWE", "ESP", "YUG", "USA", "USA", "USA", "USA", "AUS", "GER", "USA", "AUS", "ESP", "USA", "SWE", "AUS", "SRB", "USA", "RUS", "RUS", "GER", "AUS", "FRA", "USA", "SWE", "SWE", "ARG", "AUS", "ESP", "GER", "USA", "USA", "USA", "USA", "SRB", "USA", "AUS", "USA", "SWI", "AUS", "SWE", "ESP", "CZE", "ARG", "CZE", "USA", "USA", "GER", "GER", "ESP", "USA", "GBR", "USA", "USA", "ESP", "CZE", "USA", "GER", "SWI", "ESP", "USA", "SWI", "SWE", "USA", "USA", "SWE", "USA", "ESP", "SWI", "SRB", "USA", "AUS", "USA", "SWE", "CZE", "GER", "SRB", "SWI", "CRO", "USA", "USA", "USA", "USA", "USA", "GER", "SRB", "AUS", "ARG", "USA", "RUS", "USA", "RUS", "YUG", "DEN", "NLD", "AUS", "USA", "AUS", "SWE", "GER", "CZE", "ITA", "USA", "SAF", "GER", "USA", "ESP", "GBR", "RUS", "SRB", "BEL", "AUS", "ITA", "SWE", "GBR", "USA", "SRB", "GER", "AUS", "USA", "USA", "USA", "USA", "USA", "GER", "CZE", "USA", "BRA", "ECU", "SWI", "BEL", "USA", "SRB", "USA", "ESP", "USA", "ARG", "SWI", "USA", "USA", "RUS", "AUT", "SWI", "USA", "AUS", "GER", "ESP", "ROM", "USA", "YUG", "USA", "AUS", "USA", "GER", "BLR", "SRB", "AUT", "USA", "YUG", "ARG", "AUS", "FRA", "AUS", "SWE", "RUS", "GER", "AUS", "CHN", "USA", "CZE", "RUS", "ESP", "SWI", "USA", "ESP", "USA", "BEL", "SRB", "AUS", "AUS", "CZE", "SWI", "USA", "CZE", "FRA", "USA", "YUG", "ESP", "USA", "USA", "LAT", "GER", "USA", "USA", "CZE", "SWI", "USA", "RUS", "ESP", "AUS", "USA", "BEL", "JPN", "ESP", "AUS", "SWI", "GER", "USA", "SWE", "YUG", "USA", "USA", "SWI", "ESP", "USA", "USA", "AUS", "USA", "ESP", "GER", "AUS", "GBR", "YUG", "AUS", "SWE", "GER", "USA", "ESP", "ESP", "USA", "SWI", "USA", "GBR", "USA", "USA", "CAN", "USA", "FRA", "ESP", "BEL", "SWE", "USA", "ESP", "USA", "USA", "FRA", "GER", "SWI", "BEL", "USA", "GBR", "AUS", "ESP", "GER", "RUS", "SWE", "USA", "BEL", "FRA", "SWI", "JPN", "AUS", "USA", "SWI", "ESP", "YUG", "SWI", "AUS", "SRB", "BEL", "CZE", "ESP", "USA", "USA", "SWI", "ESP", "USA", "AUS", "USA", "RUS", "SWE", "SRB", "BRA", "SWI", "CZE", "USA", "SWE", "SWE", "SRB", "AUS", "ESP", "USA", "GER", "USA", "AUS", "ROM", "SWE", "AUS", "USA", "BLR", "CZE", "SWE", "CZE", "ESP", "USA", "AUS", "GER", "USA", "BRA", "USA", "SWE", "SWI", "GBR", "AUS", "CRO", "USA", "USA", "USA", "USA", "SWI", "USA", "USA", "GER", "USA", "SRB", "ESP", "USA", "USA", "USA", "ROM", "USA", "AUS", "CZE", "AUS", "BEL", "USA", "SRB", "USA", "AUS", "USA", "USA", "CZE", "USA", "USA", "AUS", "ROM", "SRB", "BEL", "AUS", "USA", "BEL", "GER", "USA", "AUS", "USA", "USA", "SRB", "RUS", "CZE", "USA", "SWI", "YUG", "USA",]
 var firstnameList = ["John", "Roger", "Venus", "Serena", "Steffi", "Ana", "Mats", "Michael", "Chris", "Pete", "Rafael", "Ken", "Bjorn", "Marin", "Johan", "Ivan", "Steffi", "Li", "Guillermo", "Rafael", "Naomi", "Mats", "Serena", "Jimmy", "Maria", "Ivan", "Novak", "Chris", "Steffi", "John", "Rafael", "Albert", "Jimmy", "Serena", "Iga", "Arantxa", "Guillermo", "Boris", "Virginia", "Simona", "Jennifer", "Pete", "Steffi", "Francesca", "Stan", "Stan", "Patrick", "Novak", "Roger", "Evonne", "Serena", "Arthur", "Venus", "Steffi", "Hana", "Martina", "Roger", "Naomi", "Chris", "Pete", "Stefan", "Arantxa", "Lindsay", "Serena", "Stan", "Venus", "Tracy", "Novak", "Stefan", "Rafael", "Monica", "Arthur", "Roscoe", "Stan", "Chris", "Evonne", "Boris", "Pete", "Margaret", "Rafael", "BillieJean", "Bjorn", "Evonne", "Novak", "Martina", "Svetlana", "Maria", "Steffi", "Chris", "Yannick", "Serena", "Mats", "Stefan", "Gabriela", "John", "Rafael", "Steffi", "Martina", "Serena", "Sofia", "John", "Novak", "BillieJean", "Margaret", "Chris", "Roger", "Rod", "Stefan", "Carlos", "Hana", "Gaston", "Petra", "Andre", "Tracy", "Boris", "Angelique", "Rafael", "BillieJean", "Sue", "Jimmy", "Chris", "Garbine", "Jan", "Martina", "Boris", "Martina", "Rafael", "BillieJean", "Roger", "Stefan", "Serena", "Martina", "Mats", "Jimmy", "Rafael", "Stan", "Novak", "Venus", "Rod", "Jim", "Bjorn", "Ivan", "Steffi", "Novak", "Roger", "Goran", "Jimmy", "Pete", "Martina", "Chris", "Venus", "Angelique", "Novak", "Rod", "JuanMartin", "Andre", "Maria", "Serena", "Svetlana", "Monica", "Caroline", "Richard", "Ashleigh", "Martina", "Margaret", "Bjorn", "Boris", "Barbora", "Flavia", "Pete", "Johan", "Steffi", "Monica", "Rafael", "Andy", "Anastasia", "Novak", "Justine", "Pat", "Adriano", "Bjorn", "Emma", "Serena", "Novak", "Steffi", "Margaret", "BillieJean", "Chris", "Vitas", "Martina", "Serena", "Steffi", "Ivan", "Pete", "Gustavo", "Andres", "Martina", "Justine", "Andre", "Novak", "Lindsay", "Rafael", "Venus", "Guillermo", "Martina", "Chris", "Martina", "Yevgeny", "Dominic", "Roger", "Jim", "Mark", "Steffi", "Rafael", "Ilie", "Andre", "Monica", "Andy", "Ken", "Pete", "Steffi", "Victoria", "Novak", "Thomas", "Nancy", "Monica", "Guillermo", "Ashleigh", "Mary", "Ken", "Bjorn", "Daniil", "Steffi", "Patrick", "Li", "Chris", "Ivan", "Maria", "Andres", "Roger", "Jim", "Rafael", "Brian", "Kim", "Novak", "Margaret", "Ashleigh", "Petra", "Roger", "Chris", "Jan", "Marion", "Jennifer", "Monica", "Rafael", "Pete", "Martina", "Jelena", "Steffi", "Chris", "Serena", "Petr", "Roger", "BillieJean", "Marat", "Rafael", "Margaret", "Martina", "Justine", "Naomi", "Garbine", "Evonne", "Roger", "Steffi", "John", "Bjorn", "Monica", "Jimmy", "Andre", "Roger", "Rafael", "Chris", "Barbara", "Lleyton", "BillieJean", "Conchita", "Boris", "Margaret", "Andy", "Monica", "Ken", "Thomas", "Steffi", "Martina", "Sergi", "Rafael", "Jennifer", "Roger", "Venus", "Virginia", "Pete", "Serena", "Bianca", "Martina", "Amelie", "Rafael", "Justine", "Bjorn", "Serena", "Arantxa", "Martina", "Chris", "Mary", "Steffi", "Martina", "Kim", "Sloane", "Virginia", "Margaret", "Manuel", "Steffi", "Yevgeny", "Mats", "Pete", "Justine", "Amelie", "Roger", "Naomi", "Lleyton", "Martina", "Martina", "JuanCarlos", "Monica", "Roger", "Evonne", "Novak", "Kim", "Hana", "Rafael", "Andre", "Serena", "Roger", "Arantxa", "BillieJean", "John", "Lindsay", "Maria", "Bjorn", "Novak", "Gustavo", "Roger", "Hana", "Andre", "Mats", "Bjorn", "Novak", "Evonne", "Sergi", "John", "Steffi", "Pete", "John", "Simona", "Bjorn", "Evonne", "Serena", "Victoria", "Ivan", "Stefan", "Jana", "Rafael", "Martina", "Rod", "Angelique", "Chris", "Gustavo", "Serena", "Mats", "Roger", "Andy", "John", "Iva", "Jimmy", "Arthur", "John", "Michael", "Roger", "Chris", "Serena", "Steffi", "Jim", "Novak", "Rafael", "John", "Andre", "Serena", "Ilie", "BillieJean", "Margaret", "Jan", "Rod", "Justine", "Martina", "Novak", "Jimmy", "Samantha", "John", "Pete", "Ivan", "Chris", "Serena", "Margaret", "Virginia", "Novak", "Justine", "Kerry", "Chris", "Kim", "Steffi", "Serena", "Margaret", "Martina", "Pete", "Novak", "Marat", "Ivan", "Serena", "Roger", "Mima", "Serena",]
 var lastnameList = ["McEnroe", "Federer", "Williams", "Williams", "Graf", "Ivanovic", "Wilander", "Stich", "Evert", "Sampras", "Nadal", "Rosewall", "Borg", "Cilic", "Kriek", "Lendl", "Graf", "Na", "Vilas", "Nadal", "Osaka", "Wilander", "Williams", "Connors", "Sharapova", "Lendl", "Djokovic", "Evert", "Graf", "Newcombe", "Nadal", "Costa", "Connors", "Williams", "Swiatek", "Sanchez", "Vilas", "Becker", "Wade", "Halep", "Capriati", "Sampras", "Graf", "Schiavone", "Smith", "Wawrinka", "Rafter", "Djokovic", "Federer", "Goolagong", "Williams", "Ashe", "Williams", "Graf", "Mandlikova", "Navratilova", "Federer", "Osaka", "Evert", "Sampras", "Edberg", "Sanchez", "Davenport", "Williams", "Wawrinka", "Williams", "Austin", "Djokovic", "Edberg", "Nadal", "Seles", "Ashe", "Tanner", "Smith", "Evert", "Goolagong", "Becker", "Sampras", "Court", "Nadal", "King", "Borg", "Goolagong", "Djokovic", "Navratilova", "Kuznetsova", "Sharapova", "Graf", "ONeil", "Noah", "Williams", "Wilander", "Edberg", "Sabatini", "Newcombe", "Nadal", "Graf", "Navratilova", "Williams", "Kenin", "McEnroe", "Djokovic", "King", "Court", "Evert", "Federer", "Laver", "Edberg", "Moya", "Mandlikova", "Gaudio", "Kvitova", "Agassi", "Austin", "Becker", "Kerber", "Nadal", "King", "Barker", "Connors", "Evert", "Muguruza", "Kodes", "Navratilova", "Becker", "Hingis", "Nadal", "King", "Federer", "Edberg", "Williams", "Navratilova", "Wilander", "Connors", "Nadal", "Wawrinka", "Djokovic", "Williams", "Laver", "Courier", "Borg", "Lendl", "Graf", "Djokovic", "Federer", "Ivanisevic", "Connors", "Sampras", "Navratilova", "Evert", "Williams", "Kerber", "Djokovic", "Laver", "DelPotro", "Agassi", "Sharapova", "Williams", "Kuznetsova", "Seles", "Wozniacki", "Krajicek", "Barty", "Navratilova", "Court", "Borg", "Becker", "Krejcikova", "Pennetta", "Sampras", "Kriek", "Graf", "Seles", "Nadal", "Murray", "Myskina", "Djokovic", "Henin", "Cash", "Panatta", "Borg", "Raducanu", "Williams", "Djokovic", "Graf", "Court", "King", "Evert", "Gerulaitis", "Navratilova", "Williams", "Graf", "Lendl", "Sampras", "Kuerten", "Gomez", "Hingis", "Henin", "Agassi", "Djokovic", "Davenport", "Nadal", "Williams", "Vilas", "Hingis", "Evert", "Navratilova", "Kafelnikov", "Thiem", "Federer", "Courier", "Edmondson", "Graf", "Nadal", "Nastase", "Agassi", "Seles", "Roddick", "Rosewall", "Sampras", "Graf", "Azarenka", "Djokovic", "Muster", "Richey", "Seles", "Vilas", "Barty", "Pierce", "Rosewall", "Borg", "Medvedev", "Graf", "Rafter", "Na", "Evert", "Lendl", "Sharapova", "Gimeno", "Federer", "Courier", "Nadal", "Teacher", "Clijsters", "Djokovic", "Court", "Barty", "Kvitova", "Federer", "Evert", "Kodes", "Bartoli", "Capriati", "Seles", "Nadal", "Sampras", "Navratilova", "Ostapenko", "Graf", "Evert", "Williams", "Korda", "Federer", "King", "Safin", "Nadal", "Court", "Navratilova", "Henin", "Osaka", "Muguruza", "Goolagong", "Federer", "Graf", "McEnroe", "Borg", "Seles", "Connors", "Agassi", "Federer", "Nadal", "Evert", "Jordan", "Hewitt", "King", "Martinez", "Becker", "Court", "Murray", "Seles", "Rosewall", "Johansson", "Graf", "Navratilova", "Bruguera", "Nadal", "Capriati", "Federer", "Williams", "Wade", "Sampras", "Williams", "Andreescu", "Navratilova", "Mauresmo", "Nadal", "Henin", "Borg", "Williams", "Sanchez", "Navratilova", "Evert", "Pierce", "Graf", "Hingis", "Clijsters", "Stephens", "Wade", "Court", "Orantes", "Graf", "Kafelnikov", "Wilander", "Sampras", "Henin", "Mauresmo", "Federer", "Osaka", "Hewitt", "Navratilova", "Hingis", "Ferrero", "Seles", "Federer", "Goolagong", "Djokovic", "Clijsters", "Mandlikova", "Nadal", "Agassi", "Williams", "Federer", "Sanchez", "King", "Newcombe", "Davenport", "Sharapova", "Borg", "Djokovic", "Kuerten", "Federer", "Mandlikova", "Agassi", "Wilander", "Borg", "Djokovic", "Goolagong", "Bruguera", "McEnroe", "Graf", "Sampras", "Newcombe", "Halep", "Borg", "Goolagong", "Williams", "Azarenka", "Lendl", "Edberg", "Novotna", "Nadal", "Navratilova", "Laver", "Kerber", "Evert", "Kuerten", "Williams", "Wilander", "Federer", "Murray", "Newcombe", "Majoli", "Connors", "Ashe", "McEnroe", "Chang", "Federer", "Evert", "Williams", "Graf", "Courier", "Djokovic", "Nadal", "McEnroe", "Agassi", "Williams", "Nastase", "King", "Court", "Kodes", "Laver", "Henin", "Navratilova", "Djokovic", "Connors", "Stosur", "McEnroe", "Sampras", "Lendl", "Evert", "Williams", "Court", "Ruzici", "Djokovic", "Henin", "Reid", "Evert", "Clijsters", "Graf", "Williams", "Court", "Navratilova", "Sampras", "Djokovic", "Safin", "Lendl", "Williams", "Federer", "Jausovec", "Williams",]
-var nameList = ["johnmcenroe",  "rogerfederer", "venuswilliams", "serenawilliams", "steffigraf", "anaivanovic", "matswilander", "michaelstich", "chrisevert", "petesampras", "rafaelnadal", "kenrosewall", "bjornborg", "marincilic", "johankriek", "ivanlendl", "steffigraf", "lina", "guillermovilas", "rafaelnadal", "naomiosaka", "matswilander", "serenawilliams", "jimmyconnors", "mariasharapova", "ivanlendl", "novakdjokovic", "chrisevert", "steffigraf", "johnnewcombe", "rafaelnadal", "albertcosta", "jimmyconnors", "serenawilliams", "igaswiatek", "arantxasanchez", "guillermovilas", "borisbecker", "virginiawade", "simonahalep", "jennifercapriati", "petesampras", "steffigraf", "francescaschiavone", "stansmith", "stanwawrinka", "patrickrafter", "novakdjokovic", "rogerfederer", "evonnegoolagong", "serenawilliams", "arthurashe", "venuswilliams", "steffigraf", "hanamandlikova", "martinanavratilova", "rogerfederer", "naomiosaka", "chrisevert", "petesampras", "stefanedberg", "arantxasanchez", "lindsaydavenport", "serenawilliams", "stanwawrinka", "venuswilliams", "tracyaustin", "novakdjokovic", "stefanedberg", "rafaelnadal", "monicaseles", "arthurashe", "roscoetanner", "stansmith", "chrisevert", "evonnegoolagong", "borisbecker", "petesampras", "margaretcourt", "rafaelnadal", "billiejeanking", "bjornborg", "evonnegoolagong", "novakdjokovic", "martinanavratilova", "svetlanakuznetsova", "mariasharapova", "steffigraf", "chrisoneil", "yannicknoah", "serenawilliams", "matswilander", "stefanedberg", "gabrielasabatini", "johnnewcombe", "rafaelnadal", "steffigraf", "martinanavratilova", "serenawilliams", "sofiakenin", "johnmcenroe", "novakdjokovic", "billiejeanking", "margaretcourt", "chrisevert", "rogerfederer", "rodlaver", "stefanedberg", "carlosmoya", "hanamandlikova", "gastongaudio", "petrakvitova", "andreagassi", "tracyaustin", "borisbecker", "angeliquekerber", "rafaelnadal", "billiejeanking", "suebarker", "jimmyconnors", "chrisevert", "garbinemuguruza", "jankodes", "martinanavratilova", "borisbecker", "martinahingis", "rafaelnadal", "billiejeanking", "rogerfederer", "stefanedberg", "serenawilliams", "martinanavratilova", "matswilander", "jimmyconnors", "rafaelnadal", "stanwawrinka", "novakdjokovic", "venuswilliams", "rodlaver", "jimcourier", "bjornborg", "ivanlendl", "steffigraf", "novakdjokovic", "rogerfederer", "goranivanisevic", "jimmyconnors", "petesampras", "martinanavratilova", "chrisevert", "venuswilliams", "angeliquekerber", "novakdjokovic", "rodlaver", "juanmartindelpotro", "andreagassi", "mariasharapova", "serenawilliams", "svetlanakuznetsova", "monicaseles", "carolinewozniacki", "richardkrajicek", "ashleighbarty", "martinanavratilova", "margaretcourt", "bjornborg", "borisbecker", "barborakrejcikova", "flaviapennetta", "petesampras", "johankriek", "steffigraf", "monicaseles", "rafaelnadal", "andymurray", "anastasiamyskina", "novakdjokovic", "justinehenin", "patcash", "adrianopanatta", "bjornborg", "emmaraducanu", "serenawilliams", "novakdjokovic", "steffigraf", "margaretcourt", "billiejeanking", "chrisevert", "vitasgerulaitis", "martinanavratilova", "serenawilliams", "steffigraf", "ivanlendl", "petesampras", "gustavokuerten", "andresgomez", "martinahingis", "justinehenin", "andreagassi", "novakdjokovic", "lindsaydavenport", "rafaelnadal", "venuswilliams", "guillermovilas", "martinahingis", "chrisevert", "martinanavratilova", "yevgenykafelnikov", "dominicthiem", "rogerfederer", "jimcourier", "markedmondson", "steffigraf", "rafaelnadal", "ilienastase", "andreagassi", "monicaseles", "andyroddick", "kenrosewall", "petesampras", "steffigraf", "victoriaazarenka", "novakdjokovic", "thomasmuster", "nancyrichey", "monicaseles", "guillermovilas", "ashleighbarty", "marypierce", "kenrosewall", "bjornborg", "daniilmedvedev", "steffigraf", "patrickrafter", "lina", "chrisevert", "ivanlendl", "mariasharapova", "andresgimeno", "rogerfederer", "jimcourier", "rafaelnadal", "brianteacher", "kimclijsters", "novakdjokovic", "margaretcourt", "ashleighbarty", "petrakvitova", "rogerfederer", "chrisevert", "jankodes", "marionbartoli", "jennifercapriati", "monicaseles", "rafaelnadal", "petesampras", "martinanavratilova", "jelenaostapenko", "steffigraf", "chrisevert", "serenawilliams", "petrkorda", "rogerfederer", "billiejeanking", "maratsafin", "rafaelnadal", "margaretcourt", "martinanavratilova", "justinehenin", "naomiosaka", "garbinemuguruza", "evonnegoolagong", "rogerfederer", "steffigraf", "johnmcenroe", "bjornborg", "monicaseles", "jimmyconnors", "andreagassi", "rogerfederer", "rafaelnadal", "chrisevert", "barbarajordan", "lleytonhewitt", "billiejeanking", "conchitamartinez", "borisbecker", "margaretcourt", "andymurray", "monicaseles", "kenrosewall", "thomasjohansson", "steffigraf", "martinanavratilova", "sergibruguera", "rafaelnadal", "jennifercapriati", "rogerfederer", "venuswilliams", "virginiawade", "petesampras", "serenawilliams", "biancaandreescu", "martinanavratilova", "ameliemauresmo", "rafaelnadal", "justinehenin", "bjornborg", "serenawilliams", "arantxasanchez", "martinanavratilova", "chrisevert", "marypierce", "steffigraf", "martinahingis", "kimclijsters", "sloanestephens", "virginiawade", "margaretcourt", "manuelorantes", "steffigraf", "yevgenykafelnikov", "matswilander", "petesampras", "justinehenin", "ameliemauresmo", "rogerfederer", "naomiosaka", "lleytonhewitt", "martinanavratilova", "martinahingis", "juancarlosferrero", "monicaseles", "rogerfederer", "evonnegoolagong", "novakdjokovic", "kimclijsters", "hanamandlikova", "rafaelnadal", "andreagassi", "serenawilliams", "rogerfederer", "arantxasanchez", "billiejeanking", "johnnewcombe", "lindsaydavenport", "mariasharapova", "bjornborg", "novakdjokovic", "gustavokuerten", "rogerfederer", "hanamandlikova", "andreagassi", "matswilander", "bjornborg", "novakdjokovic", "evonnegoolagong", "sergibruguera", "johnmcenroe", "steffigraf", "petesampras", "johnnewcombe", "simonahalep", "bjornborg", "evonnegoolagong", "serenawilliams", "victoriaazarenka", "ivanlendl", "stefanedberg", "jananovotna", "rafaelnadal", "martinanavratilova", "rodlaver", "angeliquekerber", "chrisevert", "gustavokuerten", "serenawilliams", "matswilander", "rogerfederer", "andymurray", "johnnewcombe", "ivamajoli", "jimmyconnors", "arthurashe", "johnmcenroe", "michaelchang", "rogerfederer", "chrisevert", "serenawilliams", "steffigraf", "jimcourier", "novakdjokovic", "rafaelnadal", "johnmcenroe", "andreagassi", "serenawilliams", "ilienastase", "billiejeanking", "margaretcourt", "jankodes", "rodlaver", "justinehenin", "martinanavratilova", "novakdjokovic", "jimmyconnors", "samanthastosur", "johnmcenroe", "petesampras", "ivanlendl", "chrisevert", "serenawilliams", "margaretcourt", "virginiaruzici", "novakdjokovic", "justinehenin", "kerryreid", "chrisevert", "kimclijsters", "steffigraf", "serenawilliams", "margaretcourt", "martinanavratilova", "petesampras", "novakdjokovic", "maratsafin", "ivanlendl", "serenawilliams", "rogerfederer", "mimajausovec", "serenawilliams",]
+var nameList = ["johnmcenroe", "rogerfederer", "venuswilliams", "serenawilliams", "steffigraf", "anaivanovic", "matswilander", "michaelstich", "chrisevert", "petesampras", "rafaelnadal", "kenrosewall", "bjornborg", "marincilic", "johankriek", "ivanlendl", "steffigraf", "lina", "guillermovilas", "rafaelnadal", "naomiosaka", "matswilander", "serenawilliams", "jimmyconnors", "mariasharapova", "ivanlendl", "novakdjokovic", "chrisevert", "steffigraf", "johnnewcombe", "rafaelnadal", "albertcosta", "jimmyconnors", "serenawilliams", "igaswiatek", "arantxasanchez", "guillermovilas", "borisbecker", "virginiawade", "simonahalep", "jennifercapriati", "petesampras", "steffigraf", "francescaschiavone", "stansmith", "stanwawrinka", "patrickrafter", "novakdjokovic", "rogerfederer", "evonnegoolagong", "serenawilliams", "arthurashe", "venuswilliams", "steffigraf", "hanamandlikova", "martinanavratilova", "rogerfederer", "naomiosaka", "chrisevert", "petesampras", "stefanedberg", "arantxasanchez", "lindsaydavenport", "serenawilliams", "stanwawrinka", "venuswilliams", "tracyaustin", "novakdjokovic", "stefanedberg", "rafaelnadal", "monicaseles", "arthurashe", "roscoetanner", "stansmith", "chrisevert", "evonnegoolagong", "borisbecker", "petesampras", "margaretcourt", "rafaelnadal", "billiejeanking", "bjornborg", "evonnegoolagong", "novakdjokovic", "martinanavratilova", "svetlanakuznetsova", "mariasharapova", "steffigraf", "chrisoneil", "yannicknoah", "serenawilliams", "matswilander", "stefanedberg", "gabrielasabatini", "johnnewcombe", "rafaelnadal", "steffigraf", "martinanavratilova", "serenawilliams", "sofiakenin", "johnmcenroe", "novakdjokovic", "billiejeanking", "margaretcourt", "chrisevert", "rogerfederer", "rodlaver", "stefanedberg", "carlosmoya", "hanamandlikova", "gastongaudio", "petrakvitova", "andreagassi", "tracyaustin", "borisbecker", "angeliquekerber", "rafaelnadal", "billiejeanking", "suebarker", "jimmyconnors", "chrisevert", "garbinemuguruza", "jankodes", "martinanavratilova", "borisbecker", "martinahingis", "rafaelnadal", "billiejeanking", "rogerfederer", "stefanedberg", "serenawilliams", "martinanavratilova", "matswilander", "jimmyconnors", "rafaelnadal", "stanwawrinka", "novakdjokovic", "venuswilliams", "rodlaver", "jimcourier", "bjornborg", "ivanlendl", "steffigraf", "novakdjokovic", "rogerfederer", "goranivanisevic", "jimmyconnors", "petesampras", "martinanavratilova", "chrisevert", "venuswilliams", "angeliquekerber", "novakdjokovic", "rodlaver", "juanmartindelpotro", "andreagassi", "mariasharapova", "serenawilliams", "svetlanakuznetsova", "monicaseles", "carolinewozniacki", "richardkrajicek", "ashleighbarty", "martinanavratilova", "margaretcourt", "bjornborg", "borisbecker", "barborakrejcikova", "flaviapennetta", "petesampras", "johankriek", "steffigraf", "monicaseles", "rafaelnadal", "andymurray", "anastasiamyskina", "novakdjokovic", "justinehenin", "patcash", "adrianopanatta", "bjornborg", "emmaraducanu", "serenawilliams", "novakdjokovic", "steffigraf", "margaretcourt", "billiejeanking", "chrisevert", "vitasgerulaitis", "martinanavratilova", "serenawilliams", "steffigraf", "ivanlendl", "petesampras", "gustavokuerten", "andresgomez", "martinahingis", "justinehenin", "andreagassi", "novakdjokovic", "lindsaydavenport", "rafaelnadal", "venuswilliams", "guillermovilas", "martinahingis", "chrisevert", "martinanavratilova", "yevgenykafelnikov", "dominicthiem", "rogerfederer", "jimcourier", "markedmondson", "steffigraf", "rafaelnadal", "ilienastase", "andreagassi", "monicaseles", "andyroddick", "kenrosewall", "petesampras", "steffigraf", "victoriaazarenka", "novakdjokovic", "thomasmuster", "nancyrichey", "monicaseles", "guillermovilas", "ashleighbarty", "marypierce", "kenrosewall", "bjornborg", "daniilmedvedev", "steffigraf", "patrickrafter", "lina", "chrisevert", "ivanlendl", "mariasharapova", "andresgimeno", "rogerfederer", "jimcourier", "rafaelnadal", "brianteacher", "kimclijsters", "novakdjokovic", "margaretcourt", "ashleighbarty", "petrakvitova", "rogerfederer", "chrisevert", "jankodes", "marionbartoli", "jennifercapriati", "monicaseles", "rafaelnadal", "petesampras", "martinanavratilova", "jelenaostapenko", "steffigraf", "chrisevert", "serenawilliams", "petrkorda", "rogerfederer", "billiejeanking", "maratsafin", "rafaelnadal", "margaretcourt", "martinanavratilova", "justinehenin", "naomiosaka", "garbinemuguruza", "evonnegoolagong", "rogerfederer", "steffigraf", "johnmcenroe", "bjornborg", "monicaseles", "jimmyconnors", "andreagassi", "rogerfederer", "rafaelnadal", "chrisevert", "barbarajordan", "lleytonhewitt", "billiejeanking", "conchitamartinez", "borisbecker", "margaretcourt", "andymurray", "monicaseles", "kenrosewall", "thomasjohansson", "steffigraf", "martinanavratilova", "sergibruguera", "rafaelnadal", "jennifercapriati", "rogerfederer", "venuswilliams", "virginiawade", "petesampras", "serenawilliams", "biancaandreescu", "martinanavratilova", "ameliemauresmo", "rafaelnadal", "justinehenin", "bjornborg", "serenawilliams", "arantxasanchez", "martinanavratilova", "chrisevert", "marypierce", "steffigraf", "martinahingis", "kimclijsters", "sloanestephens", "virginiawade", "margaretcourt", "manuelorantes", "steffigraf", "yevgenykafelnikov", "matswilander", "petesampras", "justinehenin", "ameliemauresmo", "rogerfederer", "naomiosaka", "lleytonhewitt", "martinanavratilova", "martinahingis", "juancarlosferrero", "monicaseles", "rogerfederer", "evonnegoolagong", "novakdjokovic", "kimclijsters", "hanamandlikova", "rafaelnadal", "andreagassi", "serenawilliams", "rogerfederer", "arantxasanchez", "billiejeanking", "johnnewcombe", "lindsaydavenport", "mariasharapova", "bjornborg", "novakdjokovic", "gustavokuerten", "rogerfederer", "hanamandlikova", "andreagassi", "matswilander", "bjornborg", "novakdjokovic", "evonnegoolagong", "sergibruguera", "johnmcenroe", "steffigraf", "petesampras", "johnnewcombe", "simonahalep", "bjornborg", "evonnegoolagong", "serenawilliams", "victoriaazarenka", "ivanlendl", "stefanedberg", "jananovotna", "rafaelnadal", "martinanavratilova", "rodlaver", "angeliquekerber", "chrisevert", "gustavokuerten", "serenawilliams", "matswilander", "rogerfederer", "andymurray", "johnnewcombe", "ivamajoli", "jimmyconnors", "arthurashe", "johnmcenroe", "michaelchang", "rogerfederer", "chrisevert", "serenawilliams", "steffigraf", "jimcourier", "novakdjokovic", "rafaelnadal", "johnmcenroe", "andreagassi", "serenawilliams", "ilienastase", "billiejeanking", "margaretcourt", "jankodes", "rodlaver", "justinehenin", "martinanavratilova", "novakdjokovic", "jimmyconnors", "samanthastosur", "johnmcenroe", "petesampras", "ivanlendl", "chrisevert", "serenawilliams", "margaretcourt", "virginiaruzici", "novakdjokovic", "justinehenin", "kerryreid", "chrisevert", "kimclijsters", "steffigraf", "serenawilliams", "margaretcourt", "martinanavratilova", "petesampras", "novakdjokovic", "maratsafin", "ivanlendl", "serenawilliams", "rogerfederer", "mimajausovec", "serenawilliams",]
 var GSList = ["USO", "WIM", "USO", "USO", "WIM", "FO", "FO", "WIM", "AO", "USO", "FO", "AO", "WIM", "USO", "AO", "USO", "FO", "AO", "AO", "USO", "USO", "USO", "AO", "USO", "AO", "USO", "USO", "FO", "WIM", "AO", "FO", "FO", "AO", "USO", "FO", "FO", "FO", "AO", "AO", "WIM", "AO", "AO", "FO", "FO", "WIM", "USO", "USO", "WIM", "AO", "AO", "AO", "AO", "USO", "FO", "USO", "AO", "WIM", "AO", "FO", "WIM", "WIM", "FO", "AO", "WIM", "FO", "WIM", "USO", "WIM", "USO", "WIM", "AO", "WIM", "AO", "USO", "WIM", "WIM", "WIM", "USO", "WIM", "FO", "USO", "WIM", "FO", "WIM", "WIM", "FO", "WIM", "WIM", "AO", "FO", "WIM", "FO", "WIM", "USO", "WIM", "FO", "WIM", "FO", "USO", "AO", "WIM", "AO", "FO", "USO", "USO", "USO", "USO", "AO", "FO", "AO", "FO", "WIM", "AO", "USO", "WIM", "WIM", "FO", "WIM", "FO", "USO", "FO", "FO", "FO", "USO", "USO", "USO", "AO", "WIM", "WIM", "USO", "FO", "USO", "AO", "USO", "USO", "AO", "AO", "WIM", "FO", "FO", "FO", "FO", "USO", "AO", "FO", "WIM", "USO", "WIM", "WIM", "FO", "WIM", "AO", "AO", "AO", "USO", "USO", "FO", "WIM", "USO", "USO", "AO", "WIM", "FO", "AO", "FO", "FO", "WIM", "FO", "USO", "WIM", "AO", "USO", "AO", "FO", "WIM", "FO", "AO", "USO", "WIM", "FO", "FO", "USO", "AO", "AO", "USO", "USO", "USO", "AO", "AO", "WIM", "USO", "USO", "AO", "AO", "FO", "FO", "AO", "AO", "FO", "AO", "USO", "FO", "WIM", "USO", "AO", "USO", "USO", "AO", "USO", "AO", "AO", "AO", "FO", "FO", "USO", "AO", "AO", "USO", "AO", "USO", "USO", "AO", "AO", "FO", "FO", "AO", "AO", "AO", "FO", "FO", "WIM", "USO", "WIM", "USO", "FO", "WIM", "USO", "USO", "FO", "USO", "AO", "USO", "AO", "USO", "WIM", "USO", "WIM", "WIM", "AO", "USO", "FO", "WIM", "FO", "FO", "FO", "WIM", "AO", "FO", "WIM", "FO", "WIM", "AO", "WIM", "WIM", "AO", "FO", "FO", "FO", "FO", "USO", "WIM", "AO", "USO", "FO", "USO", "WIM", "FO", "WIM", "WIM", "USO", "AO", "USO", "AO", "USO", "WIM", "WIM", "AO", "FO", "WIM", "USO", "USO", "AO", "FO", "WIM", "FO", "FO", "AO", "AO", "WIM", "WIM", "USO", "FO", "USO", "WIM", "AO", "FO", "FO", "WIM", "AO", "USO", "WIM", "WIM", "AO", "AO", "AO", "AO", "USO", "USO", "AO", "USO", "AO", "FO", "AO", "WIM", "FO", "WIM", "WIM", "AO", "WIM", "WIM", "WIM", "FO", "FO", "AO", "AO", "WIM", "USO", "AO", "USO", "AO", "AO", "WIM", "FO", "USO", "AO", "WIM", "FO", "FO", "FO", "FO", "USO", "FO", "AO", "FO", "FO", "FO", "WIM", "FO", "USO", "WIM", "WIM", "WIM", "FO", "FO", "AO", "WIM", "AO", "AO", "AO", "WIM", "WIM", "WIM", "WIM", "USO", "USO", "FO", "USO", "AO", "WIM", "USO", "USO", "FO", "WIM", "USO", "WIM", "FO", "AO", "FO", "FO", "AO", "FO", "USO", "FO", "USO", "USO", "WIM", "FO", "WIM", "AO", "WIM", "WIM", "FO", "WIM", "AO", "USO", "USO", "WIM", "WIM", "FO", "FO", "AO", "AO", "FO", "USO", "USO", "AO", "USO", "USO", "AO", "WIM", "AO", "USO", "USO", "WIM", "USO", "FO", "AO", "WIM", "FO", "USO",]
 var GenList = ["HE", "HE", "SHE", "SHE", "SHE", "SHE", "HE", "HE", "SHE", "HE", "HE", "HE", "HE", "HE", "HE", "HE", "SHE", "SHE", "HE", "HE", "SHE", "HE", "SHE", "HE", "SHE", "HE", "HE", "SHE", "SHE", "HE", "HE", "HE", "HE", "SHE", "SHE", "SHE", "HE", "HE", "SHE", "SHE", "SHE", "HE", "SHE", "SHE", "HE", "HE", "HE", "HE", "HE", "SHE", "SHE", "HE", "SHE", "SHE", "SHE", "SHE", "HE", "SHE", "SHE", "HE", "HE", "SHE", "SHE", "SHE", "HE", "SHE", "SHE", "HE", "HE", "HE", "SHE", "HE", "HE", "HE", "SHE", "SHE", "HE", "HE", "SHE", "HE", "SHE", "HE", "SHE", "HE", "SHE", "SHE", "SHE", "SHE", "SHE", "HE", "SHE", "HE", "HE", "SHE", "HE", "HE", "SHE", "SHE", "SHE", "SHE", "HE", "HE", "SHE", "SHE", "SHE", "HE", "HE", "HE", "HE", "SHE", "HE", "SHE", "HE", "SHE", "HE", "SHE", "HE", "SHE", "SHE", "HE", "SHE", "SHE", "HE", "SHE", "HE", "SHE", "HE", "SHE", "HE", "HE", "SHE", "SHE", "HE", "HE", "HE", "HE", "HE", "SHE", "HE", "HE", "HE", "HE", "SHE", "HE", "HE", "HE", "HE", "HE", "SHE", "SHE", "SHE", "SHE", "HE", "HE", "HE", "HE", "SHE", "SHE", "SHE", "SHE", "SHE", "HE", "SHE", "SHE", "SHE", "HE", "HE", "SHE", "SHE", "HE", "HE", "SHE", "SHE", "HE", "HE", "SHE", "HE", "SHE", "HE", "HE", "HE", "SHE", "SHE", "HE", "SHE", "SHE", "SHE", "SHE", "HE", "SHE", "SHE", "SHE", "HE", "HE", "HE", "HE", "SHE", "SHE", "HE", "HE", "SHE", "HE", "SHE", "HE", "SHE", "SHE", "SHE", "HE", "HE", "HE", "HE", "HE", "SHE", "HE", "HE", "HE", "SHE", "HE", "HE", "HE", "SHE", "SHE", "HE", "HE", "SHE", "SHE", "HE", "SHE", "SHE", "HE", "HE", "HE", "SHE", "HE", "SHE", "SHE", "HE", "SHE", "HE", "HE", "HE", "HE", "HE", "SHE", "HE", "SHE", "SHE", "SHE", "HE", "SHE", "HE", "SHE", "SHE", "SHE", "HE", "HE", "SHE", "SHE", "SHE", "SHE", "SHE", "HE", "HE", "SHE", "HE", "HE", "SHE", "SHE", "SHE", "SHE", "SHE", "SHE", "HE", "SHE", "HE", "HE", "SHE", "HE", "HE", "HE", "HE", "SHE", "SHE", "HE", "SHE", "SHE", "HE", "SHE", "HE", "SHE", "HE", "HE", "SHE", "SHE", "HE", "HE", "SHE", "HE", "SHE", "SHE", "HE", "SHE", "SHE", "SHE", "SHE", "HE", "SHE", "HE", "SHE", "SHE", "SHE", "SHE", "SHE", "SHE", "SHE", "SHE", "SHE", "SHE", "SHE", "HE", "SHE", "HE", "HE", "HE", "SHE", "SHE", "HE", "SHE", "HE", "SHE", "SHE", "HE", "SHE", "HE", "SHE", "HE", "SHE", "SHE", "HE", "HE", "SHE", "HE", "SHE", "SHE", "HE", "SHE", "SHE", "HE", "HE", "HE", "HE", "SHE", "HE", "HE", "HE", "HE", "SHE", "HE", "HE", "SHE", "HE", "HE", "SHE", "HE", "SHE", "SHE", "SHE", "HE", "HE", "SHE", "HE", "SHE", "HE", "SHE", "SHE", "HE", "SHE", "HE", "HE", "HE", "HE", "SHE", "HE", "HE", "HE", "HE", "HE", "SHE", "SHE", "SHE", "HE", "HE", "HE", "HE", "HE", "SHE", "HE", "SHE", "SHE", "HE", "HE", "SHE", "SHE", "HE", "HE", "SHE", "HE", "HE", "HE", "SHE", "SHE", "SHE", "SHE", "HE", "SHE", "SHE", "SHE", "SHE", "SHE", "SHE", "SHE", "SHE", "HE", "HE", "HE", "HE", "SHE", "HE", "SHE", "SHE",]
-var GSTitleList = ["7",  "20", "7", "23", "22", "1", "7", "1", "18", "14", "21", "8", "11", "1", "2", "8", "22", "2", "4", "21", "4", "7", "23", "8", "5", "8", "20", "18", "22", "7", "21", "1", "8", "23", "1", "4", "4", "6", "3", "2", "3", "14", "22", "1", "2", "3", "2", "20", "20", "7", "23", "3", "7", "22", "4", "18", "20", "4", "18", "14", "6", "4", "3", "23", "3", "7", "2", "20", "6", "21", "9", "3", "1", "2", "18", "7", "6", "14", "24", "21", "12", "11", "7", "20", "18", "2", "5", "22", "1", "1", "23", "7", "6", "1", "7", "21", "22", "18", "23", "1", "7", "20", "12", "24", "18", "20", "11", "6", "1", "4", "1", "2", "8", "2", "6", "3", "21", "12", "1", "8", "18", "2", "3", "18", "6", "5", "21", "12", "20", "6", "23", "18", "7", "8", "21", "3", "20", "7", "11", "4", "11", "8", "22", "20", "20", "1", "8", "14", "18", "18", "7", "3", "20", "11", "1", "8", "5", "23", "2", "9", "1", "1", "3", "18", "24", "11", "6", "1", "1", "14", "2", "22", "9", "21", "3", "1", "20", "7", "1", "1", "11", "1", "23", "20", "22", "24", "12", "18", "1", "18", "23", "22", "8", "14", "3", "1", "5", "7", "8", "20", "3", "21", "7", "4", "5", "18", "18", "2", "1", "20", "4", "1", "22", "21", "2", "8", "9", "1", "8", "14", "22", "2", "20", "1", "2", "9", "4", "3", "2", "8", "11", "1", "22", "2", "2", "18", "8", "5", "1", "20", "4", "21", "1", "4", "20", "24", "3", "2", "20", "18", "3", "1", "3", "9", "21", "14", "18", "1", "22", "18", "23", "1", "20", "12", "2", "21", "24", "18", "7", "4", "2", "7", "20", "22", "7", "11", "9", "8", "8", "20", "21", "18", "1", "2", "12", "1", "6", "24", "3", "9", "8", "1", "22", "18", "2", "21", "3", "20", "7", "3", "14", "23", "1", "18", "2", "21", "7", "11", "23", "4", "18", "18", "2", "22", "5", "4", "1", "3", "24", "1", "22", "2", "7", "14", "7", "2", "20", "4", "2", "18", "5", "1", "9", "20", "7", "20", "4", "4", "21", "8", "23", "20", "4", "12", "7", "3", "5", "11", "20", "3", "20", "4", "8", "7", "11", "20", "7", "2", "7", "22", "14", "7", "2", "11", "7", "23", "2", "8", "6", "1", "21", "18", "11", "3", "18", "3", "23", "7", "20", "3", "7", "1", "8", "3", "7", "1", "20", "18", "23", "22", "4", "20", "21", "7", "8", "23", "2", "12", "24", "3", "11", "7", "18", "20", "8", "1", "7", "14", "8", "18", "23", "24", "1", "20", "7", "1", "18", "4", "22", "23", "24", "18", "14", "20", "2", "8", "23", "20", "1", "23",]
+var GSTitleList = ["7", "20", "7", "23", "22", "1", "7", "1", "18", "14", "21", "8", "11", "1", "2", "8", "22", "2", "4", "21", "4", "7", "23", "8", "5", "8", "20", "18", "22", "7", "21", "1", "8", "23", "1", "4", "4", "6", "3", "2", "3", "14", "22", "1", "2", "3", "2", "20", "20", "7", "23", "3", "7", "22", "4", "18", "20", "4", "18", "14", "6", "4", "3", "23", "3", "7", "2", "20", "6", "21", "9", "3", "1", "2", "18", "7", "6", "14", "24", "21", "12", "11", "7", "20", "18", "2", "5", "22", "1", "1", "23", "7", "6", "1", "7", "21", "22", "18", "23", "1", "7", "20", "12", "24", "18", "20", "11", "6", "1", "4", "1", "2", "8", "2", "6", "3", "21", "12", "1", "8", "18", "2", "3", "18", "6", "5", "21", "12", "20", "6", "23", "18", "7", "8", "21", "3", "20", "7", "11", "4", "11", "8", "22", "20", "20", "1", "8", "14", "18", "18", "7", "3", "20", "11", "1", "8", "5", "23", "2", "9", "1", "1", "3", "18", "24", "11", "6", "1", "1", "14", "2", "22", "9", "21", "3", "1", "20", "7", "1", "1", "11", "1", "23", "20", "22", "24", "12", "18", "1", "18", "23", "22", "8", "14", "3", "1", "5", "7", "8", "20", "3", "21", "7", "4", "5", "18", "18", "2", "1", "20", "4", "1", "22", "21", "2", "8", "9", "1", "8", "14", "22", "2", "20", "1", "2", "9", "4", "3", "2", "8", "11", "1", "22", "2", "2", "18", "8", "5", "1", "20", "4", "21", "1", "4", "20", "24", "3", "2", "20", "18", "3", "1", "3", "9", "21", "14", "18", "1", "22", "18", "23", "1", "20", "12", "2", "21", "24", "18", "7", "4", "2", "7", "20", "22", "7", "11", "9", "8", "8", "20", "21", "18", "1", "2", "12", "1", "6", "24", "3", "9", "8", "1", "22", "18", "2", "21", "3", "20", "7", "3", "14", "23", "1", "18", "2", "21", "7", "11", "23", "4", "18", "18", "2", "22", "5", "4", "1", "3", "24", "1", "22", "2", "7", "14", "7", "2", "20", "4", "2", "18", "5", "1", "9", "20", "7", "20", "4", "4", "21", "8", "23", "20", "4", "12", "7", "3", "5", "11", "20", "3", "20", "4", "8", "7", "11", "20", "7", "2", "7", "22", "14", "7", "2", "11", "7", "23", "2", "8", "6", "1", "21", "18", "11", "3", "18", "3", "23", "7", "20", "3", "7", "1", "8", "3", "7", "1", "20", "18", "23", "22", "4", "20", "21", "7", "8", "23", "2", "12", "24", "3", "11", "7", "18", "20", "8", "1", "7", "14", "8", "18", "23", "24", "1", "20", "7", "1", "18", "4", "22", "23", "24", "18", "14", "20", "2", "8", "23", "20", "1", "23",]
 var PlaysList = ["LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "LH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "LH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "LH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "LH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "LH", "LH", "RH", "RH", "LH", "RH", "RH", "RH", "LH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "LH", "RH", "LH", "LH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "LH", "RH", "LH", "RH", "RH", "LH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "LH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "LH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "LH", "LH", "RH", "LH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "LH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "LH", "LH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "LH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "LH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "LH", "LH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "LH", "RH", "LH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "LH", "RH", "RH", "RH", "RH", "RH", "RH", "RH", "RH",]
 var index = days - 1;
 var firstname = firstnameList[index].toLowerCase();
@@ -561,6 +561,24 @@ function intialize() {
 	document.getElementById('try5').innerText = localStorage.try5topen;
 	document.getElementById('try6').innerText = localStorage.try6topen;
 	document.getElementById('glt').innerText = localStorage.gltttext;
+	if (localStorage.try1topen == "-----"){
+		document.getElementById('try1').style.border = "2px solid #6AAA64"
+	}
+	else if (localStorage.try2topen == "-----"){
+		document.getElementById('try2').style.border = "2px solid #6AAA64"
+	}
+	else if (localStorage.try3topen == "-----"){
+		document.getElementById('try3').style.border = "2px solid #6AAA64"
+	}
+	else if (localStorage.try4topen == "-----"){
+		document.getElementById('try4').style.border = "2px solid #6AAA64"
+	}
+	else if (localStorage.try5topen == "-----"){
+		document.getElementById('try5').style.border = "2px solid #6AAA64"
+	}
+	else if (localStorage.try6topen == "-----"){
+		document.getElementById('try6').style.border = "2px solid #6AAA64"
+	}
 	//document.getElementById('try7').innerText = localStorage.try7topen;
 	// Create the game board
 	for (let clueindex = 0; clueindex < 6; clueindex++) {
@@ -607,7 +625,7 @@ function intialize() {
 		histile.innerText = "";
 		document.getElementById("historylast").appendChild(histile);
 	}
-  
+
 	var winpct = Math.round(localStorage.totaltwins / localStorage.totaltgames * 100);
 	document.getElementById(6).innerText = "Played: " + localStorage.totaltgames;
 	document.getElementById(7).innerText = "Win %: " + winpct;
@@ -616,8 +634,8 @@ function intialize() {
 
 	//Current Day Game Over
 	if (localStorage.getItem('gameover' + days) == 1) {
-		document.getElementById("answertext").disabled = true; 
-		document.getElementById("submitbutton").disabled = true; 
+		document.getElementById("answertext").disabled = true;
+		document.getElementById("submitbutton").disabled = true;
 		if (localStorage.gametwon == 1) {
 			for (let c = 0; c < width; c++) {
 				let gameTile = document.getElementById(2 + '-' + c.toString());
@@ -644,55 +662,53 @@ function intialize() {
 	}
 	// Default Path
 	else {
-		if (localStorage.firsttload == 0){
+		if (localStorage.firsttload == 0) {
 			setTimeout(FetchData, 1000);
 			localStorage.firsttload = 1
 		}
-		else{
+		else {
 			if (localStorage.yeartopen == 1) {
-				document.getElementById(0).innerHTML = "<span class='revealcol'>" + year +"</span><br><br><span class='revealsiz'>(Year)</span>";
+				document.getElementById(0).innerHTML = "<span class='revealcol'>" + year + "</span><br><br><span class='revealsiz'>(Year)</span>";
 				arrayid.splice(arrayid.indexOf(0), 1);
 				SetClueCount();
 			}
 			if (localStorage.slamtopen == 1) {
-				document.getElementById(1).innerHTML = "<span class='revealcol'>" + grandslam +"</span><br><br><span class='revealsiz'>(Slam)</span>";
+				document.getElementById(1).innerHTML = "<span class='revealcol'>" + grandslam + "</span><br><br><span class='revealsiz'>(Slam)</span>";
 				arrayid.splice(arrayid.indexOf(1), 1);
 				SetClueCount();
 			}
 			if (localStorage.ctrytopen == 1) {
-				document.getElementById(2).innerHTML = "<span class='revealcol'>" + country +"</span><br><br><span class='revealsiz'>(Country)</span>";
+				document.getElementById(2).innerHTML = "<span class='revealcol'>" + country + "</span><br><br><span class='revealsiz'>(Country)</span>";
 				arrayid.splice(arrayid.indexOf(2), 1);
 				SetClueCount();
 			}
 			if (localStorage.gndrtopen == 1) {
-				document.getElementById(3).innerHTML = "<span class='revealcol'>" + gender +"</span><br><br><span class='revealsiz'>(Gender)</span>";
+				document.getElementById(3).innerHTML = "<span class='revealcol'>" + gender + "</span><br><br><span class='revealsiz'>(Gender)</span>";
 				arrayid.splice(arrayid.indexOf(3), 1);
 				SetClueCount();
 			}
 			//if (localStorage.fnfltopen == 1) {
 			if (localStorage.titltopen == 1) {
-				document.getElementById(4).innerHTML = "<span class='revealcol'>" + titles +"</span><br><br><span class='revealsiz'>(Titles)</span>";
+				document.getElementById(4).innerHTML = "<span class='revealcol'>" + titles + "</span><br><br><span class='revealsiz'>(Titles)</span>";
 				arrayid.splice(arrayid.indexOf(4), 1);
 				SetClueCount();
 			}
 			//if (localStorage.lnfltopen == 1) {
 			if (localStorage.playtopen == 1) {
-				document.getElementById(5).innerHTML = "<span class='revealcol'>" + plays +"</span><br><br><span class='revealsiz'>(Plays)</span>";
+				document.getElementById(5).innerHTML = "<span class='revealcol'>" + plays + "</span><br><br><span class='revealsiz'>(Plays)</span>";
 				arrayid.splice(arrayid.indexOf(5), 1);
 				SetClueCount();
 			}
 		}
-		document.getElementById("answer").classList.remove("popanswer");	
-		if (document.getElementById("answer").classList.contains("popanswer")){
-		}		
+		document.getElementById("answer").classList.remove("popanswer");
 		document.getElementById("answer").style.color = "#FDFEFF";
 		document.getElementById("answer").innerText = "We have made some design changes.\nREAD THE GAME RULES BEFORE PLAYING!";
 		setTimeout(FinalClue, 2000);
 
 		// Listen for Key Press
-/* 		document.addEventListener("keyup", (e) => {
-			processInput(e);
-		}) */
+		/* 		document.addEventListener("keyup", (e) => {
+					processInput(e);
+				}) */
 	}
 }
 
@@ -705,10 +721,10 @@ function intialize() {
 function submitMe() {
 	var input = document.getElementById('answertext').value;
 	//console.log(clueCount);
-	if (input!= ""){
+	if (input != "") {
 		switch (clueCount) {
-/* 			case 0: document.getElementById('try1').innerText = document.getElementById('answertext').value;
-				break; */
+			/* 			case 0: document.getElementById('try1').innerText = document.getElementById('answertext').value;
+							break; */
 			case 1: document.getElementById('try1').innerText = document.getElementById('answertext').value;
 				break;
 			case 2: document.getElementById('try2').innerText = document.getElementById('answertext').value;
@@ -722,12 +738,12 @@ function submitMe() {
 			case 7: document.getElementById('try6').innerText = document.getElementById('answertext').value;
 				break;
 		}
-		document.getElementById('answertext').value = "";	
-		document.getElementById("submitbutton").disabled = true; 
-		document.getElementById("result").hidden = true;		
+		document.getElementById('answertext').value = "";
+		document.getElementById("submitbutton").disabled = true;
+		document.getElementById("result").hidden = true;
 		update(input);
 	}
-	else{
+	else {
 		document.getElementById("answer").style.color = "#dc143c";
 		document.getElementById("answer").innerText = "PLEASE ENTER ANY NAME TO SUBMIT!";
 	}
@@ -738,13 +754,13 @@ function update(input) {
 	//first name
 	for (let c = 0; c < fnwidth; c++) {
 		let historyTile = document.getElementById(2 + '-' + c.toString());
-		}
+	}
 
 	//last name
 	for (let c = fnwidth; c < width; c++) {
 		let historyTile = document.getElementById(2 + '-' + c.toString());
 
-		}
+	}
 
 	input = input.replace(/\s+/g, '');
 	guess = input.toLowerCase();
@@ -756,7 +772,7 @@ function update(input) {
 			gameTile.innerText = answername[c];
 			gameTile.classList.remove("correct", "poptile");
 			gameTile.classList.add("correct", "animated");
-		}		
+		}
 		document.getElementById("answer").style.color = "#FDFEFF";
 		localStorage.totaltgames = Number(localStorage.totaltgames) + 1;
 		localStorage.totaltwins = Number(localStorage.totaltwins) + 1;
@@ -767,31 +783,31 @@ function update(input) {
 		winpct = Math.round(localStorage.totaltwins / localStorage.totaltgames * 100);
 		switch (clueCount) {
 			//case 0: localStorage.cluet0count = Number(localStorage.cluet0count) + 1;
-/* 			case 0: document.getElementById('try1').innerText += " ✔️";
-				//color0 = "green";
-				break; */
+			/* 			case 0: document.getElementById('try1').innerText += " ✔️";
+							//color0 = "green";
+							break; */
 			case 1: localStorage.cluet1count = Number(localStorage.cluet1count) + 1;
-				document.getElementById('try1').innerText += " ✔️";			
+				document.getElementById('try1').innerText += " ✔️";
 				color1 = "green";
 				break;
 			case 2: localStorage.cluet2count = Number(localStorage.cluet2count) + 1;
-				document.getElementById('try2').innerText += " ✔️";			
+				document.getElementById('try2').innerText += " ✔️";
 				color2 = "green";
 				break;
 			case 3: localStorage.cluet3count = Number(localStorage.cluet3count) + 1;
-				document.getElementById('try3').innerText += " ✔️";			
+				document.getElementById('try3').innerText += " ✔️";
 				color3 = "green";
 				break;
 			case 4: localStorage.cluet4count = Number(localStorage.cluet4count) + 1;
-				document.getElementById('try4').innerText += " ✔️";			
+				document.getElementById('try4').innerText += " ✔️";
 				color4 = "green";
 				break;
 			case 5: localStorage.cluet5count = Number(localStorage.cluet5count) + 1;
-				document.getElementById('try5').innerText += " ✔️";			
+				document.getElementById('try5').innerText += " ✔️";
 				color5 = "green";
 				break;
 			case 7: localStorage.cluet6count = Number(localStorage.cluet6count) + 1;
-				document.getElementById('try6').innerText += " ✔️";			
+				document.getElementById('try6').innerText += " ✔️";
 				color6 = "green";
 				break;
 		}
@@ -809,33 +825,33 @@ function update(input) {
 		document.getElementById("answer").innerText = "You have identified the player successfully.\nCongrats! Dont forget to share your results.";
 		setTimeout(ConfettiStart, 1000);
 		gameOver = true;
-		document.getElementById("answertext").disabled = true; 
-		document.getElementById("submitbutton").disabled = true; 		
+		document.getElementById("answertext").disabled = true;
+		document.getElementById("submitbutton").disabled = true;
 		displayFooter();
 		localStorage.gametwon = 1;
 		localStorage.setItem(('gameover' + days), 1);
 		setTimeout(OpenStats, 4800);
 	}
-/* 	else if (guess == "") {
-		document.getElementById("boardfirst").classList.add("shaketile");
-		document.getElementById("boardlast").classList.add("shaketile");
-		document.getElementById("answer").style.color = "red";
-		document.getElementById("answer").innerText = "PLEASE ENTER ANY NAME TO SUBMIT!";
-	} */
+	/* 	else if (guess == "") {
+			document.getElementById("boardfirst").classList.add("shaketile");
+			document.getElementById("boardlast").classList.add("shaketile");
+			document.getElementById("answer").style.color = "red";
+			document.getElementById("answer").innerText = "PLEASE ENTER ANY NAME TO SUBMIT!";
+		} */
 	else {
 		document.getElementById("answer").style.color = "#dc143c";
 		if (!gameOver && clueCount < 6) {
-/* 			document.getElementById("boardfirst").classList.add("shaketile");
-			document.getElementById("boardlast").classList.add("shaketile"); */
+			/* 			document.getElementById("boardfirst").classList.add("shaketile");
+						document.getElementById("boardlast").classList.add("shaketile"); */
 			document.getElementById("answer").innerText = "Incorrect Guess! New Clue Revealed. \n Try again.";
 			FetchData();
 		}
 		if (!gameOver && clueCount == 6) {
-/* 			document.getElementById("boardfirst").classList.add("shaketile");
-			document.getElementById("boardlast").classList.add("shaketile"); */
-			document.getElementById("answer").classList.remove("popanswer");	
-			if (document.getElementById("answer").classList.contains("popanswer")){
-			}			
+			/* 			document.getElementById("boardfirst").classList.add("shaketile");
+						document.getElementById("boardlast").classList.add("shaketile"); */
+			document.getElementById("answer").classList.remove("popanswer");
+			if (document.getElementById("answer").classList.contains("popanswer")) {
+			}
 			document.getElementById("answer").style.color = "#dc143c";
 			document.getElementById("answer").innerText = "Final Clue Revealed! Players may be repeated across days if they have won multiple GSs.";
 			setTimeout(FinalClue, 2000);
@@ -863,48 +879,59 @@ function update(input) {
 			document.getElementById('try6').innerText += " ❌";
 			document.getElementById("try6").classList.add("shaketile");
 			var addon = getindices();
-			document.getElementById('try6').innerText += addon;			
+			document.getElementById('try6').innerText += addon;
+			document.getElementById('try6').style.border = "2px solid #dc143c";			
 			tryload();
-			document.getElementById("answertext").disabled = true; 
-			document.getElementById("submitbutton").disabled = true; 			
+			document.getElementById("answertext").disabled = true;
+			document.getElementById("submitbutton").disabled = true;
 			displayFooter();
 			localStorage.gametwon = 0;
 			localStorage.setItem(('gameover' + days), 1);
 			setTimeout(OpenStats, 3000);
 		}
-		if (!gameOver){
+		if (!gameOver) {
 			switch (clueCount) {
-/* 				case 1: document.getElementById('try1').innerText += " ❌";
-					break; */
+				/* 				case 1: document.getElementById('try1').innerText += " ❌";
+									break; */
 				case 2: document.getElementById('try1').innerText += " ❌";
-				document.getElementById("try1").classList.add("shaketile");
-				document.getElementById('glt').innerText = "ATTEMPT : 2/6";	
-				var addon = getindices();
-				document.getElementById('try1').innerText += addon;
+					document.getElementById("try1").classList.add("shaketile");
+					document.getElementById('glt').innerText = "ATTEMPT : 2/6";
+					var addon = getindices();
+					document.getElementById('try1').innerText += addon;
+					document.getElementById('try1').style.border = "2px solid #dc143c";
+					document.getElementById('try2').style.border = "2px solid #6AAA64";
 					break;
 				case 3: document.getElementById('try2').innerText += " ❌";
-				document.getElementById("try2").classList.add("shaketile");
-				document.getElementById('glt').innerText = "ATTEMPT : 3/6";		
-				var addon = getindices();
-				document.getElementById('try2').innerText += addon;
+					document.getElementById("try2").classList.add("shaketile");
+					document.getElementById('glt').innerText = "ATTEMPT : 3/6";
+					var addon = getindices();
+					document.getElementById('try2').innerText += addon;
+					document.getElementById('try2').style.border = "2px solid #dc143c";
+					document.getElementById('try3').style.border = "2px solid #6AAA64";					
 					break;
 				case 4: document.getElementById('try3').innerText += " ❌";
-				document.getElementById("try3").classList.add("shaketile");
-				document.getElementById('glt').innerText = "ATTEMPT : 4/6";		
-				var addon = getindices();				var addon = getindices();
-				document.getElementById('try3').innerText += addon;					
+					document.getElementById("try3").classList.add("shaketile");
+					document.getElementById('glt').innerText = "ATTEMPT : 4/6";
+					var addon = getindices(); var addon = getindices();
+					document.getElementById('try3').innerText += addon;
+					document.getElementById('try3').style.border = "2px solid #dc143c";
+					document.getElementById('try4').style.border = "2px solid #6AAA64";					
 					break;
 				case 5: document.getElementById('try4').innerText += " ❌";
-				document.getElementById("try4").classList.add("shaketile");
-				document.getElementById('glt').innerText = "ATTEMPT : 5/6";	
-				var addon = getindices();
-				document.getElementById('try4').innerText += addon;				
+					document.getElementById("try4").classList.add("shaketile");
+					document.getElementById('glt').innerText = "ATTEMPT : 5/6";
+					var addon = getindices();
+					document.getElementById('try4').innerText += addon;
+					document.getElementById('try4').style.border = "2px solid #dc143c";
+					document.getElementById('try5').style.border = "2px solid #6AAA64";					
 					break;
 				case 7: document.getElementById('try5').innerText += " ❌";
-				document.getElementById("try5").classList.add("shaketile");
-				document.getElementById('glt').innerText = "ATTEMPT : 6/6";	
-				var addon = getindices();
-				document.getElementById('try5').innerText += addon;			
+					document.getElementById("try5").classList.add("shaketile");
+					document.getElementById('glt').innerText = "ATTEMPT : 6/6";
+					var addon = getindices();
+					document.getElementById('try5').innerText += addon;
+					document.getElementById('try5').style.border = "2px solid #dc143c";
+					document.getElementById('try6').style.border = "2px solid #6AAA64";					
 					break;
 			}
 		}
