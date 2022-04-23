@@ -50,10 +50,10 @@ function getindices(){
 	  idx = nameList.indexOf(element, idx + 1);
 	}
 	//console.log(indices);
-	var addon = "\n🔴";
+	var addon = "🔴";
 	for (let i = 0; i < indices.length; i++) {
 		if (yearList[indices[i]] == yearList[index]){
-			addon = "\n🟢";
+			addon = "🟢";
 			break;
 		}
 	}
@@ -230,7 +230,7 @@ if (localStorage.getItem('gameover' + days) != 0 && localStorage.getItem('gameov
 	localStorage.try6topen = "-----";
 	//localStorage.try7topen = "";	
 	localStorage.firsttload = 0;	
-	localStorage.gltttext = "1";	
+	localStorage.gltttext = "ATTEMPT : 1/6";	
 }
 
 function tryload(){
@@ -879,31 +879,31 @@ function update(input) {
 					break; */
 				case 2: document.getElementById('try1').innerText += " ❌";
 				document.getElementById("try1").classList.add("shaketile");
-				document.getElementById('glt').innerText += "   " + (clueCount);	
+				document.getElementById('glt').innerText = "ATTEMPT : 2/6";	
 				var addon = getindices();
 				document.getElementById('try1').innerText += addon;
 					break;
 				case 3: document.getElementById('try2').innerText += " ❌";
 				document.getElementById("try2").classList.add("shaketile");
-				document.getElementById('glt').innerText += "   " + (clueCount);	
+				document.getElementById('glt').innerText = "ATTEMPT : 3/6";		
 				var addon = getindices();
 				document.getElementById('try2').innerText += addon;
 					break;
 				case 4: document.getElementById('try3').innerText += " ❌";
 				document.getElementById("try3").classList.add("shaketile");
-				document.getElementById('glt').innerText += "   " + (clueCount);	
+				document.getElementById('glt').innerText = "ATTEMPT : 4/6";		
 				var addon = getindices();				var addon = getindices();
 				document.getElementById('try3').innerText += addon;					
 					break;
 				case 5: document.getElementById('try4').innerText += " ❌";
 				document.getElementById("try4").classList.add("shaketile");
-				document.getElementById('glt').innerText += "   " + (clueCount);
+				document.getElementById('glt').innerText = "ATTEMPT : 5/6";	
 				var addon = getindices();
 				document.getElementById('try4').innerText += addon;				
 					break;
 				case 7: document.getElementById('try5').innerText += " ❌";
 				document.getElementById("try5").classList.add("shaketile");
-				document.getElementById('glt').innerText += "   6";	
+				document.getElementById('glt').innerText = "ATTEMPT : 6/6";	
 				var addon = getindices();
 				document.getElementById('try5').innerText += addon;			
 					break;

@@ -189,8 +189,10 @@ hr {
   font-size: 16px;
   font-weight:bold;
   //text-decoration: underline; 
-  //color:#3a3a3c;;
-  color:#dc143c;;
+  //color:#3a3a3c;
+  //color:#dc143c;
+  color:#FFF;
+  
 }
 
 #title {
@@ -373,6 +375,7 @@ hr {
   height: 20px;
   //border: 2px solid #3a3a3c;
   border: 2px solid #dc143c;
+  font-size:11px;
 }
 
 .email {
