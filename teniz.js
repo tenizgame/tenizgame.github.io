@@ -762,7 +762,7 @@ function update(input) {
 		localStorage.totaltgames = Number(localStorage.totaltgames) + 1;
 		localStorage.totaltwins = Number(localStorage.totaltwins) + 1;
 		localStorage.currenttstreak = Number(localStorage.currenttstreak) + 1;
-		if (localStorage.currenttstreak > localStorage.longesttstreak) {
+		if (Number(localStorage.currenttstreak) > Number(localStorage.longesttstreak)) {
 			localStorage.longesttstreak = localStorage.currenttstreak;
 		}
 		winpct = Math.round(localStorage.totaltwins / localStorage.totaltgames * 100);
