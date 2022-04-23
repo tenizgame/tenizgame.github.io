@@ -616,8 +616,8 @@ function intialize() {
 
 	//Current Day Game Over
 	if (localStorage.getItem('gameover' + days) == 1) {
-		document.getElementById("answertext").disabled = true;
-		document.getElementById("submitbutton").disabled = true;
+		document.getElementById("answertext").hidden = true;
+		document.getElementById("submitbutton").hidden = true;
 		if (localStorage.gametwon == 1) {
 			for (let c = 0; c < width; c++) {
 				let gameTile = document.getElementById(2 + '-' + c.toString());
@@ -825,8 +825,8 @@ function update(input) {
 		document.getElementById("answer").innerText = "You have identified the player successfully.\nCongrats! Dont forget to share your results.";
 		setTimeout(ConfettiStart, 1000);
 		gameOver = true;
-		document.getElementById("answertext").disabled = true;
-		document.getElementById("submitbutton").disabled = true;
+		document.getElementById("answertext").hidden = true;
+		document.getElementById("submitbutton").hidden = true;
 		displayFooter();
 		localStorage.gametwon = 1;
 		localStorage.setItem(('gameover' + days), 1);
@@ -882,8 +882,8 @@ function update(input) {
 			document.getElementById('try6').innerText += addon;
 			document.getElementById('try6').style.border = "2px solid #dc143c";			
 			tryload();
-			document.getElementById("answertext").disabled = true;
-			document.getElementById("submitbutton").disabled = true;
+			document.getElementById("answertext").hidden = true;
+			document.getElementById("submitbutton").hidden = true;
 			displayFooter();
 			localStorage.gametwon = 0;
 			localStorage.setItem(('gameover' + days), 1);

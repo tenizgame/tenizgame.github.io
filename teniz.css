@@ -376,6 +376,7 @@ hr {
   //border: 2px solid #3a3a3c;
   border: 2px solid #dc143c;
   font-size:11px;
+  border-radius:5px;
 }
 
 .email {
