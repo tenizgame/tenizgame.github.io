@@ -370,8 +370,8 @@ hr {
 
 #try1,#try2, #try3, #try4, #try5, #try6 {
   /* Box */
-  margin-left:100px;
-  margin-right:20px;
+  margin-left:95px;
+  margin-right:15px;
   height: 20px;
   //border: 2px solid #3a3a3c;
   border: 2px solid #dc143c;

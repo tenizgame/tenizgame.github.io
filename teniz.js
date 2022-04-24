@@ -843,7 +843,7 @@ function update(input) {
 		if (!gameOver && clueCount < 6) {
 			/* 			document.getElementById("boardfirst").classList.add("shaketile");
 						document.getElementById("boardlast").classList.add("shaketile"); */
-			document.getElementById("answer").innerText = "Incorrect Guess! New Clue Revealed. \n Try again.";
+			document.getElementById("answer").innerText = "INCORRECT GUESS! NEW CLUE REVEALED.";
 			FetchData();
 		}
 		if (!gameOver && clueCount == 6) {
