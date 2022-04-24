@@ -26,7 +26,7 @@ function showResults(val) {
 	let list = '';
 	let terms = autocompleteMatch(val);
 	for (i = 0; i < terms.length; i++) {
-		if (i === 3) { break; }
+		if (i === 5) { break; }
 		list += '<li>' + terms[i] + '</li>';
 	}
 	res.innerHTML = '<ul>' + list + '</ul>';
