@@ -1086,7 +1086,7 @@ function update(input) {
 				case 4: document.getElementById('try3').innerText += " ❌ ";
 					document.getElementById("try3").classList.add("shaketile");
 					document.getElementById('glt').innerText = "ATTEMPT: 4/6 " + "MODE: " + localStorage.modet;
-					var addon = getindices(); var addon = getindices();
+					var addon = getindices();
 					document.getElementById('try3').innerText += addon;
 					document.getElementById('try3').style.border = "2px solid #dc143c";
 					document.getElementById('try4').style.border = "2px solid #6AAA64";					
