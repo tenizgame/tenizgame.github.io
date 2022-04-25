@@ -344,7 +344,8 @@ hr {
   /* font-family: Georgia, serif; */
   font-weight: bold;
   justify-content: center;
-  align-items: center;  
+  align-items: center; 
+  font-family: Tahoma;
 }
 
 .headerimage {
@@ -796,4 +797,3 @@ hr {
     font-size: 20px;
   }
 }
-
