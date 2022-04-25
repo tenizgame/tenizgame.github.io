@@ -759,6 +759,10 @@ function intialize() {
 	// Default Path
 	else {
 		if (localStorage.firsttload == 0) {
+			document.getElementById("answer").classList.remove("popanswer");
+			document.getElementById("answer").style.color = "#FDFEFF";
+			document.getElementById("answer").innerText = "LOVE-ALL!\nREAD THE GAME RULES BEFORE PLAYING.";
+			setTimeout(FinalClue, 2000);
 			if (localStorage.modet == "Easy") {
 			setTimeout(FetchDataEasy, 1000);
 			}
@@ -768,6 +772,9 @@ function intialize() {
 			localStorage.firsttload = 1
 		}
 		else {
+			document.getElementById("answer").classList.remove("popanswer");
+			document.getElementById("answer").style.color = "#FDFEFF";
+			document.getElementById("answer").innerText = "MATCH RESUMED. PLAY!";
 			if (localStorage.yeartopen == 1) {
 				if (localStorage.modet == "Easy") {
 					document.getElementById(0).innerHTML = "<span class='revealcol'>" + year + "</span><br><br><span class='revealsiz'>(Year)</span>";
@@ -853,11 +860,6 @@ function intialize() {
 		else if (localStorage.try6topen == "-----"){
 			document.getElementById('try6').style.border = "2px solid #6AAA64"
 		}	
-		document.getElementById("answer").classList.remove("popanswer");
-		document.getElementById("answer").style.color = "#FDFEFF";
-		document.getElementById("answer").innerText = "LOVE-ALL!\nREAD THE GAME RULES BEFORE PLAYING.";
-		setTimeout(FinalClue, 2000);
-
 		// Listen for Key Press
 		/* 		document.addEventListener("keyup", (e) => {
 					processInput(e);
