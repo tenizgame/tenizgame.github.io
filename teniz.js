@@ -240,7 +240,7 @@ function FinalClue() {
 function disablederror() {
 	if (document.getElementById("submitbutton").disabled == true) {
 		document.getElementById("answer").style.color = "#dc143c";
-		document.getElementById("answer").innerText = "SELECT PLAYER FROM SEARCH RESULTS!";
+		document.getElementById("answer").innerText = "CODE VIOLATION! \nSELECT PLAYER FROM SEARCH RESULTS!";
 	}
 }
 
@@ -269,7 +269,7 @@ function displayFooter() {
 }
 //Baseline Date
 var a = new Date(); // Current date now.
-var b = new Date(2022, 3, 11, 0, 0, 0, 0); // Start of TENIZ.
+var b = new Date(2022, 2, 4, 0, 0, 0, 0); // Start of TENIZ.
 var d = (a - b); // Difference in milliseconds.
 var days = parseInt((d / 1000) / 86400);
 if (localStorage.getItem('gameover' + days) != 0 && localStorage.getItem('gameover' + days) != 1) {
@@ -739,7 +739,7 @@ function intialize() {
 				gameTile.classList.add("correct", "animated");
 			}
 			document.getElementById("answer").style.color = "#FDFEFF";
-			document.getElementById("answer").innerText = "You have already identified today's player.\nCome back again tomorrow!";
+			document.getElementById("answer").innerText = "YOU HAVE ALREADY WON THIS ROUND.\nNEXT MATCH SCHEDULED FOR TOMORROW!";
 			/* setTimeout(ConfettiStart, 1000); */
 			setTimeout(OpenStats, 1100);
 		}
@@ -751,7 +751,7 @@ function intialize() {
 				gameTile.classList.add("absent", "animated");
 			}
 			document.getElementById("answer").style.color = "#dc143c";
-			document.getElementById("answer").innerText = "HARD LUCK TODAY. TRY AGAIN TOMORROW!";
+			document.getElementById("answer").innerText = "HARD LUCK TODAY. \nNEXT TOURNAMENT STARTS TOMORROW!";
 			setTimeout(OpenStats, 1100);
 		}
 		displayFooter();
@@ -855,7 +855,7 @@ function intialize() {
 		}	
 		document.getElementById("answer").classList.remove("popanswer");
 		document.getElementById("answer").style.color = "#FDFEFF";
-		document.getElementById("answer").innerText = "We have made some design changes.\nREAD THE GAME RULES BEFORE PLAYING!";
+		document.getElementById("answer").innerText = "LOVE-ALL!\nREAD THE GAME RULES BEFORE PLAYING.";
 		setTimeout(FinalClue, 2000);
 
 		// Listen for Key Press
@@ -983,7 +983,7 @@ function update(input) {
 		document.getElementById(7).innerText = "Win %: " + winpct;
 		document.getElementById(8).innerText = "Current Streak: " + localStorage.currenttstreak;
 		document.getElementById(9).innerText = "Max Streak: " + localStorage.longesttstreak;
-		document.getElementById("answer").innerText = "You have identified the player successfully.\nCongrats! Dont forget to share your results.";
+		document.getElementById("answer").innerText = "GAME, SET and MATCH!\nDONT FORGET TO SHARE YOUR RESULTS.";
 		setTimeout(ConfettiStart, 1000);
 		gameOver = true;
 		finalcluereveal();
@@ -1005,7 +1005,7 @@ function update(input) {
 		if (!gameOver && clueCount < 6) {
 			/* 			document.getElementById("boardfirst").classList.add("shaketile");
 						document.getElementById("boardlast").classList.add("shaketile"); */
-			document.getElementById("answer").innerText = "INCORRECT GUESS! NEW CLUE REVEALED.";
+			document.getElementById("answer").innerText = "FAULT! TRY AGAIN.";
 			if (localStorage.modet == "Easy") {
 				//setTimeout(FetchDataEasy, 1000);
 				FetchDataEasy();
@@ -1021,7 +1021,7 @@ function update(input) {
 			if (document.getElementById("answer").classList.contains("popanswer")) {
 			}
 			document.getElementById("answer").style.color = "#dc143c";
-			document.getElementById("answer").innerText = "Final Clue Revealed! Players may be repeated across days if they have won multiple GSs.";
+			document.getElementById("answer").innerText = "MATCH POINT Down!\nTHIS IS YOUR LAST CHANCE.";
 			setTimeout(FinalClue, 2000);
 			clueCount += 1;
 		}
@@ -1036,7 +1036,7 @@ function update(input) {
 			document.getElementById("historyfirst").style.display = "flex";
 			document.getElementById("historylast").style.display = "flex";	
 			document.getElementById("answer").style.color = "#dc143c";
-			document.getElementById("answer").innerText = "HARD LUCK TODAY. TRY AGAIN TOMORROW!";
+			document.getElementById("answer").innerText = "HARD LUCK TODAY. \nNEXT TOURNAMENT STARTS TOMORROW!";
 			localStorage.totaltgames = Number(localStorage.totaltgames) + 1;
 			winpct = Math.round(localStorage.totaltwins / localStorage.totaltgames * 100);
 			localStorage.currenttstreak = 0;
