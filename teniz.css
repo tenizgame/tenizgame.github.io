@@ -332,7 +332,7 @@ hr {
 }
 
 #answer {
-  width: 300px;
+  width: 330px;
   height: 0px;
   margin: 0 auto;
   margin-top: 0px;
@@ -340,12 +340,12 @@ hr {
   display: flex;
   flex-wrap: wrap;
   color: red;
-  font-size: 13px;
+  font-size: 12.5px;
   /* font-family: Georgia, serif; */
   font-weight: bold;
   justify-content: center;
   align-items: center; 
-  font-family: Tahoma;
+  font-family: Courier;
 }
 
 .headerimage {
