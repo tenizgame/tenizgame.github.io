@@ -203,9 +203,9 @@ hr {
 }
 
 #glt {
-  margin-left:95px;
-  margin-right:15px;	
-  font-size: 14px;
+  /* margin-left:95px; */
+  /* margin-right:15px;	 */
+  font-size: 16px;
   font-weight:bold;
   //text-decoration: underline; 
   //color:#3a3a3c;
@@ -259,7 +259,7 @@ hr {
   width: 350;
   margin: 0 auto;
   margin-top: 3px;
-  background-image: url("pitch.jpg");
+  /* background-image: url("pitch.jpg"); */
   background-position: center;
 }
 
@@ -309,6 +309,21 @@ hr {
   text-align: center;
 }
 
+.trydetail {
+  width: 340;
+  margin: 0 auto;
+  margin-top: 0px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+  border: 1px solid #FFF;
+  border-radius: 0px;
+  margin-bottom: 10px;
+ font-size:13px;
+}
+
 #stats {
   font-size: 11px;
   font-weight: bold;
@@ -340,12 +355,16 @@ hr {
   display: flex;
   flex-wrap: wrap;
   color: red;
-  font-size: 12.5px;
+  font-size: 14px;
   /* font-family: Georgia, serif; */
-  font-weight: bold;
+  font-weight: bolder;
   justify-content: center;
   align-items: center; 
-  font-family: Courier;
+  font-family: 'Courier New', monospace;
+}
+
+.smallfont {
+  font-size : 8px;
 }
 
 .headerimage {
@@ -391,15 +410,24 @@ hr {
 
 #try1,#try2, #try3, #try4, #try5, #try6 {
   /* Box */
-  margin-left:95px;
-  margin-right:15px;
+  /* margin-left:95px; */
+  /* margin-right:15px; */
   height: 20px;
   //border: 2px solid #3a3a3c;
   border: 2px solid #dc143c;
-  font-size:11px;
+  font-size:13px;
+  font-weight: bold;
   border-radius:5px;
   display: grid;
-  align-items: center;  
+  align-items: center; 
+}
+
+div.scroll {
+background-color: #fe1ggf;
+/* width: 550px; */
+height: 230px;
+overflow: scroll;
+padding: 15px;
 }
 
 .email {
@@ -407,7 +435,7 @@ hr {
 }
 
 .zoom-in-out-box {
-  animation: zoom-in-zoom-out 1s;
+  animation: zoom-in-zoom-out 1.5s;
 }
 
 @keyframes zoom-in-zoom-out {
@@ -754,7 +782,7 @@ hr {
 
   #board,
   #clue {
-    width: 325px;
+    width: 350px;
   }
 
   hr {
