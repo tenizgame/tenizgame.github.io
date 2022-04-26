@@ -181,6 +181,10 @@ function getindices() {
 		else if (continentList[indices[i]] == continentList[index]) {
 			addonctry = "🟡";
 			icon3 = "y";
+		}	
+		else if ((countryList[indices[i]] == "RUS" &&  continentList[index] == "EUR") || (countryList[index] == "RUS" &&  continentList[indices[i]] == "EUR")){
+		addonctry = "🟡";
+		icon3 = "y";	
 		}		
 	}
 	if (localStorage.modet == "Normal"){
