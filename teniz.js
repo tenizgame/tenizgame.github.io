@@ -996,19 +996,19 @@ function intialize() {
 				SetClueCount();
 			}
 			if (localStorage.modet == "Normal") {
-				var storedaddonlast = storedaddon[storedaddon.length-1];
-				for (let i = 0; i < storedaddonlast.length; i++) {
-					if (storedaddonlast[i] == "r"){	
-						document.getElementById(i).innerHTML = "<span class='revealicon'>" + "🔴";
+				if (storedaddon != ""){
+					var storedaddonlast = storedaddon[storedaddon.length-1];
+					for (let i = 0; i < storedaddonlast.length; i++) {
+						if (storedaddonlast[i] == "r"){	
+							document.getElementById(i).innerHTML = "<span class='revealicon'>" + "🔴";
+						}
+						else if (storedaddonlast[i] == "y"){
+							document.getElementById(i).innerHTML = "<span class='revealicon'>" + "🟡";
+						}
+						else if (storedaddonlast[i] == "g"){
+							document.getElementById(i).innerHTML = "<span class='revealicon'>" + "🟢";
+						}                                        
 					}
-					else if (storedaddonlast[i] == "y"){
-						document.getElementById(i).innerHTML = "<span class='revealicon'>" + "🟡";
-					}
-					else if (storedaddonlast[i] == "g"){
-						document.getElementById(i).innerHTML = "<span class='revealicon'>" + "🟢";
-					}                                        
-				}
-				if (localStorage.addonttext != ""){
 					document.getElementById(0).innerHTML += "</span><br><span class='revealsiz'>Year</span>";
 					document.getElementById(1).innerHTML += "</span><br><span class='revealsiz'>Slam</span>";
 					document.getElementById(2).innerHTML += "</span><br><span class='revealsiz'>Country</span>";
