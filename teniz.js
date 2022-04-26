@@ -57,7 +57,8 @@ function clearzoomin() {
 function changemode() {
 	localStorage.modet = "Easy";	
 	localStorage.gltttext = localStorage.gltttext.replace("Normal", "Easy");
-	document. location. reload();
+	//document. location. reload();
+	switchmode();
 }
 
 function storedadd() {
@@ -1039,6 +1040,42 @@ function intialize() {
 	}
 }
 
+function switchmode() {
+	clearzoomin();
+    document.getElementById("MODEButton").style.display = "none";
+    for (let i = 0; i < 6; i++) {
+        document.getElementById(i).innerHTML = "";
+    }
+	document.getElementById(0).innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">Year</div>';	
+	document.getElementById(1).innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">Slam</div>';
+	document.getElementById(2).innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">Country</div>';
+	document.getElementById(3).innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">Gender</div>';
+	document.getElementById(4).innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">Titles</div>';
+	document.getElementById(5).innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">Plays</div>';
+	document.getElementById("answer").classList.remove("popanswer");
+	document.getElementById("answer").style.color = "#FDFEFF";
+	document.getElementById("answer").innerText = "MATCH RESUMED IN EASY MODE. PLAY!";
+
+	if (localStorage.yeartopen == 1) {
+		document.getElementById(0).innerHTML = "<span class='revealcol'>" + year + "</span><br><br><span class='revealsiz'>(Year)</span>";
+	}
+	if (localStorage.slamtopen == 1) {
+		document.getElementById(1).innerHTML = "<span class='revealcol'>" + grandslam + "</span><br><br><span class='revealsiz'>(Slam)</span>";
+	}
+	if (localStorage.ctrytopen == 1) {
+		document.getElementById(2).innerHTML = "<span class='revealcol'>" + country + "</span><br><br><span class='revealsiz'>(Country)</span>";
+	}
+	if (localStorage.gndrtopen == 1) {
+		document.getElementById(3).innerHTML = "<span class='revealcol'>" + gender + "</span><br><br><span class='revealsiz'>(Gender)</span>";
+	}
+	if (localStorage.titltopen == 1) {
+		document.getElementById(4).innerHTML = "<span class='revealcol'>" + titles + "</span><br><br><span class='revealsiz'>(Titles)</span>";
+	}
+	if (localStorage.playtopen == 1) {
+		document.getElementById(5).innerHTML = "<span class='revealcol'>" + plays + "</span><br><br><span class='revealsiz'>(Plays)</span>";
+	}
+}
+
 
 /* function processKey() {
 	e = { "code": this.id };
@@ -1229,7 +1266,6 @@ function update(input) {
 			document.getElementById(8).innerText = "Current Streak: " + localStorage.currenttstreak;
 			gameOver = true;
 			document.getElementById('try6').innerText += " ❌ ";
-			document.getElementById("try6").scrollIntoView(true);
 			document.getElementById("try6").classList.add("shaketile");
 			var addon = getindices();
 			//document.getElementById('try6').innerText += addon;
@@ -1241,6 +1277,7 @@ function update(input) {
 			displayFooter();
 			localStorage.gametwon = 0;
 			localStorage.setItem(('gameover' + days), 1);
+			document.getElementById("try6").scrollIntoView(true);
 			setTimeout(OpenStats, 3000);
 		}
 		if (!gameOver) {
