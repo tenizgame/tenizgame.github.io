@@ -54,6 +54,10 @@ function clearzoomin() {
 	document.getElementById(5).classList.remove("zoom-in-box");
 }
 
+function clearanimated() {
+document.getElementById("clue-ball").classList.remove("animated");
+}
+
 function changemode() {
 	localStorage.modet = "Easy";	
 	localStorage.gltttext = localStorage.gltttext.replace("Normal", "Easy");
@@ -1046,6 +1050,7 @@ function intialize() {
 
 function switchmode() {
 	clearzoomin();
+	document.getElementById("clue-ball").classList.add("animated");
     document.getElementById("MODEButton").style.display = "none";
     for (let i = 0; i < 6; i++) {
         document.getElementById(i).innerHTML = "";
@@ -1078,6 +1083,7 @@ function switchmode() {
 	if (localStorage.playtopen == 1) {
 		document.getElementById(5).innerHTML = "<span class='revealcol'>" + plays + "</span><br><br><span class='revealsiz'>(Plays)</span>";
 	}
+	setTimeout(clearanimated, 1000);
 }
 
 
