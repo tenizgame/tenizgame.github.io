@@ -625,6 +625,15 @@ padding: 15px;
   text-align: left;
   color: white;
   font-size: 12px;
+  text-align:justify;
+}
+
+.Contents
+{
+  overflow-y: auto;
+  display: block;
+  position: relative;
+  max-height: 80vh;
 }
 
 .summary {
