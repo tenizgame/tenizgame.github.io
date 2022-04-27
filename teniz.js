@@ -99,6 +99,7 @@ function getindices() {
 		if (yearList[indices[i]] == yearList[index]) {
 			addyr = "🟢";
 			icon1 = "g";
+			var greenyr = yearList[index];
 			break;
 		}
 		else if (Math.abs(Number(yearList[indices[i]]) - Number(yearList[index])) <= 3) {
@@ -131,10 +132,20 @@ function getindices() {
 	}, 0);
 	for (let k = 0; k < tempyear.length; k++) { 
 		if (clueCount == 7 && localStorage.try5topen == "-----" && localStorage.try6topen == "-----"){ 
-			document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail1")[0].innerHTML += "<br>" + "<span class='smallfont'>" + tempyear[k] + "</span>";	
+			if (tempyear[k] == greenyr){
+			document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail1")[0].innerHTML += "<br>" + "<span class='smallfont'><strong style='color:#32cd32';>" + tempyear[k] + "</strong></span>";				
+			}
+			else {
+			document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail1")[0].innerHTML += "<br>" + "<span class='smallfont'>" + tempyear[k] + "</span>";
+			}
 		}
 		else{
-			document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail1")[0].innerHTML += "<br>" + "<span class='smallfont'>" + tempyear[k] + "</span>";
+			if (tempyear[k] == greenyr){
+				document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail1")[0].innerHTML += "<br>" + "<span class='smallfont'><strong style='color:#32cd32';>" + tempyear[k] + "</strong></span>";				
+			}
+			else {
+				document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail1")[0].innerHTML += "<br>" + "<span class='smallfont'>" + tempyear[k] + "</span>";
+			}
 		}
 	}
 	var addongs = "🔴";
@@ -143,6 +154,7 @@ function getindices() {
 		if (GSList[indices[i]] == GSList[index]) {
 			addongs = "🟢";
 			icon2 = "g";
+			var greengs = GSList[index];
 			break;
 		}
 	}
@@ -168,10 +180,20 @@ function getindices() {
 	}, 300);
 	for (let k = 0; k < tempslam.length; k++) { 
 		if (clueCount == 7 && localStorage.try5topen == "-----" && localStorage.try6topen == "-----"){ 
-			document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail2")[0].innerHTML += "<br>" + "<span class='smallfont'>" + tempslam[k] + "</span>";	
+			if (tempslam[k] == greengs){
+				document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail2")[0].innerHTML += "<br>" + "<span class='smallfont'><strong style='color:#32cd32';>" + tempslam[k] + "</strong></span>";
+			}
+			else {
+				document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail2")[0].innerHTML += "<br>" + "<span class='smallfont'>" + tempslam[k] + "</span>";
+			}
 		}
 		else{
-			document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail2")[0].innerHTML += "<br>" + "<span class='smallfont'>" + tempslam[k] + "</span>";
+			if (tempslam[k] == greengs){
+				document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail2")[0].innerHTML += "<br>" + "<span class='smallfont'><strong style='color:#32cd32';>" + tempslam[k] + "</strong></span>";
+			}
+			else {
+				document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail2")[0].innerHTML += "<br>" + "<span class='smallfont'>" + tempslam[k] + "</span>";
+			}
 		}
 	}	
 	var addonctry = "🔴";
@@ -180,6 +202,7 @@ function getindices() {
 		if (countryList[indices[i]] == countryList[index]) {
 			addonctry = "🟢";
 			icon3 = "g";
+			var greenctry = countryList[index];
 			break;
 		}
 		else if (continentList[indices[i]] == continentList[index]) {
@@ -213,10 +236,20 @@ function getindices() {
 	}, 600);	
 	for (let k = 0; k < tempctry.length; k++) { 
 		if (clueCount == 7 && localStorage.try5topen == "-----" && localStorage.try6topen == "-----"){ 
-			document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail3")[0].innerHTML += "<br>" + "<span class='smallfont'>" + tempctry[k] + "</span>";
+			if (tempctry[k] == greenctry){
+				document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail3")[0].innerHTML += "<br>" + "<span class='smallfont'><strong style='color:#32cd32';>" + tempctry[k] + "</strong></span>";
+			}
+			else {
+				document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail3")[0].innerHTML += "<br>" + "<span class='smallfont'>" + tempctry[k] + "</span>";
+			}
 		}
 		else{
-			document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail3")[0].innerHTML += "<br>" + "<span class='smallfont'>" + tempctry[k] + "</span>";
+			if (tempctry[k] == greenctry){
+				document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail3")[0].innerHTML += "<br>" + "<span class='smallfont'><strong style='color:#32cd32';>" + tempctry[k] + "</strong></span>";
+			}
+			else {
+				document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail3")[0].innerHTML += "<br>" + "<span class='smallfont'>" + tempctry[k] + "</span>";
+			}
 		}
 	}	
 	var addongnder = "🔴";
@@ -224,6 +257,7 @@ function getindices() {
 	if (GenList[indices[0]] == GenList[index]) {
 		addongnder = "🟢";
 		icon4 = "g";
+		var greengnder = GenList[index];
 	}
 	if (localStorage.modet == "Normal"){
 		document.getElementById(3).classList.add("zoom-in-box");	
@@ -240,16 +274,27 @@ function getindices() {
 		}
 	}, 900);
 	if (clueCount == 7 && localStorage.try5topen == "-----" && localStorage.try6topen == "-----"){ 
-		document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail4")[0].innerHTML += "<br>" + "<span class='smallfont'>" + GenList[indices[0]] + "</span>";
+		if (GenList[indices[0]] == greengnder){
+			document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail4")[0].innerHTML += "<br>" + "<span class='smallfont'><strong style='color:#32cd32';>" + GenList[indices[0]] + "</strong></span>";
+		}
+		else {
+			document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail4")[0].innerHTML += "<br>" + "<span class='smallfont'>" + GenList[indices[0]] + "</span>";
+		}
 	}
 	else{
-		document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail4")[0].innerHTML += "<br>" + "<span class='smallfont'>" + GenList[indices[0]] + "</span>";
+		if (GenList[indices[0]] == greengnder){
+			document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail4")[0].innerHTML += "<br>" + "<span class='smallfont'><strong style='color:#32cd32';>" + GenList[indices[0]] + "</strong></span>";
+		}
+		else {
+			document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail4")[0].innerHTML += "<br>" + "<span class='smallfont'>" + GenList[indices[0]] + "</span>";
+		}
 	}	
 	var addontitle = "🔴";
 	var icon5 = "r";
 	if (GSTitleList[indices[0]] == GSTitleList[index]) {
 		addontitle = "🟢";
 		icon5 = "g";
+		var greentitle = GSTitleList[index];
 	}
 	else if (Math.abs(Number(GSTitleList[indices[0]]) - Number(GSTitleList[index])) <= 3) {
 		addontitle = "🟡";
@@ -270,16 +315,27 @@ function getindices() {
 		}
 	}, 1200);	
 	if (clueCount == 7 && localStorage.try5topen == "-----" && localStorage.try6topen == "-----"){ 
-		document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail5")[0].innerHTML += "<br>" + "<span class='smallfont'>" + GSTitleList[indices[0]] + "</span>";	
+		if (GSTitleList[indices[0]] == greentitle){
+			document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail5")[0].innerHTML += "<br>" + "<span class='smallfont'><strong style='color:#32cd32';>" + GSTitleList[indices[0]] + "</strong></span>";
+		}
+		else {
+			document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail5")[0].innerHTML += "<br>" + "<span class='smallfont'>" + GSTitleList[indices[0]] + "</span>";
+		}
 	}
 	else{
-		document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail5")[0].innerHTML += "<br>" + "<span class='smallfont'>" + GSTitleList[indices[0]] + "</span>";
+		if (GSTitleList[indices[0]] == greentitle){
+			document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail5")[0].innerHTML += "<br>" + "<span class='smallfont'><strong style='color:#32cd32';>" + GSTitleList[indices[0]] + "</strong></span>";
+		}
+		else {
+			document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail5")[0].innerHTML += "<br>" + "<span class='smallfont'>" + GSTitleList[indices[0]] + "</span>";
+		}
 	}	
 	var addonplays = "🔴";
 	var icon6 = "r";
 	if (PlaysList[indices[0]] == PlaysList[index]) {
 		addonplays = "🟢";
 		icon6 = "g";
+		var greenplays = PlaysList[index];
 	}
 	if (localStorage.modet == "Normal"){
 		document.getElementById(5).classList.add("zoom-in-box");	
@@ -299,10 +355,20 @@ function getindices() {
 		document.getElementById("MODEButton").disabled = false;
 	}, 1500);		
 	if (clueCount == 7 && localStorage.try5topen == "-----" && localStorage.try6topen == "-----"){ 
-		document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail6")[0].innerHTML += "<br>" + "<span class='smallfont'>" + PlaysList[indices[0]] + "</span>";	
+		if (PlaysList[indices[0]] == greenplays){
+			document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail6")[0].innerHTML += "<br>" + "<span class='smallfont'><strong style='color:#32cd32';>" + PlaysList[indices[0]] + "</strong></span>";
+		}
+		else {
+			document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail6")[0].innerHTML += "<br>" + "<span class='smallfont'>" + PlaysList[indices[0]] + "</span>";
+		}
 	}
 	else{
-		document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail6")[0].innerHTML += "<br>" + "<span class='smallfont'>" + PlaysList[indices[0]] + "</span>";
+		if (PlaysList[indices[0]] == greenplays){
+			document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail6")[0].innerHTML += "<br>" + "<span class='smallfont'><strong style='color:#32cd32';>" + PlaysList[indices[0]] + "</strong></span>";
+		}
+		else {
+			document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail6")[0].innerHTML += "<br>" + "<span class='smallfont'>" + PlaysList[indices[0]] + "</span>";
+		}
 	}	
 	addon = addyr + addongs + addonctry + addongnder + addontitle + addonplays;
 	var addonttext = icon1 + icon2 + icon3 + icon4 + icon5 + icon6;
