@@ -62,7 +62,7 @@ function changemode() {
 	if (localStorage.modet = "Normal"){
 		localStorage.modet = "Easy";	
 	}
-	localStorage.gltttext = localStorage.gltttext.replace("Normal", "Easy");
+	//localStorage.gltttext = localStorage.gltttext.replace("Normal", "Easy");
 	//document. location. reload();
 	switchmode();
 }
@@ -75,7 +75,8 @@ function additionalhint() {
 	document.getElementById("additionalhint").innerHTML += "<br>" + lastname.slice(0, 1).toUpperCase();
 	for (l = 1; l < lastname.length; l++) {
 		document.getElementById("additionalhint").innerHTML += "🔳"
-	}	
+	}
+	document.getElementById("try6").scrollIntoView(true);	
 }
 
 function storedadd() {
