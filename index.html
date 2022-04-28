@@ -53,7 +53,7 @@
 					<class data-modal-target="#modal" id="rulesbutton"><img src="rulesicon.png" style="width:30px;height:30px;">
 				</span>
 				<span id="70" class="stats-item">
-					<class data-summary-target="#summary" id="statsbutton"><img src="statsicon.png" style="width:40px;height:30px;"">
+					<class data-summary-target="#summary" id="statsbutton"><img src="statsicon.png" style="width:40px;height:30px;">
 				</span>
 			</div>
 		</div>
@@ -121,9 +121,12 @@
 			(v) For eg: a 🟢 in the first position (Year), indicates that the player you entered has won some GS in the same year as in question. A 🔴 in the first position (Year), indicates that the player you entered has not won any GS in the year as in question. It <strong style="color:white;"> DOES NOT </strong> mean that the player your entered and the mystery player has not won a GS in the same year. Remember, only <strong style="color:white;">ONE </strong>win of the mystery player is being compared here.
 			<br><br>
 			(vi) Similarly, a 🔴 in the second position (Slam), indicates that the person you entered has not won the particular slam in question. For eg. if your player has won the FO and the USO, and you get a 🔴 for the second position (Slam), it simply means that this particular Win of the mystery player is either the WIM or AO. They might (or not) have won the FO or the USO at a different time in their career. 
-			<br><br>			
+			<br><br>				
 			(vii) Switch to the <strong style="color:white;">EASY </strong>Mode any time during the game, where the attributes are revealed, as shown below, after each <strong style="color:white;">INCORRECT</strong> guess. The clues are more direct in this Mode.  
 			<center><img class="howtogif" src="howto.gif" alt="clue"></center>
+			<br>
+			(viii) On your final try you have the option to look at an <strong style="color:white;">Additional Hint </strong>. This is an absolute give-away 😀!
+			<br>
 			<h5>
 			<hr>
 				<center>Legend :AO - Australian Open | FO - French Open | WIM - Wimbledon | USO - US Open | GS - Grand Slam | RH - Right Handed | LH - Left Handed</center>
@@ -135,6 +138,26 @@
 			</p>		
 		</div>
 	</div>
+	<div class="hintmodal" id="hintmodal">
+		<div class="hintmodal-header">
+			<div class="title"><strong>
+					<!-- Hint -->
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<h3 class="animate-charcter">Hint</h3>
+							</div>
+						</div>
+					</div>
+				</strong></div>
+			<button data-close2-button class="close-button">&times;</button>
+		</div>
+		<div class="hintmodal-body">
+				<strong style="color:white;">Length of First Name and Last Name</strong> along with the <strong style="color:white;">Starting Letters </strong>are given below. Use this wisely to identify the player!
+			<br><br><br>
+			<div id="additionalhint"></div>	
+		</div>
+	</div>	
 	<div class="summary" id="summary">
 		<div class="summary-header">
 			<div class="title"><strong>
@@ -193,6 +216,7 @@
 	</div>
 	<div id="overlay"></div>
 	<div id="overlay1"></div>
+	<div id="overlay2"></div>
 	<hr>
 	<div id="clue">
 		<div id="clue-ball">
@@ -259,7 +283,10 @@
 	<div id="historyfirst"></div>
 	<div id="historylast">
 	</div>	
-	<button id="MODEButton" class="buttonmode" onclick="changemode();">Switch To EASY MODE</button>	
+	<div id="helpbuttons">
+		<button id="MODEButton" class="buttonmode" onclick="changemode();">Switch To EASY MODE</button>	
+		<class data-hintmodal-target="#hintmodal" id="hintbutton" hidden><button id="hint" class="buttonmode" onclick="	additionalhint();">Additional HINT</button></class>	
+	</div>	
 	<hr>
 	<h1 id="answer"></h1>
 	<br>

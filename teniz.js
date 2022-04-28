@@ -59,10 +59,23 @@ document.getElementById("clue-ball").classList.remove("animated");
 }
 
 function changemode() {
-	localStorage.modet = "Easy";	
+	if (localStorage.modet = "Normal"){
+		localStorage.modet = "Easy";	
+	}
 	localStorage.gltttext = localStorage.gltttext.replace("Normal", "Easy");
 	//document. location. reload();
 	switchmode();
+}
+
+function additionalhint() {
+	document.getElementById("additionalhint").innerHTML = firstname.slice(0, 1).toUpperCase();
+	for (f = 1; f < firstname.length; f++) {
+		document.getElementById("additionalhint").innerHTML += "🔳"
+	}
+	document.getElementById("additionalhint").innerHTML += "<br>" + lastname.slice(0, 1).toUpperCase();
+	for (l = 1; l < lastname.length; l++) {
+		document.getElementById("additionalhint").innerHTML += "🔳"
+	}	
 }
 
 function storedadd() {
@@ -541,7 +554,7 @@ function myFunction() {
 	}
 	else if (avggss >= 5) {
 		var avggsshdr = "🔴"
-	}
+	}		
 	//var copyText = "🎾 TENIZ! - Day " + days + " 🎾: " + localStorage.cluetcount + "/6" + "\n\n🟢Played: " + localStorage.totaltgames + winhdr + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + cshdr + localStorage.currenttstreak + mshdr + localStorage.longesttstreak + "\n\n💻https://tenizgame.github.io/";
 	var copyText = "🎾 TENIZ - Day " + days + " (Mode : " + localStorage.modet + ") 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\nPlayed: " + localStorage.totaltgames + "|Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "|Avg. Clues: " + avggss + avggsshdr + "\n\n💻https://tenizgame.github.io/";
 	/* Copy the text inside the text field */
@@ -772,6 +785,46 @@ function closeSummary(summary) {
 	overlay1.classList.remove('active')
 }
 
+
+const openHintmodalButtons = document.querySelectorAll('[data-hintmodal-target]')
+const closeHintmodalButtons = document.querySelectorAll('[data-close2-button]')
+const overlay2 = document.getElementById('overlay2')
+
+
+openHintmodalButtons.forEach(button => {
+	button.addEventListener('click', () => {
+		const hintmodal = document.querySelector(button.dataset.hintmodalTarget)
+		openHintmodal(hintmodal)
+	})
+})
+
+overlay2.addEventListener('click', () => {
+	const hintmodals = document.querySelectorAll('.modal.active')
+	hintmodals.forEach(hintmodal => {
+		closeHintmodal(hintmodal)
+	})
+})
+
+closeHintmodalButtons.forEach(button => {
+	button.addEventListener('click', () => {
+		const hintmodal = button.closest('.hintmodal')
+		closeHintmodal(hintmodal)
+	})
+})
+
+function openHintmodal(hintmodal) {
+	if (hintmodal == null) return
+	hintmodal.classList.add('active')
+	overlay2.classList.add('active')
+}
+
+function closeHintmodal(hintmodal) {
+	if (hintmodal == null) return
+	hintmodal.classList.remove('active')
+	overlay2.classList.remove('active')
+}
+
+
 //Chart Code
 //color0 = "brown"
 color1 = "brown"
@@ -837,7 +890,7 @@ function intialize() {
 		document.getElementById("MODEButton").style.display = "none";
 		document.getElementById("historyfirst").style.display = "flex";
 		document.getElementById("historylast").style.display = "flex";		
-	}
+	}	
 	document.getElementById('try1').innerText = localStorage.try1topen;
 	document.getElementById('try2').innerText = localStorage.try2topen;
 	document.getElementById('try3').innerText = localStorage.try3topen;
@@ -903,6 +956,7 @@ function intialize() {
 		document.getElementById("answertext").hidden = true;
 		document.getElementById("submitbutton").hidden = true;
 		document.getElementById("MODEButton").style.display = "none";
+		document.getElementById("hintbutton").style.display = "none";
 		document.getElementById("historyfirst").style.display = "flex";
 		document.getElementById("historylast").style.display = "flex";	
 		finalcluereveal();
@@ -1045,6 +1099,9 @@ function intialize() {
 		/* 		document.addEventListener("keyup", (e) => {
 					processInput(e);
 				}) */
+		if (clueCount == 7) {
+			 document.getElementById("hintbutton").hidden = false;
+		}
 	}
 }
 
@@ -1152,6 +1209,7 @@ function update(input) {
 			gameTile.classList.add("correct", "animated");
 		}
 		document.getElementById("MODEButton").style.display = "none";
+		document.getElementById("hintbutton").style.display = "none";
 		document.getElementById("historyfirst").style.display = "flex";
 		document.getElementById("historylast").style.display = "flex";	
 		document.getElementById("clue-ball").classList.add("animated");
@@ -1248,7 +1306,7 @@ function update(input) {
 			if (document.getElementById("answer").classList.contains("popanswer")) {
 			}
 			document.getElementById("answer").style.color = "#dc143c";
-			document.getElementById("answer").innerText = "MATCH POINT DOWN!\nTHIS IS YOUR LAST CHANCE.";
+			document.getElementById("answer").innerText = "MATCH POINT DOWN!\nADDITIONAL HINT ENABLED.";
 			setTimeout(FinalClue, 2000);
 			clueCount += 1;
 		}
@@ -1260,6 +1318,7 @@ function update(input) {
 				gameTile.classList.add("absent", "animated");
 			}
 			document.getElementById("MODEButton").style.display = "none";
+			document.getElementById("hintbutton").style.display = "none";
 			document.getElementById("historyfirst").style.display = "flex";
 			document.getElementById("historylast").style.display = "flex";	
 			document.getElementById("clue-ball").classList.add("animated");
@@ -1331,6 +1390,8 @@ function update(input) {
 					document.getElementById('try5').style.border = "2px solid #6AAA64";					
 					break;
 				case 7: document.getElementById('try5').innerText += " ❌ ";
+				    document.getElementById("hintbutton").hidden = false;
+					document.getElementById("helpbuttons").classList.add("animated");
 				    document.getElementById("try5").scrollIntoView(true);			
 					document.getElementById("try5").classList.add("shaketile");
 					document.getElementById('glt').innerText = "ATTEMPT: 6/6 " + "MODE: " + localStorage.modet;
