@@ -77,6 +77,7 @@ function additionalhint() {
 		document.getElementById("additionalhint").innerHTML += "🔳"
 	}
 	document.getElementById("try6").scrollIntoView(true);	
+	localStorage.hinttused = 1;
 }
 
 function storedadd() {
@@ -475,6 +476,7 @@ if (localStorage.getItem('gameover' + days) != 0 && localStorage.getItem('gameov
     localStorage.modet = "Normal";
 	localStorage.gltttext = "ATTEMPT: 1/6 " + "MODE: " + localStorage.modet;	
 	localStorage.setItem("addonttext", JSON.stringify(""));
+	localStorage.hinttused = 1;
 }
 
 function tryload() {
@@ -557,7 +559,12 @@ function myFunction() {
 		var avggsshdr = "🔴"
 	}		
 	//var copyText = "🎾 TENIZ! - Day " + days + " 🎾: " + localStorage.cluetcount + "/6" + "\n\n🟢Played: " + localStorage.totaltgames + winhdr + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + cshdr + localStorage.currenttstreak + mshdr + localStorage.longesttstreak + "\n\n💻https://tenizgame.github.io/";
-	var copyText = "🎾 TENIZ - Day " + days + " (Mode : " + localStorage.modet + ") 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\nPlayed: " + localStorage.totaltgames + "|Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "|Avg. Clues: " + avggss + avggsshdr + "\n\n💻https://tenizgame.github.io/";
+	if (localStorage.hinttused == 0) {
+		var copyText = "🎾 TENIZ - Day " + days + " (Mode : " + localStorage.modet + ") 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\nPlayed: " + localStorage.totaltgames + "|Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "|Avg. Clues: " + avggss + avggsshdr + "\n\n💻https://tenizgame.github.io/";
+	}
+	else {
+		var copyText = "🎾 TENIZ - Day " + days + " (Mode : " + localStorage.modet + " - Hint Used) 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\nPlayed: " + localStorage.totaltgames + "|Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "|Avg. Clues: " + avggss + avggsshdr + "\n\n💻https://tenizgame.github.io/";	
+	}
 	/* Copy the text inside the text field */
 	navigator.clipboard.writeText(copyText);
 
@@ -889,8 +896,8 @@ function intialize() {
 	document.getElementById("trydetail6").style.display = "none";
 	if (localStorage.modet == "Easy"){
 		document.getElementById("MODEButton").style.display = "none";
-		document.getElementById("historyfirst").style.display = "flex";
-		document.getElementById("historylast").style.display = "flex";		
+		//document.getElementById("historyfirst").style.display = "flex";
+		//document.getElementById("historylast").style.display = "flex";		
 	}	
 	document.getElementById('try1').innerText = localStorage.try1topen;
 	document.getElementById('try2').innerText = localStorage.try2topen;
