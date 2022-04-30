@@ -59,10 +59,8 @@ document.getElementById("clue-ball").classList.remove("animated");
 }
 
 function changemode() {
-	if (localStorage.modet = "Normal"){
-		localStorage.modet = "Easy";	
-	}
-	//localStorage.gltttext = localStorage.gltttext.replace("Normal", "Easy");
+	localStorage.modet = "Easy";	
+	localStorage.gltttext = localStorage.gltttext.replace("Normal", "Easy");
 	//document. location. reload();
 	switchmode();
 }
@@ -476,7 +474,7 @@ if (localStorage.getItem('gameover' + days) != 0 && localStorage.getItem('gameov
     localStorage.modet = "Normal";
 	localStorage.gltttext = "ATTEMPT: 1/6 " + "MODE: " + localStorage.modet;	
 	localStorage.setItem("addonttext", JSON.stringify(""));
-	localStorage.hinttused = 1;
+	localStorage.hinttused = 0;
 }
 
 function tryload() {
@@ -831,8 +829,6 @@ function closeHintmodal(hintmodal) {
 	hintmodal.classList.remove('active')
 	overlay2.classList.remove('active')
 }
-
-
 //Chart Code
 //color0 = "brown"
 color1 = "brown"
@@ -1129,7 +1125,7 @@ function switchmode() {
 	document.getElementById("answer").classList.remove("popanswer");
 	document.getElementById("answer").style.color = "#FDFEFF";
 	document.getElementById("answer").innerText = "MATCH RESUMED IN EASY MODE. PLAY!";
-
+    document.getElementById('glt').innerText = localStorage.gltttext;
 	if (localStorage.yeartopen == 1) {
 		document.getElementById(0).innerHTML = "<span class='revealcol'>" + year + "</span><br><br><span class='revealsiz'>(Year)</span>";
 	}
