@@ -504,12 +504,13 @@ function myFunction() {
 	if (localStorage.currenttstreak == 0) {
 		var cshdr = "🔴"
 	}
-	else if (localStorage.currenttstreak > 0 && localStorage.currenttstreak < 10) {
+	else if (localStorage.currenttstreak > 0 && localStorage.currenttstreak < 5) {
 		var cshdr = "🟡"
 	}
-	else if (localStorage.currenttstreak >= 10) {
+	else if (localStorage.currenttstreak >= 5) {
 		var cshdr = "🟢"
 	}
+	
 	// //
 	// if (localStorage.longesttstreak == 0) {
 	// 	var mshdr = "\n🔴Max Streak: "
@@ -558,10 +559,10 @@ function myFunction() {
 	}		
 	//var copyText = "🎾 TENIZ! - Day " + days + " 🎾: " + localStorage.cluetcount + "/6" + "\n\n🟢Played: " + localStorage.totaltgames + winhdr + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + cshdr + localStorage.currenttstreak + mshdr + localStorage.longesttstreak + "\n\n💻https://tenizgame.github.io/";
 	if (localStorage.hinttused == 0) {
-		var copyText = "🎾 TENIZ - Day " + days + " (Mode : " + localStorage.modet + ") 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\nPlayed: " + localStorage.totaltgames + "|Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "|Avg. Clues: " + avggss + avggsshdr + "\n\n💻https://tenizgame.github.io/";
+		var copyText = "🎾 TENIZ - Day " + days + " (Mode : " + localStorage.modet + ") 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\nPlayed: " + localStorage.totaltgames + "🟢 | Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "\nAvg. Clues: " + avggss + avggsshdr +   " | Streak: " + localStorage.currenttstreak + cshdr +"\n\n💻https://tenizgame.github.io/";
 	}
 	else {
-		var copyText = "🎾 TENIZ - Day " + days + " (Mode : " + localStorage.modet + " - Hint Used) 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\nPlayed: " + localStorage.totaltgames + "|Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "|Avg. Clues: " + avggss + avggsshdr + "\n\n💻https://tenizgame.github.io/";	
+		var copyText = "🎾 TENIZ - Day " + days + " (Mode : " + localStorage.modet + "  w/ Hint) 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\nPlayed: " + localStorage.totaltgames + "🟢 | Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "\nAvg. Clues: " + avggss + avggsshdr +  " | Streak: " + localStorage.currenttstreak + cshdr + "\n\n💻https://tenizgame.github.io/";	
 	}
 	/* Copy the text inside the text field */
 	navigator.clipboard.writeText(copyText);
