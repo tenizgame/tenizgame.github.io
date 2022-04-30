@@ -62,7 +62,6 @@ function changemode() {
 	localStorage.modet = "Easy";	
 	localStorage.gltttext = localStorage.gltttext.replace("Normal", "Easy");
 	//document. location. reload();
-	document.getElementById("hintbutton").classList.remove("animated");
 	switchmode();
 }
 
@@ -1129,7 +1128,6 @@ function switchmode() {
     document.getElementById('glt').innerText = localStorage.gltttext;
 	if (clueCount == 7 && localStorage.modet == "Easy") {
 		 document.getElementById("hintbutton").hidden = false;
-		 document.getElementById("hintbutton").classList.add("animated");
 		 document.getElementById("answer").innerText = "ADDITIONAL HINT ENABLED!";
 	}	
 	if (localStorage.yeartopen == 1) {
