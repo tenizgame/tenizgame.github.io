@@ -11,10 +11,10 @@ body {
   margin: 0;
 }
 
-
 a { color: #fff; } /* CSS link color */
 a:hover { color: #fff; } /* CSS link color */
 a { text-decoration: none; }
+a.youtube { color:red;font-weight:bold; }
 
 hr {
   width: 400px;
@@ -625,7 +625,7 @@ padding: 15px;
   text-align: left;
   color: lightgray;
   font-size: 12px;
-  text-align:justify;
+  text-align:justify;  
 }
 
 .hintmodal {
