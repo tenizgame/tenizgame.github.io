@@ -62,6 +62,7 @@ function changemode() {
 	localStorage.modet = "Easy";	
 	localStorage.gltttext = localStorage.gltttext.replace("Normal", "Easy");
 	//document. location. reload();
+	document.getElementById("hintbutton").classList.remove("animated");
 	switchmode();
 }
 
@@ -1103,7 +1104,7 @@ function intialize() {
 		/* 		document.addEventListener("keyup", (e) => {
 					processInput(e);
 				}) */
-		if (clueCount == 7) {
+		if (clueCount == 7 && localStorage.modet == "Easy") {
 			 document.getElementById("hintbutton").hidden = false;
 		}
 	}
@@ -1126,6 +1127,11 @@ function switchmode() {
 	document.getElementById("answer").style.color = "#FDFEFF";
 	document.getElementById("answer").innerText = "MATCH RESUMED IN EASY MODE. PLAY!";
     document.getElementById('glt').innerText = localStorage.gltttext;
+	if (clueCount == 7 && localStorage.modet == "Easy") {
+		 document.getElementById("hintbutton").hidden = false;
+		 document.getElementById("hintbutton").classList.add("animated");
+		 document.getElementById("answer").innerText = "ADDITIONAL HINT ENABLED!";
+	}	
 	if (localStorage.yeartopen == 1) {
 		document.getElementById(0).innerHTML = "<span class='revealcol'>" + year + "</span><br><br><span class='revealsiz'>(Year)</span>";
 	}
@@ -1310,7 +1316,12 @@ function update(input) {
 			if (document.getElementById("answer").classList.contains("popanswer")) {
 			}
 			document.getElementById("answer").style.color = "#dc143c";
-			document.getElementById("answer").innerText = "MATCH POINT DOWN!\nADDITIONAL HINT ENABLED.";
+			if (localStorage.modet == "Easy") {
+				document.getElementById("answer").innerText = "MATCH POINT DOWN!\nADDITIONAL HINT ENABLED.";
+			}
+			else if (localStorage.modet == "Normal") {
+				document.getElementById("answer").innerText = "MATCH POINT DOWN!\nTRY SWITCHING TO EASY MODE.";
+			} 
 			setTimeout(FinalClue, 2000);
 			clueCount += 1;
 		}
@@ -1394,7 +1405,9 @@ function update(input) {
 					document.getElementById('try5').style.border = "2px solid #6AAA64";					
 					break;
 				case 7: document.getElementById('try5').innerText += " ❌ ";
-				    document.getElementById("hintbutton").hidden = false;
+				    if (localStorage.modet == "Easy") {
+						document.getElementById("hintbutton").hidden = false;
+					}
 					document.getElementById("helpbuttons").classList.add("animated");
 				    document.getElementById("try5").scrollIntoView(true);			
 					document.getElementById("try5").classList.add("shaketile");
