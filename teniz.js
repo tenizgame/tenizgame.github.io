@@ -1,3 +1,14 @@
+/* var _lsTotal = 0,
+    _xLen, _x;
+for (_x in localStorage) {
+    if (!localStorage.hasOwnProperty(_x)) {
+        continue;
+    }
+    _xLen = ((localStorage[_x].length + _x.length) * 2);
+    _lsTotal += _xLen;
+    console.log(_x.substr(0, 50) + " = " + (_xLen / 1024).toFixed(2) + " KB")
+};
+console.log("Total = " + (_lsTotal / 1024).toFixed(2) + " KB"); */
 var addontextarr =[];
 var search_terms = ["Adriano Panatta", "Albert Costa", "Amelie Mauresmo", "Ana Ivanovic", "Anastasia Myskina", "Andre Agassi", "Andres Gimeno", "Andres Gomez", "Andy Murray", "Andy Roddick", "Angelique Kerber", "Arantxa Sanchez", "Arthur Ashe", "Ashleigh Barty", "Barbara Jordan", "Barbora Krejcikova", "Bianca Andreescu", "Billie Jean King", "Bjorn Borg", "Boris Becker", "Brian Teacher", "Carlos Moya", "Caroline Wozniacki", "Chris Evert", "Chris O Neil", "Conchita Martinez", "Daniil Medvedev", "Dominic Thiem", "Emma Raducanu", "Evonne Goolagong", "Flavia Pennetta", "Francesca Schiavone", "Gabriela Sabatini", "Garbine Muguruza", "Gaston Gaudio", "Goran Ivanisevic", "Guillermo Vilas", "Gustavo Kuerten", "Hana Mandlikova", "Iga Swiatek", "Ilie Nastase", "Iva Majoli", "Ivan Lendl", "Jan Kodes", "Jana Novotna", "Jelena Ostapenko", "Jennifer Capriati", "Jim Courier", "Jimmy Connors", "Johan Kriek", "John McEnroe", "John Newcombe", "Juan Carlos Ferrero", "Juan Martin Del Potro", "Justine Henin", "Ken Rosewall", "Kerry Reid", "Kim Clijsters", "Li Na", "Lindsay Davenport", "Lleyton Hewitt", "Manuel Orantes", "Marat Safin", "Margaret Court", "Maria Sharapova", "Marin Cilic", "Marion Bartoli", "Mark Edmondson", "Martina Hingis", "Martina Navratilova", "Mary Pierce", "Mats Wilander", "Michael Chang", "Michael Stich", "Mima Jausovec", "Monica Seles", "Nancy Richey", "Naomi Osaka", "Novak Djokovic", "Pat Cash", "Patrick Rafter", "Pete Sampras", "Petr Korda", "Petra Kvitova", "Rafael Nadal", "Richard Krajicek", "Rod Laver", "Roger Federer", "Roscoe Tanner", "Samantha Stosur", "Serena Williams", "Sergi Bruguera", "Simona Halep", "Sloane Stephens", "Sofia Kenin", "Stan Smith", "Stan Wawrinka", "Stefan Edberg", "Steffi Graf", "Sue Barker", "Svetlana Kuznetsova", "Thomas Johansson", "Thomas Muster", "Tracy Austin", "Venus Williams", "Victoria Azarenka", "Virginia Ruzici", "Virginia Wade", "Vitas Gerulaitis", "Yannick Noah", "Yevgeny Kafelnikov",];
 var ul = document.getElementById("result");
@@ -41,10 +52,6 @@ function getEventTarget(e) {
 	return e.target || e.srcElement;
 }
 
-function Dummy() {
-	//do nothing
-}
-
 function clearzoomin() {
 	document.getElementById(0).classList.remove("zoom-in-box");
 	document.getElementById(1).classList.remove("zoom-in-box");
@@ -59,10 +66,64 @@ document.getElementById("clue-ball").classList.remove("animated");
 }
 
 function changemode() {
-	localStorage.modet = "Easy";	
-	localStorage.gltttext = localStorage.gltttext.replace("Normal", "Easy");
-	//document. location. reload();
-	switchmode();
+	if (confirm("Acknowledge Penalty Points?") == true) {
+		localStorage.modet = "Easy";	
+		localStorage.gltttext = localStorage.gltttext.replace("Normal", "Easy");
+		//document. location. reload();
+		switchmode();
+	}
+}
+
+function calculatepoints() {
+	if (localStorage.gametwon == 1) {
+		switch (clueCount) {
+			case 1: localStorage.dailytpoints = 10;
+				break;
+			case 2: localStorage.dailytpoints = 9;
+				break;
+			case 3: localStorage.dailytpoints = 8;
+				break;
+			case 4: localStorage.dailytpoints = 7;
+				break;
+			case 5: localStorage.dailytpoints = 6;
+				break;
+			case 7: localStorage.dailytpoints = 5;
+				break;
+		}
+		if (localStorage.modet == "Easy"){
+		localStorage.dailytpoints = Number(localStorage.dailytpoints) - 2;
+		}
+		if (localStorage.hinttused == 1){
+		localStorage.dailytpoints = Number(localStorage.dailytpoints) - 2;
+		}		
+	}
+	else {
+		localStorage.dailytpoints = 0;
+	}
+}
+
+function computetier() {
+	if (localStorage.totaltpoints < 100){
+		localStorage.tiert = "FUTURES"
+	}
+	else if (localStorage.totaltpoints >= 100 && localStorage.totaltpoints < 250){
+		localStorage.tiert = "CHALLENGERS"
+	}
+	else if (localStorage.totaltpoints >= 250 && localStorage.totaltpoints < 500){
+		localStorage.tiert = "LEVEL 250"
+	}
+	else if (localStorage.totaltpoints >= 500 && localStorage.totaltpoints < 1000){
+		localStorage.tiert = "LEVEL 500"
+	}
+	else if (localStorage.totaltpoints >= 1000 && localStorage.totaltpoints < 1500){
+		localStorage.tiert = "LEVEL 1000"
+	}
+	else if (localStorage.totaltpoints >= 1500 && localStorage.totaltpoints < 2000){
+		localStorage.tiert = "TOUR FINALS"
+	}
+	else if (localStorage.totaltpoints >= 2000){
+		localStorage.tiert = "GRAND SLAMS"
+	}	
 }
 
 function additionalhint() {
@@ -371,6 +432,11 @@ if (!localStorage.totaltgames) {
 	//setTimeout(OpenRules, 1100);
 }
 
+if (!localStorage.totaltpoints) {
+	localStorage.setItem("totaltpoints", 0);
+	localStorage.setItem("tiert", "FUTURES");
+}
+
 if (localStorage.cluet0count > 0) {
 	localStorage.cluet1count = Number(localStorage.cluet0count) + Number(localStorage.cluet1count);
 	localStorage.setItem("tempcluet0count", 0);
@@ -447,6 +513,9 @@ function displayFooter() {
 	document.getElementById("bb").style.display = "block";
 	document.getElementById("HTMLButton").style.display = "block";
 	document.getElementById("CoffeButton").style.display = "block";
+	document.getElementById("tier-item").innerHTML = "<center>🏆 TIER : " + localStorage.tiert + " 🏆 </center>";
+	document.getElementById("points-item").innerHTML = "<center>⭐ You Won " + localStorage.dailytpoints + " Ranking Points Today ⭐ </center>";
+	document.getElementById("points-item").style.display = "block";
 }
 //Baseline Date
 var a = new Date(); // Current date now.
@@ -475,6 +544,11 @@ if (localStorage.getItem('gameover' + days) != 0 && localStorage.getItem('gameov
 	localStorage.gltttext = "ATTEMPT: 1/6 " + "MODE: " + localStorage.modet;	
 	localStorage.setItem("addonttext", JSON.stringify(""));
 	localStorage.hinttused = 0;
+	localStorage.dailytpoints = 0;
+}
+
+for (var d = 1; d < Number(days) ; d++){
+	localStorage.removeItem('gameover' + d);
 }
 
 function tryload() {
@@ -521,7 +595,7 @@ function myFunction() {
 	// else if (localStorage.longesttstreak >= 20) {
 	// 	var mshdr = "\n🟢Max Streak: "
 	// }
-	cluehdr = "/6 Clues Used To Win!"
+	cluehdr = "/6 Attempts | Ranking Points: " + localStorage.dailytpoints;
 /* 	if (localStorage.cluetcount == 0) {
 		var clueicon = "🟢⚪⚪⚪⚪⚪⚪";
 	}
@@ -545,7 +619,7 @@ function myFunction() {
 	}
 	else if (localStorage.cluetcount == "X") {
 		var clueicon = "🔴🔴🔴🔴🔴🔴";
-		cluehdr = "/6. All Clues Exhausted!";
+		//cluehdr = "/6. All Clues Exhausted!";
 	}
 	var avggss = Math.round(((localStorage.cluet1count * 1) + (localStorage.cluet2count * 2) + (localStorage.cluet3count * 3) + (localStorage.cluet4count * 4) + (localStorage.cluet5count * 5) + (localStorage.cluet6count * 6) + (localStorage.cluetxcount * 7)) / (Number(localStorage.cluet1count) + Number(localStorage.cluet2count) + Number(localStorage.cluet3count) + Number(localStorage.cluet4count) + Number(localStorage.cluet5count) + Number(localStorage.cluet6count) + Number(localStorage.cluetxcount)));
 	if (avggss <= 3) {
@@ -559,10 +633,10 @@ function myFunction() {
 	}		
 	//var copyText = "🎾 TENIZ! - Day " + days + " 🎾: " + localStorage.cluetcount + "/6" + "\n\n🟢Played: " + localStorage.totaltgames + winhdr + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + cshdr + localStorage.currenttstreak + mshdr + localStorage.longesttstreak + "\n\n💻https://tenizgame.github.io/";
 	if (localStorage.hinttused == 0) {
-		var copyText = "🎾 TENIZ - Day " + days + " (Mode : " + localStorage.modet + ") 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\nPlayed: " + localStorage.totaltgames + "🟢 | Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "\nAvg. Clues: " + avggss + avggsshdr +   " | Streak: " + localStorage.currenttstreak + cshdr +"\n\n💻https://tenizgame.github.io/";
+		var copyText = "🎾 TENIZ - Day " + days + " (Mode : " + localStorage.modet + ") 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\nPlayed: " + localStorage.totaltgames + "🟢 | Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "\n 🔥 Streak: " + localStorage.currenttstreak + " | ⭐ Points: " + localStorage.totaltpoints + "\n🏆 TIER : " + localStorage.tiert + " 🏆" + "\n\n💻https://tenizgame.github.io/";
 	}
 	else {
-		var copyText = "🎾 TENIZ - Day " + days + " (Mode : " + localStorage.modet + "  w/ Hint) 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\nPlayed: " + localStorage.totaltgames + "🟢 | Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "\nAvg. Clues: " + avggss + avggsshdr +  " | Streak: " + localStorage.currenttstreak + cshdr + "\n\n💻https://tenizgame.github.io/";	
+		var copyText = "🎾 TENIZ - Day " + days + " (Mode : " + localStorage.modet + "  w/ Hint) 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\nPlayed: " + localStorage.totaltgames + "🟢 | Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "\n 🔥 Streak: " + localStorage.currenttstreak + " | ⭐ Points: " + localStorage.totaltpoints + "\n🏆 TIER : " + localStorage.tiert + " 🏆" + "\n\n💻https://tenizgame.github.io/";	
 	}
 	/* Copy the text inside the text field */
 	navigator.clipboard.writeText(copyText);
@@ -877,12 +951,14 @@ window.onload = function () {
 function intialize() {
 	let ele = document.getElementById("daycount");
 	ele.innerHTML += (days);
+	document.getElementById("tier-item").innerHTML = "<center>🏆 TIER : " + localStorage.tiert + " 🏆 </center>";
 	document.getElementById("pzlhdr").style.display = "none";
 	document.getElementById("pzl").style.display = "none";
 	document.getElementById("bbhdr").style.display = "none";
 	document.getElementById("bb").style.display = "none";
 	document.getElementById("HTMLButton").style.display = "none";
 	document.getElementById("CoffeButton").style.display = "none";
+	document.getElementById("points-item").style.display = "none";
 	document.getElementById("historyfirst").style.display = "none";
 	document.getElementById("historylast").style.display = "none";
 	document.getElementById("trydetail1").style.display = "none";
@@ -949,12 +1025,12 @@ function intialize() {
 		histile.innerText = "";
 		document.getElementById("historylast").appendChild(histile);
 	}
-
 	var winpct = Math.round(localStorage.totaltwins / localStorage.totaltgames * 100);
 	document.getElementById(6).innerText = "Played: " + localStorage.totaltgames;
 	document.getElementById(7).innerText = "Win %: " + winpct;
-	document.getElementById(8).innerText = "Current Streak: " + localStorage.currenttstreak;
-	document.getElementById(9).innerText = "Max Streak: " + localStorage.longesttstreak;
+	document.getElementById(8).innerText = "Streak: " + localStorage.currenttstreak;
+	//document.getElementById(9).innerText = "Max Streak: " + localStorage.longesttstreak;
+	document.getElementById(9).innerText = "Points: " + localStorage.totaltpoints;
 	var storedaddon = JSON.parse(localStorage.getItem("addonttext"));
 	//Current Day Game Over
 	if (localStorage.getItem('gameover' + days) == 1) {
@@ -1273,19 +1349,23 @@ function update(input) {
 		else {
 			localStorage.cluetcount = Number(clueCount);
 		}
-		document.getElementById(6).innerText = "Played: " + localStorage.totaltgames;
-		document.getElementById(7).innerText = "Win %: " + winpct;
-		document.getElementById(8).innerText = "Current Streak: " + localStorage.currenttstreak;
-		document.getElementById(9).innerText = "Max Streak: " + localStorage.longesttstreak;
 		document.getElementById("answer").innerText = "GAME, SET and MATCH!\nDONT FORGET TO SHARE YOUR RESULTS.";
 		setTimeout(ConfettiStart, 1000);
 		gameOver = true;
 		finalcluereveal();
 		document.getElementById("answertext").hidden = true;
 		document.getElementById("submitbutton").hidden = true;
-		displayFooter();
 		localStorage.gametwon = 1;
 		localStorage.setItem(('gameover' + days), 1);
+		calculatepoints();
+		localStorage.totaltpoints = Number(localStorage.totaltpoints) + Number(localStorage.dailytpoints);
+		computetier();
+		displayFooter();
+		document.getElementById(6).innerText = "Played: " + localStorage.totaltgames;
+		document.getElementById(7).innerText = "Win %: " + winpct;
+		document.getElementById(8).innerText = "Streak: " + localStorage.currenttstreak;
+		//document.getElementById(9).innerText = "Max Streak: " + localStorage.longesttstreak;		
+		document.getElementById(9).innerText = "Points: " + localStorage.totaltpoints;
 		setTimeout(OpenStats, 4800);
 	}
 	/* 	else if (guess == "") {
@@ -1346,7 +1426,7 @@ function update(input) {
 			localStorage.cluetcount = "X";
 			document.getElementById(6).innerText = "Played:	 " + localStorage.totaltgames;
 			document.getElementById(7).innerText = "Win %: " + winpct;
-			document.getElementById(8).innerText = "Current Streak: " + localStorage.currenttstreak;
+			document.getElementById(8).innerText = "Streak: " + localStorage.currenttstreak;
 			gameOver = true;
 			document.getElementById('try6').innerText += " ❌ ";
 			document.getElementById("try6").classList.add("shaketile");
