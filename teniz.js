@@ -636,7 +636,7 @@ function myFunction() {
 		var copyText = "🎾 TENIZ - Day " + days + " (Mode : " + localStorage.modet + ") 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\nPlayed: " + localStorage.totaltgames + "🟢 | Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "\n 🔥 Streak: " + localStorage.currenttstreak + " | ⭐ Points: " + localStorage.totaltpoints + "\n🏆 TIER : " + localStorage.tiert + " 🏆" + "\n\n💻https://tenizgame.github.io/";
 	}
 	else {
-		var copyText = "🎾 TENIZ - Day " + days + " (Mode : " + localStorage.modet + "💡) 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\nPlayed: " + localStorage.totaltgames + "🟢 | Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "\n 🔥 Streak: " + localStorage.currenttstreak + " | ⭐ Points: " + localStorage.totaltpoints + "\n🏆 TIER : " + localStorage.tiert + " 🏆" + "\n\n💻https://tenizgame.github.io/";	
+		var copyText = "🎾 TENIZ - Day " + days + " (Mode : " + localStorage.modet + "&💡) 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\nPlayed: " + localStorage.totaltgames + "🟢 | Win %: " + Math.round(localStorage.totaltwins / localStorage.totaltgames * 100) + winhdr + "\n 🔥 Streak: " + localStorage.currenttstreak + " | ⭐ Points: " + localStorage.totaltpoints + "\n🏆 TIER : " + localStorage.tiert + " 🏆" + "\n\n💻https://tenizgame.github.io/";	
 	}
 	/* Copy the text inside the text field */
 	navigator.clipboard.writeText(copyText);
