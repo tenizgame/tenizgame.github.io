@@ -640,10 +640,10 @@ function myFunction() {
 	} */
 	
 	if (localStorage.hinttused == 0) {
-		var copyText = "🎾 TENIZ # " + days + " (Mode: " + localStorage.modet + ") 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\n🏆 TIER : " + localStorage.tiert + " 🏆" + "\n\nhttps://tenizgame.github.io/";
+		var copyText = "🎾 TENIZ # " + days + " (Mode: " + localStorage.modet + ") 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\n🏆 Tier: " + localStorage.tiert + " | Points: " + localStorage.totaltpoints + " ⭐" + "\n\nhttps://tenizgame.github.io/";
 	}
 	else {
-		var copyText = "🎾 TENIZ # " + days + " (Mode: " + localStorage.modet + " with💡) 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\n🏆 TIER : " + localStorage.tiert + " 🏆" + "\n\nhttps://tenizgame.github.io/";	
+		var copyText = "🎾 TENIZ # " + days + " (Mode: " + localStorage.modet + " with💡) 🎾\n\n" + localStorage.cluetcount + cluehdr + "\n" + clueicon + "\n🏆 Tier: " + localStorage.tiert + " | Points: " + localStorage.totaltpoints + " ⭐" + "\n\nhttps://tenizgame.github.io/";	
 	}	
 	
 	
