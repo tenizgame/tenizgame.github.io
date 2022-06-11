@@ -189,7 +189,7 @@ function getindices() {
 	document.getElementById("MODEButton").disabled = true;		
 	if (localStorage.modet == "Normal"){
 		document.getElementById(0).classList.add("zoom-in-box");
-		document.getElementById(0).innerHTML = "<span class='revealicon'>" + addyr + "</span><br><span class='revealsiz'>Year(1st)</span>";
+		document.getElementById(0).innerHTML = "<span class='revealicon'>" + addyr + "</span><br><span class='revealsiz'>1st Win</span>";
 	}
 	//var tempyear = [];
 	//for (let j = 0; j < indices.length; j++) {
@@ -746,7 +746,7 @@ function myFunction() {
 
 //clue reveal 
 function ballvanish0() {
-	document.getElementById(0).innerHTML = "<span class='revealcol'>" + year + "</span><br><br><span class='revealsiz'>(Year)</span>";
+	document.getElementById(0).innerHTML = "<span class='revealcol'>" + year + "</span><br><br><span class='revealsiz'>(1st Win)</span>";
 }
 function ballvanish1() {
 	document.getElementById(1).innerHTML = "";
@@ -794,7 +794,7 @@ function ballvanish5() {
 
 //final clue reveal 
 function finalcluereveal() {
-	document.getElementById(0).innerHTML = "<span class='revealcol'>" + year + "</span><br><br><span class='revealsiz'>Year(1st)</span>";
+	document.getElementById(0).innerHTML = "<span class='revealcol'>" + year + "</span><br><br><span class='revealsiz'>1st Win</span>";
 	document.getElementById(1).innerHTML = "";
 	switch (GSList[index].length) {
 		case 1: document.getElementById(1).innerHTML = "<span class='revealcol'>" + grandslam + "</span><br><br><span class='revealsiz'>Slams</span>";
@@ -2301,7 +2301,7 @@ function intialize() {
 		clue.id = clueindex;
 		clue.classList.add("clue-ball");
 		if (clueindex == 0) {
-			clue.innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">Year(1st)</div>';
+			clue.innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">1st Win</div>';
 		}
 		else if (clueindex == 1) {
 			clue.innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">Slams</div>';
@@ -2407,7 +2407,7 @@ function intialize() {
 			}
 			if (localStorage.yeartopen == 1) {
 				if (localStorage.modet == "Easy") {
-					document.getElementById(0).innerHTML = "<span class='revealcol'>" + year + "</span><br><br><span class='revealsiz'>(Year)</span>";
+					document.getElementById(0).innerHTML = "<span class='revealcol'>" + year + "</span><br><br><span class='revealsiz'>(1st Win)</span>";
 				}
 				arrayid.splice(arrayid.indexOf(0), 1);
 				SetClueCount();
@@ -2494,7 +2494,7 @@ function intialize() {
 							document.getElementById(i).innerHTML = "<span class='revealicon'>" + "🔵";
 						} 						
 					}
-					document.getElementById(0).innerHTML += "</span><br><span class='revealsiz'>Year(1st)</span>";
+					document.getElementById(0).innerHTML += "</span><br><span class='revealsiz'>1st Win</span>";
 					document.getElementById(1).innerHTML += "</span><br><span class='revealsiz'>Slams</span>";
 					document.getElementById(2).innerHTML += "</span><br><span class='revealsiz'>Country</span>";
 					document.getElementById(3).innerHTML += "</span><br><span class='revealsiz'>Gender</span>";
@@ -2539,7 +2539,7 @@ function switchmode() {
     for (let i = 0; i < 6; i++) {
         document.getElementById(i).innerHTML = "";
     }
-	document.getElementById(0).innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">Year(1st)</div>';	
+	document.getElementById(0).innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">1st Win</div>';	
 	document.getElementById(1).innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">Slams</div>';
 	document.getElementById(2).innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">Country</div>';
 	document.getElementById(3).innerHTML = '<img class="image" src="ball.png" alt="Alt text"/><div class="centered">Gender</div>';
@@ -2554,7 +2554,7 @@ function switchmode() {
 		 document.getElementById("answer").innerText = "ADDITIONAL HINT ENABLED!";
 	}	
 	if (localStorage.yeartopen == 1) {
-		document.getElementById(0).innerHTML = "<span class='revealcol'>" + year + "</span><br><br><span class='revealsiz'>(Year)</span>";
+		document.getElementById(0).innerHTML = "<span class='revealcol'>" + year + "</span><br><br><span class='revealsiz'>(1st Win)</span>";
 	}
 	if (localStorage.slamtopen == 1) {
 		document.getElementById(1).innerHTML = "";
