@@ -102,20 +102,26 @@
 			<button data-close-button class="close-button">&times;</button>
 		</div>
 		<div class="modal-body Contents">
+		    <strong style="color:red;"> Based on User Feedback, the rules of the game have changed in the way the Year and GS titles are used. Please go through the rules again.</strong>
 			<p id="text-area">
 			(i) <strong style="color:white;">TENIZ</strong>, a game inspired by <strong style="color:white;">WORDLE</strong>, tests your knowledge on Tennis Grand Slam Champions of the Open
-			Era. The objective is to identify the Champion Tennis Player every day, using the Clues. <strong style="color:white;"><a href = "https://youtu.be/hxfDhdt-29I" target="_" class="youtube"><u>Check out a Video I made about the game here</a></u></strong>, and then read the rest of this page to learn more. 
+			Era. The objective is to identify the Champion Tennis Player every day, using the Clues.
 			<br><br>
-			(ii) The mystery player needs to be identified based on attributes (shown at the top of the page) of <strong style="color:white;">ONE OF THEIR GS WINS.</strong> These attributes include Year won, Slam won, Country (at the time of win), Gender, Total GS Singles Titles and Style of Play (RH vs
-			LH). If a person has won mutliple Slams, the same player can be repeated on another day with another of their Wins.
+			(ii) The mystery player needs to be identified based on attributes (shown at the top of the page) based on their <strong style="color:white;">GRAND SLAM CAREER STATS.</strong> These attributes include Year of first win, Slams Won, Country (could be multiple countries), Gender, Total GS Singles Titles and Style of Play (RH vs
+			LH). 
 			<br><br>			
 			(iii) Use the search area to key in your answer and hit Enter <img src="search.png"style="width:20px;height:20px;">. After each guess, details of the player you entererd are listed. You also get <strong style="color:white;">INDICATORS </strong>to show how the attributes of the player you entered, match against that of the player in question. 
 			<br><br>			
-			(iv) 🟢 Indicates a match, 🔴 indicates a no-match and 🟡 indicates that what you guessed is within a range of +/- 3 (for year and titles only). 🟡 for Country, indicates a match in the Continent.
+			(iv) 🟢 Indicates a match, 🔴 indicates a no-match and 🟡 indicates that what you guessed is within a range of +/- 3 (for year and titles only). Year and Titles also show 🔺 and 🔻 for incorrect guesses. 🔺 means you need to try with a higher number and 🔻 means you need to try with a lower number. 
+			🟡 for Country, indicates a match in the Continent. Remember, a person could be a citizen of multiple countries and some contries are part of multiple continents. 🟡 for GS, indicates that the players have won some GS in common but they are not the exact match. 
 			<br><br>
-			(v) For eg: a 🟢 in the first position (Year), indicates that the player you entered has won some GS in the same year as in question. A 🔴 in the first position (Year), indicates that the player you entered has not won any GS in the year as in question. It <strong style="color:white;"> DOES NOT </strong> mean that the player your entered and the mystery player has not won a GS in the same year. Remember, only <strong style="color:white;">ONE </strong>win of the mystery player is being compared here.
+			(v) For eg: a 🟢 in the first position (Year), indicates that the player you entered won their first title in the same year as the player in question. A 🔴 in the first position (Year), indicates that the player you entered did not win their first title within 3 years of the player in question. 
 			<br><br>
-			(vi) Similarly, a 🔴 in the second position (Slam), indicates that the person you entered has not won the particular slam in question. For eg. if your player has won the FO and the USO, and you get a 🔴 for the second position (Slam), it simply means that this particular Win of the mystery player is either the WIM or AO. They might (or not) have won the FO or the USO at a different time in their career. 
+			(vi) The indicators for the Grand Slams are as follows:<br>
+				 🟢 - Indicates that the player you entered has won <strong style="color:white;">EXACTLY THE SAME</strong> Grand Slams as the person in question (not the number of titles; just indicates the Grand Slams). <br>
+				 🔵 - Indicates that the person in question has won <strong style="color:white;">ALL</strong> the Grand Slam titles won by the player you entered. <br>
+				 🟡 - Indicates that there are <strong style="color:white;">SOME COMMON</strong> Grand Slam titles between the player your entered and the person in question.  <br>
+				 🔴 - Indicates that there are <strong style="color:white;">NO COMMON</strong> Grand Slam titles between the player your entered and the person in question.  <br>	 
 			<br><br>				
 			(vii) Switch to the <strong style="color:white;">EASY Mode</strong> any time during the game, where the attributes are revealed, as shown below, after each <strong style="color:white;">INCORRECT</strong> guess. The clues are more direct in this Mode.  
 			<center><img class="howtogif" src="howto.gif" alt="clue"></center>
@@ -190,6 +196,25 @@
 			<div id="additionalhint"></div>	
 		</div>
 	</div>	
+
+	<div class="fbmodal" id="fbmodal">
+		<div class="fbmodal-header">
+			<div class="title"><strong>
+					<!-- Feedback -->
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<h3 class="animate-charcter">Feedback</h3>
+							</div>
+						</div>
+					</div>
+				</strong></div>
+			<button data-close3-button class="close-button">&times;</button>
+		</div>
+		<div class="fbmodal-body">		
+		</div>
+	</div>	
+
 	<div class="summary" id="summary">
 		<div class="summary-header">
 			<div class="title"><strong>
@@ -251,6 +276,7 @@
 	<div id="overlay"></div>
 	<div id="overlay1"></div>
 	<div id="overlay2"></div>
+	<div id="overlay3"></div>
 	<hr>
 	<div id="clue">
 		<div id="clue-ball">
@@ -262,7 +288,7 @@
 		<div id="try1">	</div>
 			<div id="trydetail1" class="trydetail">
 				<div class="detail1">Year</div>
-				<div class="detail2">Slam</div>
+				<div class="detail2">Slams</div>
 				<div class="detail3">Country</div>
 				<div class="detail4">Gender</div>
 				<div class="detail5">Titles</div>
@@ -271,7 +297,7 @@
 		<div id="try2"></div>
 			<div id="trydetail2" class="trydetail">
 				<div class="detail1">Year</div>
-				<div class="detail2">Slam</div>
+				<div class="detail2">Slams</div>
 				<div class="detail3">Country</div>
 				<div class="detail4">Gender</div>
 				<div class="detail5">Titles</div>
@@ -280,7 +306,7 @@
 		<div id="try3"></div>
 			<div id="trydetail3" class="trydetail">
 				<div class="detail1">Year</div>
-				<div class="detail2">Slam</div>
+				<div class="detail2">Slams</div>
 				<div class="detail3">Country</div>
 				<div class="detail4">Gender</div>
 				<div class="detail5">Titles</div>
@@ -289,7 +315,7 @@
 		<div id="try4"></div>
 			<div id="trydetail4" class="trydetail">
 				<div class="detail1">Year</div>
-				<div class="detail2">Slam</div>
+				<div class="detail2">Slams</div>
 				<div class="detail3">Country</div>
 				<div class="detail4">Gender</div>
 				<div class="detail5">Titles</div>
@@ -298,7 +324,7 @@
 		<div id="try5"></div>
 			<div id="trydetail5" class="trydetail">
 				<div class="detail1">Year</div>
-				<div class="detail2">Slam</div>
+				<div class="detail2">Slams</div>
 				<div class="detail3">Country</div>
 				<div class="detail4">Gender</div>
 				<div class="detail5">Titles</div>
@@ -307,7 +333,7 @@
 		<div id="try6"></div>
 			<div id="trydetail6" class="trydetail">
 				<div class="detail1">Year</div>
-				<div class="detail2">Slam</div>
+				<div class="detail2">Slams</div>
 				<div class="detail3">Country</div>
 				<div class="detail4">Gender</div>
 				<div class="detail5">Titles</div>
@@ -320,6 +346,8 @@
 	<div id="helpbuttons">
 		<button id="MODEButton" class="buttonmode" onclick="changemode();">Switch To EASY MODE</button>	
 		<class data-hintmodal-target="#hintmodal" id="hintbutton" hidden><button id="hint" class="buttonmode" onclick="	additionalhint();">Additional HINT</button></class>	
+		<class data-fbmodal-target="#fbmodal" id="fbmodal" hidden><button id="fbmodalbut" class="buttonmode">TEST</button></class>	
+		<!-- <class data-fbmodal-target="#fbmodal" id="fbmodal"> -->
 	</div>	
 	<hr>
 	<h1 id="answer"></h1>

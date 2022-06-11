@@ -103,6 +103,10 @@ td, th {
     font-size:14px;
 }
 
+.GSsiz {
+    font-size:10px;
+}
+
 .howtogif {
   width: 250px;
   height: auto;
@@ -264,6 +268,7 @@ td, th {
   font-weight: bold;
   font-size: 14px;
   margin-left: 20px;
+  color: #6AAA64;
 } 
 
 
@@ -703,6 +708,56 @@ padding: 15px;
   text-align:justify;
 }
 
+.fbmodal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid black;
+  border-radius: 5%;
+  z-index: 5;
+  background-color: black;
+  width: 400px;
+  max-width: 100%;
+}
+
+.fbmodal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.fbmodal-header {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid white;
+  color: white;
+
+}
+
+.fbmodal-header .fbmodal-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.fbmodal-header .close-button {
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.fbmodal-body {
+  padding: 10px 15px;
+  text-align: left;
+  color: lightgray;
+  font-size: 12px;
+  text-align:justify;
+}
+
 #additionalhint {
   color: white;
   font-size: 30px;
@@ -821,6 +876,23 @@ padding: 15px;
 }
 
 #overlay2.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#overlay3 {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: GrayText;
+  opacity: 0;
+  pointer-events: none;
+  transition: 200ms ease-in-out;
+}
+
+#overlay3.active {
   opacity: 1;
   pointer-events: all;
 }
