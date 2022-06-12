@@ -465,7 +465,7 @@ td, th {
 div.scroll {
 background-color: #fe1ggf;
 /* width: 550px; */
-height: 230px;
+height: 200px;
 overflow: scroll;
 padding: 15px;
 }
