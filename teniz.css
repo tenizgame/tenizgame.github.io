@@ -131,7 +131,7 @@ td, th {
     border-style: solid;
     background-color: #fff;
     border-color: #fff;
-	width:90px;
+	width:100px;
 }
 
 .buttonmode{
@@ -465,7 +465,7 @@ td, th {
 div.scroll {
 background-color: #fe1ggf;
 /* width: 550px; */
-height: 200px;
+height: 230px;
 overflow: scroll;
 padding: 15px;
 }
