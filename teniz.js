@@ -2258,7 +2258,7 @@ function UpdateChart() {
 		options: {
 			legend: { display: false },
 			title: {
-				display: true,
+				display: false,
 				text: "GUESS DISTRIBUTION"
 			}
 		}
