@@ -2259,7 +2259,7 @@ function UpdateChart() {
 			legend: { display: false },
 			title: {
 				display: true,
-				text: "Guess Distribution"
+				text: "GUESS DISTRIBUTION"
 			}
 		}
 	});
