@@ -1,38 +1,47 @@
 <html lang="en">
 <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-B1TW81HLYQ"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-MEBRVZNPE4"></script>
 	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
-		gtag('config', 'G-B1TW81HLYQ');
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  
+	  gtag('config', 'G-MEBRVZNPE4');
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script> -->
 	<!-- 	<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
 	<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti"></script> -->
 	<!-- <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti/dist/tsparticles.preset.confetti.bundle.min.js"></script> -->
 	<script
-		src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti@1.22.0/tsparticles.preset.confetti.bundle.min.js"></script>
+		src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti@1.22.0/tsparticles.preset.confetti.bundle.min.js"></script>	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>TENIZ - Tennis Quiz of GS Champions </title>
-	<link href="teniz.css" rel="stylesheet">
-	<script defer src="teniz.js"></script>
+	<title>Geordle - Wordle for Countries and Capitals</title>
+	<link href="geordle.css" rel="stylesheet">
+	<script defer src="geordle.js"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-	<!-- FB Meta Tags -->
-	<meta property="og:url" content="https://tenizgame.github.io/">
-	<meta property="og:type" content="website">
-	<meta property="og:title" content="TENIZ - Tennis Quiz of GS Champions">
-	<meta property="og:description"
-		content="Identify the Tennis Player using the clues. A new player is available each day.">
-	<meta property="og:image" content="https://tenizgame.github.io/tennisicon.jpg">
-	<!-- add icon link -->
-	<link rel="icon" href="https://tenizgame.github.io/tennisicon.jpg" type="image/x-icon">
-	<link href="https://tenizgame.github.io/tennisicon.jpg" rel="icon shortcut" />
-	<link href="https://tenizgame.github.io/tennisicon.jpg" rel="apple-touch-icon" />
-	<link rel="manifest" href="https://tenizgame.github.io/teniz_manifest.json" />
+    <!-- add icon link for all standard browsers -->
+	
+  <!-- FB Meta Tags -->
+  <meta property="og:url" content="https://sank0403.github.io/geordle/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Geordle - Wordle for Countries and Capitals">
+  <meta property="og:description" content="Guess the Country and Capital Pairing. A new game is available each day.">
+  <meta property="og:image" content="https://sank0403.github.io/geordle/wallpaper.jpg">
+  <meta property="og:image" content="https://sank0403.github.io/geordle/mapicon.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://sank0403.github.io/geordle/wallpaper.jpg" />
+  
+    <link rel = "icon" href = "https://sank0403.github.io/geordle/mapicon.jpg" 
+            type = "image/x-icon">  
+	<link rel="manifest" href="https://sank0403.github.io/geordle/geordle_manifest.json" />		<!--for shortcut icons and transitions-->	
+	<link href="https://sank0403.github.io/geordle/mapicon.jpg" rel="icon shortcut" sizes="3232" /> <!--follow same as indle - usually a smaller version-->
+	<link href="https://sank0403.github.io/geordle/mapicon.jpg" rel="apple-touch-icon" />	<!--This is the phone icon web title image-->		
 </head>
 <body>
 	<button id="btnParty" type="button" hidden></button>
@@ -40,55 +49,49 @@
 	<div id="stats">
 		<div id="stats-item">
 			<span class="stats-item">
-				<class data-modal-target="#modal" id="rulesbutton"><img src="rulesicon.png" style="width:30px;height:30px;"></class>
-				<a href="https://sank0403.github.io/test/"><img src="infinity.jpg" style="width:30px;height:30px" alt ="Practice Mode"></a>
+				<class data-modal-target="#modal" id="rulesbutton"><img src="rulesicon.png" style="width:22px;height:22px;"></class>
+				<a href="mailto: geowordle@gmail.com" target="_"><img src="mail.png" style="width:22px;height:22px" alt ="EMAIL"></a>
 			</span>	
 			<span class="stats-item">
-			    <a href="https://www.buymeacoffee.com/sank0403/" target="_"><img src="hearticon.png" style="width:30px;height:30px" alt ="Buy Me A Coffee"></a>
-				<class data-summary-target="#summary" id="statsbutton"><img src="statsicon.png" style="width:40px;height:30px;"></class>
+			    <a href="https://www.buymeacoffee.com/sank0403/" target="_"><img src="hearticon.png" style="width:22px;height:22px" alt ="Buy Me A Coffee"></a>
+				<class data-summary-target="#summary" id="statsbutton"><img src="statsicon.png" style="width:27px;height:20px;"></class>
 			</span>			
 		</div>
 	</div>		
-	<center><img class="headerimage" src="wallpaper.jpg" style="width:200px;height:113px;">
+	<center><img class="headerimage" src="maporig.jpg">
 	<div id="title">
-		<div class="waviy1">
-			<span style="--i:1">T</span>
+		<div class="waviy">
+			<span style="--i:1">G</span>
 			<span style="--i:2">E</span>
-			<span style="--i:3">N</span>
-			<span style="--i:4">I</span>
-			<span style="--i:5">Z</span>
+			<span style="--i:3">O</span>
+			<span style="--i:4">R</span>
+			<span style="--i:5">D</span>
+			<span style="--i:6">L</span>
+			<span style="--i:7">E</span>
 		</div>
 	</div>
-	<div class="waviy">
-		<span style="--i:1">A</span>
-		<span style="--i:2"> </span>
-		<span style="--i:3">N</span>
-		<span style="--i:4">e</span>
-		<span style="--i:5">w</span>
+	<div class="waviy1">
+		<span style="--i:1">d</span>
+		<span style="--i:2">a</span>
+		<span style="--i:3">i</span>
+		<span style="--i:4">l</span>
+		<span style="--i:5">y</span>
 		<span style="--i:6"> </span>
-		<span style="--i:7">P</span>
-		<span style="--i:8">l</span>
-		<span style="--i:9">a</span>
-		<span style="--i:10">y</span>
-		<span style="--i:11">e</span>
-		<span style="--i:12">r</span>
-		<span style="--i:13"> </span>
-		<span style="--i:14">D</span>
-		<span style="--i:15">a</span>
-		<span style="--i:16">i</span>
-		<span style="--i:17">l</span>
-		<span style="--i:18">y</span>
-		<span style="--i:19"> </span>
-		<span style="--i:20">#</span>
-		<span style="--i:21"> </span>
-		<span style="--i:22" id="daycount"></span>
+		<span style="--i:7">g</span>
+		<span style="--i:8">e</span>
+		<span style="--i:9">o</span>
+		<span style="--i:10">r</span>
+		<span style="--i:11">d</span>
+		<span style="--i:12">l</span>
+		<span style="--i:13">e</span>		
+		<span style="--i:14"> </span>
+		<span style="--i:15">#</span>
+		<span style="--i:16"></span>
+		<span style="--i:17" id="daycount"></span>
 	</div>
-	<!-- <div id="mycounter"></div> -->
-	<!-- <button data-modal-target="#modal">Start Game</button>  -->
-	<!--&nbsp; &nbsp;  MODE :-     <input type="button" id="mode" value="EASY" onclick="toggle(this); "></center>-->
-	<!-- &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  -->
-	<!--<button onclick="onTimer()">Clickme</button>-->
-		<!-- <input type="button" id="" value="🎾 PRACTICE" onclick="window.open('https://sank0403.github.io/test/','_blank'); this.blur();" class="buttonrad1">				 -->
+	<br>		
+<!-- 		<input type="button" id="" value="🌎 PRACTICE" onclick="window.open('https://sank0403.github.io/geordle/practice/','_self'); this.blur();" class="buttonrad">				
+		<input type="button" value="❤️ GEORDLE️" onclick="window.open('https://www.buymeacoffee.com/sank0403/','_blank'); this.blur();" class="buttonrad">	 -->	
 	<div class="modal" id="modal">
 		<div class="modal-header">
 			<div class="title"><strong>
@@ -101,125 +104,51 @@
 						</div>
 					</div>
 				</strong></div>
-			<button data-close-button class="close-button">&times;</button>
+				<button data-close-button class="close-button">&times;</button>
 		</div>
-		<div class="modal-body Contents">
-		    <strong style="color:red;"> Based on User Feedback, the rules of the game have changed in the way the Year and GS titles are used. Please go through the rules again.</strong>
-			<p id="text-area">
-			(i) <strong style="color:white;">TENIZ</strong>, a game inspired by <strong style="color:white;">WORDLE</strong>, tests your knowledge on Tennis Grand Slam Champions of the Open
-			Era. The objective is to identify the Champion Tennis Player every day, using the Clues.
-			<br><br>
-			(ii) The mystery player needs to be identified based on attributes (shown at the top of the page) based on their <strong style="color:white;">GRAND SLAM CAREER STATS.</strong> These attributes include Year of first win, Slams Won, Country (could be multiple countries), Gender, Total GS Singles Titles and Style of Play (RH vs
-			LH). 
-			<br><br>			
-			(iii) Use the search area to key in your answer and hit Enter <img src="search.png"style="width:20px;height:20px;">. After each guess, details of the player you entererd are listed. You also get <strong style="color:white;">INDICATORS </strong>to show how the attributes of the player you entered, match against that of the player in question. 
-			<br><br>			
-			(iv) 🟢 Indicates a match, 🔴 indicates a no-match and 🟡 indicates that what you guessed is within a range of +/- 3 (for year and titles only). Year and Titles also show 🔺 and 🔻 for incorrect guesses. 🔺 means you need to try with a higher number and 🔻 means you need to try with a lower number. 
-			🟡 for Country, indicates a match in the Continent. Remember, a person could be a citizen of multiple countries and some contries are part of multiple continents.
-			<br><br>
-			(v) For eg: a 🟢 in the first position (Year), indicates that the player you entered won their first title in the same year as the player in question. A 🔴 in the first position (Year), indicates that the player you entered did not win their first title within 3 years of the player in question (would have been indicated by 🟡, if that were the case). 
-			<br><br>
-			(vi) The indicators for the Grand Slams work differently and are as follows:<br>
-				 🟢 - Indicates that the player you entered has won <strong style="color:white;">EXACTLY THE SAME</strong> Grand Slams as the person in question (not the number of titles; just indicates the Grand Slams). <br>
-				 🔵 - Indicates that the person in question has won <strong style="color:white;">ALL</strong> the Grand Slam titles won by the player you entered. But, they have won something more. <br>
-				 🟡 - Indicates that there are <strong style="color:white;">SOME COMMON</strong> Grand Slam titles between the player your entered and the person in question. But, it is not an exact match.<br>
-				 🔴 - Indicates that there are <strong style="color:white;">NO COMMON</strong> Grand Slam titles between the player your entered and the person in question. Useful in the process of elimination.<br>	 
-			<br><br>				
-			(vii) Switch to the <strong style="color:white;">EASY Mode</strong> any time during the game, where the attributes are revealed, as shown below, after each <strong style="color:white;">INCORRECT</strong> guess. The clues are more direct in this Mode.  
-			<center><img class="howtogif" src="howto.gif" alt="clue"></center>
-			<br>
-			(viii) On your <strong style="color:white;">Final Try</strong>, after you have enabled the Easy Mode, you have the option to look at an <strong style="color:white;">ADDITIONAL HINT</strong>. This is an absolute give-away 😀!
-			<br><br>
-			(ix) Depending on which attempt you won the game at, you will be awarded <strong style="color:white;">RANKING POINTS</strong>. It starts at 10 points for the first attempt and reduces by a point for each subsequent try. If you switch to the Easy Mode you will be docked 2 points and if you use the Additional Hint a further 2 points will be docked. No points are awarded if you fail to identify the player. 
-			<strong style="color:white;">TIER</strong> is determined based on Total Points. Try and get to <strong style="color:white;">GRAND SLAM</strong> level!
-			<br><br>
-			<table>
-			  <tr>
-				<th><center>POINTS</center></th>
-				<th><center>TIER</center></th>
-			  </tr>
-			  <tr>
-				<td>0 - 99</td>
-				<td>FUTURES</td>
-			  </tr>
-			  <tr>
-				<td>100 - 249</td>
-				<td>CHALLENGERS</td>
-			  </tr>
-			  <tr>
-				<td>250 - 499</td>
-				<td>LEVEL 250</td>
-			  </tr>
-			  <tr>
-				<td>500 - 999</td>
-				<td>LEVEL 500</td>
-			  </tr>
-			  <tr>
-				<td>1000 - 1499</td>
-				<td>LEVEL 1000</td>
-			  </tr>
-			  <tr>
-				<td>1500 - 1999</td>
-				<td>TOUR FINALS</td>
-			  </tr>
-			  <tr>
-				<td>2000+</td>
-				<td>GRAND SLAMS</td>
-			  </tr>			  
-		  </table>
-		  <br>
-			(x) Use the <strong style="color:white;">PRACTICE MODE</strong> for unlimited plays. 
-			<br>		  
-			<h5>
-			<hr>
-				<center>Legend :AO - Australian Open | FO - French Open | WIM - Wimbledon | USO - US Open | GS - Grand Slam | RH - Right Handed | LH - Left Handed</center>
-			<hr>
-			</h5>
-			<h5>
-				<center><strong style="color:white;">©️sank0403 - 2022</strong></center>
-			</h5>
-			</p>		
-		</div>
-	</div>
-	<div class="hintmodal" id="hintmodal">
-		<div class="hintmodal-header">
-			<div class="title"><strong>
-					<!-- Hint -->
-					<div class="container">
-						<div class="row">
-							<div class="col-md-12 text-center">
-								<h3 class="animate-charcter">Hint</h3>
-							</div>
-						</div>
-					</div>
-				</strong></div>
-			<button data-close2-button class="close-button">&times;</button>
-		</div>
-		<div class="hintmodal-body">
-				<strong style="color:white;">Length of First Name and Last Name</strong> along with the <strong style="color:white;">Starting Letters </strong>are given below. Use this wisely to identify the player!
+		<div class ="modal-body">
+		  GEORDLE is a spin-off on the popular <a href="https://www.nytimes.com/games/wordle/index.html"><b>WORDLE</b></a> game for Geography Lovers. 
+		  <br><br>
+		  Try to identify the COUNTRY and its CAPITAL using the letters on the Keyboard <b>ONE AT A TIME</b>. If the letter you selected is part of the COUNTRY or CAPITAL, the corresponding tiles will be highlighted in Green. 
+		  <br><br>
+		  Each incorrect letter will cost you a Life. You have a total of 5 lives after which you lose the game. Lives Remaining are depicted using 🔴 on the Game Board.
+<!--      <br><br>
+		  In the Easy Mode, the length of the guess NEED NOT match the lenth of the answer. To challenge yourself, try the Hard Mode.
+		  <br><br>
+		  In the Hard Mode, the lengths of the guesses and the answer MUST match. This mode is designed for Experts. -->
+		  <br><br>
+		  If you identify the COUNTRY and CAPITAL successfully, before running out of all lives, you convert the remaining lives into ⭐'s. You can get a maximum of 5 ⭐'s every day.   
+		  <br><br>
+<!-- 		  Use the Practice Button, to play an unlimited mode, and improve your COUNTRY and CAPITAL IQ.  
+		  <br><br> -->
+		  <center><b>EXAMPLES</b><br></center>
+		  <br><div><u>COUNTRY</u></div><br>
+			<div style="float:left; display:flex;">
+				<span class="tile "></span>
+				<span class="tile "></span>
+				<span class="tile correct">D</span>
+				<span class="tile "></span>
+				<span class="tile "></span>
+				<span class="tile "></span>
+			</div>
 			<br><br><br>
-			<div id="additionalhint"></div>	
-		</div>
-	</div>	
-
-	<div class="fbmodal" id="fbmodal">
-		<div class="fbmodal-header">
-			<div class="title"><strong>
-					<!-- Feedback -->
-					<div class="container">
-						<div class="row">
-							<div class="col-md-12 text-center">
-								<h3 class="animate-charcter">Feedback</h3>
-							</div>
-						</div>
-					</div>
-				</strong></div>
-			<button data-close3-button class="close-button">&times;</button>
-		</div>
-		<div class="fbmodal-body">		
-		</div>
-	</div>	
-
+			The letter 'D' is in the 3rd position of the Country.
+			<br><br>	
+		  <br><div><u>CAPITAL</u></div><br>
+			<div style="float:left; display:flex;">
+				<span class="tile correct">A</span>
+				<span class="tile "></span>
+				<span class="tile "></span>
+				<span class="tile correct">A</span>
+				<span class="tile "></span>
+				<span class="tile correct">A</span>
+			</div>
+			<br><br><br>
+			The letter 'A' is in the 1st, 4th and 6th position of the Capital.
+			<br><br>			
+		  <center><b>A new GEORDLE will be available each Day!<b></center>
+		</div>		
+	</div>
 	<div class="summary" id="summary">
 		<div class="summary-header">
 			<div class="title"><strong>
@@ -242,23 +171,21 @@
 				<span id="9" class="summary-item"></span>
 			</div>
 			<br>
-			<div id="tier-item"></div>
-			<div id="points-item"></div>
-			<br>
-			<div id="sdhdr"><b>GUESS DISTRIBUTION</b></div>
+			<div id="ffhdr"></div>
+			<div id="ffdtl"></div>
+			<div id="sdhdr">⭐ STAR DISTRIBUTION ⭐</div>
 			<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 			<br>
-
 			<!-- The button used to copy the text -->
 			<div class="button-row">
 				&nbsp;
-				<button id="HTMLButton" class="buttonrad" onclick="myFunction()">Share Stats🔊</button>
+				<button id="HTMLButton" class="buttonrad1" onclick="myFunction(); this.blur();">Share Stats🔊</button>
 				&nbsp; &nbsp; &nbsp; &nbsp;
-				<a href="https://www.buymeacoffee.com/sank0403/" target="_"><input type="button" class="buttonrad"
+				<a href="https://www.buymeacoffee.com/sank0403/" target="_"><input type="button" class="buttonrad1" onclick="this.blur();"
 						id="CoffeButton" value="Buy Me a Coffee❤️" /><a>
 			</div>
 		</div>
-		<hr>
+		<hr>		
 		<div id="footer">
 			<div>
 				<div id="bbhdr">New Game In</div>
@@ -266,111 +193,28 @@
 			</div>
 			<div>
 				<div id="pzlhdr">Try a different puzzle.</div>
-				<div id="pzl"><b><a href="https://sank0403.github.io/geordle/" target="_">Play <u>GEORDLE</u> 🌎 </a></b>
+				<div id="pzl"><b><a href="https://tenizgame.github.io/" target="_">Play <u>TENIZ</u> 🎾 </a></b>
 				</div>
 			</div>
-		</div><br>
-		<div><a href="https://twitter.com/TenizGame?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large"
-				data-show-count="false">Follow @TenizGame</a>
-			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-			<center>
-				<div class="email"><a href="mailto: geowordle@gmail.com">📧</a></div>
-			</center>
 		</div>
+		<!-- <center><div class="email"><a href="mailto: geowordle@gmail.com">📧</a></div></center> -->
 		<br>
 	</div>
 	<div id="overlay"></div>
 	<div id="overlay1"></div>
-	<div id="overlay2"></div>
-	<div id="overlay3"></div>
-	<hr>
-	<div id="clue">
-		<div id="clue-ball">
-		</div>
-	</div>
-	<hr>
-	<div id="glt"></div>
-	<div id="board" class="scroll">
-		<div id="try1">	</div>
-			<div id="trydetail1" class="trydetail">
-				<div class="detail1">1st Win</div>
-				<div class="detail2">Slams</div>
-				<div class="detail3">Country</div>
-				<div class="detail4">Gender</div>
-				<div class="detail5">Titles</div>
-				<div class="detail6">Plays</div>		
-			</div><br>
-		<div id="try2"></div>
-			<div id="trydetail2" class="trydetail">
-				<div class="detail1">1st Win</div>
-				<div class="detail2">Slams</div>
-				<div class="detail3">Country</div>
-				<div class="detail4">Gender</div>
-				<div class="detail5">Titles</div>
-				<div class="detail6">Plays</div>		
-			</div><br>
-		<div id="try3"></div>
-			<div id="trydetail3" class="trydetail">
-				<div class="detail1">1st Win</div>
-				<div class="detail2">Slams</div>
-				<div class="detail3">Country</div>
-				<div class="detail4">Gender</div>
-				<div class="detail5">Titles</div>
-				<div class="detail6">Plays</div>		
-			</div><br>		
-		<div id="try4"></div>
-			<div id="trydetail4" class="trydetail">
-				<div class="detail1">1st Win</div>
-				<div class="detail2">Slams</div>
-				<div class="detail3">Country</div>
-				<div class="detail4">Gender</div>
-				<div class="detail5">Titles</div>
-				<div class="detail6">Plays</div>		
-			</div><br>		
-		<div id="try5"></div>
-			<div id="trydetail5" class="trydetail">
-				<div class="detail1">1st Win</div>
-				<div class="detail2">Slams</div>
-				<div class="detail3">Country</div>
-				<div class="detail4">Gender</div>
-				<div class="detail5">Titles</div>
-				<div class="detail6">Plays</div>		
-			</div><br>		
-		<div id="try6"></div>
-			<div id="trydetail6" class="trydetail">
-				<div class="detail1">1st Win</div>
-				<div class="detail2">Slams</div>
-				<div class="detail3">Country</div>
-				<div class="detail4">Gender</div>
-				<div class="detail5">Titles</div>
-				<div class="detail6">Plays</div>		
-			</div><br>
-	</div>
-	<div id="historyfirst"></div>
-	<div id="historylast">
+	<hr><br>		
+    <div id="lives">
 	</div>	
-	<div id="helpbuttons">
-		<button id="MODEButton" class="buttonmode" onclick="changemode();">Switch To EASY MODE</button>	
-		<class data-hintmodal-target="#hintmodal" id="hintbutton" hidden><button id="hint" class="buttonmode" onclick="	additionalhint();">Additional HINT</button></class>	
-		<class data-fbmodal-target="#fbmodal" id="fbmodal" hidden><button id="fbmodalbut" class="buttonmode">TEST</button></class>	
-		<!-- <class data-fbmodal-target="#fbmodal" id="fbmodal"> -->
-	</div>	
-	<hr>
-	<h1 id="answer"></h1>
-	<br>
-	<br>
-	<div class="containers">
-		<form action="#" onsubmit="submitMe();return false" autocomplete="off" class="form">
-			<input type="text" placeholder="Search Player Name" class="search-field" / onKeyUp="showResults(this.value)"
-				name="functioninput" id="answertext">
-			<!-- <button type="submit" class="search-button" name="submit" id="submitbutton" disabled="disabled" > -->
-			<span onclick="disablederror();">
-				<button type="submit" class="search-button" name="submit" id="submitbutton" disabled="disabled">
-					<img src="search.png">
-				</button>
-			</span>
-		</form>
+    <div id="board">
+		<br><div><u>COUNTRY</u></div><br>
+		<div id="boardfirst"></div>
+		<br><div><u>CAPITAL</u></div><br>
+		<div id="boardlast"></div>	
 	</div>
-	<div id="result"></div>
-</body>
+	<br>
+	<hr>
+	<br>	
+    <div id="answer"></div>
+	<br><br>
+    </body>
 </html>
