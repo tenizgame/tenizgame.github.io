@@ -514,7 +514,7 @@ if (!localStorage.totaltgames) {
 	localStorage.setItem("cluetxcount", 0);
 	localStorage.setItem("cluetcount", "");
 	localStorage.setItem("gametwon", 0);
-	//setTimeout(OpenRules, 1100);
+	setTimeout(OpenRules, 1100);
 }
 
 if (!localStorage.totaltpoints) {
@@ -2387,7 +2387,7 @@ function intialize() {
 	}
 	// Default Path
 	else {
-		setTimeout(OpenRules, 1100);
+		//setTimeout(OpenRules, 1100);
 		if (localStorage.firsttload == 0) {
 			document.getElementById("answer").classList.remove("popanswer");
 			document.getElementById("answer").style.color = "#FDFEFF";
