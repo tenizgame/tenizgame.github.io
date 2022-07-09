@@ -15,7 +15,10 @@ var ul = document.getElementById("result");
 ul.onclick = function (event) {
 	var target = getEventTarget(event);
 	document.getElementById("submitbutton").disabled = false;
+	document.getElementById("submitbutton").focus();
 	document.getElementById("answertext").value = target.innerHTML;
+	res = document.getElementById("result");
+	res.innerHTML = '';
 };
 function autocompleteMatch(input) {
 	input = input.toLowerCase();
@@ -43,7 +46,7 @@ function showResults(val) {
 	}
 	res.innerHTML = '<ul>' + list + '</ul>';
 	document.getElementById("result").focus();
-	document.getElementById("result").scrollIntoView(true);
+	//document.getElementById("result").scrollIntoView(true);
 }
 
 
@@ -135,7 +138,7 @@ function additionalhint() {
 	for (l = 1; l < lastname.length; l++) {
 		document.getElementById("additionalhint").innerHTML += "🔳"
 	}
-	document.getElementById("try6").scrollIntoView(true);	
+	//document.getElementById("try6").scrollIntoView(true);	
 	localStorage.hinttused = 1;
 }
 
@@ -454,8 +457,9 @@ function getindices() {
 			document.getElementById("trydetail"+(clueCount-1)).getElementsByClassName("detail6")[0].innerHTML += "<br>" + addonplays;
 		}
 		document.getElementById("answertext").disabled = false;
-		document.getElementById("submitbutton").disabled = false;
+		/* document.getElementById("submitbutton").disabled = false; */
 		document.getElementById("MODEButton").disabled = false;
+		/* document.getElementById("answertext").focus(); */
 	}, 1500);		
 	if (clueCount == 7 && localStorage.try5topen == "-----" && localStorage.try6topen == "-----"){ 
 		document.getElementById("trydetail"+(clueCount-2)).getElementsByClassName("detail6")[0].innerHTML += "<br>" + "<span class='smallfont'>" + PlaysList[indices[0]] + "</span>";	
@@ -514,7 +518,7 @@ if (!localStorage.totaltgames) {
 	localStorage.setItem("cluetxcount", 0);
 	localStorage.setItem("cluetcount", "");
 	localStorage.setItem("gametwon", 0);
-	setTimeout(OpenRules, 1100);
+	/* setTimeout(OpenRules, 1100) */;
 }
 
 if (!localStorage.totaltpoints) {
@@ -554,6 +558,18 @@ function OpenStats() {
 	document.getElementById("statsbutton").click();
 }
 
+function OpenFBModal() {
+	document.getElementById("indipop").click();
+}
+
+function OpenEASYModal() {
+	document.getElementById("easypop").click();
+}
+
+function OpenADDModal() {
+	document.getElementById("hintpop").click();
+}
+
 //Open Rules the very first time
 function OpenRules() {
 	document.getElementById("rulesbutton").click();
@@ -583,7 +599,7 @@ function disablederror() {
 //Button Text
 function ResetButton() {
 	let HTMLButton = document.getElementById("HTMLButton");
-	HTMLButton.innerText = "Share Stats🔊"
+	HTMLButton.innerText = "COPY STATS🔊"
 }
 
 //Adjustment of ClueCount for last guess
@@ -735,7 +751,7 @@ function myFunction() {
 
 	//Button Text
 	let HTMLButton = document.getElementById("HTMLButton");
-	HTMLButton.innerText = "Copied☑️"
+	HTMLButton.innerText = "COPIED☑️"
 	setTimeout(ResetButton, 1000);
 }
 
@@ -2223,6 +2239,82 @@ function closeFBmodal(fbmodal) {
 	overlay3.classList.remove('active')
 }
 
+const openEASYmodalButtons = document.querySelectorAll('[data-easymodal-target]')
+const closeEASYmodalButtons = document.querySelectorAll('[data-close3-button]')
+const overlay5 = document.getElementById('overlay5')
+
+
+openEASYmodalButtons.forEach(button => {
+	button.addEventListener('click', () => {
+		const easymodal = document.querySelector(button.dataset.easymodalTarget)
+		openEASYmodal(easymodal)
+	})
+})
+
+overlay5.addEventListener('click', () => {
+	const easymodals = document.querySelectorAll('.easymodal.active')
+	easymodals.forEach(easymodal => {
+		closeEASYmodal(easymodal)
+	})
+})
+
+closeEASYmodalButtons.forEach(button => {
+	button.addEventListener('click', () => {
+		const easymodal = button.closest('.easymodal')
+		closeEASYmodal(easymodal)
+	})
+})
+
+function openEASYmodal(easymodal) {
+	if (easymodal == null) return
+	easymodal.classList.add('active')
+	overlay5.classList.add('active')
+}
+
+function closeEASYmodal(easymodal) {
+	if (easymodal == null) return
+	easymodal.classList.remove('active')
+	overlay5.classList.remove('active')
+}
+
+const openADDmodalButtons = document.querySelectorAll('[data-addmodal-target]')
+const closeADDmodalButtons = document.querySelectorAll('[data-close3-button]')
+const overlay4 = document.getElementById('overlay4')
+
+
+openADDmodalButtons.forEach(button => {
+	button.addEventListener('click', () => {
+		const addmodal = document.querySelector(button.dataset.addmodalTarget)
+		openADDmodal(addmodal)
+	})
+})
+
+overlay4.addEventListener('click', () => {
+	const addmodals = document.querySelectorAll('.addmodal.active')
+	addmodals.forEach(addmodal => {
+		closeADDmodal(addmodal)
+	})
+})
+
+closeADDmodalButtons.forEach(button => {
+	button.addEventListener('click', () => {
+		const addmodal = button.closest('.addmodal')
+		closeADDmodal(addmodal)
+	})
+})
+
+function openADDmodal(addmodal) {
+	if (addmodal == null) return
+	addmodal.classList.add('active')
+	overlay4.classList.add('active')
+}
+
+function closeADDmodal(addmodal) {
+	if (addmodal == null) return
+	addmodal.classList.remove('active')
+	overlay4.classList.remove('active')
+}
+
 //Chart Code
 //color0 = "brown"
 color1 = "brown"
@@ -2280,12 +2372,21 @@ function intialize() {
 	document.getElementById("points-item").style.display = "none";
 	document.getElementById("historyfirst").style.display = "none";
 	document.getElementById("historylast").style.display = "none";
+	document.getElementById("try1").style.display = "none";
+	document.getElementById("try2").style.display = "none";
+	document.getElementById("try3").style.display = "none";
+	document.getElementById("try4").style.display = "none";
+	document.getElementById("try5").style.display = "none";
+	document.getElementById("try6").style.display = "none";	
 	document.getElementById("trydetail1").style.display = "none";
 	document.getElementById("trydetail2").style.display = "none";
 	document.getElementById("trydetail3").style.display = "none";
 	document.getElementById("trydetail4").style.display = "none";
 	document.getElementById("trydetail5").style.display = "none";
 	document.getElementById("trydetail6").style.display = "none";
+	document.getElementById("indipop").style.display = "none";
+	document.getElementById("easypop").style.display = "none";
+	document.getElementById("hintpop").style.display = "none";
 	if (localStorage.modet == "Easy"){
 		document.getElementById("MODEButton").style.display = "none";
 		//document.getElementById("historyfirst").style.display = "flex";
@@ -2360,8 +2461,60 @@ function intialize() {
 		document.getElementById("historyfirst").style.display = "flex";
 		document.getElementById("historylast").style.display = "flex";	
 		finalcluereveal();
-		storedadd();
+		storedadd();		
 		if (localStorage.gametwon == 1) {
+			var cluetcount = Number(localStorage.cluetcount);
+			switch (cluetcount) {
+				//case 0: localStorage.cluet0count = Number(localStorage.cluet0count) + 1;
+				/* 			case 0: document.getElementById('try1').innerText += " ✔️";
+								//color0 = "green";
+								break; */
+				case 1:
+					document.getElementById("try1").style.display = "block";
+					document.getElementById('try1').style.border = "2px solid #6AAA64";
+					color1 = "green";
+					break;
+				case 2: 
+				    document.getElementById("try1").style.display = "block";
+					document.getElementById("try2").style.display = "block";
+					document.getElementById('try2').style.border = "2px solid #6AAA64";
+					color2 = "green";
+					break;
+				case 3: 
+				    document.getElementById("try1").style.display = "block";
+					document.getElementById("try2").style.display = "block";				
+					document.getElementById("try3").style.display = "block";
+					document.getElementById('try3').style.border = "2px solid #6AAA64";
+					color3 = "green";
+					break;
+				case 4: 
+				    document.getElementById("try1").style.display = "block";
+					document.getElementById("try2").style.display = "block";				
+					document.getElementById("try3").style.display = "block";				
+					document.getElementById("try4").style.display = "block";
+					document.getElementById('try4').style.border = "2px solid #6AAA64";
+					color4 = "green";
+					break;
+				case 5: 
+				    document.getElementById("try1").style.display = "block";
+					document.getElementById("try2").style.display = "block";				
+					document.getElementById("try3").style.display = "block";				
+					document.getElementById("try4").style.display = "block";				
+					document.getElementById("try5").style.display = "block";
+					document.getElementById('try5').style.border = "2px solid #6AAA64";
+					color5 = "green";
+					break;
+				case 6: 
+				    document.getElementById("try1").style.display = "block";
+					document.getElementById("try2").style.display = "block";				
+					document.getElementById("try3").style.display = "block";				
+					document.getElementById("try4").style.display = "block";				
+					document.getElementById("try5").style.display = "block";				
+					document.getElementById("try6").style.display = "block";
+					document.getElementById('try6').style.border = "2px solid #6AAA64";
+					color6 = "green";
+					break;
+			}		
 			for (let c = 0; c < width; c++) {
 				let gameTile = document.getElementById(2 + '-' + c.toString());
 				gameTile.innerText = answername[c];
@@ -2373,6 +2526,14 @@ function intialize() {
 			setTimeout(OpenStats, 1100);
 		}
 		else {
+			var cluetcount = Number(localStorage.cluetcount);
+			colorx = "green";
+			document.getElementById("try1").style.display = "block";
+			document.getElementById("try2").style.display = "block";				
+			document.getElementById("try3").style.display = "block";				
+			document.getElementById("try4").style.display = "block";				
+			document.getElementById("try5").style.display = "block";				
+			document.getElementById("try6").style.display = "block";			
 			for (let c = 0; c < width; c++) {
 				let gameTile = document.getElementById(2 + '-' + c.toString());
 				gameTile.innerText = answername[c];
@@ -2510,21 +2671,42 @@ function intialize() {
 			storedadd();
 		}	
 		if (localStorage.try1topen == "-----"){
+			/* document.getElementById("try1").style.display = "block"; */
 			document.getElementById('try1').style.border = "2px solid #6AAA64"
 		}
 		else if (localStorage.try2topen == "-----"){
+			document.getElementById("try1").style.display = "block";
+			/* document.getElementById("try2").style.display = "block"; */
 			document.getElementById('try2').style.border = "2px solid #6AAA64"
 		}
 		else if (localStorage.try3topen == "-----"){
+			document.getElementById("try1").style.display = "block";
+			document.getElementById("try2").style.display = "block";			
+			/* document.getElementById("try3").style.display = "block"; */
 			document.getElementById('try3').style.border = "2px solid #6AAA64"
 		}
 		else if (localStorage.try4topen == "-----"){
+			document.getElementById("try1").style.display = "block";
+			document.getElementById("try2").style.display = "block";			
+			document.getElementById("try3").style.display = "block";			
+			/* document.getElementById("try4").style.display = "block"; */
 			document.getElementById('try4').style.border = "2px solid #6AAA64"
 		}
 		else if (localStorage.try5topen == "-----"){
+			document.getElementById("try1").style.display = "block";
+			document.getElementById("try2").style.display = "block";			
+			document.getElementById("try3").style.display = "block";			
+			document.getElementById("try4").style.display = "block";			
+			/* document.getElementById("try5").style.display = "block"; */
 			document.getElementById('try5').style.border = "2px solid #6AAA64"
 		}
 		else if (localStorage.try6topen == "-----"){
+			document.getElementById("try1").style.display = "block";
+			document.getElementById("try2").style.display = "block";			
+			document.getElementById("try3").style.display = "block";			
+			document.getElementById("try4").style.display = "block";			
+			document.getElementById("try5").style.display = "block";			
+			/* document.getElementById("try6").style.display = "block"; */
 			document.getElementById('try6').style.border = "2px solid #6AAA64"
 		}	
 		// Listen for Key Press
@@ -2691,33 +2873,45 @@ function update(input) {
 							//color0 = "green";
 							break; */
 			case 1: localStorage.cluet1count = Number(localStorage.cluet1count) + 1;
-			    document.getElementById("try1").scrollIntoView(true);
+			    //document.getElementById("try1").scrollIntoView(true);
 				document.getElementById('try1').innerText += " ✔️";
+				document.getElementById("try1").style.display = "block";
+				document.getElementById('try1').style.border = "2px solid #6AAA64";
 				color1 = "green";
 				break;
 			case 2: localStorage.cluet2count = Number(localStorage.cluet2count) + 1;
-			    document.getElementById("try2").scrollIntoView(true);
+			    //document.getElementById("try2").scrollIntoView(true);
 				document.getElementById('try2').innerText += " ✔️";
+				document.getElementById("try2").style.display = "block";
+				document.getElementById('try2').style.border = "2px solid #6AAA64";
 				color2 = "green";
 				break;
 			case 3: localStorage.cluet3count = Number(localStorage.cluet3count) + 1;
-				document.getElementById("try3").scrollIntoView(true);
+				//document.getElementById("try3").scrollIntoView(true);
 				document.getElementById('try3').innerText += " ✔️";
+				document.getElementById("try3").style.display = "block";
+				document.getElementById('try3').style.border = "2px solid #6AAA64";
 				color3 = "green";
 				break;
 			case 4: localStorage.cluet4count = Number(localStorage.cluet4count) + 1;
-				document.getElementById("try4").scrollIntoView(true);
+				//document.getElementById("try4").scrollIntoView(true);
 				document.getElementById('try4').innerText += " ✔️";
+				document.getElementById("try4").style.display = "block";
+				document.getElementById('try4').style.border = "2px solid #6AAA64";
 				color4 = "green";
 				break;
 			case 5: localStorage.cluet5count = Number(localStorage.cluet5count) + 1;
-				document.getElementById("try5").scrollIntoView(true);
+				//document.getElementById("try5").scrollIntoView(true);
 				document.getElementById('try5').innerText += " ✔️";
+				document.getElementById("try5").style.display = "block";
+				document.getElementById('try5').style.border = "2px solid #6AAA64";
 				color5 = "green";
 				break;
 			case 7: localStorage.cluet6count = Number(localStorage.cluet6count) + 1;
-				document.getElementById("try6").scrollIntoView(true);
+				//document.getElementById("try6").scrollIntoView(true);
 				document.getElementById('try6').innerText += " ✔️";
+				document.getElementById("try6").style.display = "block";
+				document.getElementById('try6').style.border = "2px solid #6AAA64";
 				color6 = "green";
 				break;
 		}
@@ -2758,6 +2952,15 @@ function update(input) {
 		if (!gameOver && clueCount < 6) {
 			/* 			document.getElementById("boardfirst").classList.add("shaketile");
 						document.getElementById("boardlast").classList.add("shaketile"); */
+			if (!gameOver && clueCount == 1 && localStorage.totaltgames == 0){
+				setTimeout(OpenFBModal, 3000);
+			}	
+			if (!gameOver && clueCount == 3 && localStorage.totaltgames == 0 && localStorage.modet == "Normal"){
+				setTimeout(OpenEASYModal, 3000);
+			}	
+			if (!gameOver && clueCount == 5 && localStorage.totaltgames == 0){
+				setTimeout(OpenADDModal, 3000);
+			}				
 			document.getElementById("answer").innerText = "FAULT! TRY AGAIN.";
 			if (localStorage.modet == "Easy") {
 				//setTimeout(FetchDataEasy, 1000);
@@ -2811,7 +3014,8 @@ function update(input) {
 			document.getElementById("try6").classList.add("shaketile");
 			var addon = getindices();
 			//document.getElementById('try6').innerText += addon;
-			document.getElementById('try6').style.border = "2px solid #dc143c";			
+			document.getElementById('try6').style.border = "2px solid #dc143c";	
+			document.getElementById("try6").style.display = "block";			
 			tryload();
 			document.getElementById("answertext").hidden = true;
 			document.getElementById("submitbutton").hidden = true;
@@ -2819,7 +3023,7 @@ function update(input) {
 			displayFooter();
 			localStorage.gametwon = 0;
 			localStorage.setItem(('gameover' + days), 1);
-			document.getElementById("try6").scrollIntoView(true);
+			//document.getElementById("try6").scrollIntoView(true);
 			setTimeout(OpenStats, 3000);
 		}
 		if (!gameOver) {
@@ -2827,39 +3031,43 @@ function update(input) {
 				/* 				case 1: document.getElementById('try1').innerText += " ❌";
 									break; */
 				case 2: document.getElementById('try1').innerText += " ❌ ";
-					document.getElementById("try1").scrollIntoView(true);
+					//document.getElementById("try1").scrollIntoView(true);
 					document.getElementById("try1").classList.add("shaketile");
 					document.getElementById('glt').innerText = "ATTEMPT: 2/6 " + "MODE: " + localStorage.modet;
 					var addon = getindices();
 					//document.getElementById('try1').innerText += addon;
 					document.getElementById('try1').style.border = "2px solid #dc143c";
+					document.getElementById("try1").style.display = "block";
 					document.getElementById('try2').style.border = "2px solid #6AAA64";
 					break;
 				case 3: document.getElementById('try2').innerText += " ❌ ";
-					document.getElementById("try2").scrollIntoView(true);
+					//document.getElementById("try2").scrollIntoView(true);
 					document.getElementById("try2").classList.add("shaketile");
 					document.getElementById('glt').innerText = "ATTEMPT: 3/6 " + "MODE: " + localStorage.modet;
 					var addon = getindices();
 					//document.getElementById('try2').innerText += addon;
 					document.getElementById('try2').style.border = "2px solid #dc143c";
+					document.getElementById("try2").style.display = "block";
 					document.getElementById('try3').style.border = "2px solid #6AAA64";					
 					break;
 				case 4: document.getElementById('try3').innerText += " ❌ ";
-					document.getElementById("try3").scrollIntoView(true);
+					//document.getElementById("try3").scrollIntoView(true);
 					document.getElementById("try3").classList.add("shaketile");
 					document.getElementById('glt').innerText = "ATTEMPT: 4/6 " + "MODE: " + localStorage.modet;
 					var addon = getindices();
 					//document.getElementById('try3').innerText += addon;
 					document.getElementById('try3').style.border = "2px solid #dc143c";
+					document.getElementById("try3").style.display = "block";
 					document.getElementById('try4').style.border = "2px solid #6AAA64";					
 					break;
 				case 5: document.getElementById('try4').innerText += " ❌ ";
-					document.getElementById("try4").scrollIntoView(true);	
+					//document.getElementById("try4").scrollIntoView(true);	
 					document.getElementById("try4").classList.add("shaketile");
 					document.getElementById('glt').innerText = "ATTEMPT: 5/6 " + "MODE: " + localStorage.modet;
 					var addon = getindices();
 					//document.getElementById('try4').innerText += addon;
 					document.getElementById('try4').style.border = "2px solid #dc143c";
+					document.getElementById("try4").style.display = "block";
 					document.getElementById('try5').style.border = "2px solid #6AAA64";					
 					break;
 				case 7: document.getElementById('try5').innerText += " ❌ ";
@@ -2867,12 +3075,13 @@ function update(input) {
 						document.getElementById("hintbutton").hidden = false;
 					}
 					document.getElementById("helpbuttons").classList.add("animated");
-				    document.getElementById("try5").scrollIntoView(true);			
+				    //document.getElementById("try5").scrollIntoView(true);			
 					document.getElementById("try5").classList.add("shaketile");
 					document.getElementById('glt').innerText = "ATTEMPT: 6/6 " + "MODE: " + localStorage.modet;
 					var addon = getindices();
 					//document.getElementById('try5').innerText += addon;
 					document.getElementById('try5').style.border = "2px solid #dc143c";
+					document.getElementById("try5").style.display = "block";
 					document.getElementById('try6').style.border = "2px solid #6AAA64";					
 					break;
 			}

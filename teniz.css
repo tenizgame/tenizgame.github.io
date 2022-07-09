@@ -32,51 +32,68 @@ td, th {
   padding: 8px;
 }
 
+/* The point of this tutorial is here */
+
 .containers {
   margin: 0px auto;
-  width: 250px;
+  width: 275px;
 }
 
-/* The point of this tutorial is here */
 .form {
   display: flex;
   margin:0;
-
 }
 
 .search-field {
-  width: 100%;
+  width: 200px;
   padding: 5px 35px 5px 15px;
   border: none;
   border-radius: 100px;
   outline: none;
 }
 
-.search-button {
+/* .search-button {
   background: transparent;
   border: none;
   outline: none;
   margin-left: -33px;
-}
+} */
 
-.search-button img {
+/* .search-button img {
   width: 20px;
   height: 20px;
   object-fit: cover;
-}
+} */
 
 
-#submitbutton, #answertext
+/* #submitbutton, #answertext
+{ border: none;
+  border-radius: 0px;
+ } */
+ 
+ #submitbutton
+{ border: none;
+  border-radius: 12px;
+  margin-left : 20px;
+  height : 30px;
+  /* background-color: #6AAA64; */
+ }
+ 
+ #answertext
 { border: none;
   border-radius: 0px;
  }
 
 #result {
-  width:250px;
+  width:200px;
+
   background-color: white;
   color:black;
   text-align:left;
-  margin: 0 auto;
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 0 ;
+  margin-right: 75 ;
   font-size:10pt;
 }
 
@@ -85,6 +102,7 @@ td, th {
   padding: 0;
   margin: 0;
 }
+
 #result ul li {
   padding: 2px;
 }
@@ -119,7 +137,8 @@ td, th {
     border-style: solid;
     background-color: #fff;
     border-color: #fff;
-	width:145px;
+	width:120px;
+	height:30px;	
 }
 
 .buttonrad1 {
@@ -299,7 +318,7 @@ td, th {
 #board {
   width: 350;
   margin: 0 auto;
-  margin-top: 3px;
+  margin-top: 0px;
   /* background-image: url("pitch.jpg"); */
   background-position: center;
 }
@@ -362,6 +381,11 @@ td, th {
   border-radius: 0px;
   margin-bottom: 10px;
  font-size:13px;
+}
+
+.tryhdr {
+  margin: 0 auto;
+  margin-top: 10px;
 }
 
 #stats {
@@ -473,7 +497,7 @@ background-color: #fe1ggf;
 /* width: 550px; */
 height: 230px;
 overflow: scroll;
-padding: 15px;
+padding: 0px 15px 15px 15px;
 }
 
 .email {
@@ -731,7 +755,7 @@ padding: 15px;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 5%;
   z-index: 5;
   background-color: black;
@@ -768,6 +792,107 @@ padding: 15px;
 }
 
 .fbmodal-body {
+  padding: 10px 15px;
+  text-align: left;
+  color: lightgray;
+  font-size: 12px;
+  text-align:justify;
+}
+
+
+.easymodal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid white;
+  border-radius: 5%;
+  z-index: 5;
+  background-color: black;
+  width: 400px;
+  max-width: 100%;
+}
+
+.easymodal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.easymodal-header {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid white;
+  color: white;
+
+}
+
+.easymodal-header .easymodal-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.easymodal-header .close-button {
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.easymodal-body {
+  padding: 10px 15px;
+  text-align: left;
+  color: lightgray;
+  font-size: 12px;
+  text-align:justify;
+}
+
+.addmodal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid white;
+  border-radius: 5%;
+  z-index: 5;
+  background-color: black;
+  width: 400px;
+  max-width: 100%;
+}
+
+.addmodal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.addmodal-header {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid white;
+  color: white;
+
+}
+
+.addmodal-header .addmodal-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.addmodal-header .close-button {
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.addmodal-body {
   padding: 10px 15px;
   text-align: left;
   color: lightgray;
@@ -897,7 +1022,7 @@ padding: 15px;
   pointer-events: all;
 }
 
-#overlay3 {
+/* #overlay3 {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -912,7 +1037,7 @@ padding: 15px;
 #overlay3.active {
   opacity: 1;
   pointer-events: all;
-}
+} */
 
 
 #tsparticles canvas {

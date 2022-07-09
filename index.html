@@ -115,7 +115,8 @@
 			(ii) The mystery player needs to be identified based on attributes (shown at the top of the page) based on their <strong style="color:white;">GRAND SLAM CAREER STATS.</strong> These attributes include Year of first win, Slams Won, Country (could be multiple countries), Gender, Total GS Singles Titles and Style of Play (RH vs
 			LH). 
 			<br><br>			
-			(iii) Use the search area to key in your answer and hit Enter <img src="search.png"style="width:20px;height:20px;">. After each guess, details of the player you entererd are listed. You also get <strong style="color:white;">INDICATORS </strong>to show how the attributes of the player you entered, match against that of the player in question. 
+			<!-- (iii) Use the search area to key in your answer and hit Enter <img src="search.png"style="width:20px;height:20px;">. After each guess, details of the player you entererd are listed. You also get <strong style="color:white;">INDICATORS </strong>to show how the attributes of the player you entered, match against that of the player in question.  -->
+			(iii) Use the search area to key in your answer and hit <strong style="color:white;">SUBMIT</strong>. After each guess, details of the player you entererd are listed. You also get <strong style="color:white;">INDICATORS </strong>to show how the attributes of the player you entered, match against that of the player in question. 
 			<br><br>			
 			(iv) 🟢 Indicates a match, 🔴 indicates a no-match and 🟡 indicates that what you guessed is within a range of +/- 3 (for year and titles only). Year and Titles also show 🔺 and 🔻 for incorrect guesses. 🔺 means you need to try with a higher number and 🔻 means you need to try with a lower number. 
 			🟡 for Country, indicates a match in the Continent. Remember, a person could be a citizen of multiple countries and some contries are part of multiple continents.
@@ -202,6 +203,7 @@
 				<strong style="color:white;">Length of First Name and Last Name</strong> along with the <strong style="color:white;">Starting Letters </strong>are given below. Use this wisely to identify the player!
 			<br><br><br>
 			<div id="additionalhint"></div>	
+			<br><br>
 		</div>
 	</div>	
 
@@ -212,7 +214,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-md-12 text-center">
-								<h3 class="animate-charcter">Feedback</h3>
+								<h3 class="animate-charcter">Help with Indicators</h3>
 							</div>
 						</div>
 					</div>
@@ -220,9 +222,64 @@
 			<button data-close3-button class="close-button">&times;</button>
 		</div>
 		<div class="fbmodal-body">		
+			(i) 🟢 Indicates a match, 🔴 indicates a no-match and 🟡 indicates that what you guessed is within a range of +/- 3 (for year and titles only). Year and Titles also show 🔺 and 🔻 for incorrect guesses. 🔺 means you need to try with a higher number and 🔻 means you need to try with a lower number. 
+			🟡 for Country, indicates a match in the Continent. Remember, a person could be a citizen of multiple countries and some contries are part of multiple continents.
+			<br><br>
+			(ii) For eg: a 🟢 in the first position (Year), indicates that the player you entered won their first title in the same year as the player in question. A 🔴 in the first position (Year), indicates that the player you entered did not win their first title within 3 years of the player in question (would have been indicated by 🟡, if that were the case). 
+			<br><br>
+			(iii) The indicators for the Grand Slams work differently and are as follows:<br>
+				 🟢 - Indicates that the player you entered has won <strong style="color:white;">EXACTLY THE SAME</strong> Grand Slams as the person in question (not the number of titles; just indicates the Grand Slams). <br>
+				 🔵 - Indicates that the person in question has won <strong style="color:white;">ALL</strong> the Grand Slam titles won by the player you entered. But, they have won something more. <br>
+				 🟡 - Indicates that there are <strong style="color:white;">SOME COMMON</strong> Grand Slam titles between the player your entered and the person in question. But, it is not an exact match.<br>
+				 🔴 - Indicates that there are <strong style="color:white;">NO COMMON</strong> Grand Slam titles between the player your entered and the person in question. Useful in the process of elimination.<br>	 
+			<br><br>				
+			</p>				
+		</div>
+	</div>	
+	
+	<div class="easymodal" id="easymodal">
+		<div class="easymodal-header">
+			<div class="title"><strong>
+					<!-- Feedback -->
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<h3 class="animate-charcter">EASY MODE</h3>
+							</div>
+						</div>
+					</div>
+				</strong></div>
+			<button data-close3-button class="close-button">&times;</button>
+		</div>
+		<div class="easymodal-body">		
+			Switch to the <strong style="color:white;">EASY Mode</strong> any time during the game, where the attributes are revealed, as shown below, after each <strong style="color:white;">INCORRECT</strong> guess. The clues are more direct in this Mode.  
+			<br><br><center><img class="howtogif" src="howto.gif" alt="clue"></center>
+			<br><br>				
+			</p>				
 		</div>
 	</div>	
 
+	<div class="addmodal" id="addmodal">
+		<div class="addmodal-header">
+			<div class="title"><strong>
+					<!-- Feedback -->
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<h3 class="animate-charcter">Additional Hint</h3>
+							</div>
+						</div>
+					</div>
+				</strong></div>
+			<button data-close3-button class="close-button">&times;</button>
+		</div>
+		<div class="addmodal-body">		
+			On your <strong style="color:white;">Final Try</strong>, after you have enabled the Easy Mode, you have the option to look at an <strong style="color:white;">ADDITIONAL HINT</strong>. This is an absolute give-away 😀!
+			<br><br>				
+			</p>				
+		</div>
+	</div>		
+	
 	<div class="summary" id="summary">
 		<div class="summary-header">
 			<div class="title"><strong>
@@ -255,10 +312,10 @@
 			<!-- The button used to copy the text -->
 			<div class="button-row">
 				&nbsp;
-				<button id="HTMLButton" class="buttonrad" onclick="myFunction()">Share Stats🔊</button>
+				<button id="HTMLButton" class="buttonrad" onclick="myFunction()">COPY STATS🔊</button>
 				&nbsp; &nbsp; &nbsp; &nbsp;
 				<a href="https://www.buymeacoffee.com/sank0403/" target="_"><input type="button" class="buttonrad"
-						id="CoffeButton" value="Buy Me a Coffee❤️" /><a>
+						id="CoffeButton" value="❤️TENIZ" /><a>
 			</div>
 		</div>
 		<hr>
@@ -288,6 +345,8 @@
 	<div id="overlay1"></div>
 	<div id="overlay2"></div>
 	<div id="overlay3"></div>
+	<div id="overlay4"></div>
+	<div id="overlay5"></div>
 	<hr>
 	<div id="clue">
 		<div id="clue-ball">
@@ -295,53 +354,38 @@
 	</div>
 	<hr>
 	<div id="glt"></div>
+	<br>
+	<div class="containers">
+		<form action="#" onsubmit="submitMe();return false" autocomplete="off" class="form">
+			<input type="text" placeholder="Search Player Name" class="search-field" / onKeyUp="showResults(this.value)"
+				name="functioninput" id="answertext" autofocus="autofocus">
+			<!-- <button type="submit" class="search-button" name="submit" id="submitbutton" disabled="disabled" > -->
+			<span onclick="disablederror();">
+				<button type="submit" class="search-button" name="submit" id="submitbutton" disabled="disabled">
+					<!-- <img src="search.png">  -->
+					SUBMIT
+				</button>
+			</span>
+		</form>
+	</div>
+	<div id="result"></div>	
+	<div id="historyfirst"></div>
+	<div id="historylast">
+	</div><br>	
+	<div id="helpbuttons">
+		<button id="MODEButton" class="buttonmode" onclick="changemode();">Switch To EASY MODE</button>	
+		<class data-hintmodal-target="#hintmodal" id="hintbutton" hidden><button id="hint" class="buttonmode" onclick="	additionalhint();">Additional HINT</button></class>	
+		<class data-fbmodal-target="#fbmodal" id="fbmodal"><button id="indipop" class="buttonmode">INDICATOR?</button></class>	
+		<class data-easymodal-target="#easymodal" id="easymodal"><button id="easypop" class="buttonmode">EASY?</button></class>	
+		<class data-addmodal-target="#addmodal" id="addmodal"><button id="hintpop" class="buttonmode">HINT?</button></class>	
+	</div>	
+	<h1 id="answer"></h1>
+	<br>	
+	<br>	
+	<hr>	
 	<div id="board" class="scroll">
-		<div id="try1">	</div>
-			<div id="trydetail1" class="trydetail">
-				<div class="detail1">1st Win</div>
-				<div class="detail2">Slams</div>
-				<div class="detail3">Country</div>
-				<div class="detail4">Gender</div>
-				<div class="detail5">Titles</div>
-				<div class="detail6">Plays</div>		
-			</div><br>
-		<div id="try2"></div>
-			<div id="trydetail2" class="trydetail">
-				<div class="detail1">1st Win</div>
-				<div class="detail2">Slams</div>
-				<div class="detail3">Country</div>
-				<div class="detail4">Gender</div>
-				<div class="detail5">Titles</div>
-				<div class="detail6">Plays</div>		
-			</div><br>
-		<div id="try3"></div>
-			<div id="trydetail3" class="trydetail">
-				<div class="detail1">1st Win</div>
-				<div class="detail2">Slams</div>
-				<div class="detail3">Country</div>
-				<div class="detail4">Gender</div>
-				<div class="detail5">Titles</div>
-				<div class="detail6">Plays</div>		
-			</div><br>		
-		<div id="try4"></div>
-			<div id="trydetail4" class="trydetail">
-				<div class="detail1">1st Win</div>
-				<div class="detail2">Slams</div>
-				<div class="detail3">Country</div>
-				<div class="detail4">Gender</div>
-				<div class="detail5">Titles</div>
-				<div class="detail6">Plays</div>		
-			</div><br>		
-		<div id="try5"></div>
-			<div id="trydetail5" class="trydetail">
-				<div class="detail1">1st Win</div>
-				<div class="detail2">Slams</div>
-				<div class="detail3">Country</div>
-				<div class="detail4">Gender</div>
-				<div class="detail5">Titles</div>
-				<div class="detail6">Plays</div>		
-			</div><br>		
-		<div id="try6"></div>
+	<!-- <div id="board"> -->
+		<div id="try6" class="tryhdr">	</div>
 			<div id="trydetail6" class="trydetail">
 				<div class="detail1">1st Win</div>
 				<div class="detail2">Slams</div>
@@ -349,33 +393,58 @@
 				<div class="detail4">Gender</div>
 				<div class="detail5">Titles</div>
 				<div class="detail6">Plays</div>		
-			</div><br>
-	</div>
-	<div id="historyfirst"></div>
-	<div id="historylast">
-	</div>	
-	<div id="helpbuttons">
-		<button id="MODEButton" class="buttonmode" onclick="changemode();">Switch To EASY MODE</button>	
-		<class data-hintmodal-target="#hintmodal" id="hintbutton" hidden><button id="hint" class="buttonmode" onclick="	additionalhint();">Additional HINT</button></class>	
-		<class data-fbmodal-target="#fbmodal" id="fbmodal" hidden><button id="fbmodalbut" class="buttonmode">TEST</button></class>	
-		<!-- <class data-fbmodal-target="#fbmodal" id="fbmodal"> -->
-	</div>	
+			</div>
+		<div id="try5" class="tryhdr"></div>
+			<div id="trydetail5" class="trydetail">
+				<div class="detail1">1st Win</div>
+				<div class="detail2">Slams</div>
+				<div class="detail3">Country</div>
+				<div class="detail4">Gender</div>
+				<div class="detail5">Titles</div>
+				<div class="detail6">Plays</div>		
+			</div>
+		<div id="try4" class="tryhdr"></div>
+			<div id="trydetail4" class="trydetail">
+				<div class="detail1">1st Win</div>
+				<div class="detail2">Slams</div>
+				<div class="detail3">Country</div>
+				<div class="detail4">Gender</div>
+				<div class="detail5">Titles</div>
+				<div class="detail6">Plays</div>		
+			</div>	
+		<div id="try3" class="tryhdr"></div>
+			<div id="trydetail3" class="trydetail">
+				<div class="detail1">1st Win</div>
+				<div class="detail2">Slams</div>
+				<div class="detail3">Country</div>
+				<div class="detail4">Gender</div>
+				<div class="detail5">Titles</div>
+				<div class="detail6">Plays</div>		
+			</div>	
+		<div id="try2" class="tryhdr"></div>
+			<div id="trydetail2" class="trydetail">
+				<div class="detail1">1st Win</div>
+				<div class="detail2">Slams</div>
+				<div class="detail3">Country</div>
+				<div class="detail4">Gender</div>
+				<div class="detail5">Titles</div>
+				<div class="detail6">Plays</div>		
+			</div>	
+		<div id="try1" class="tryhdr"></div>
+			<div id="trydetail1" class="trydetail">
+				<div class="detail1">1st Win</div>
+				<div class="detail2">Slams</div>
+				<div class="detail3">Country</div>
+				<div class="detail4">Gender</div>
+				<div class="detail5">Titles</div>
+				<div class="detail6">Plays</div>		
+		</div>
+	</div>		
+<!-- 	<br>		  
+	<h5>
 	<hr>
-	<h1 id="answer"></h1>
-	<br>
-	<br>
-	<div class="containers">
-		<form action="#" onsubmit="submitMe();return false" autocomplete="off" class="form">
-			<input type="text" placeholder="Search Player Name" class="search-field" / onKeyUp="showResults(this.value)"
-				name="functioninput" id="answertext">
-			<!-- <button type="submit" class="search-button" name="submit" id="submitbutton" disabled="disabled" > -->
-			<span onclick="disablederror();">
-				<button type="submit" class="search-button" name="submit" id="submitbutton" disabled="disabled">
-					<img src="search.png">
-				</button>
-			</span>
-		</form>
-	</div>
-	<div id="result"></div>
-</body>
+		<center><strong style="color:white;">©️sank0403 - 2022</strong></center>
+	<hr>
+	</h5>		
+ --></body>
 </html>
