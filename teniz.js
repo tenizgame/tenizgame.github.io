@@ -10,7 +10,7 @@ for (_x in localStorage) {
 };
 console.log("Total = " + (_lsTotal / 1024).toFixed(2) + " KB"); */
 var addontextarr =[];
-var search_terms = ["Adriano Panatta", "Albert Costa", "Amelie Mauresmo", "Ana Ivanovic", "Anastasia Myskina", "Andre Agassi", "Andres Gimeno", "Andres Gomez", "Andy Murray", "Andy Roddick", "Angelique Kerber", "Ann Jones", "Arantxa Sanchez", "Arthur Ashe", "Ashleigh Barty", "Barbara Jordan", "Barbora Krejcikova", "Bianca Andreescu", "Billie Jean King", "Bjorn Borg", "Boris Becker", "Brian Teacher", "Carlos Moya", "Caroline Wozniacki", "Chris Evert", "Chris O Neil", "Conchita Martinez", "Daniil Medvedev", "Dominic Thiem", "Emma Raducanu", "Evonne Goolagong", "Flavia Pennetta", "Francesca Schiavone", "Gabriela Sabatini", "Garbine Muguruza", "Gaston Gaudio", "Goran Ivanisevic", "Guillermo Vilas", "Gustavo Kuerten", "Hana Mandlikova", "Iga Swiatek", "Ilie Nastase", "Iva Majoli", "Ivan Lendl", "Jan Kodes", "Jana Novotna", "Jelena Ostapenko", "Jennifer Capriati", "Jim Courier", "Jimmy Connors", "Johan Kriek", "John McEnroe", "John Newcombe", "Juan Carlos Ferrero", "Juan Martin Del Potro", "Justine Henin", "Ken Rosewall", "Kerry Reid", "Kim Clijsters", "Li Na", "Lindsay Davenport", "Lleyton Hewitt", "Manuel Orantes", "Marat Safin", "Margaret Court", "Maria Sharapova", "Marin Cilic", "Marion Bartoli", "Mark Edmondson", "Martina Hingis", "Martina Navratilova", "Mary Pierce", "Mats Wilander", "Michael Chang", "Michael Stich", "Mima Jausovec", "Monica Seles", "Nancy Richey", "Naomi Osaka", "Novak Djokovic", "Pat Cash", "Patrick Rafter", "Pete Sampras", "Petr Korda", "Petra Kvitova", "Rafael Nadal", "Richard Krajicek", "Rod Laver", "Roger Federer", "Roscoe Tanner", "Samantha Stosur", "Serena Williams", "Sergi Bruguera", "Simona Halep", "Sloane Stephens", "Sofia Kenin", "Stan Smith", "Stan Wawrinka", "Stefan Edberg", "Steffi Graf", "Sue Barker", "Svetlana Kuznetsova", "Thomas Johansson", "Thomas Muster", "Tracy Austin", "Venus Williams", "Victoria Azarenka", "Virginia Ruzici", "Virginia Wade", "Vitas Gerulaitis", "Yannick Noah", "Yevgeny Kafelnikov",];
+var search_terms = ["Adriano Panatta", "Albert Costa", "Amelie Mauresmo", "Ana Ivanovic", "Anastasia Myskina", "Andre Agassi", "Andres Gimeno", "Andres Gomez", "Andy Murray", "Andy Roddick", "Angelique Kerber", "Ann Jones", "Arantxa Sanchez", "Arthur Ashe", "Ashleigh Barty", "Barbara Jordan", "Barbora Krejcikova", "Bianca Andreescu", "Billie Jean King", "Bjorn Borg", "Boris Becker", "Brian Teacher", "Carlos Moya", "Caroline Wozniacki", "Chris Evert", "Chris O Neil", "Conchita Martinez", "Daniil Medvedev", "Dominic Thiem", "Elena Rybakina", "Emma Raducanu", "Evonne Goolagong", "Flavia Pennetta", "Francesca Schiavone", "Gabriela Sabatini", "Garbine Muguruza", "Gaston Gaudio", "Goran Ivanisevic", "Guillermo Vilas", "Gustavo Kuerten", "Hana Mandlikova", "Iga Swiatek", "Ilie Nastase", "Iva Majoli", "Ivan Lendl", "Jan Kodes", "Jana Novotna", "Jelena Ostapenko", "Jennifer Capriati", "Jim Courier", "Jimmy Connors", "Johan Kriek", "John McEnroe", "John Newcombe", "Juan Carlos Ferrero", "Juan Martin Del Potro", "Justine Henin", "Ken Rosewall", "Kerry Reid", "Kim Clijsters", "Li Na", "Lindsay Davenport", "Lleyton Hewitt", "Manuel Orantes", "Marat Safin", "Margaret Court", "Maria Sharapova", "Marin Cilic", "Marion Bartoli", "Mark Edmondson", "Martina Hingis", "Martina Navratilova", "Mary Pierce", "Mats Wilander", "Michael Chang", "Michael Stich", "Mima Jausovec", "Monica Seles", "Nancy Richey", "Naomi Osaka", "Novak Djokovic", "Pat Cash", "Patrick Rafter", "Pete Sampras", "Petr Korda", "Petra Kvitova", "Rafael Nadal", "Richard Krajicek", "Rod Laver", "Roger Federer", "Roscoe Tanner", "Samantha Stosur", "Serena Williams", "Sergi Bruguera", "Simona Halep", "Sloane Stephens", "Sofia Kenin", "Stan Smith", "Stan Wawrinka", "Stefan Edberg", "Steffi Graf", "Sue Barker", "Svetlana Kuznetsova", "Thomas Johansson", "Thomas Muster", "Tracy Austin", "Venus Williams", "Victoria Azarenka", "Virginia Ruzici", "Virginia Wade", "Vitas Gerulaitis", "Yannick Noah", "Yevgeny Kafelnikov",];
 var ul = document.getElementById("result");
 ul.onclick = function (event) {
 	var target = getEventTarget(event);
@@ -1045,6 +1045,7 @@ var yearList = ["1979",
 "1989",
 "2011",
 "1961",
+"2022",
 ]
 var countryList = [["USA"],
 ["YUG","USA"],
@@ -1158,6 +1159,7 @@ var countryList = [["USA"],
 ["USA"],
 ["AUS"],
 ["GBR"],
+["KAZ"],
 ]
 var continentList = [["NAM"],
 ["EUR","NAM"],
@@ -1271,6 +1273,7 @@ var continentList = [["NAM"],
 ["NAM"],
 ["AUS"],
 ["EUR"],
+["ASA","EUR"],
 ]
 var firstnameList = ["Tracy",
 "Monica",
@@ -1384,6 +1387,7 @@ var firstnameList = ["Tracy",
 "Michael",
 "Samantha",
 "Ann",
+"Elena",
 ]
 var lastnameList = ["Austin",
 "Seles",
@@ -1497,6 +1501,7 @@ var lastnameList = ["Austin",
 "Chang",
 "Stosur",
 "Jones",
+"Rybakina",
 ]
 var nameList = ["tracyaustin",
 "monicaseles",
@@ -1610,6 +1615,7 @@ var nameList = ["tracyaustin",
 "michaelchang",
 "samanthastosur",
 "annjones",
+"elenarybakina",
 ]
 var GSList = [["USO"],
 ["AO","FO","USO"],
@@ -1723,6 +1729,7 @@ var GSList = [["USO"],
 ["FO"],
 ["USO"],
 ["FO","WIM"],
+["WIM"],
 ]
 var GenList = ["SHE",
 "SHE",
@@ -1834,6 +1841,7 @@ var GenList = ["SHE",
 "SHE",
 "SHE",
 "HE",
+"SHE",
 "SHE",
 "SHE",
 ]
@@ -1949,6 +1957,7 @@ var GSTitleList = ["2",
 "1",
 "1",
 "3",
+"1",
 ]
 var PlaysList = ["RH",
 "LH",
@@ -2062,6 +2071,7 @@ var PlaysList = ["RH",
 "RH",
 "RH",
 "LH",
+"RH",
 ]
 //var index = days - 1;
 if (days%yearList.length > 0){
