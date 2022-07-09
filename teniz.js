@@ -190,10 +190,12 @@ function getindices() {
 	document.getElementById("answertext").disabled = true;
 	document.getElementById("submitbutton").disabled = true;	
 	document.getElementById("MODEButton").disabled = true;		
-	if (localStorage.modet == "Normal"){
-		document.getElementById(0).classList.add("zoom-in-box");
-		document.getElementById(0).innerHTML = "<span class='revealicon'>" + addyr + "</span><br><span class='revealsiz'>1st Win</span>";
-	}
+	setTimeout(function(){ 
+		if (localStorage.modet == "Normal"){
+			document.getElementById(0).classList.add("zoom-in-box");
+			document.getElementById(0).innerHTML = "<span class='revealicon'>" + addyr + "</span><br><span class='revealsiz'>1st Win</span>";
+		}
+	}, 2000);
 	//var tempyear = [];
 	//for (let j = 0; j < indices.length; j++) {
 	    //tempyear.push(yearList[indices[0]]);
@@ -261,8 +263,10 @@ function getindices() {
 
 	//}
 	if (localStorage.modet == "Normal"){
-		document.getElementById(1).classList.add("zoom-in-box");
-		document.getElementById(1).innerHTML = "<span class='revealicon'>" + addongs + "</span><br><span class='revealsiz'>Slams</span>";
+		setTimeout(function(){ 		
+			document.getElementById(1).classList.add("zoom-in-box");
+			document.getElementById(1).innerHTML = "<span class='revealicon'>" + addongs + "</span><br><span class='revealsiz'>Slams</span>";
+		}, 2000);		
 	}
 /* 	var tempslam = [];
 	for (let j = 0; j < indices.length; j++) {
@@ -347,8 +351,10 @@ function getindices() {
 		}		
 	} */
 	if (localStorage.modet == "Normal"){
-		document.getElementById(2).classList.add("zoom-in-box");	
-		document.getElementById(2).innerHTML = "<span class='revealicon'>" + addonctry + "</span><br><span class='revealsiz'>Country</span>";
+		setTimeout(function(){ 		
+			document.getElementById(2).classList.add("zoom-in-box");	
+			document.getElementById(2).innerHTML = "<span class='revealicon'>" + addonctry + "</span><br><span class='revealsiz'>Country</span>";
+		}, 2000);		
 	}
 /* 	var tempctry = [];
 	for (let j = 0; j < indices.length; j++) {
@@ -381,8 +387,10 @@ function getindices() {
 		icon4 = "g";
 	}
 	if (localStorage.modet == "Normal"){
-		document.getElementById(3).classList.add("zoom-in-box");	
-		document.getElementById(3).innerHTML = "<span class='revealicon'>" + addongnder + "</span><br><span class='revealsiz'>Gender</span>";
+		setTimeout(function(){ 		
+			document.getElementById(3).classList.add("zoom-in-box");	
+			document.getElementById(3).innerHTML = "<span class='revealicon'>" + addongnder + "</span><br><span class='revealsiz'>Gender</span>";
+		}, 2000);		
 	}
 	  setTimeout(function(){ 
 		if (clueCount == 7 && localStorage.try5topen != "-----" && localStorage.try6topen == "-----"){
@@ -412,8 +420,10 @@ function getindices() {
 	}	
 	
 	if (localStorage.modet == "Normal"){
-		document.getElementById(4).classList.add("zoom-in-box");	
-		document.getElementById(4).innerHTML = "<span class='revealicon'>" + addontitle + "</span><br><span class='revealsiz'>Titles</span>";
+		setTimeout(function(){ 		
+			document.getElementById(4).classList.add("zoom-in-box");	
+			document.getElementById(4).innerHTML = "<span class='revealicon'>" + addontitle + "</span><br><span class='revealsiz'>Titles</span>";
+		}, 2000);		
 	}
 	  setTimeout(function(){ 
 		if (Number(GSTitleList[idx]) > Number(GSTitleList[index])){
@@ -444,8 +454,10 @@ function getindices() {
 		icon6 = "g";
 	}
 	if (localStorage.modet == "Normal"){
-		document.getElementById(5).classList.add("zoom-in-box");	
-		document.getElementById(5).innerHTML = "<span class='revealicon'>" + addonplays + "</span><br><span class='revealsiz'>Plays</span>";		
+		setTimeout(function(){ 		
+			document.getElementById(5).classList.add("zoom-in-box");	
+			document.getElementById(5).innerHTML = "<span class='revealicon'>" + addonplays + "</span><br><span class='revealsiz'>Plays</span>";	
+		}, 2000);
 	}
 	  setTimeout(function(){ 
 		if (clueCount == 7 && localStorage.try5topen != "-----" && localStorage.try6topen == "-----"){
