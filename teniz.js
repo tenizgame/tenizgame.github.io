@@ -518,7 +518,7 @@ if (!localStorage.totaltgames) {
 	localStorage.setItem("cluetxcount", 0);
 	localStorage.setItem("cluetcount", "");
 	localStorage.setItem("gametwon", 0);
-	/* setTimeout(OpenRules, 1100) */;
+	setTimeout(OpenRules, 1100);
 }
 
 if (!localStorage.totaltpoints) {
