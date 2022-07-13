@@ -191,7 +191,7 @@ function getindices() {
 	document.getElementById("submitbutton").disabled = true;	
 	document.getElementById("MODEButton").disabled = true;		
 	setTimeout(function(){ 
-		if (localStorage.modet == "Normal"){
+		if (localStorage.modet == "Normal" && !gameOver){
 			document.getElementById(0).classList.add("zoom-in-box");
 			document.getElementById(0).innerHTML = "<span class='revealicon'>" + addyr + "</span><br><span class='revealsiz'>1st Win</span>";
 		}
@@ -262,7 +262,7 @@ function getindices() {
 
 
 	//}
-	if (localStorage.modet == "Normal"){
+	if (localStorage.modet == "Normal" && !gameOver){
 		setTimeout(function(){ 		
 			document.getElementById(1).classList.add("zoom-in-box");
 			document.getElementById(1).innerHTML = "<span class='revealicon'>" + addongs + "</span><br><span class='revealsiz'>Slams</span>";
@@ -350,7 +350,7 @@ function getindices() {
 		icon3 = "y";	
 		}		
 	} */
-	if (localStorage.modet == "Normal"){
+	if (localStorage.modet == "Normal" && !gameOver){
 		setTimeout(function(){ 		
 			document.getElementById(2).classList.add("zoom-in-box");	
 			document.getElementById(2).innerHTML = "<span class='revealicon'>" + addonctry + "</span><br><span class='revealsiz'>Country</span>";
@@ -386,7 +386,7 @@ function getindices() {
 		addongnder = "🟢";
 		icon4 = "g";
 	}
-	if (localStorage.modet == "Normal"){
+	if (localStorage.modet == "Normal" && !gameOver){
 		setTimeout(function(){ 		
 			document.getElementById(3).classList.add("zoom-in-box");	
 			document.getElementById(3).innerHTML = "<span class='revealicon'>" + addongnder + "</span><br><span class='revealsiz'>Gender</span>";
@@ -419,7 +419,7 @@ function getindices() {
 		icon5 = "y";
 	}	
 	
-	if (localStorage.modet == "Normal"){
+	if (localStorage.modet == "Normal" && !gameOver){
 		setTimeout(function(){ 		
 			document.getElementById(4).classList.add("zoom-in-box");	
 			document.getElementById(4).innerHTML = "<span class='revealicon'>" + addontitle + "</span><br><span class='revealsiz'>Titles</span>";
@@ -453,7 +453,7 @@ function getindices() {
 		addonplays = "🟢";
 		icon6 = "g";
 	}
-	if (localStorage.modet == "Normal"){
+	if (localStorage.modet == "Normal" && !gameOver){
 		setTimeout(function(){ 		
 			document.getElementById(5).classList.add("zoom-in-box");	
 			document.getElementById(5).innerHTML = "<span class='revealicon'>" + addonplays + "</span><br><span class='revealsiz'>Plays</span>";	
