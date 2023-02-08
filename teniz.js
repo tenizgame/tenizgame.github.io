@@ -934,7 +934,6 @@ var clueCount = 0;
 var gameOver = false;
 var arrayid = [0, 1, 2, 3, 4, 5]
 var yearList = [
-"1977",
 "1960",
 "2004",
 "1978",
@@ -1048,10 +1047,10 @@ var yearList = [
 "1979",
 "2022",
 "1990",
+"1977",
 "2023",
 ]
 var countryList = [
-["USA"],
 ["AUS"],
 ["RUS"],
 ["AUS"],
@@ -1165,10 +1164,10 @@ var countryList = [
 ["USA"],
 ["ESP"],
 ["YUG","USA"],
+["USA"],
 ["BLR"],
 ]
 var continentList = [
-["NAM"],
 ["AUS"],
 ["ASA","EUR"],
 ["AUS"],
@@ -1282,10 +1281,10 @@ var continentList = [
 ["NAM"],
 ["EUR"],
 ["EUR","NAM"],
+["NAM"],
 ["EUR"],
 ]
 var firstnameList = [
-"Roscoe",
 "Margaret",
 "Svetlana",
 "Chris",
@@ -1399,10 +1398,10 @@ var firstnameList = [
 "Tracy",
 "Carlos",
 "Monica",
+"Roscoe",
 "Aryna",
 ]
 var lastnameList = [
-"Tanner",
 "Court",
 "Kuznetsova",
 "ONeil",
@@ -1516,10 +1515,10 @@ var lastnameList = [
 "Austin",
 "Alcaraz",
 "Seles",
+"Tanner",
 "Sabalenka",
 ]
 var nameList = [
-"roscoetanner",
 "margaretcourt",
 "svetlanakuznetsova",
 "chrisoneil",
@@ -1633,10 +1632,10 @@ var nameList = [
 "tracyaustin",
 "carlosalcaraz",
 "monicaseles",
+"roscoetanner",
 "arynasabalenka",
 ]
 var GSList = [
-["AO"],
 ["AO","FO","WIM","USO"],
 ["FO","USO"],
 ["AO"],
@@ -1751,9 +1750,9 @@ var GSList = [
 ["USO"],
 ["AO","FO","USO"],
 ["AO"],
+["AO"],
 ]
 var GenList = [
-"HE",
 "SHE",
 "SHE",
 "SHE",
@@ -1867,10 +1866,10 @@ var GenList = [
 "SHE",
 "HE",
 "SHE",
+"HE",
 "SHE",
 ]
 var GSTitleList = [
-"1",
 "24",
 "2",
 "1",
@@ -1985,9 +1984,9 @@ var GSTitleList = [
 "1",
 "9",
 "1",
+"1",
 ]
 var PlaysList = [
-"LH",
 "RH",
 "RH",
 "RH",
@@ -2100,6 +2099,7 @@ var PlaysList = [
 "RH",
 "RH",
 "RH",
+"LH",
 "LH",
 "RH",
 ]
