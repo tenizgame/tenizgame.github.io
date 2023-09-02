@@ -1747,7 +1747,7 @@ var GSList = [
 ["FO","WIM"],
 ["WIM"],
 ["USO"],
-["USO","WIM"],
+["WIM","USO"],
 ["AO","FO","USO"],
 ["AO"],
 ["AO"],
