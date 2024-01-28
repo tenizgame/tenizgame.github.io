@@ -2450,7 +2450,7 @@ function intialize() {
 	document.getElementById("bbhdr").style.display = "none";
 	document.getElementById("bb").style.display = "none";
 	document.getElementById("HTMLButton").style.display = "none";
-	document.getElementById("CoffeButton").style.display = "none";
+	document.getElementById("CoffeButton").style.display = "block";
 	document.getElementById("points-item").style.display = "none";
 	document.getElementById("historyfirst").style.display = "none";
 	document.getElementById("historylast").style.display = "none";
