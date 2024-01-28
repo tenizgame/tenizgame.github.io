@@ -1,0 +1,102 @@
+<html lang="en">
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-B1TW81HLYQ"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'G-B1TW81HLYQ');
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	<!-- 	<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
+	<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti"></script> -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti/dist/tsparticles.preset.confetti.bundle.min.js"></script> -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti@1.22.0/tsparticles.preset.confetti.bundle.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>TENIZ - Save Stats </title>
+	<link href="stats.css" rel="stylesheet">
+	<script defer src="stats.js"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+	<!-- FB Meta Tags -->
+	<meta property="og:url" content="https://tenizgame.github.io/">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="TENIZ - Tennis Quiz of GS Champions">
+	<meta property="og:description"
+		content="Identify the Tennis Player using the clues. A new player is available each day.">
+	<meta property="og:image" content="https://tenizgame.github.io/tennisicon.jpg">
+	<!-- add icon link -->
+	<link rel="icon" href="https://tenizgame.github.io/tennisicon.jpg" type="image/x-icon">
+	<link href="https://tenizgame.github.io/tennisicon.jpg" rel="icon shortcut" />
+	<link href="https://tenizgame.github.io/tennisicon.jpg" rel="apple-touch-icon" />
+	<link rel="manifest" href="https://tenizgame.github.io/teniz_manifest.json" />
+</head>
+<body>
+		
+	<center><img class="headerimage" src="wallpaper.jpg" style="width:200px;height:113px;">
+	<div id="title">
+		<div class="waviy">
+			<span style="--i:1">T</span>
+			<span style="--i:2">E</span>
+			<span style="--i:3">N</span>
+			<span style="--i:4">I</span>
+			<span style="--i:5">Z</span>
+		</div>
+	</div>
+	<div class="waviy1">
+		<span style="--i:1">s</span>
+		<span style="--i:2">t</span>
+		<span style="--i:3">a</span>
+		<span style="--i:4">t</span>
+		<span style="--i:5">s</span>
+		<span style="--i:6"> </span>
+		<span style="--i:7">s</span>
+		<span style="--i:8">a</span>
+		<span style="--i:9">v</span>
+		<span style="--i:10">e</span>
+		<span style="--i:11">r</span>
+
+	</div> 
+	<br>	
+<div class="summary-item">	
+ 		(TRANSFER YOUR STATS TO ANOTHER DEVICE)
+		<!--<input type="button" id="" value="🌎 PRACTICE" onclick="window.open('https://sank0403.github.io/geordle/practice/','_self'); this.blur();" class="buttonrad">	
+		<input type="button" id="" value="🌎 CLASSIC" onclick="window.open('https://sank0403.github.io/geordle/classic/','_self'); this.blur();" class="buttonrad">	
+		<input type="button" value="❤️ GEORDLE️" onclick="window.open('https://www.buymeacoffee.com/sank0403/','_blank'); this.blur();" class="buttonrad">	 -->	
+    <hr>
+<br>
+ENTER YOUR STATS ON THE <t style="color: #6AAA64;"><u><b>NEW DEVICE</u></b></t> AND SUBMIT<br><br>
+&nbsp;&nbsp;PLAYED:<input type="number" id="ssplayed" class="defaultbutton" value=""  onkeydown="if(event.key==='.' || event.key==='-' || event.key==='+'){event.preventDefault();}" />
+<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WIN %:<input type="number" id="sswinp" class="defaultbutton" value=""  onkeydown="if(event.key==='.' || event.key==='-' || event.key==='+'){event.preventDefault();}" />
+<br/>
+<br/>
+STREAK :<input type="number" id="ssstreak"  class="defaultbutton" value=""  onkeydown="if(event.key==='.' || event.key==='-' || event.key==='+'){event.preventDefault();}"  />
+<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;POINTS :<input type="number" id="ssstars"  class="defaultbutton" value=""  onkeydown="if(event.key==='.' || event.key==='-' || event.key==='+'){event.preventDefault();}" />
+<br/>
+<br/>
+GUESS DISTRIBUTION - 1: <input type="number" id="5star" class="defaultbutton" value=""   onkeydown="if(event.key==='.' || event.key==='-' || event.key==='+'){event.preventDefault();}" /><br/>
+GUESS DISTRIBUTION - 2: <input type="number" id="4star" class="defaultbutton" value=""  onkeydown="if(event.key==='.' || event.key==='-' || event.key==='+'){event.preventDefault();}" /><br/>
+GUESS DISTRIBUTION - 3: <input type="number" id="3star" class="defaultbutton" value=""  onkeydown="if(event.key==='.' || event.key==='-' || event.key==='+'){event.preventDefault();}" /><br/>
+GUESS DISTRIBUTION - 4: <input type="number" id="2star" class="defaultbutton" value=""  onkeydown="if(event.key==='.' || event.key==='-' || event.key==='+'){event.preventDefault();}" /><br/>
+GUESS DISTRIBUTION - 5: <input type="number" id="1star" class="defaultbutton" value=""  onkeydown="if(event.key==='.' || event.key==='-' || event.key==='+'){event.preventDefault();}" /><br/>
+GUESS DISTRIBUTION - 6: <input type="number" id="0star" class="defaultbutton" value=""   onkeydown="if(event.key==='.' || event.key==='-' || event.key==='+'){event.preventDefault();}" /><br/>
+GUESS DISTRIBUTION - X: <input type="number" id="xstar" class="defaultbutton" value=""  onkeydown="if(event.key==='.' || event.key==='-' || event.key==='+'){event.preventDefault();}" /><br/>
+<br/>
+<br/>
+</div>
+<hr>
+<button onclick="submitMe('ssplayed','sswinp','ssstreak','ssstars')" id="testButton" >SUBMIT</button>
+	<br><br>
+
+	<br>	
+    <div id="answer"></div>
+	<br><br>
+    </body>
+</html>
