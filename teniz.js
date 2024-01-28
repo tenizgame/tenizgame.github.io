@@ -1166,7 +1166,7 @@ var countryList = [
 ["AUS"],
 ["CZE"],
 ["USA"],
-["ITL"],
+["ITA"],
 ["ESP"],
 ["ARG"],
 ["CZE"],
@@ -2136,14 +2136,12 @@ var PlaysList = [
 //var index = days - 1;
 if (days%yearList.length > 0){
 	var offset = Math.floor(days/yearList.length);
-	console.log(offset);
 }
 else{
 	var offset = (days/yearList.length) - 1;
 }
 if (days > yearList.length){
 	var index  = days - 1 - (offset * yearList.length);
-	console.log(index);
 }
 else {
 	var index = days - 1;
