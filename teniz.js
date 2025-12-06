@@ -189,13 +189,14 @@ function getindices() {
 	//}
 	document.getElementById("answertext").disabled = true;
 	document.getElementById("submitbutton").disabled = true;	
-	document.getElementById("MODEButton").disabled = true;		
-	setTimeout(function(){ 
+	document.getElementById("MODEButton").disabled = true;	
+	//For Stopping Balls being replaced with icons	
+/* 	setTimeout(function(){ 
 		if (localStorage.modet == "Normal" && !gameOver){
 			document.getElementById(0).classList.add("zoom-in-box");
 			document.getElementById(0).innerHTML = "<span class='revealicon'>" + addyr + "</span><br><span class='revealsiz'>1st Win</span>";
 		}
-	}, 2000);
+	}, 2000); */
 	//var tempyear = [];
 	//for (let j = 0; j < indices.length; j++) {
 	    //tempyear.push(yearList[indices[0]]);
@@ -262,12 +263,13 @@ function getindices() {
 
 
 	//}
-	if (localStorage.modet == "Normal" && !gameOver){
+		//For Stopping Balls being replaced with icons	
+/* 	if (localStorage.modet == "Normal" && !gameOver){
 		setTimeout(function(){ 		
 			document.getElementById(1).classList.add("zoom-in-box");
 			document.getElementById(1).innerHTML = "<span class='revealicon'>" + addongs + "</span><br><span class='revealsiz'>Slams</span>";
 		}, 2000);		
-	}
+	} */
 /* 	var tempslam = [];
 	for (let j = 0; j < indices.length; j++) {
 	    tempslam.push(GSList[indices[j]]);
@@ -350,12 +352,13 @@ function getindices() {
 		icon3 = "y";	
 		}		
 	} */
-	if (localStorage.modet == "Normal" && !gameOver){
+		//For Stopping Balls being replaced with icons	
+/* 	if (localStorage.modet == "Normal" && !gameOver){
 		setTimeout(function(){ 		
 			document.getElementById(2).classList.add("zoom-in-box");	
 			document.getElementById(2).innerHTML = "<span class='revealicon'>" + addonctry + "</span><br><span class='revealsiz'>Country</span>";
 		}, 2000);		
-	}
+	} */
 /* 	var tempctry = [];
 	for (let j = 0; j < indices.length; j++) {
 	    tempctry.push(countryList[indices[j]]);
@@ -386,12 +389,13 @@ function getindices() {
 		addongnder = "🟢";
 		icon4 = "g";
 	}
-	if (localStorage.modet == "Normal" && !gameOver){
+		//For Stopping Balls being replaced with icons	
+/* 	if (localStorage.modet == "Normal" && !gameOver){
 		setTimeout(function(){ 		
 			document.getElementById(3).classList.add("zoom-in-box");	
 			document.getElementById(3).innerHTML = "<span class='revealicon'>" + addongnder + "</span><br><span class='revealsiz'>Gender</span>";
 		}, 2000);		
-	}
+	} */
 	  setTimeout(function(){ 
 		if (clueCount == 7 && localStorage.try5topen != "-----" && localStorage.try6topen == "-----"){
 			document.getElementById("trydetail"+(clueCount-2)).style.display = "flex";			
@@ -418,13 +422,13 @@ function getindices() {
 		addontitle = "🟡";
 		icon5 = "y";
 	}	
-	
-	if (localStorage.modet == "Normal" && !gameOver){
+		//For Stopping Balls being replaced with icons	
+/* 	if (localStorage.modet == "Normal" && !gameOver){
 		setTimeout(function(){ 		
 			document.getElementById(4).classList.add("zoom-in-box");	
 			document.getElementById(4).innerHTML = "<span class='revealicon'>" + addontitle + "</span><br><span class='revealsiz'>Titles</span>";
 		}, 2000);		
-	}
+	} */
 	  setTimeout(function(){ 
 		if (Number(GSTitleList[idx]) > Number(GSTitleList[index])){
 			addontitle += "️🔻";
@@ -453,12 +457,13 @@ function getindices() {
 		addonplays = "🟢";
 		icon6 = "g";
 	}
-	if (localStorage.modet == "Normal" && !gameOver){
+	//For Stopping Balls being replaced with icons	
+/* 	if (localStorage.modet == "Normal" && !gameOver){
 		setTimeout(function(){ 		
 			document.getElementById(5).classList.add("zoom-in-box");	
 			document.getElementById(5).innerHTML = "<span class='revealicon'>" + addonplays + "</span><br><span class='revealsiz'>Plays</span>";	
 		}, 2000);
-	}
+	} */
 	  setTimeout(function(){ 
 		if (clueCount == 7 && localStorage.try5topen != "-----" && localStorage.try6topen == "-----"){
 			document.getElementById("trydetail"+(clueCount-2)).style.display = "flex";			
@@ -2479,11 +2484,14 @@ function intialize() {
 	document.getElementById("indipop").style.display = "none";
 	document.getElementById("easypop").style.display = "none";
 	document.getElementById("hintpop").style.display = "none";
-	if (localStorage.modet == "Easy"){
+	//Begin hide easy button
+/* 	if (localStorage.modet == "Easy"){
 		document.getElementById("MODEButton").style.display = "none";
 		//document.getElementById("historyfirst").style.display = "flex";
 		//document.getElementById("historylast").style.display = "flex";		
-	}	
+	}	 */
+	document.getElementById("MODEButton").hidden = true;
+		//End hide easy button
 	document.getElementById('try1').innerText = localStorage.try1topen;
 	document.getElementById('try2').innerText = localStorage.try2topen;
 	document.getElementById('try3').innerText = localStorage.try3topen;
@@ -2658,10 +2666,15 @@ function intialize() {
 			document.getElementById("answer").classList.remove("popanswer");
 			document.getElementById("answer").style.color = "#FDFEFF";
 			if (localStorage.modet == "Normal"){
+									//Begin show easy button			
+					if (localStorage.gltttext == "ATTEMPT: 6/6 MODE: Normal"){
+					document.getElementById("MODEButton").hidden = false;
+					}
+					//End show easy button
 				document.getElementById("answer").innerText = "MATCH RESUMED. PLAY!";
 			}
 			else {
-				document.getElementById("answer").innerText = "MATCH RESUMED IN EASY MODE. PLAY!";
+				document.getElementById("answer").innerText = "MATCH RESUMED IN EASY MODE. PLAY!";									
 			}
 			if (localStorage.yeartopen == 1) {
 				if (localStorage.modet == "Easy") {
@@ -2737,7 +2750,8 @@ function intialize() {
 			}
 			if (localStorage.modet == "Normal") {
 				if (storedaddon != ""){
-					var storedaddonlast = storedaddon[storedaddon.length-1];
+										//	//For Stopping Balls being replaced with icons
+/* 					var storedaddonlast = storedaddon[storedaddon.length-1];
 					for (let i = 0; i < storedaddonlast.length; i++) {
 						if (storedaddonlast[i] == "r"){	
 							document.getElementById(i).innerHTML = "<span class='revealicon'>" + "🔴";
@@ -2751,13 +2765,15 @@ function intialize() {
 						else if (storedaddonlast[i] == "b"){
 							document.getElementById(i).innerHTML = "<span class='revealicon'>" + "🔵";
 						} 						
-					}
-					document.getElementById(0).innerHTML += "</span><br><span class='revealsiz'>1st Win</span>";
+					} */
+										
+/* 					document.getElementById(0).innerHTML += "</span><br><span class='revealsiz'>1st Win</span>";
 					document.getElementById(1).innerHTML += "</span><br><span class='revealsiz'>Slams</span>";
 					document.getElementById(2).innerHTML += "</span><br><span class='revealsiz'>Country</span>";
 					document.getElementById(3).innerHTML += "</span><br><span class='revealsiz'>Gender</span>";
 					document.getElementById(4).innerHTML += "</span><br><span class='revealsiz'>Titles</span>";
-					document.getElementById(5).innerHTML += "</span><br><span class='revealsiz'>Plays</span>";
+					document.getElementById(5).innerHTML += "</span><br><span class='revealsiz'>Plays</span>"; */
+					//	//For Stopping Balls being replaced with icons
 				}
 			}
 			storedadd();
@@ -2805,6 +2821,7 @@ function intialize() {
 		/* 		document.addEventListener("keyup", (e) => {
 					processInput(e);
 				}) */
+
 		if (clueCount == 7 && localStorage.modet == "Easy") {
 			 document.getElementById("hintbutton").hidden = false;
 		}
@@ -2830,7 +2847,11 @@ function switchmode() {
     document.getElementById('glt').innerText = localStorage.gltttext;
 	if (clueCount == 7 && localStorage.modet == "Easy") {
 		 document.getElementById("hintbutton").hidden = false;
+		 //begin edits to change color to red
+		 document.getElementById("answer").style.color = "#dc143c";
 		 document.getElementById("answer").innerText = "ADDITIONAL HINT ENABLED!";
+		 setTimeout(FinalClue, 2000);
+	 //end edits 
 	}	
 	if (localStorage.yeartopen == 1) {
 		document.getElementById(0).innerHTML = "<span class='revealcol'>" + year + "</span><br><br><span class='revealsiz'>(1st Win)</span>";
@@ -2950,7 +2971,12 @@ function update(input) {
 		document.getElementById("hintbutton").style.display = "none";
 		document.getElementById("historyfirst").style.display = "flex";
 		document.getElementById("historylast").style.display = "flex";	
-		document.getElementById("clue-ball").classList.add("animated");
+		//begin edits
+		/* document.getElementById("clue-ball").classList.add("animated"); */
+		if (localStorage.modet == "Normal") {
+			document.getElementById("clue-ball").classList.add("animated");
+		}		
+		//end edits
 		document.getElementById("answer").style.color = "#FDFEFF";
 		localStorage.totaltgames = Number(localStorage.totaltgames) + 1;
 		localStorage.totaltwins = Number(localStorage.totaltwins) + 1;
@@ -3044,13 +3070,14 @@ function update(input) {
 		if (!gameOver && clueCount < 6) {
 			/* 			document.getElementById("boardfirst").classList.add("shaketile");
 						document.getElementById("boardlast").classList.add("shaketile"); */
-			if (!gameOver && clueCount == 1 && localStorage.totaltgames == 0){
+			if (!gameOver && clueCount == 1 && localStorage.totaltgames < 1){
 				setTimeout(OpenFBModal, 3000);
 			}	
-			if (!gameOver && clueCount == 3 && localStorage.totaltgames == 0 && localStorage.modet == "Normal"){
+			//begin edits
+			/* if (!gameOver && clueCount == 4 && localStorage.totaltgames < 1 && localStorage.modet == "Normal"){
 				setTimeout(OpenEASYModal, 3000);
-			}	
-			if (!gameOver && clueCount == 5 && localStorage.totaltgames == 0){
+			}	*/
+			if (!gameOver && clueCount == 5 && localStorage.totaltgames < 1){ 	
 				setTimeout(OpenADDModal, 3000);
 			}				
 			document.getElementById("answer").innerText = "FAULT! TRY AGAIN.";
@@ -3089,7 +3116,12 @@ function update(input) {
 			document.getElementById("hintbutton").style.display = "none";
 			document.getElementById("historyfirst").style.display = "flex";
 			document.getElementById("historylast").style.display = "flex";	
+		//begin edits
+		/* document.getElementById("clue-ball").classList.add("animated"); */
+		if (localStorage.modet == "Normal") {
 			document.getElementById("clue-ball").classList.add("animated");
+		}		
+		//end edits
 			document.getElementById("answer").style.color = "#dc143c";
 			document.getElementById("answer").innerText = "HARD LUCK TODAY. \nNEXT TOURNAMENT STARTS TOMORROW!";
 			localStorage.totaltgames = Number(localStorage.totaltgames) + 1;
@@ -3160,21 +3192,26 @@ function update(input) {
 					//document.getElementById('try4').innerText += addon;
 					document.getElementById('try4').style.border = "2px solid #dc143c";
 					document.getElementById("try4").style.display = "block";
-					document.getElementById('try5').style.border = "2px solid #6AAA64";					
-					break;
+					document.getElementById('try5').style.border = "2px solid #6AAA64";							
+					break;					
 				case 7: document.getElementById('try5').innerText += " ❌ ";
 				    if (localStorage.modet == "Easy") {
 						document.getElementById("hintbutton").hidden = false;
 					}
-					document.getElementById("helpbuttons").classList.add("animated");
+					//Begin edits
+					/* document.getElementById("helpbuttons").classList.add("animated"); */
+					//end edits 
 				    //document.getElementById("try5").scrollIntoView(true);			
 					document.getElementById("try5").classList.add("shaketile");
 					document.getElementById('glt').innerText = "ATTEMPT: 6/6 " + "MODE: " + localStorage.modet;
 					var addon = getindices();
 					//document.getElementById('try5').innerText += addon;
 					document.getElementById('try5').style.border = "2px solid #dc143c";
-					document.getElementById("try5").style.display = "block";
-					document.getElementById('try6').style.border = "2px solid #6AAA64";					
+					document.getElementById("try5").style.display = "block";	
+					document.getElementById('try6').style.border = "2px solid #6AAA64";	
+					//Begin show easy button					
+					document.getElementById("MODEButton").hidden = false;
+					//End show easy button					
 					break;
 			}
 		}
