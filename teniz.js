@@ -2848,7 +2848,7 @@ function switchmode() {
 	if (clueCount == 7 && localStorage.modet == "Easy") {
 		 document.getElementById("hintbutton").hidden = false;
 		 //begin edits to change color to red
-		 document.getElementById("answer").style.color = "#dc143c";
+		 document.getElementById("answer").style.color = "#FDFEFF";
 		 document.getElementById("answer").innerText = "ADDITIONAL HINT ENABLED!";
 		 setTimeout(FinalClue, 2000);
 	 //end edits 
@@ -3095,7 +3095,7 @@ function update(input) {
 			document.getElementById("answer").classList.remove("popanswer");
 			if (document.getElementById("answer").classList.contains("popanswer")) {
 			}
-			document.getElementById("answer").style.color = "#dc143c";
+			document.getElementById("answer").style.color = "#FDFEFF";
 			if (localStorage.modet == "Easy") {
 				document.getElementById("answer").innerText = "MATCH POINT DOWN!\nADDITIONAL HINT ENABLED.";
 			}
@@ -3199,7 +3199,7 @@ function update(input) {
 						document.getElementById("hintbutton").hidden = false;
 					}
 					//Begin edits
-					/* document.getElementById("helpbuttons").classList.add("animated"); */
+					/* document.getElementById("helpbuttons").classList.add("animated");  */
 					//end edits 
 				    //document.getElementById("try5").scrollIntoView(true);			
 					document.getElementById("try5").classList.add("shaketile");

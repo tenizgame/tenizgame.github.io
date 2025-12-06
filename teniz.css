@@ -72,13 +72,21 @@ td, th {
  } */
  
  #submitbutton
-{ border: none;
+{   background-color: #222;
+  color: white;
+  border: none;
+   font-size: 12px;
+     font-weight: bold;
   border-radius: 12px;
   margin-left : 20px;
   height : 30px;
+   width:100px;
   /* background-color: #6AAA64; */
  }
  
+
+ 
+  
  #answertext
 { border: none;
   border-radius: 0px;
@@ -152,7 +160,7 @@ td, th {
 	width:100px;
 }
 
-.buttonmode{
+/* .buttonmode{
   border-radius: 12px;
     font-weight: bold;
     font-size: 10px;
@@ -163,7 +171,39 @@ td, th {
 	width:80px;
 	margin-bottom:10px;
 	margin-top:5px;
+} */
+
+.buttonmode {
+  background-color: #222;
+  color: white;
+  border: none;
+  font-size: 12px;
+  letter-spacing:1.5px;
+  font-weight: bold;
+  border-radius: 12px;
+  /* box-shadow: 0 0 10px #008E97, 0 0 20px #008E97, 0 0 30px #008E97; */
+    /* box-shadow: 0 0 3px red, 0 0 6px red, 0 0 9px red; */
+  	width:100px;
+	height:40px;
+	margin-bottom:15px;
+	margin-top:15px;
+  animation: glow-pulse 2s 10 alternate; /* Apply the pulsing animation */
 }
+
+
+@keyframes glow-pulse {
+  from {
+    box-shadow: 0 0 5px red;
+  }
+  to {
+    box-shadow: 0 0 10px red, 0 0 20px red;
+  }
+}
+
+
+
+
+
 
 .bluebutton {
     font-weight: bold;
