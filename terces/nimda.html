@@ -518,32 +518,75 @@ async function savePlayerEdits() {
 }
 
 /* ---------------------------------------------------------
-   Player Lookup (with pagination)
+   Player Lookup (LIKE search, case-insensitive, limit 5)
 --------------------------------------------------------- */
 async function findPlayer() {
-    const name = document.getElementById("playerName").value.trim();
-    if (!name) return;
+    const input = document.getElementById("playerName").value.trim();
+    if (!input) return;
 
-    const q = query(
+    const lower = input.toLowerCase();
+    const upper = input.charAt(0).toUpperCase() + input.slice(1);
+
+    const lowerEnd = lower + "\uf8ff";
+    const upperEnd = upper + "\uf8ff";
+
+    // Query both uppercase and lowercase ranges
+    const q1 = query(
         collection(db, "leaderboard"),
-        where("name", "==", name),
-        limit(5)
+        orderBy("name"),
+        where("name", ">=", lower),
+        where("name", "<=", lowerEnd),
+        limit(100)
     );
 
-    const snap = await getDocs(q);
+    const q2 = query(
+        collection(db, "leaderboard"),
+        orderBy("name"),
+        where("name", ">=", upper),
+        where("name", "<=", upperEnd),
+        limit(100)
+    );
 
-    if (snap.empty) {
+    const [snap1, snap2] = await Promise.all([getDocs(q1), getDocs(q2)]);
+
+    // Merge and filter case-insensitive
+    let matches = [];
+
+    function addMatches(snap) {
+        snap.forEach(docSnap => {
+            const d = docSnap.data();
+            if (d.name.toLowerCase().startsWith(lower)) {
+                matches.push(docSnap);
+            }
+        });
+    }
+
+    addMatches(snap1);
+    addMatches(snap2);
+
+    // Remove duplicates
+    const unique = [];
+    const seen = new Set();
+    for (const doc of matches) {
+        if (!seen.has(doc.id)) {
+            seen.add(doc.id);
+            unique.push(doc); 
+        }
+    }
+
+    // Limit to 100 for display
+    foundPlayers = unique.slice(0, 100);
+
+    if (foundPlayers.length === 0) {
         result.innerHTML = "Player not found.";
-        foundPlayers = [];
         lastFoundDoc = null;
         return;
     }
 
-    foundPlayers = snap.docs;
     currentIndex = 0;
-
     showPlayerAtIndex(currentIndex);
 }
+
 
 function showPlayerAtIndex(i) {
     const docSnap = foundPlayers[i];
