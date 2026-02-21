@@ -190,6 +190,7 @@
             <button onclick="loadOldest()">Show 25 Oldest</button>
             <button onclick="loadNewest()">Show 25 Newest</button>
             <button onclick="loadPreviousMonth()">Show Previous Month</button>
+			<button onclick="loadTopRanks()">Show Top 100 Ranks</button>
         </div>
 
         <div class="right-buttons">
@@ -705,6 +706,24 @@ async function loadPreviousMonth() {
     renderListResults(snap);
 }
 
+async function loadTopRanks() {
+    const now = new Date();
+    const monthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+    const q = query(
+        collection(db, "leaderboard"),
+		where("month", "==", monthKey),
+		orderBy("stars", "desc"),
+		orderBy("wins", "desc"),
+		orderBy("winpct", "desc"),
+		orderBy("updated", "asc"),
+        limit(100)
+    );
+
+    const snap = await getDocs(q);
+    renderListResults(snap);
+}
+
+
 /* ---------------------------------------------------------
    Render List Results
 --------------------------------------------------------- */
@@ -714,6 +733,7 @@ function renderListResults(snap) {
     let html = `
     <table class="oldest-table">
         <tr>
+            <th>#</th>
             <th>Name</th>
             <th>Stars</th>
             <th>Wins</th>
@@ -723,12 +743,15 @@ function renderListResults(snap) {
         </tr>
     `;
 
+    let index = 1;
+
     snap.forEach(docSnap => {
         const d = docSnap.data();
         lastShownDocs.push(docSnap.id);
 
         html += `
         <tr id="row-${docSnap.id}">
+            <td>${index}</td>
             <td>${d.name}</td>
             <td>${d.stars}</td>
             <td>${d.wins}</td>
@@ -736,11 +759,14 @@ function renderListResults(snap) {
             <td>${formatTS(d.updated)}</td>
             <td><span class="delete-icon" onclick="deletePlayerById('${docSnap.id}')">🗑️</span></td>
         </tr>`;
+
+        index++;
     });
 
     html += "</table>";
     oldestTable.innerHTML = html;
 }
+
 
 /* ---------------------------------------------------------
    Expose functions
@@ -761,6 +787,7 @@ window.showPlayerAtIndex = showPlayerAtIndex;
 window.enterEditMode = enterEditMode;
 window.cancelEditMode = cancelEditMode;
 window.savePlayerEdits = savePlayerEdits;
+window.loadTopRanks = loadTopRanks;
 
 </script>
 </body>
