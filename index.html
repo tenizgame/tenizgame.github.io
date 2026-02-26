@@ -1,774 +1,456 @@
 <html lang="en">
-
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8Z0YPNQECD"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-8Z0YPNQECD');
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti@1.22.0/tsparticles.preset.confetti.bundle.min.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-	<meta http-equiv="Pragma" content="no-cache">
-	<meta http-equiv="Expires" content="0">	
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="chnlnk.css?v=23" rel="stylesheet">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    <!-- add icon link for all standard browsers -->
-    <script type="module">
-        import {
-            initializeApp
-        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import {
-            getFirestore,
-            collection,
-            doc,
-            setDoc,
-            getDoc,
-            getDocs,
-            query,
-            orderBy,
-            deleteDoc,
-            limit,
-            where,
-            serverTimestamp
-        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-        import {
-            getAuth,
-            signInAnonymously
-        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-        // 1. Initialize Firebase FIRST
-        const firebaseConfig = {
-            apiKey: "AIzaSyCyAxFfNR7h77tG7qOYjZEXiPVepe4pqPg",
-            authDomain: "chn-lnk.firebaseapp.com",
-            projectId: "chn-lnk",
-            storageBucket: "chn-lnk.firebasestorage.app",
-            messagingSenderId: "417710575115",
-            appId: "1:417710575115:web:337f0eb082fe6a1a7e810e"
-        };
-
-        const app = initializeApp(firebaseConfig);
-
-        // 2. THEN Auth
-        const auth = getAuth(app);
-        signInAnonymously(auth).catch(console.error);
-        window.auth = auth;
-        // 3. THEN Firestore
-        const db = getFirestore(app);
-
-        // 4. Expose globally
-        window.db = db;
-        window.doc = doc;
-        window.setDoc = setDoc;
-        window.getDoc = getDoc;
-        window.serverTimestamp = serverTimestamp;
-        window.collection = collection;
-        window.getDocs = getDocs;
-        window.query = query;
-        window.orderBy = orderBy;
-        window.limit = limit;
-        window.where = where;
-        window.deleteDoc = deleteDoc;
-    </script>
-
-    <!-- Primary Meta Tags -->
-    <title>CHN LNK — The Daily Word Chain Game</title>
-    <meta name="title" content="CHN LNK">
-    <meta name="description" content="The Daily Word Chain Game">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://thechnlnk.com/">
-    <meta property="og:title" content="CHN LNK">
-    <meta property="og:description" content="The Daily Word Chain Game">
-    <meta property="og:image" content="https://thechnlnk.com/icon.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://thechnlnk.com/">
-    <meta property="twitter:title" content="CHN LNK">
-    <meta property="twitter:description" content="The Daily Word Chain Game">
-    <meta property="twitter:image" content="https://thechnlnk.com/icon.jpg">
-
-    <link rel="icon" href="https://thechnlnk.com/icon.jpg" type="image/x-icon">
-    <link rel="manifest" href="https://thechnlnk.com/chnlnk_manifest.json" /> <!--for shortcut icons and transitions-->
-    <link href="https://thechnlnk.com/icon.jpg" rel="icon shortcut" sizes="3232" /> <!--follow same as indle - usually a smaller version-->
-    <link href="https://thechnlnk.com/icon.jpg" rel="apple-touch-icon" /> <!--This is the phone icon web title image-->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-B1TW81HLYQ"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'G-B1TW81HLYQ');
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	<!-- 	<script src="https://cdn.jsdelivr.net/npm/tsparticles"></script>
+	<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti"></script> -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti/dist/tsparticles.preset.confetti.bundle.min.js"></script> -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti@1.22.0/tsparticles.preset.confetti.bundle.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>TENIZ - Tennis Quiz of GS Champions </title>
+	<link href="teniz.css" rel="stylesheet">
+	<script defer src="teniz.js"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+	<!-- FB Meta Tags -->
+	<meta property="og:url" content="https://tenizgame.github.io/">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="TENIZ - Tennis Quiz of GS Champions">
+	<meta property="og:description"
+		content="Identify the Tennis Player using the clues. A new player is available each day.">
+	<meta property="og:image" content="https://tenizgame.github.io/tennisicon.jpg">
+	<!-- add icon link -->
+	<link rel="icon" href="https://tenizgame.github.io/tennisicon.jpg" type="image/x-icon">
+	<link href="https://tenizgame.github.io/tennisicon.jpg" rel="icon shortcut" />
+	<link href="https://tenizgame.github.io/tennisicon.jpg" rel="apple-touch-icon" />
+	<link rel="manifest" href="https://tenizgame.github.io/teniz_manifest.json" />
 </head>
-
 <body>
-<div id="loader"> 
-<div class="spinner" "correct">
-</div> <div id="loadingRow" style="display:flex; justify-content:center; margin-top:10px;">
-  <div class="tile loading-correct">L</div>
-  <div class="tile loading-correct">O</div>
-  <div class="tile loading-correct">A</div>
-  <div class="tile loading-correct">D</div>
-  <div class="tile loading-correct">I</div>
-  <div class="tile loading-correct">N</div>
-  <div class="tile loading-correct">G</div>
-</div>
-
-</p> </div>
-<div id="game" style="display:none;">
-    <button id="btnParty" type="button" hidden></button>
-    <div id="tsparticles"></div>
-    <div id="stats">
-        <div id="stats-item">
-            <span class="stats-item">
-                <span data-modal-target="#modal" id="rulesbutton">
-                    <img src="rulesicon.png" style="width:22px;height:22px;">
-                </span>
-
-                <a href="mailto: info@thechnlnk.com" target="_">
-                    <img src="mail.png" style="width:22px;height:17px" alt="EMAIL">
-                </a>
-            </span>
-
-            <span class="stats-item">
-                <a href="https://www.buymeacoffee.com/sank0403/" target="_">
-                    <img src="hearticon.png" style="width:28px;height:22px" alt="Buy Me A Coffee">
-                </a>
-
-                <span data-summary-target="#summary" id="statsbutton">
-                    <img src="statsicon.png" style="width:22px;height:22px;">
-                </span>
-            </span>
-        </div>
-    </div>
-    <!-- <img class="headerimage" src="bg.png"> -->
-    <h1 class = "title-scale"> CH<strong style="color:red">AI</strong>N L<strong style="color:red">I</strong>NK</h1>
-    <!-- <div id="title">
-		<div class="waviy">
-			<span style="--i:1">G</span>
-			<span style="--i:2">E</span>
-			<span style="--i:3">O</span>
-			<span style="--i:4">R</span>
-			<span style="--i:5">D</span>
-			<span style="--i:6">L</span>
-			<span style="--i:7">E</span>
+	<button id="btnParty" type="button" hidden></button>
+	<div id="tsparticles"></div>
+	<div id="stats">
+		<div id="stats-item">
+			<span class="stats-item">
+				<class data-modal-target="#modal" id="rulesbutton"><img src="rulesicon.png" style="width:22px;height:22px;"></class>
+				<a href="https://sank0403.github.io/test/"><img src="infinity.jpg" style="width:22px;height:22px" alt ="Practice Mode"></a>
+				<a href="mailto: geowordle@gmail.com" target="_"><img src="mail.png" style="width:22px;height:22px" alt ="EMAIL"></a>
+			</span>	
+			<span class="stats-item">
+			    <a href="https://twitter.com/TenizGame?ref_src=twsrc%5Etfw" target="_"><img src="twitter.jpg" style="width:22px;height:22px" alt ="Twitter"></a>
+			    <a href="https://www.buymeacoffee.com/sank0403/" target="_"><img src="hearticon.png" style="width:22px;height:22px" alt ="Buy Me A Coffee"></a>
+				<class data-summary-target="#summary" id="statsbutton"><img src="statsicon.png" style="width:27px;height:20px;"></class>
+			</span>			
 		</div>
-	</div> -->
-    <div class="waviy1">
-        <span style="--i:1">d</span>
-        <span style="--i:2">a</span>
-        <span style="--i:3">i</span>
-        <span style="--i:4">l</span>
-        <span style="--i:5">y</span>
-        <span style="--i:6"> </span>
-        <span style="--i:7">c</span>
-        <span style="--i:8">h</span>
-        <span style="--i:9">n</span>
-        <span style="--i:10"> </span>
-        <span style="--i:11">l</span>
-        <span style="--i:12">n</span>
-        <span style="--i:13">k</span>
-        <span style="--i:14"> </span>
-        <span style="--i:15">#</span>
-        <span style="--i:16"></span>
-        <span style="--i:17" id="daycount"></span>
-    </div>
-    <span style="--i:18" id="submitter"></span>
-    <!--<br>	
-	<a href="https://www.buymeacoffee.com/sank0403" target="_"><center><img src="1000.png"></center></a>-->
-    <br>
-    <!-- <input type="button" id="" value="🌎 PRACTICE" onclick="window.open('https://sank0403.github.io/geordle/practice/','_self'); this.blur();" class="buttonrad">	
-		<input type="button" id="" value="🌎 CLASSIC" onclick="window.open('https://sank0403.github.io/geordle/classic/','_self'); this.blur();" class="buttonrad">	 -->
-    <!-- <input type="button" value="❤️ GEORDLE️" onclick="window.open('https://www.buymeacoffee.com/sank0403/','_blank'); this.blur();" class="buttonrad">	 -->
-    <div class="modal" id="modal">
-        <div class="modal-header">
-            <div class="title"><strong>
-                    <!-- How To Play -->
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <h3>HOW TO PLAY?</h3>
-                            </div>
-                        </div>
-                    </div>
-                </strong></div>
-            <button data-close-button class="close-button">&times;</button>
-        </div>
-        <div class="modal-body">
-            <br>
-
-            The objective of <strong style="color:white;">CHN LNK</strong> is to identify all the words in the <strong style="color:white;">CHAIN - One letter at a time</strong>. Every word on the chain <strong style="color:white;">LINKS</strong> logically, with the word below it.
-            <br>
-
-            <div class="rules-wrapper">
-
-                <ul class="rules-list">
-                    <li>
-                        <strong style="color:white;">CLICK to guess a letter. </strong>If the letter you selected is in<strong style="color:white;"> ANY WORD </strong>of the chain,
-                        the corresponding tiles will be highlighted in
-                        <strong style="color:lightgreen;">Green</strong>.
-                    </li>
-                    <br>
-
-                    <li>
-                        <strong style="color:white;">VOWELS</strong> (<strong style="color:red;">Red</strong> on grid)</strong><strong style="color:white;"> are Disabled</strong> till you figure out all the
-                        <strong style="color:white;">OTHER LETTERS</strong> in the chain.
-
-                    </li>
-                    <br>
-
-                    <li>
-                        See the <strong style="color:white;">TUTORIAL</strong> of solving a chain.
-                        Notice how vowels are disabled initially, and how each word meaningfully
-                        links with the next one : FOREST TRAIL → TRAIL MIX → MIX TAPE → TAPE MEASURE → MEASURE STEP → STEP LADDER.
-                    </li>
-                </ul>
-                <img class="rules-image" src="tutorial.gif" alt="Example Chain">
-            </div>
-            <!-- MASTER COLLAPSIBLE -->
-            <div class="collapsible-section">
-                <button class="collapsible master">📘 Additional Rules</button>
-
-                <div class="content master-content">
-
-                    <!-- COLLAPSIBLE: LIVES -->
-                    <div class="collapsible-section">
-                        <button class="collapsible">⚪ Lives</button>
-                        <div class="content">
-                            <ul class="rules-list">
-                                <li>Each incorrect letter costs you <strong style="color:white;">1 Life</strong>. You begin with 5 lives, shown as ⚪ on the game board.</li>
-                                <li>If you complete the entire chain, your remaining lives convert into ⭐'s. You can earn up to 5 ⭐'s each day.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- COLLAPSIBLE: TIMED MODE -->
-                    <div class="collapsible-section">
-                        <button class="collapsible">⏱️ Timed Mode</button>
-                        <div class="content">
-                            <ul class="rules-list">
-                                <li>Timed mode can be enabled only at the start of the game. A <strong style="color:white;">1 Minute Timer</strong> is added.</li>
-                                <li>You lose a life if you don’t make a correct guess within the minute.</li>
-                                <li>A Perfect Solve in Timed Mode awards <strong style="color:white;">3 Dynamites</strong>.</li>
-                                <li>Finishing the game in Timed Mode without using dynamites grants <strong style="color:white;">1 Extra Star</strong>.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- COLLAPSIBLE: MYSTERY -->
-                    <div class="collapsible-section">
-                        <button class="collapsible">❓ Mystery Letter</button>
-                        <div class="content">
-                            <ul class="rules-list">
-                                <li>Every day, one <strong style="color:white;">Mystery Letter</strong> is chosen at random.</li>
-                                <li>Identify it in the <strong style="color:white;">Next Try</strong> to earn bonus Dynamites.</li>
-								<ul>    
-									<li>Normal Mode → <strong style="color:white;">+1 Dynamite</strong>.</li>
-                                    <li>Timed Mode → <strong style="color:white;">+2 Dynamites</strong>.</li>
-								</ul>	
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- COLLAPSIBLE: DYNAMITE -->
-                    <div class="collapsible-section">
-                        <button class="collapsible">💣 Dynamite</button>
-                        <div class="content">
-                            <ul class="rules-list">
-                                <li>Dynamite eliminates <strong style="color:white;">Three Random</strong> invalid keys.</li>
-                                <li>Invalid keys are letters that:</li>
-                                <ul>
-                                    <li>Do not appear in any future words.</li>
-                                    <li>Are still active on the keyboard.</li>
-                                </ul>
-                                <li>See <strong style="color:white;">Mystery Letter</strong> and <strong style="color:white;">Perfect Solve</strong> to learn how to earn Dynamites.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- COLLAPSIBLE: PERFECT SOLVE -->
-                    <div class="collapsible-section">
-                        <button class="collapsible">❤️ Perfect Solve</button>
-                        <div class="content">
-                            <ul class="rules-list">
-                                <li>No mistakes — no wrong letters.</li>
-                                <li>No dynamite — using one disqualifies a Perfect Solve.</li>
-                                <li>Rewards:</li>
-                                <ul>
-                                    <li>Normal Mode → <strong style="color:white;">+2 Dynamites</strong>.</li>
-                                    <li>Timed Mode → <strong style="color:white;">+3 Dynamites</strong>.</li>
-                                </ul>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- COLLAPSIBLE: LAST LIFE -->
-                    <div class="collapsible-section">
-                        <button class="collapsible">⭐ Last Life Trade‑Off</button>
-                        <div class="content">
-                            <ul class="rules-list">
-                                <li>When you reach your final life, you get a one‑time offer:</li>
-                                <ul>
-                                    <li>Trade <strong style="color:white;">2 Saved Stars</strong></li>
-                                    <li>For <strong style="color:white;">1 Extra Life</strong></li>
-                                </ul>
-                                <li>This offer applies only <strong style="color:white;">Once</strong> per day.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- COLLAPSIBLE: STREAK -->
-                    <div class="collapsible-section">
-                        <button class="collapsible">🎉 Rewards</button>
-                        <div class="content">
-                            <ul class="rules-list">
-                                <li>Play every day to build your streak.</li>
-                                <li>Every <strong style="color:white;">10‑Day Streak</strong> earns <strong style="color:white;">3 Dynamites</strong>.</li>
-                                <li>Earn <strong style="color:white;">Badges</strong> at streaks of 10, 25, 50, and 100.</li>
-                                <li>Finish in the <strong style="color:white;">Top 3</strong> of the Monthly Leaderboard to win bonus Dynamites.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <script>
-                const collapsibles = document.querySelectorAll(".collapsible");
-
-                collapsibles.forEach(btn => {
-                    btn.addEventListener("click", function() {
-
-                        this.classList.toggle("active");
-                        const content = this.nextElementSibling;
-
-                        // toggle height animation
-                        if (content.style.maxHeight) {
-                            content.style.maxHeight = null;
-                        } else {
-                            content.style.maxHeight = content.scrollHeight + "px";
-                        }
-
-                        // toggle scrollable state
-                        content.classList.toggle("open");
-                    });
-                });
-            </script>
-
-            <br>
-            <center>
-                A new <strong style="color:white;">CHN LNK</strong> will be available <strong style="color:white;">Everyday</strong>!
-            </center>
-
-        </div>
-
-    </div>
-		<div class="summary" id="summary">
-			<div class="summary-header">
-				<div class="title"><strong>
-						<div class="container">
-							<div class="row">
-								<div class="col-md-12 text-center">
-									<h3>SUMMARY</h3>
-								</div>
+	</div>		
+	<center><img class="headerimage" src="wallpaper.jpg" style="width:200px;height:113px;">
+	<div id="title">
+		<div class="waviy1">
+			<span style="--i:1">T</span>
+			<span style="--i:2">E</span>
+			<span style="--i:3">N</span>
+			<span style="--i:4">I</span>
+			<span style="--i:5">Z</span>
+		</div>
+	</div>
+	<br>
+	<div class="waviy">
+		<span style="--i:1">A</span>
+		<span style="--i:2"> </span>
+		<span style="--i:3">N</span>
+		<span style="--i:4">e</span>
+		<span style="--i:5">w</span>
+		<span style="--i:6"> </span>
+		<span style="--i:7">P</span>
+		<span style="--i:8">l</span>
+		<span style="--i:9">a</span>
+		<span style="--i:10">y</span>
+		<span style="--i:11">e</span>
+		<span style="--i:12">r</span>
+		<span style="--i:13"> </span>
+		<span style="--i:14">D</span>
+		<span style="--i:15">a</span>
+		<span style="--i:16">i</span>
+		<span style="--i:17">l</span>
+		<span style="--i:18">y</span>
+		<span style="--i:19"> </span>
+		<span style="--i:20">#</span>
+		<span style="--i:21"> </span>
+		<span style="--i:22" id="daycount"></span>
+	</div>
+	<!-- <div id="mycounter"></div> -->
+	<!-- <button data-modal-target="#modal">Start Game</button>  -->
+	<!--&nbsp; &nbsp;  MODE :-     <input type="button" id="mode" value="EASY" onclick="toggle(this); "></center>-->
+	<!-- &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  -->
+	<!--<button onclick="onTimer()">Clickme</button>-->
+		<!-- <input type="button" id="" value="🎾 PRACTICE" onclick="window.open('https://sank0403.github.io/test/','_blank'); this.blur();" class="buttonrad1">				 -->
+	<div class="modal" id="modal">
+		<div class="modal-header">
+			<div class="title"><strong>
+					<!-- How To Play -->
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<!-- <h3 class="animate-charcter">How To Play</h3> -->
+								<h3>HOW TO PLAY...</h3>
 							</div>
 						</div>
+					</div>
 				</strong></div>
-				<button data-close1-button class="close-button">&times;</button>
-			</div>
-
-			<div class="summary-body">
-
-				<!-- SUMMARY STATS -->
-				<div id="stats-item">
-					<span id="11" class="summary-item"></span>
-					<span id="12" class="summary-item"></span>
-					<span id="13" class="summary-item"></span>
-					<span id="14" class="summary-item"></span>
-				</div>
-
-				<!-- MONTHLY LEADERBOARD -->
-				<div id="leaderboardCollapsible">
-					<div id="leaderboardHeader">
-						<span>🏆 MONTHLY LEADERBOARD</span>
-						<span id="leaderboardToggle">▼</span>
-					</div>
-
-					<div id="leaderboardContent">
-						<table id="leaderboardTable">
-							<thead>
-								<tr>
-									<th>Rank</th>
-									<th>Name</th>
-									<th>Stars</th>
-									<th>Wins</th>
-									<th>Win%</th>
-								</tr>
-							</thead>
-							<tbody id="leaderboardBody">
-								<tr>
-									<td colspan="6" style="text-align:center;">Loading...</td>
-								</tr>
-							</tbody>
-						</table>
-
-						<div class="edit-row">
-							<button id="changeNameBtn" class="buttonmode">EDIT</button>
-							<span id="nrNote" class="nr-note">NR – Not Ranked in Top 100</span>
-						</div>
-					</div>
-				</div>
-
-				<br>
-
-				<!-- STAR DISTRIBUTION -->
-				<div id="sdhdr"><b>⭐ STAR DISTRIBUTION ⭐</b></div>
-				<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-
-				<br>
-
-				<!-- SHARE / INVITE / COFFEE BUTTONS -->
-				<div class="button-container">
-					<div class="button-row">
-
-						<button id="HTMLButton" class="buttonmode" onclick="myFunction(); this.blur();">
-							<span class="invite-inner">
-								<span class="blink-icon">📲</span> SHARE
-							</span>
-						</button>
-
-						<div class="wa-wrapper">
-							<img src="whatsapp.png"
-								 id="wabutton"
-								 class="wa-icon"
-								 title="WhatsApp Options"
-								 style="height:35px;"
-								 onclick="postStatsToWhatsApp()">
-						</div>
-
-						<div data-hintmodal-target="#hintmodal" id="hintbutton">
-							<button id="Rafflebutton" class="buttonmode" title="Join Monthly Raffle">
-								<span class="invite-inner">
-									INVITE <span class="blink-icon">🎁</span>
-								</span>
-							</button>
-						</div>
-
-					</div>
-
-					<a href="https://buymeacoffee.com/sank0403" target="_blank" id="coffeeFullWidthButton">
-						<strong style="font-size:150%;">☕</strong>
-						&nbsp;&nbsp;&nbsp;BUY CHN LNK A COFFEE&nbsp;&nbsp;&nbsp;
-						<strong style="font-size:150%;">👍</strong>
-					</a>
-				</div>
-				<!-- REFERRAL LEADERBOARD (NOW CORRECTLY CONTAINED) -->
-				<div id="referralCollapsible">
-					<div id="referralHeader">
-						<span>🎯 REFERRAL LEADERBOARD</span>
-						<span id="referralToggle">▼</span>
-					</div>
-
-					<div id="referralContent">
-						<table id="referralTable">
-							<thead>
-								<tr>
-									<th>Rank</th>
-									<th>Name</th>
-									<th>Invites</th>
-								</tr>
-							</thead>
-							<tbody id="referralLeaderboardBody">
-								<tr>
-									<td colspan="3" style="text-align:center;">Loading...</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div> <!-- END summary-body -->
-
-			<hr>
-
-			<div id="footer">
-				<div id="submission">
-					<a href="https://docs.google.com/forms/d/e/1FAIpQLSeZinZwGDTCZ_Cfp_CVlSllO7nFb1vLnFW4ZPrbje767FsKgQ/viewform?usp=publish-editor" target="_">
-						<span class="flash1">
-							<span class="flash1-dot"></span>
-							📩 SUBMIT A CHN LNK
-						</span>
-					</a>
-				</div>
-
-				<div id="centerblock">
-					<span id="bbhdr">NEW GAME IN</span>
-					<span id="bb"></span>
-				</div>
-
-				<div data-pastmodal-target="#pastmodal" id="pastbutton">
-					<button id="Archivebutton" class="buttonmodetext glasslink" onclick="playArchive()">
-						📅 PLAY PAST CHAINS
-					</button>
-				</div>
-			</div>
-
-		</div> <!-- END summary -->
-
-    <div class="hintmodal" id="hintmodal">
-        <div class="hintmodal-header">
-            <div class="title"><strong>
-                    <!-- Hint -->
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <h3>JOIN THE MONTHLY RAFFLE</h3>
-                            </div>
-                        </div>
-                    </div>
-                </strong></div>
-            <button data-close2-button class="close-button">&times;</button>
-        </div>
-        <div class="hintmodal-body">
-            <!-- <strong style="color:white;">Length of First Name and Last Name</strong> along with the <strong style="color:white;">STARTING LETTERS </strong>are given below. Use this wisely to identify the player! -->
-            We are trying to spread the word about <strong style="color:white;">CHN LNK </strong>and you can help the cause. If you enjoyed the game, please use the link below to EMAIL your Friends and Family, and invite them to play. In return, we will enter you into a monthly raffle️, where one lucky winner will win an <strong style="color:white;">AMAZON GIFT CARD 🎁. </strong><br>
-			<br>Also, every referral will earn you <strong style="color:white;">TWO BONUS DYNAMITES 💣.</strong> 
-            <center>
-				<br>
-				<a id="emailLink" href="#" class="buttonmode">
-					<strong style="font-size:150%;">📧</strong>
-					&nbsp;&nbsp;&nbsp;SEND INVITE EMAIL&nbsp;&nbsp;&nbsp;
-					<strong style="font-size:150%;">📧</strong>
-				</a>
-				<br><br>
-			</center>
-			<br>
-            PS: Only add the email address of the recepients, and leave all other content of the email as such. You can send as many invites as you want. The more folks you invite the better your chances are in the draw.<br>
-            <br>
-			<script>
-				const userId = localStorage.playerName;
-				const encodedUser = encodeURIComponent(userId);
-				const referralLink = `https://thechnlnk.com/?ref=${encodedUser}`;
-
-				document.getElementById("emailLink").href =
-					"mailto:?cc=info@thechnlnk.com"
-					+ "&subject=" + encodeURIComponent("Try this new viral game - CHN LNK!")
-					+ "&body=" + encodeURIComponent(
-						"⭐ Try CHN LNK - The Daily Word Chain Game ⭐\n"
-						+ referralLink + "\n\n"
-						+ "Each Chain is challenging — conquer them, grow your daily streak, and let your leaderboard rank speak for itself!\n\n"
-						+ "—\n"
-						+ "Invited By: " + userId + "\n"
-						+ "Invitation Code: " + userId + "\n"
-						+ "🙂 Have fun!"
-					);
-			</script>
-            <div id="additionalhint"></div>
-            <br>
-        </div>
-    </div>
-
-    <div class="addmodal" id="addmodal">
-        <div class="addmodal-header">
-            <div class="title"><strong>
-                    <!-- Feedback -->
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <h3>GIVEAWAY ALERT!</h3>
-                            </div>
-                        </div>
-                    </div>
-                </strong></div>
-            <button data-close3-button class="close-button">&times;</button>
-        </div>
-        <div class="addmodal-body">
-            Thank you for coming back to play CHN LNK! <br><br>
-            At the end of the game, look for the <strong style="color:white;">RAFFLE</strong> button on the Summary page to enter yourself in a <strong style="color:white;">GIVEAWAY</strong>!
-            <br><br>Close this alert to return to the game.
-            <br><br>
-            </p>
-        </div>
-    </div>
-
-    <div class="timemodal" id="timemodal">
-        <div class="timemodal-header">
-            <div class="title"><strong>
-                    <!-- Feedback -->
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <h3>TIMED MODE ALERT!</h3>
-                            </div>
-                        </div>
-                    </div>
-                </strong></div>
-            <button data-close3-button class="close-button">&times;</button>
-        </div>
-        <div class="timemodal-body">
-            In case you are looking for a harder challenge, we now have a new <strong style="color:white;">TIMED MODE</strong>. <br><br>
-            This mode can be enabled only at the start of the game. A <strong style="color:white;">1 Minute Timer</strong> is added to the game in this mode. In this mode you lose a life, if you do not make a correct guess within the allotted time.
-            <br><br>Close this alert to return to the game.
-            <br><br>
-            </p>
-        </div>
-    </div>
-
-    <div class="pastmodal" id="pastmodal">
-        <div class="pastmodal-header">
-            <div class="title"><strong>
-                    <!-- Feedback -->
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <h3>CHN LNK ARCHIVE</h3>
-                            </div>
-                        </div>
-                    </div>
-                </strong></div>
-            <button data-close4-button class="close-button">&times;</button>
-        </div>
-		<div class="pastmodal-body">
-			Welcome to the CHN LNK Archives, where you can play all the past Chains. 
-			Please note that Archive plays DO NOT COUNT towards the main game Stats. 
-			Also, there is no Timed Mode or Special Features in the Archives.
+			<button data-close-button class="close-button">&times;</button>
+		</div>
+		<div class="modal-body Contents">
+			<p id="text-area">
+			(i) <strong style="color:white;">TENIZ</strong>, a game inspired by <strong style="color:white;">WORDLE</strong>, tests your knowledge on Tennis Grand Slam Champions of the Open
+			Era. The objective is to identify the Champion Tennis Player every day, using the Clues.
 			<br><br>
+			(ii) The mystery player needs to be identified based on attributes (shown alongside the Tennis Balls) based on their <strong style="color:white;">GRAND SLAM CAREER STATS.</strong> These attributes include Year of first win, Slams Won, Country (could be multiple countries), Gender, Total GS Singles Titles and Style of Play (RH vs
+			LH). 
+			<br><br>			
+			<!-- (iii) Use the search area to key in your answer and hit Enter <img src="search.png"style="width:20px;height:20px;">. After each guess, details of the player you entererd are listed. You also get <strong style="color:white;">INDICATORS </strong>to show how the attributes of the player you entered, match against that of the player in question.  -->
+			(iii) Use the search area to key in your answer and hit <strong style="color:white;">SUBMIT</strong>. After each guess, details of the player you entererd are listed. You also get <strong style="color:white;">INDICATORS </strong>to show how the attributes of the player you entered, match against that of the player in question. 
+			<br><br>			
+			(iv) 🟢 Indicates a match, 🔴 indicates a no-match and 🟡 indicates that what you guessed is within a range of +/- 3 (for year and titles only). Year and Titles also show 🔺 and 🔻 for incorrect guesses. 🔺 means you need to try with a higher number and 🔻 means you need to try with a lower number. 
+			🟡 for Country, indicates a match in the Continent. Remember, a person could be a citizen of multiple countries and some contries are part of multiple continents.
+			<br><br>
+			(v) For eg: a 🟢 in the first position (Year), indicates that the player you entered won their first title in the same year as the player in question. A 🔴 in the first position (Year), indicates that the player you entered did not win their first title within 3 years of the player in question (would have been indicated by 🟡, if that were the case). 
+			<br><br>
+			(vi) The indicators for the Grand Slams work differently and are as follows:<br>
+				 🟢 - Indicates that the player you entered has won <strong style="color:white;">EXACTLY THE SAME</strong> Grand Slams as the person in question (not the number of titles; just indicates the Grand Slams). <br>
+				 🔵 - Indicates that the person in question has won <strong style="color:white;">ALL</strong> the Grand Slam titles won by the player you entered. But, they have won something more. <br>
+				 🟡 - Indicates that there are <strong style="color:white;">SOME COMMON</strong> Grand Slam titles between the player your entered and the person in question. But, it is not an exact match.<br>
+				 🔴 - Indicates that there are <strong style="color:white;">NO COMMON</strong> Grand Slam titles between the player your entered and the person in question. Useful in the process of elimination.<br>	 
+			<br>			
+			<!-- (vii) Switch to the <strong style="color:white;">EASY MODE</strong> any time during the game, where the attributes are revealed, as shown below, after each <strong style="color:white;">INCORRECT</strong> guess. The clues are more direct in this Mode.   -->
+			<!-- <center><img class="howtogif" src="howto.gif" alt="clue"></center> -->
+			<!-- <br>
+			(viii) On your <strong style="color:white;">FINAL TRY</strong>, after you have enabled the Easy Mode, you have the option to look at an <strong style="color:white;">ADDITIONAL HINT</strong>. This is an absolute give-away 😀! -->
+			(vii) On your <strong style="color:white;">FINAL TRY</strong>, you can switch to the <strong style="color:white;">EASY MODE</strong>, where the attributes are revealed. This should make things easy. After you have enabled the Easy Mode, as a final clue, you have the option to look at an <strong style="color:white;">ADDITIONAL HINT</strong>. This is an absolute give-away 😀!
 
-			<!-- ⭐ NEW HORIZONTAL MONTH SCROLLER WRAPPER -->
-			<div id="archive-wrapper">
-				<button id="prev-month" class="nav-btn">‹</button>
+			<br><br>
+			(viii) Depending on which attempt you won the game at, you will be awarded <strong style="color:white;">RANKING POINTS</strong>. It starts at 10 points for the first attempt and reduces by a point for each subsequent try. If you switch to the Easy Mode you will be docked 2 points and if you use the Additional Hint a further 2 points will be docked. No points are awarded if you fail to identify the player. 
+			<strong style="color:white;">TIER</strong> is determined based on Total Points. Try and get to <strong style="color:white;">GRAND SLAM</strong> level!
+			<br><br>
+			<table>
+			  <tr>
+				<th><center>POINTS</center></th>
+				<th><center>TIER</center></th>
+			  </tr>
+			  <tr>
+				<td>0 - 99</td>
+				<td>FUTURES</td>
+			  </tr>
+			  <tr>
+				<td>100 - 249</td>
+				<td>CHALLENGERS</td>
+			  </tr>
+			  <tr>
+				<td>250 - 499</td>
+				<td>LEVEL 250</td>
+			  </tr>
+			  <tr>
+				<td>500 - 999</td>
+				<td>LEVEL 500</td>
+			  </tr>
+			  <tr>
+				<td>1000 - 1499</td>
+				<td>LEVEL 1000</td>
+			  </tr>
+			  <tr>
+				<td>1500 - 1999</td>
+				<td>TOUR FINALS</td>
+			  </tr>
+			  <tr>
+				<td>2000+</td>
+				<td>GRAND SLAMS</td>
+			  </tr>			  
+		  </table>
+		  <br>
+			(ix) Use the <strong style="color:white;">PRACTICE MODE</strong> for unlimited plays. 
+			<br>		  
+			<h5>
+			<hr>
+				<center>Legend :AO - Australian Open | FO - French Open | WIM - Wimbledon | USO - US Open | GS - Grand Slam | RH - Right Handed | LH - Left Handed</center>
+			<hr>
+			</h5>
+			<h5>
+				<center><strong style="color:white;">©️sank0403 - 2022</strong></center>
+			</h5>
+			</p>		
+		</div>
+	</div>
+	<div class="hintmodal" id="hintmodal">
+		<div class="hintmodal-header">
+			<div class="title"><strong>
+					<!-- Hint -->
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<h3>HINT...</h3>
+							</div>
+						</div>
+					</div>
+				</strong></div>
+			<button data-close2-button class="close-button">&times;</button>
+		</div>
+		<div class="hintmodal-body">
+				<strong style="color:white;">Length of First Name and Last Name</strong> along with the <strong style="color:white;">STARTING LETTERS </strong>are given below. Use this wisely to identify the player!
+			<br><br><br>
+			<div id="additionalhint"></div>	
+			<br><br>
+		</div>
+	</div>	
 
-				<div id="archive-scroller">
-					<div id="archiveboard"></div>
-				</div>
+	<div class="fbmodal" id="fbmodal">
+		<div class="fbmodal-header">
+			<div class="title"><strong>
+					<!-- Feedback -->
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<h3>HELP WITH INDICATORS...</h3>
+							</div>
+						</div>
+					</div>
+				</strong></div>
+			<button data-close3-button class="close-button">&times;</button>
+		</div>
+		<div class="fbmodal-body">		
+			(i) 🟢 Indicates a match, 🔴 indicates a no-match and 🟡 indicates that what you guessed is within a range of +/- 3 (for year and titles only). Year and Titles also show 🔺 and 🔻 for incorrect guesses. 🔺 means you need to try with a higher number and 🔻 means you need to try with a lower number. 
+			🟡 for Country, indicates a match in the Continent. Remember, a person could be a citizen of multiple countries and some contries are part of multiple continents.
+			<br><br>
+			(ii) For eg: a 🟢 in the first position (Year), indicates that the player you entered won their first title in the same year as the player in question. A 🔴 in the first position (Year), indicates that the player you entered did not win their first title within 3 years of the player in question (would have been indicated by 🟡, if that were the case). 
+			<br><br>
+			(iii) The indicators for the Grand Slams work differently and are as follows:<br>
+				 🟢 - Indicates that the player you entered has won <strong style="color:white;">EXACTLY THE SAME</strong> Grand Slams as the person in question (not the number of titles; just indicates the Grand Slams). <br>
+				 🔵 - Indicates that the person in question has won <strong style="color:white;">ALL</strong> the Grand Slam titles won by the player you entered. But, they have won something more. <br>
+				 🟡 - Indicates that there are <strong style="color:white;">SOME COMMON</strong> Grand Slam titles between the player your entered and the person in question. But, it is not an exact match.<br>
+				 🔴 - Indicates that there are <strong style="color:white;">NO COMMON</strong> Grand Slam titles between the player your entered and the person in question. Useful in the process of elimination.<br>	 
+			<br><br>				
+			</p>				
+		</div>
+	</div>	
+	
+	<div class="easymodal" id="easymodal">
+		<div class="easymodal-header">
+			<div class="title"><strong>
+					<!-- Feedback -->
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<h3>EASY MODE...</h3>
+							</div>
+						</div>
+					</div>
+				</strong></div>
+			<button data-close3-button class="close-button">&times;</button>
+		</div>
+		<div class="easymodal-body">		
+			 Remember - after your <strong style="color:white;"> NEXT TRY</strong>, you can switch to the <strong style="color:white;">EASY MODE</strong>, where the attributes are revealed. This should make things easy ☺️.
+			<!-- <br><br><center><img class="howtogif" src="howto.gif" alt="clue"></center> -->
+			<br><br>				
+			</p>				
+		</div>
+	</div>	
 
-				<button id="next-month" class="nav-btn">›</button>
+	<div class="addmodal" id="addmodal">
+		<div class="addmodal-header">
+			<div class="title"><strong>
+					<!-- Feedback -->
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<h3>MATCH POINT DOWN!</h3>
+							</div>
+						</div>
+					</div>
+				</strong></div>
+			<button data-close3-button class="close-button">&times;</button>
+		</div>
+		<div class="addmodal-body">		
+			You can now switch to the <strong style="color:white;">EASY MODE</strong>, where the attributes are revealed. This should make things easy. However, there are point penalties. 
+			<br> <br>If you are still struggling after you have enabled the <strong style="color:white;">EASY MODE</strong>, as a final clue, you have the option to look at an <strong style="color:white;">ADDITIONAL HINT</strong>. This is an absolute give-away 😀!
+			<br><br>				
+			</p>				
+		</div>
+	</div>		
+	
+	<div class="summary" id="summary">
+		<div class="summary-header">
+			<div class="title"><strong>
+					<!-- Statistics -->
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<h3>STATISTICS</h3>
+							</div>
+						</div>
+					</div>
+				</strong></div>
+			<button data-close1-button class="close-button">&times;</button>
+		</div>
+		<div class="summary-body">
+			<div id="stats-item">
+				<span id="6" class="summary-item"></span>
+				<span id="7" class="summary-item"></span>
+				<span id="8" class="summary-item"></span>
+				<span id="9" class="summary-item"></span>
+			</div>
+			<br>
+			<div id="tier-item"></div>
+			<div id="points-item"></div>
+			<br>
+			<div id="sdhdr"><b>GUESS DISTRIBUTION</b></div>
+			<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+			<br>
+
+			<!-- The button used to copy the text -->
+			<div class="button-row">
+				&nbsp;
+				<button id="HTMLButton" class="buttonrad" onclick="myFunction()">COPY STATS🔊</button>
+				&nbsp; &nbsp; &nbsp; &nbsp;
+<!-- 				<a href="https://www.buymeacoffee.com/sank0403/" target="_"><input type="button" class="buttonrad"
+						id="CoffeButton" value="❤️TENIZ" /><a> -->
+				<a href="https://tenizgame.github.io/statssaver/"><input type="button" class="buttonrad" onclick="this.blur();"
+						id="CoffeButton" value="SAVE STATS📱" title="Save Stats to New Device!" /><a>
 			</div>
 		</div>
-    </div>
-    <div id="overlay"></div>
-    <div id="overlay1"></div>
-    <div id="overlay2"></div>
-    <div id="overlay3"></div>
-    <div id="overlay4"></div>
-    <div id="overlay5"></div>
-    <hr>
-    <div id="top-resources">
-        <div id="lives"></div>
-        <div id="dynamite-btn">💣 x0</div>
-    </div>
-    <!-- Momentum Timer Bar -->
-    <div class="top-stack" >
-        <div class="momentum-wrapper">
-            <div id="momentum-bar-container" >
-                <div id="momentum-bar">
-                    <span id="momentum-counter"></span>
-                </div>
-            </div>
-        </div>
-        <div class="top-row" >
-            <div class="toggle-wrapper" id="toggle-row">
-                <span class="toggle-label">ENABLE TIMED MODE</span>
-                <label class="toggle">
-                    <input type="checkbox" id="hardmodetoggle">
-                    <span class="slider"></span>
-                </label>
-            </div>
-        </div>
-    </div>
-    <!-- <br> -->
-    <!-- <div id="board"> -->
-    <!-- <div id="boardfirst"> -->
-    <!-- <div id="downarrowhide">⬇️</div> -->
-    <!-- </div> -->
+		<hr>
+		<div id="footer">
+			<div>
+				<div id="bbhdr">New Game In</div>
+				<div id="bb"></div>
+			</div>
+			<div>
+				<div id="pzlhdr">Try a different puzzle.</div>
+				<div id="pzl"><b><a href="https://sank0403.github.io/geordle/" target="_">Play <u>GEORDLE</u> 🌎 </a></b>
+				</div>
+			</div>
+		</div><br>
+<!-- 		<div>
+			<center>
+				<div class="email"><a href="mailto: geowordle@gmail.com">📧</a>
+					<a href="https://twitter.com/TenizGame?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large"
+					data-show-count="false">Follow @TenizGame</a>
+				<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>				
+				</div>
+			</center>
+		</div>
+		<br> -->
+	</div>
+	<div id="overlay"></div>
+	<div id="overlay1"></div>
+	<div id="overlay2"></div>
+	<div id="overlay3"></div>
+	<div id="overlay4"></div>
+	<div id="overlay5"></div>
+	<hr>
+	<div id="glt"></div>
+	<br>
+	<div class="containers">
+		<form action="#" onsubmit="submitMe();return false" autocomplete="off" class="form">
+			<input type="text" placeholder="Search Player Name" class="search-field" / onKeyUp="showResults(this.value)"
+				name="functioninput" id="answertext" autofocus="autofocus">
+			<!-- <button type="submit" class="search-button" name="submit" id="submitbutton" disabled="disabled" > -->
+			<span onclick="disablederror();">
+				<button type="submit" class="search-button" name="submit" id="submitbutton" disabled="disabled">
+					<!-- <img src="search.png">  -->
+					SUBMIT
+				</button>
+			</span>
+		</form>
+	</div>
+	<div id="result"></div>	
+	<div id="historyfirst"></div>
+	<div id="historylast">
+	</div><br>
+	<div id="helpbuttons">
+		<button id="MODEButton" class="buttonmode" onclick="changemode();">EASY MODE</button>	
+		<class data-hintmodal-target="#hintmodal" id="hintbutton" hidden><button id="hint" class="buttonmode" onclick="	additionalhint();">ADDITIONAL HINT</button></class>	
+		<class data-fbmodal-target="#fbmodal" id="fbmodal"><button id="indipop" class="buttonmode">INDICATOR?</button></class>	
+		<class data-easymodal-target="#easymodal" id="easymodal"><button id="easypop" class="buttonmode">EASY?</button></class>	
+		<class data-addmodal-target="#addmodal" id="addmodal"><button id="hintpop" class="buttonmode">HINT?</button></class>	
+	</div>	
+	<h1 id="answer"></h1>
+	<br>	
+	<br>	
+	<hr>
+	<div id="clue">
+		<div id="clue-ball">
+		</div>
+	</div>
+	<hr>	
+	<div id="board" class="scroll">
+	<!-- <div id="board"> -->
+		<div id="try6" class="tryhdr">	</div>
+			<div id="trydetail6" class="trydetail">
+				<div class="detail1">1st Win</div>
+				<div class="detail2">Slams</div>
+				<div class="detail3">Country</div>
+				<div class="detail4">Gender</div>
+				<div class="detail5">Titles</div>
+				<div class="detail6">Plays</div>		
+			</div>
+		<div id="try5" class="tryhdr"></div>
+			<div id="trydetail5" class="trydetail">
+				<div class="detail1">1st Win</div>
+				<div class="detail2">Slams</div>
+				<div class="detail3">Country</div>
+				<div class="detail4">Gender</div>
+				<div class="detail5">Titles</div>
+				<div class="detail6">Plays</div>		
+			</div>
+		<div id="try4" class="tryhdr"></div>
+			<div id="trydetail4" class="trydetail">
+				<div class="detail1">1st Win</div>
+				<div class="detail2">Slams</div>
+				<div class="detail3">Country</div>
+				<div class="detail4">Gender</div>
+				<div class="detail5">Titles</div>
+				<div class="detail6">Plays</div>		
+			</div>	
+		<div id="try3" class="tryhdr"></div>
+			<div id="trydetail3" class="trydetail">
+				<div class="detail1">1st Win</div>
+				<div class="detail2">Slams</div>
+				<div class="detail3">Country</div>
+				<div class="detail4">Gender</div>
+				<div class="detail5">Titles</div>
+				<div class="detail6">Plays</div>		
+			</div>	
+		<div id="try2" class="tryhdr"></div>
+			<div id="trydetail2" class="trydetail">
+				<div class="detail1">1st Win</div>
+				<div class="detail2">Slams</div>
+				<div class="detail3">Country</div>
+				<div class="detail4">Gender</div>
+				<div class="detail5">Titles</div>
+				<div class="detail6">Plays</div>		
+			</div>	
+		<div id="try1" class="tryhdr"></div>
+			<div id="trydetail1" class="trydetail">
+				<div class="detail1">1st Win</div>
+				<div class="detail2">Slams</div>
+				<div class="detail3">Country</div>
+				<div class="detail4">Gender</div>
+				<div class="detail5">Titles</div>
+				<div class="detail6">Plays</div>		
+		</div>
+	</div>		
+<!-- 	<br>		  
+	<h5>
+	<hr>
+		<center><strong style="color:white;">©️sank0403 - 2022</strong></center>
+	<hr>
+	</h5>		
+ --></body>
 
-    <!-- <div id="boardsecond"> -->
-    <!-- <div id="downarrowhide">⬇️</div> -->
-    <!-- </div> -->
-
-    <!-- <div id="boardthird"> -->
-    <!-- <div id="downarrowhide">⬇️</div> -->
-    <!-- </div> -->
-
-    <!-- <div id="boardforth"> -->
-    <!-- <div id="downarrowhide">⬇️</div> -->
-    <!-- </div> -->
-
-    <!-- <div id="boardfifth"> -->
-    <!-- <div id="downarrowhide">⬇️</div> -->
-    <!-- </div> -->
-
-    <!-- <div id="boardsixth"> -->
-    <!-- <div id="downarrowhide">⬇️</div> -->
-    <!-- </div> -->
-
-    <!-- <div id="boardlast"> -->
-    <!-- <div id="downarrowhide">⬇️</div> -->
-    <!-- </div> -->
-    <!-- </div> -->
-
-    <div id="board">
-
-        <div id="boardfirst" class="board-row-reveal"></div>
-
-        <div class="connector vertical-glow"></div>
-
-        <div id="boardsecond" class="board-row-reveal"></div>
-
-        <div class="connector vertical-glow"></div>
-
-        <div id="boardthird" class="board-row-reveal"></div>
-
-        <div class="connector vertical-glow"></div>
-
-        <div id="boardforth" class="board-row-reveal"></div>
-
-        <div class="connector vertical-glow"></div>
-
-        <div id="boardfifth" class="board-row-reveal"></div>
-
-        <div class="connector vertical-glow"></div>
-
-        <div id="boardsixth" class="board-row-reveal"></div>
-
-        <div class="connector vertical-glow"></div>
-
-        <div id="boardlast" class="board-row-reveal"></div>
-
-    </div>
-    <!-- <br> -->
-    <!-- <hr> --><br>
-    <div id="answer" hidden></div>
-    <!-- <br><br> -->
-    <br>
-    <div id="streakPopup" class="popup hidden">
-        <div class="popup-content">
-            <span id="streakPopupText"></span>
-            <button onclick="closeStreakPopup()" class="popup-btn">OK</button>
-        </div>
-    </div>
-    <div id="namePopup" class="popup-overlay hidden">
-        <div class="popup-box">
-            <h2>Enter Your Name</h2>
-            <input id="nameInput" type="text" placeholder="Your Name for Leaderboard">
-            <div id="nameError" class="name-error hidden">Invalid Name. Please try again.</div>
-            <button id="nameSubmitBtn">Save</button>
-        </div>
-    </div>
-    <div id="globalOverlay"></div>
-    <div id="errorPopup" class="error-popup"></div>
-    <div id="migrationModal" style=" position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 9999; ">
-        <div style=" background: #111; color: #fff; padding: 24px; width: 90%; max-width: 420px; border-radius: 12px; text-align: center; box-shadow: 0 0 20px rgba(0,0,0,0.4); border: 2px solid #f7d354; ">
-            <h2 style="margin-top: 0; font-size: 22px; color: #f7d354;"> We’ve moved to a New Domain </h2>
-            <p style="font-size: 16px; line-height: 1.4; margin-bottom: 24px;"> If you are an existing user, your stats will be carried over. </p> <button id="migrationOkBtn" style=" background: #f7d354; color: #000; border: none; padding: 12px 24px; font-size: 16px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 50%; "> OK </button><br><br><br>Please remember to bookmark the new URL.<br> <span style="font-size: 14px; color: #f7d354;">https://thechnlnk.com</span>
-        </div>
-    </div>
-    <script src="chnlnk.js?v=23"></script>
-</div>
-</body>
 </html>
