@@ -1,0 +1,16 @@
+{
+  "short_name": "CHN LNK Admin",
+  "name": "CHN LNK Admin",
+  "icons": [
+    {
+      "src": "https://tenizgame.github.io/terces/adminicon.jpg",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "https://tenizgame.github.io/terces/nimda.html",
+  "background_color": "#000000",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "description": "CHN LNK Admin"
+}
