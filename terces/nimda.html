@@ -693,11 +693,11 @@ async function loadNewest() {
 
 async function loadPreviousMonth() {
     const now = new Date();
-    const prevMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+    const currMonth = new Date(now.getFullYear(), now.getMonth(), 1);
 
     const q = query(
         collection(db, "leaderboard"),
-        where("updated", "<", prevMonth),
+        where("updated", "<", currMonth),
         orderBy("updated", "asc"),
         limit(50)
     );
