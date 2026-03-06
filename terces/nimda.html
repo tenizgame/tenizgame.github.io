@@ -228,7 +228,8 @@ import {
     getDocs,
     deleteDoc,
     orderBy,
-    updateDoc
+    updateDoc,
+	setDoc
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 /* ---------------------------------------------------------
@@ -330,7 +331,7 @@ onAuthStateChanged(auth, user => {
 
     loginBox.style.display = "none";
     adminTools.style.display = "block";
-    userInfo.textContent = "Logged in as: " + user.email;
+    
 });
 
 /* ---------------------------------------------------------
@@ -399,6 +400,7 @@ function renderTable(data) {
             <td>
                 <span class="delete-icon" onclick="deletePlayer()">🗑️</span>
                 <span class="edit-icon" onclick="enterEditMode()">✏️</span>
+				<span class="edit-icon" onclick="openPopupEditor()">📢</span>
             </td>
         </tr>
     </table>`;
@@ -597,6 +599,32 @@ function showPlayerAtIndex(i) {
 
     result.innerHTML = `
         ${renderTable(data)}
+
+        <!-- Popup Editor (hidden until 📢 clicked) -->
+        <div id="popupEditor" 
+             style="margin-top:20px; display:none; padding:15px; background:#1a1a1a; border-radius:8px;">
+            
+            <h3 style="margin-top:0;">Create Popup for ${data.name}</h3>
+
+            <label>Type:</label><br>
+            <select id="popupType" 
+                    style="padding:8px; margin:6px 0; width:200px;">
+                <option value="announcement">Announcement</option>
+                <option value="warning">Warning</option>
+                <option value="reward">Reward</option>
+            </select>
+            <br><br>
+
+            <label>Message:</label><br>
+            <textarea id="popupMessage" rows="3"
+                style="width:90%; padding:8px; background:#111; color:#fff; border:1px solid #333;"></textarea>
+            <br><br>
+
+            <button class="primary-btn" onclick="savePopupForUser()">Save Popup</button>
+            <button class="cancel-btn" onclick="closePopupEditor()">Cancel</button>
+        </div>
+
+        <!-- Navigation -->
         <div style="margin-top:10px; display:flex; justify-content:space-between;">
             <button onclick="prevPlayer()" ${i === 0 ? "disabled" : ""}>⬅ Prev</button>
             <span style="padding:8px 12px; opacity:0.8;">
@@ -606,6 +634,7 @@ function showPlayerAtIndex(i) {
         </div>
     `;
 }
+
 
 function nextPlayer() {
     if (currentIndex < foundPlayers.length - 1) {
@@ -767,6 +796,47 @@ function renderListResults(snap) {
     oldestTable.innerHTML = html;
 }
 
+function openPopupEditor() {
+    const box = document.getElementById("popupEditor");
+    if (box) box.style.display = "block";
+}
+
+function closePopupEditor() {
+    const box = document.getElementById("popupEditor");
+    if (box) box.style.display = "none";
+}
+
+async function savePopupForUser() {
+    if (!lastFoundDoc) return alert("No player selected.");
+
+    const uid = lastFoundDoc.id; // leaderboard doc ID = user UID
+    const type = document.getElementById("popupType").value;
+    const message = document.getElementById("popupMessage").value.trim();
+
+    if (!message) return alert("Message cannot be empty.");
+
+    const userRef = doc(db, "users", uid);
+
+    await updateDoc(userRef, {
+        popup: {
+            type,
+            message,
+            seen: false
+        }
+    }).catch(async err => {
+        // If user doc doesn't exist, create it
+        if (err.message.includes("No document")) {
+            await setDoc(userRef, {
+                popup: { type, message, seen: false }
+            });
+        } else {
+            throw err;
+        }
+    });
+
+    alert("Popup saved for user.");
+    closePopupEditor();
+}
 
 /* ---------------------------------------------------------
    Expose functions
@@ -788,6 +858,10 @@ window.enterEditMode = enterEditMode;
 window.cancelEditMode = cancelEditMode;
 window.savePlayerEdits = savePlayerEdits;
 window.loadTopRanks = loadTopRanks;
+window.openPopupEditor = openPopupEditor;
+window.closePopupEditor = closePopupEditor;
+window.savePopupForUser = savePopupForUser;
+
 
 </script>
 </body>
