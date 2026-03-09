@@ -401,6 +401,7 @@ function renderTable(data) {
                 <span class="delete-icon" onclick="deletePlayer()">🗑️</span>
                 <span class="edit-icon" onclick="enterEditMode()">✏️</span>
 				<span class="edit-icon" onclick="openPopupEditor()">📢</span>
+				<span class="reset-icon" onclick="triggerReset()">🔄</span>
             </td>
         </tr>
     </table>`;
@@ -838,6 +839,33 @@ async function savePopupForUser() {
     closePopupEditor();
 }
 
+async function triggerReset() {
+    if (!lastFoundDoc) {
+        alert("Find a player first.");
+        return;
+    }
+
+    const uid = lastFoundDoc.id; // leaderboard doc ID = user UID
+    const userRef = doc(db, "users", uid);
+
+    await updateDoc(userRef, {
+        "popup.reset": true
+    }).catch(async err => {
+        // If user doc doesn't exist, create it
+        if (err.message.includes("No document")) {
+            await setDoc(userRef, {
+                popup: { reset: true }
+            });
+        } else {
+            throw err;
+        }
+    });
+
+    alert("Reset flag added for this user.");
+}
+
+
+
 /* ---------------------------------------------------------
    Expose functions
 --------------------------------------------------------- */
@@ -861,6 +889,7 @@ window.loadTopRanks = loadTopRanks;
 window.openPopupEditor = openPopupEditor;
 window.closePopupEditor = closePopupEditor;
 window.savePopupForUser = savePopupForUser;
+window.triggerReset = triggerReset;
 
 
 </script>
