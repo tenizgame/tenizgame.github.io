@@ -609,6 +609,7 @@ function showPlayerAtIndex(i) {
 
             <label>Type:</label><br>
             <select id="popupType" 
+					onchange="onPopupTypeChange()"
                     style="padding:8px; margin:6px 0; width:200px;">
                 <option value="announcement">Announcement</option>
                 <option value="warning">Warning</option>
@@ -634,6 +635,31 @@ function showPlayerAtIndex(i) {
             <button onclick="nextPlayer()" ${i === foundPlayers.length - 1 ? "disabled" : ""}>Next ➡</button>
         </div>
     `;
+	// Auto-fill default announcement text on load
+	setTimeout(() => {
+		onPopupTypeChange();
+	}, 0);	
+}
+
+
+function onPopupTypeChange() {
+    const type = document.getElementById("popupType").value;
+    const textarea = document.getElementById("popupMessage");
+
+    // Get the selected player's name
+    const playerName = lastFoundDoc?.data()?.name || "Player";
+
+    if (type === "announcement") {
+        textarea.value = `Hey ${playerName} - Looks like your stats didn't save the last time. Please refresh the page and reach us at info@thechnlnk.com if that doesn't solve the issue. Cheers!`;
+    }
+
+    if (type === "reward") {
+        textarea.value = `Hey ${playerName} - Thank you for your recent referral to CHN LNK. We are awarding you 2 Dynamites 💣. Cheers!`;
+    }
+
+    if (type === "warning") {
+        textarea.value = `Hey ${playerName},\n\n`; // optional default
+    }
 }
 
 
@@ -890,10 +916,10 @@ window.openPopupEditor = openPopupEditor;
 window.closePopupEditor = closePopupEditor;
 window.savePopupForUser = savePopupForUser;
 window.triggerReset = triggerReset;
+window.onPopupTypeChange  = onPopupTypeChange;
 
 
 </script>
 </body>
 </html>
-
 
