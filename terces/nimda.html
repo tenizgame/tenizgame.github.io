@@ -200,8 +200,9 @@
 
         <div id="oldestTable"></div>
     </div>
-
-    <button onclick="logout()">Logout</button>
+	<br>
+	<button onclick="clearDuplicates()">Clear Duplicates</button>
+    <button class="primary-btn" onclick="logout()">Logout</button>
     <div id="logoutMessage"></div>
 </div>
 
@@ -282,6 +283,51 @@ async function logout() {
         console.error(err);
     }
 }
+
+/* ---------------------------------------------------------
+   Clear Duplicate Names (keep newest by updated timestamp)
+--------------------------------------------------------- */
+async function clearDuplicates() {
+    if (!confirm("Scan for duplicate names and delete older copies?")) return;
+
+    const snap = await getDocs(collection(db, "leaderboard"));
+
+    // Group docs by name
+    const groups = {};
+    snap.forEach(docSnap => {
+        const data = docSnap.data();
+        const name = data.name;
+        if (!groups[name]) groups[name] = [];
+        groups[name].push({
+            id: docSnap.id,
+            updated: data.updated,
+            ref: docSnap.ref
+        });
+    });
+
+    let deleted = 0;
+
+    // Process each name group
+    for (const [name, docs] of Object.entries(groups)) {
+        if (docs.length <= 1) continue;
+
+        // Sort newest → oldest
+        docs.sort((a, b) => b.updated - a.updated);
+
+        const keep = docs[0];
+        const remove = docs.slice(1);
+
+        for (const r of remove) {
+            await deleteDoc(r.ref);
+            deleted++;
+        }
+
+        console.log(`Name "${name}": kept ${keep.id}, deleted ${remove.length}`);
+    }
+
+    alert(`Duplicate cleanup complete.\nDeleted ${deleted} old records.`);
+}
+
 
 /* ---------------------------------------------------------
    Auth State
@@ -917,7 +963,7 @@ window.closePopupEditor = closePopupEditor;
 window.savePopupForUser = savePopupForUser;
 window.triggerReset = triggerReset;
 window.onPopupTypeChange  = onPopupTypeChange;
-
+window.clearDuplicates = clearDuplicates;
 
 </script>
 </body>
