@@ -187,10 +187,11 @@
 
     <div id="oldestContainer">
         <div class="button-row">
-            <button onclick="loadOldest()">Show 25 Oldest</button>
+            <!-- <button onclick="loadOldest()">Show 25 Oldest</button> -->
             <button onclick="loadNewest()">Show 25 Newest</button>
             <button onclick="loadPreviousMonth()">Show Previous Month</button>
-			<button onclick="loadTopRanks()">Show Top 100 Ranks</button>
+			<button onclick="showLastFeedback()">Show Feedback</button>
+			<button onclick="loadTopRanks()">Show Top 250 Ranks</button>
         </div>
 
         <div class="right-buttons">
@@ -202,6 +203,9 @@
     </div>
 	<br>
 	<button onclick="clearDuplicates()">Clear Duplicates</button>
+	<button onclick="clearOld()">Clear Prev Month</button>
+	<button onclick="clearFeedback()">Clear Feedback</button>
+	<button onclick="showLeaderboardCount()">Total Players</button>
     <button class="primary-btn" onclick="logout()">Logout</button>
     <div id="logoutMessage"></div>
 </div>
@@ -230,7 +234,9 @@ import {
     deleteDoc,
     orderBy,
     updateDoc,
-	setDoc
+	setDoc,
+	startAfter,
+	getCountFromServer   	
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 /* ---------------------------------------------------------
@@ -327,7 +333,73 @@ async function clearDuplicates() {
 
     alert(`Duplicate cleanup complete.\nDeleted ${deleted} old records.`);
 }
+/* ---------------------------------------------------------
+   Clear Previous Month Entries 
+--------------------------------------------------------- */
+async function clearOld() {
+    if (!confirm("Delete ALL records from last month and earlier?")) return;
 
+    const now = new Date();
+    const currMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+
+    const q = query(
+        collection(db, "leaderboard"),
+        where("updated", "<", currMonth)
+    );
+
+    const snap = await getDocs(q);
+
+    if (snap.empty) {
+        alert("No old records found.");
+        return;
+    }
+
+    let deleted = 0;
+
+    for (const docSnap of snap.docs) {
+        await deleteDoc(docSnap.ref);
+        deleted++;
+    }
+
+    alert(`Old record cleanup complete.\nDeleted ${deleted} records.`);
+}
+/* ---------------------------------------------------------
+   Clear Blank Feedback
+--------------------------------------------------------- */
+async function clearFeedback() {
+    if (!confirm("Delete all feedback records where text is blank?")) return;
+
+    const q = query(
+        collection(db, "feedback"),
+        where("text", "==", "")
+    );
+
+    const snap = await getDocs(q);
+
+    if (snap.empty) {
+        alert("No empty feedback records found.");
+        return;
+    }
+
+    let deleted = 0;
+
+    for (const docSnap of snap.docs) {
+        await deleteDoc(docSnap.ref);
+        deleted++;
+    }
+
+    alert(`Feedback cleanup complete.\nDeleted ${deleted} empty records.`);
+}
+/* ---------------------------------------------------------
+   Show Total Player Count
+--------------------------------------------------------- */
+async function showLeaderboardCount() {
+    const q = query(collection(db, "leaderboard"));
+
+    const snapshot = await getCountFromServer(q);
+
+    alert(`Total leaderboard entries: ${snapshot.data().count}`);
+}
 
 /* ---------------------------------------------------------
    Auth State
@@ -751,6 +823,16 @@ async function deletePlayer() {
     lastFoundDoc = null;
 }
 
+async function deleteFeedbackById(id) {
+    if (!confirm("Delete this feedback entry?")) return;
+
+    await deleteDoc(doc(db, "feedback", id));
+
+    const row = document.getElementById(`fb-${id}`);
+    if (row) row.remove();
+}
+
+
 /* ---------------------------------------------------------
    Oldest/Newest/Previous Month Queries
 --------------------------------------------------------- */
@@ -771,6 +853,7 @@ async function deleteAllShown() {
     lastShownDocs = [];
 }
 
+/*
 async function loadOldest() {
     const q = query(
         collection(db, "leaderboard"),
@@ -781,7 +864,7 @@ async function loadOldest() {
     const snap = await getDocs(q);
     renderListResults(snap);
 }
-
+*/
 async function loadNewest() {
     const q = query(
         collection(db, "leaderboard"),
@@ -808,28 +891,213 @@ async function loadPreviousMonth() {
     renderListResults(snap);
 }
 
-async function loadTopRanks() {
-    const now = new Date();
-    const monthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+let fbLastDoc = null;
+let fbStack = [];
+let fbPage = 1;
+
+async function showLastFeedback() {
+    fbPage = 1;
+    fbStack = [];
+
     const q = query(
-        collection(db, "leaderboard"),
-		where("month", "==", monthKey),
-		orderBy("stars", "desc"),
-		orderBy("wins", "desc"),
-		orderBy("winpct", "desc"),
-		orderBy("updated", "asc"),
-        limit(100)
+        collection(db, "feedback"),
+        orderBy("updated", "desc"),
+        limit(25)
     );
 
     const snap = await getDocs(q);
-    renderListResults(snap);
+
+    if (snap.empty) {
+        oldestTable.innerHTML = "No feedback found.";
+        return;
+    }
+
+    fbLastDoc = snap.docs[snap.docs.length - 1];
+    fbStack.push(fbLastDoc);
+
+    renderFeedbackResults(snap, 1);
+    renderFeedbackPagination();
+}
+
+async function showFeedbackNext() {
+    if (!fbLastDoc) return;
+
+    const q = query(
+        collection(db, "feedback"),
+        orderBy("updated", "desc"),
+        startAfter(fbLastDoc),
+        limit(25)
+    );
+
+    const snap = await getDocs(q);
+
+    if (snap.empty) {
+        alert("No more feedback.");
+        return;
+    }
+
+    fbLastDoc = snap.docs[snap.docs.length - 1];
+    fbStack.push(fbLastDoc);
+    fbPage++;
+
+    const startIndex = (fbPage - 1) * 25 + 1;
+
+    renderFeedbackResults(snap, startIndex);
+    renderFeedbackPagination();
+}
+
+async function showFeedbackPrev() {
+    if (fbPage <= 1) return;
+
+    fbPage--;
+    fbStack.pop();
+    const prevLastDoc = fbStack[fbStack.length - 1];
+
+    let q;
+
+    if (fbPage === 1) {
+        q = query(
+            collection(db, "feedback"),
+            orderBy("updated", "desc"),
+            limit(25)
+        );
+    } else {
+        q = query(
+            collection(db, "feedback"),
+            orderBy("updated", "desc"),
+            startAfter(prevLastDoc),
+            limit(25)
+        );
+    }
+
+    const snap = await getDocs(q);
+
+    fbLastDoc = snap.docs[snap.docs.length - 1];
+
+    const startIndex = (fbPage - 1) * 25 + 1;
+
+    renderFeedbackResults(snap, startIndex);
+    renderFeedbackPagination();
+}
+
+
+let topRankLastDoc = null;
+let topRankFirstDoc = null;
+let topRankPage = 1;
+let topRankStack = []; // stores lastDoc for each page
+
+async function loadTopRanks() {
+    topRankPage = 1;
+    topRankStack = [];
+
+    const now = new Date();
+    const monthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+
+    const q = query(
+        collection(db, "leaderboard"),
+        where("month", "==", monthKey),
+        orderBy("stars", "desc"),
+        orderBy("wins", "desc"),
+        orderBy("winpct", "desc"),
+        orderBy("updated", "asc"),
+        limit(50)
+    );
+
+    const snap = await getDocs(q);
+
+    if (snap.empty) {
+        oldestTable.innerHTML = "No results.";
+        return;
+    }
+
+    topRankLastDoc = snap.docs[snap.docs.length - 1];
+    topRankFirstDoc = snap.docs[0];
+    topRankStack.push(topRankLastDoc);
+
+    renderListResults(snap, 1);
+    renderRankPagination();
+}
+
+async function loadTopRanksNext() {
+    if (!topRankLastDoc) return;
+
+    const now = new Date();
+    const monthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+
+    const q = query(
+        collection(db, "leaderboard"),
+        where("month", "==", monthKey),
+        orderBy("stars", "desc"),
+        orderBy("wins", "desc"),
+        orderBy("winpct", "desc"),
+        orderBy("updated", "asc"),
+        startAfter(topRankLastDoc),
+        limit(50)
+    );
+
+    const snap = await getDocs(q);
+
+    if (snap.empty) {
+        alert("No more results.");
+        return;
+    }
+
+    topRankLastDoc = snap.docs[snap.docs.length - 1];
+    topRankStack.push(topRankLastDoc);
+    topRankPage++;
+
+    renderListResults(snap, (topRankPage - 1) * 50 + 1);
+    renderRankPagination();
+}
+
+async function loadTopRanksPrev() {
+    if (topRankPage <= 1) return;
+
+    topRankPage--;
+    topRankStack.pop(); // remove current page
+    const prevLastDoc = topRankStack[topRankStack.length - 1];
+
+    const now = new Date();
+    const monthKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+
+    let q;
+
+    if (topRankPage === 1) {
+        q = query(
+            collection(db, "leaderboard"),
+            where("month", "==", monthKey),
+            orderBy("stars", "desc"),
+            orderBy("wins", "desc"),
+            orderBy("winpct", "desc"),
+            orderBy("updated", "asc"),
+            limit(50)
+        );
+    } else {
+        q = query(
+            collection(db, "leaderboard"),
+            where("month", "==", monthKey),
+            orderBy("stars", "desc"),
+            orderBy("wins", "desc"),
+            orderBy("winpct", "desc"),
+            orderBy("updated", "asc"),
+            startAfter(prevLastDoc),
+            limit(50)
+        );
+    }
+
+    const snap = await getDocs(q);
+
+    topRankLastDoc = snap.docs[snap.docs.length - 1];
+
+    renderListResults(snap, (topRankPage - 1) * 50 + 1);
+    renderRankPagination();
 }
 
 
 /* ---------------------------------------------------------
    Render List Results
 --------------------------------------------------------- */
-function renderListResults(snap) {
+function renderListResults(snap, startIndex = 1) {
     lastShownDocs = [];
 
     let html = `
@@ -845,7 +1113,7 @@ function renderListResults(snap) {
         </tr>
     `;
 
-    let index = 1;
+    let index = startIndex;
 
     snap.forEach(docSnap => {
         const d = docSnap.data();
@@ -868,6 +1136,74 @@ function renderListResults(snap) {
     html += "</table>";
     oldestTable.innerHTML = html;
 }
+
+
+function renderRankPagination() {
+    const totalPages = 5; // 250 / 50
+
+    oldestTable.innerHTML += `
+        <div style="margin-top:10px; display:flex; justify-content:space-between;">
+            <button onclick="loadTopRanksPrev()" ${topRankPage === 1 ? "disabled" : ""}>⬅ Prev 50</button>
+            <span style="padding:8px 12px; opacity:0.8;">
+                Page ${topRankPage} / ${totalPages}
+            </span>
+            <button onclick="loadTopRanksNext()" ${topRankPage === totalPages ? "disabled" : ""}>Next 50 ➡</button>
+        </div>
+    `;
+}
+
+function renderFeedbackResults(snap, startIndex = 1) {
+    lastShownDocs = [];
+
+    let html = `
+    <table class="oldest-table">
+        <tr>
+            <th>#</th>
+            <th>Player</th>
+            <th>Rating</th>
+            <th>Text</th>
+            <th>Updated</th>
+            <th></th>
+        </tr>
+    `;
+
+    let index = startIndex;
+
+    snap.forEach(docSnap => {
+        const d = docSnap.data();
+        const id = docSnap.id;
+
+        lastShownDocs.push(id);
+
+        html += `
+        <tr id="fb-${id}">
+            <td>${index}</td>
+            <td>${d.playerName || "-"}</td>
+            <td>${d.rating || "-"}</td>
+            <td>${d.text || "(blank)"}</td>
+            <td>${d.updated ? new Date(d.updated.seconds * 1000).toLocaleString() : "-"}</td>
+            <td><span class="delete-icon" onclick="deleteFeedbackById('${id}')">🗑️</span></td>
+        </tr>`;
+        index++;
+    });
+
+    html += "</table>";
+
+    oldestTable.innerHTML = html;
+}
+
+function renderFeedbackPagination() {
+    oldestTable.innerHTML += `
+        <div style="margin-top:10px; display:flex; justify-content:space-between;">
+            <button onclick="showFeedbackPrev()" ${fbPage === 1 ? "disabled" : ""}>⬅ Prev 25</button>
+            <span style="padding:8px 12px; opacity:0.8;">
+                Page ${fbPage}
+            </span>
+            <button onclick="showFeedbackNext()">Next 25 ➡</button>
+        </div>
+    `;
+}
+
 
 function openPopupEditor() {
     const box = document.getElementById("popupEditor");
@@ -944,8 +1280,9 @@ async function triggerReset() {
 window.findPlayer = findPlayer;
 window.clearPlayerSearch = clearPlayerSearch;
 window.deletePlayer = deletePlayer;
+window.deleteFeedbackById = deleteFeedbackById;
 window.updateDynamite = () => {}; // no longer used
-window.loadOldest = loadOldest;
+/*window.loadOldest = loadOldest; */
 window.loadNewest = loadNewest;
 window.loadPreviousMonth = loadPreviousMonth;
 window.clearOldest = clearOldest;
@@ -964,8 +1301,15 @@ window.savePopupForUser = savePopupForUser;
 window.triggerReset = triggerReset;
 window.onPopupTypeChange  = onPopupTypeChange;
 window.clearDuplicates = clearDuplicates;
+window.clearOld = clearOld;
+window.clearFeedback = clearFeedback;
+window.showLastFeedback = showLastFeedback;
+window.loadTopRanksNext = loadTopRanksNext;
+window.loadTopRanksPrev = loadTopRanksPrev;
+window.showFeedbackNext = showFeedbackNext;
+window.showFeedbackPrev = showFeedbackPrev;
+window.showLeaderboardCount  = showLeaderboardCount ;
 
 </script>
 </body>
 </html>
-
