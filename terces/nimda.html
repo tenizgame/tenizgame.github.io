@@ -202,10 +202,71 @@
         <div id="oldestTable"></div>
     </div>
 	<br>
-	<button onclick="clearDuplicates()">Clear Duplicates</button>
-	<button onclick="clearOld()">Clear Prev Month</button>
-	<button onclick="clearFeedback()">Clear Feedback</button>
-	<button onclick="showLeaderboardCount()">Total Players</button>
+	<style>
+	  .collapsible {
+		background-color: #222;
+		color: #fff;
+		cursor: pointer;
+		padding: 12px 16px;
+		width: 100%;
+		border: none;
+		text-align: left;
+		outline: none;
+		font-size: 16px;
+		margin-top: 10px;
+		border-radius: 6px;
+	  }
+
+	  .collapsible.active {
+		background-color: #333;
+	  }
+
+	  .content {
+		padding: 0 16px;
+		display: none;
+		overflow: hidden;
+		background-color: #111;
+		border-radius: 6px;
+		margin-top: 6px;
+	  }
+
+	  .admin-btn {
+		margin: 8px 0;
+		padding: 10px 14px;
+		background-color: #444;
+		color: #fff;
+		border: none;
+		border-radius: 6px;
+		cursor: pointer;
+		width: 100%;
+		text-align: left;
+	  }
+
+	  .admin-btn:hover {
+		background-color: #555;
+	  }
+	</style>
+
+	<button class="collapsible">Admin Tools ▼</button>
+	<div class="content">
+	  <button class="admin-btn" onclick="clearDuplicates()">Clear Duplicates</button>
+	  <button class="admin-btn" onclick="clearOld()">Clear Prev Month</button>
+	  <button class="admin-btn" onclick="clearWriteFailuresOffline()">Clear Failures</button>
+	  <button class="admin-btn" onclick="clearAlerts()">Clear Alerts</button>
+	  <button class="admin-btn" onclick="clearFeedback()">Clear Feedback</button>
+	  <button class="admin-btn" onclick="showLeaderboardCount()">Total Players</button>
+	</div>
+
+	<script>
+	  const coll = document.querySelector(".collapsible");
+	  coll.addEventListener("click", function () {
+		this.classList.toggle("active");
+		const content = this.nextElementSibling;
+		content.style.display = content.style.display === "block" ? "none" : "block";
+	  });
+	</script>
+
+	<br>
     <button class="primary-btn" onclick="logout()">Logout</button>
     <div id="logoutMessage"></div>
 </div>
@@ -363,6 +424,61 @@ async function clearOld() {
 
     alert(`Old record cleanup complete.\nDeleted ${deleted} records.`);
 }
+/* ---------------------------------------------------------
+   Clear Write Failures: "client is offline"
+--------------------------------------------------------- */
+async function clearWriteFailuresOffline() {
+    if (!confirm('Delete ALL write_failures entries with "client is offline"?')) return;
+
+    const q = query(
+        collection(db, "write_failures"),
+        where("details.message", "==", "Failed to get document because the client is offline.")
+    );
+
+    const snap = await getDocs(q);
+
+    if (snap.empty) {
+        alert("No matching write_failures found.");
+        return;
+    }
+
+    let deleted = 0;
+
+    for (const docSnap of snap.docs) {
+        await deleteDoc(docSnap.ref);
+        deleted++;
+    }
+
+    alert(`Cleanup complete.\nDeleted ${deleted} write_failures entries.`);
+}
+/* ---------------------------------------------------------
+   Clear Alerts (popup cleanup)
+--------------------------------------------------------- */
+async function clearAlerts() {
+    if (!confirm('Delete ALL user records where popup.seen = true OR popup.reset = false?')) return;
+    // Query for seen = true
+    const qSeen = query(collection(db, "users"), where("popup.seen", "==", true));
+    const qReset = query(collection(db, "users"), where("popup.reset", "==", false));
+
+    const [snapSeen, snapReset] = await Promise.all([getDocs(qSeen), getDocs(qReset)]);
+
+    let deleted = 0;
+
+    // Delete seen=true
+    for (const docSnap of snapSeen.docs) {
+        await deleteDoc(docSnap.ref);
+        deleted++;
+    }
+
+    // Delete reset=false
+    for (const docSnap of snapReset.docs) {
+        await deleteDoc(docSnap.ref);
+        deleted++;
+    }
+
+    alert(`Alert cleanup complete.\nDeleted ${deleted} user records.`);
+}
+
 /* ---------------------------------------------------------
    Clear Blank Feedback
 --------------------------------------------------------- */
@@ -1302,6 +1418,8 @@ window.triggerReset = triggerReset;
 window.onPopupTypeChange  = onPopupTypeChange;
 window.clearDuplicates = clearDuplicates;
 window.clearOld = clearOld;
+window.clearWriteFailuresOffline = clearWriteFailuresOffline;
+window.clearAlerts = clearAlerts;
 window.clearFeedback = clearFeedback;
 window.showLastFeedback = showLastFeedback;
 window.loadTopRanksNext = loadTopRanksNext;
