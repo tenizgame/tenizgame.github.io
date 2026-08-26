@@ -456,18 +456,12 @@ async function clearWriteFailuresOffline() {
    Clear Wrong Updates: missing updatedUTC
 --------------------------------------------------------- */
 async function clearWrongUpdates() {
-    if (!confirm('Delete ALL leaderboard entries missing updatedUTC and notify affected users?')) return;
+    if (!confirm('Delete aLL leaderboard entries missing updatedUTC and notify affected users?')) return;
 
-    // Query for docs where updatedUTC does NOT exist
-    const q = query(
-        collection(db, "leaderboard"),
-        where("updatedUTC", "==", null)
-    );
-
-    const snap = await getDocs(q);
+    const snap = await getDocs(collection(db, "leaderboard"));
 
     if (snap.empty) {
-        alert("No leaderboard records with missing updatedUTC.");
+        alert("Leaderboard is empty.");
         return;
     }
 
@@ -475,46 +469,50 @@ async function clearWrongUpdates() {
 
     for (const docSnap of snap.docs) {
         const data = docSnap.data();
-        const uid = docSnap.id;          // leaderboard doc ID = user UID
-        const playerName = data.name || "Player";
 
-        // ⭐ Write popup message into users collection
-        if (uid) {
-            const userRef = doc(db, "users", uid);
+        // ⭐ Correct check: updatedUTC field is missing
+        if (!("updatedUTC" in data)) {
 
-            const message = `Hey ${playerName} - Looks like you are running an outdated version of the game. Please refresh the page to get the latest version. Reach us at info@thechnlnk.com for support. Cheers!`;
+            const uid = docSnap.id;
+            const playerName = data.name || "Player";
 
-            await updateDoc(userRef, {
-                popup: {
-                    type: "announcement",
-                    message,
-                    seen: false
-                }
-            }).catch(async err => {
-                // If user doc doesn't exist, create it
-                if (err.message.includes("No document")) {
-                    await setDoc(userRef, {
-                        popup: {
-                            type: "announcement",
-                            message,
-                            seen: false
-                        }
-                    });
-                } else {
-                    throw err;
-                }
-            });
+            // ⭐ Write popup message into users collection
+            if (uid) {
+                const userRef = doc(db, "users", uid);
+
+                const message = `Hey ${playerName} - Looks like you are running an outdated version of the game. Please refresh the page to get the latest version. Reach us at info@thechnlnk.com for support. Cheers!`;	
+
+                await updateDoc(userRef, {
+                    popup: {
+                        type: "announcement",
+                        message,
+                        seen: false
+                    }
+                }).catch(async err => {
+                    // If user doc doesn't exist, create it
+                    if (err.message.includes("No document")) {
+                        await setDoc(userRef, {
+                            popup: {
+                                type: "announcement",
+                                message,
+                                seen: false
+                            }
+                        });
+                    } else {
+                        throw err;
+                    }
+                });
+            }
+
+            // ⭐ Delete the leaderboard record
+            await deleteDoc(docSnap.ref);
+            deleted++;
         }
-
-        // ⭐ Delete the leaderboard record
-        await deleteDoc(docSnap.ref);
-        deleted++;
     }
 
     alert(`Cleanup complete.\nDeleted ${deleted} leaderboard entries missing updatedUTC.`);
 }
 
-	
 /* ---------------------------------------------------------
    Clear Alerts (popup cleanup)
 --------------------------------------------------------- */
