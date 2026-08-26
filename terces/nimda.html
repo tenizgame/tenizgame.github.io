@@ -456,7 +456,7 @@ async function clearWriteFailuresOffline() {
    Clear Wrong Updates: missing updatedUTC
 --------------------------------------------------------- */
 async function clearWrongUpdates() {
-    if (!confirm('Delete ALL leaderboard entries missing updatedUTC?')) return;
+    if (!confirm('Delete ALL leaderboard entries missing updatedUTC and notify affected users?')) return;
 
     // Query for docs where updatedUTC does NOT exist
     const q = query(
@@ -474,12 +474,46 @@ async function clearWrongUpdates() {
     let deleted = 0;
 
     for (const docSnap of snap.docs) {
+        const data = docSnap.data();
+        const uid = docSnap.id;          // leaderboard doc ID = user UID
+        const playerName = data.name || "Player";
+
+        // ⭐ Write popup message into users collection
+        if (uid) {
+            const userRef = doc(db, "users", uid);
+
+            const message = `Hey ${playerName} - Looks like you are running an outdated version of the game. Please refresh the page to get the latest version. Reach us at info@thechnlnk.com for support. Cheers!`;
+
+            await updateDoc(userRef, {
+                popup: {
+                    type: "announcement",
+                    message,
+                    seen: false
+                }
+            }).catch(async err => {
+                // If user doc doesn't exist, create it
+                if (err.message.includes("No document")) {
+                    await setDoc(userRef, {
+                        popup: {
+                            type: "announcement",
+                            message,
+                            seen: false
+                        }
+                    });
+                } else {
+                    throw err;
+                }
+            });
+        }
+
+        // ⭐ Delete the leaderboard record
         await deleteDoc(docSnap.ref);
         deleted++;
     }
 
     alert(`Cleanup complete.\nDeleted ${deleted} leaderboard entries missing updatedUTC.`);
 }
+
 	
 /* ---------------------------------------------------------
    Clear Alerts (popup cleanup)
