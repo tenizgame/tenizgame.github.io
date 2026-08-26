@@ -252,6 +252,7 @@
 	  <button class="admin-btn" onclick="clearDuplicates()">Clear Duplicates</button>
 	  <button class="admin-btn" onclick="clearOld()">Clear Prev Month</button>
 	  <button class="admin-btn" onclick="clearWriteFailuresOffline()">Clear Failures</button>
+	  <button class="admin-btn" onclick="clearWrongUpdates()">Wrong Updates</button>	
 	  <button class="admin-btn" onclick="clearAlerts()">Clear Alerts</button>
 	  <button class="admin-btn" onclick="clearFeedback()">Clear Feedback</button>
 	  <button class="admin-btn" onclick="showLeaderboardCount()">Total Players</button>
@@ -450,6 +451,36 @@ async function clearWriteFailuresOffline() {
 
     alert(`Cleanup complete.\nDeleted ${deleted} write_failures entries.`);
 }
+
+/* ---------------------------------------------------------
+   Clear Wrong Updates: missing updatedUTC
+--------------------------------------------------------- */
+async function clearWrongUpdates() {
+    if (!confirm('Delete ALL leaderboard entries missing updatedUTC?')) return;
+
+    // Query for docs where updatedUTC does NOT exist
+    const q = query(
+        collection(db, "leaderboard"),
+        where("updatedUTC", "==", null)
+    );
+
+    const snap = await getDocs(q);
+
+    if (snap.empty) {
+        alert("No leaderboard records with missing updatedUTC.");
+        return;
+    }
+
+    let deleted = 0;
+
+    for (const docSnap of snap.docs) {
+        await deleteDoc(docSnap.ref);
+        deleted++;
+    }
+
+    alert(`Cleanup complete.\nDeleted ${deleted} leaderboard entries missing updatedUTC.`);
+}
+	
 /* ---------------------------------------------------------
    Clear Alerts (popup cleanup)
 --------------------------------------------------------- */
@@ -1449,6 +1480,7 @@ window.onPopupTypeChange  = onPopupTypeChange;
 window.clearDuplicates = clearDuplicates;
 window.clearOld = clearOld;
 window.clearWriteFailuresOffline = clearWriteFailuresOffline;
+window.clearWrongUpdates = clearWrongUpdates;	
 window.clearAlerts = clearAlerts;
 window.clearFeedback = clearFeedback;
 window.showLastFeedback = showLastFeedback;
