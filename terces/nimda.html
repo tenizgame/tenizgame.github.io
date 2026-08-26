@@ -588,15 +588,44 @@ let editMode = false;
 --------------------------------------------------------- */
 function formatTS(ts) {
     if (!ts) return "-";
-    const d = ts.toDate();
-    return d.toLocaleString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true
-    }).replace(",", " at");
+
+    // Case 1: Firestore Timestamp (old entries)
+    if (typeof ts.toDate === "function") {
+        const d = ts.toDate();
+        return d.toLocaleString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true
+        }).replace(",", " at");
+    }
+
+    // Case 2: New numeric format YYYYMMDDHHMMSS
+    if (typeof ts === "number") {
+        const s = ts.toString();
+
+        const YYYY = s.slice(0, 4);
+        const MM   = s.slice(4, 6);
+        const DD   = s.slice(6, 8);
+        const hh   = s.slice(8, 10);
+        const mm   = s.slice(10, 12);
+        const ss   = s.slice(12, 14);
+
+        const d = new Date(`${YYYY}-${MM}-${DD}T${hh}:${mm}:${ss}`);
+
+        return d.toLocaleString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true
+        }).replace(",", " at");
+    }
+
+    return "-";
 }
 
 /* ---------------------------------------------------------
