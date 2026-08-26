@@ -1028,7 +1028,7 @@ async function loadPreviousMonth() {
     const q = query(
         collection(db, "leaderboard"),
         where("updated", "<", currMonth),
-        orderBy("updatedUTC", "asc"),
+        orderBy("updated", "asc"),
         limit(50)
     );
 
