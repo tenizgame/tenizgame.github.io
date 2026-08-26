@@ -367,7 +367,7 @@ async function clearDuplicates() {
         if (!groups[name]) groups[name] = [];
         groups[name].push({
             id: docSnap.id,
-            updated: data.updated,
+            updatedUTC: data.updatedUTC,
             ref: docSnap.ref
         });
     });
@@ -379,8 +379,7 @@ async function clearDuplicates() {
         if (docs.length <= 1) continue;
 
         // Sort newest → oldest
-        docs.sort((a, b) => b.updated - a.updated);
-
+        docs.sort((a, b) => b.updatedUTC.toMillis() - a.updatedUTC.toMillis());
         const keep = docs[0];
         const remove = docs.slice(1);
 
@@ -405,7 +404,7 @@ async function clearOld() {
 
     const q = query(
         collection(db, "leaderboard"),
-        where("updated", "<", currMonth)
+        where("updatedUTC", "<", currMonth)
     );
 
     const snap = await getDocs(q);
@@ -1013,7 +1012,7 @@ async function loadOldest() {
 async function loadNewest() {
     const q = query(
         collection(db, "leaderboard"),
-        orderBy("updated", "desc"),
+        orderBy("updatedUTC", "desc"),
         limit(25)
     );
 
@@ -1027,8 +1026,8 @@ async function loadPreviousMonth() {
 
     const q = query(
         collection(db, "leaderboard"),
-        where("updated", "<", currMonth),
-        orderBy("updated", "asc"),
+        where("updatedUTC", "<", currMonth),
+        orderBy("updatedUTC", "asc"),
         limit(50)
     );
 
@@ -1254,6 +1253,7 @@ function renderListResults(snap, startIndex = 1) {
             <th>Wins</th>
             <th>Played</th>
             <th>Updated</th>
+			<th>Updated (UTC)</th>
             <th></th>
         </tr>
     `;
@@ -1272,6 +1272,7 @@ function renderListResults(snap, startIndex = 1) {
             <td>${d.wins}</td>
             <td>${d.played}</td>
             <td>${formatTS(d.updated)}</td>
+			<td>${formatTS(d.updatedUTC)}</td>
             <td><span class="delete-icon" onclick="deletePlayerById('${docSnap.id}')">🗑️</span></td>
         </tr>`;
 
