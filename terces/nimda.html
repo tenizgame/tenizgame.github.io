@@ -456,7 +456,7 @@ async function clearWriteFailuresOffline() {
    Clear Wrong Updates: missing updatedUTC
 --------------------------------------------------------- */
 async function clearWrongUpdates() {
-    if (!confirm('Delete aLL leaderboard entries missing updatedUTC and notify affected users?')) return;
+    if (!confirm('Delete all leaderboard entries missing updatedUTC and notify affected users?')) return;
 
     const snap = await getDocs(collection(db, "leaderboard"));
 
