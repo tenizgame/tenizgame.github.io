@@ -453,7 +453,7 @@ async function clearWriteFailuresOffline() {
 }
 
 /* ---------------------------------------------------------
-   Set Winners: top 3 → winnerlst/latest
+   Set Winners: top 3 → winnerlist/latest
 --------------------------------------------------------- */
 async function setWinners() {
     try {
@@ -509,8 +509,8 @@ async function setWinners() {
             return;
         }
 
-        // ⭐ Overwrite winnerlst/latest (full overwrite, exactly four fields)
-        await setDoc(doc(db, "winnerlst", "latest"), {
+        // ⭐ Overwrite winnerlist/latest (full overwrite, exactly four fields)
+        await setDoc(doc(db, "winnerlist", "latest"), {
             first,
             second,
             third,
