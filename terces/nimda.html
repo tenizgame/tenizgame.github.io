@@ -499,49 +499,50 @@ async function setWinners() {
             return;
         }
 
-        const names = top3.map(p => p.name);
-        let [first, second, third] = names;
-
-        // ⭐ Each name can be corrected before writing (Cancel or a blank name aborts — no write)
-        const placeLabels = ["1st", "2nd", "3rd"];
-        const fetchedNames = [first, second, third];
-        const finalNames = [];
-
-        for (let i = 0; i < 3; i++) {
-            const answer = prompt(
-                `Set Winners — ${placeLabels[i]} place (edit if needed):`,
-                fetchedNames[i]
-            );
-
-            if (answer === null) return; // Cancelled — no write
-
-            const name = answer.trim();
-            if (!name) {
-                alert(`${placeLabels[i]} place name cannot be empty. Winners not updated.`);
-                return;
-            }
-            finalNames.push(name);
-        }
-
-        [first, second, third] = finalNames;
+        const [first, second, third] = top3.map(p => p.name);
 
         // ⭐ Default month label, e.g. "Nov 2026"
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         const now = new Date();
         const defaultLabel = `${monthNames[now.getMonth()]} ${now.getFullYear()}`;
 
-        const label = prompt(
-            `Set winners:\n1. ${first}\n2. ${second}\n3. ${third}\n\nMonth label (edit if needed):`,
-            defaultLabel
-        );
+        // ⭐ Review + edit all four values on ONE screen before anything is written
+        openWinnersEditor(first, second, third, defaultLabel);
+    } catch (err) {
+        alert(err.message);
+    }
+}
 
-        if (label === null) return; // Cancelled — no write
+/* ---------------------------------------------------------
+   Set Winners editor: a single screen to review/edit the
+   three names + the month label before the write
+--------------------------------------------------------- */
+function openWinnersEditor(first, second, third, monthLabel) {
+    document.getElementById("winnerFirst").value = first;
+    document.getElementById("winnerSecond").value = second;
+    document.getElementById("winnerThird").value = third;
+    document.getElementById("winnerMonthLabel").value = monthLabel;
+    document.getElementById("winnersEditor").classList.add("open");
+}
 
-        const monthLabel = label.trim();
-        if (!monthLabel) {
-            alert("Month label cannot be empty. Winners not updated.");
-            return;
-        }
+function closeWinnersEditor() {
+    document.getElementById("winnersEditor").classList.remove("open");
+}
+
+async function saveWinners() {
+    try {
+        const first = document.getElementById("winnerFirst").value.trim();
+        const second = document.getElementById("winnerSecond").value.trim();
+        const third = document.getElementById("winnerThird").value.trim();
+        const monthLabel = document.getElementById("winnerMonthLabel").value.trim();
+
+        // A blank field aborts the save: say which one, keep the editor open, no write
+        if (!first) { alert("1st place name cannot be empty. Winners not updated."); return; }
+        if (!second) { alert("2nd place name cannot be empty. Winners not updated."); return; }
+        if (!third) { alert("3rd place name cannot be empty. Winners not updated."); return; }
+        if (!monthLabel) { alert("Month label cannot be empty. Winners not updated."); return; }
+
+        closeWinnersEditor();
 
         // ⭐ Overwrite winnerlist/latest (full overwrite, exactly four fields)
         await setDoc(doc(db, "winnerlist", "latest"), {
@@ -1557,6 +1558,8 @@ window.clearDuplicates = clearDuplicates;
 window.clearOld = clearOld;
 window.clearWriteFailuresOffline = clearWriteFailuresOffline;
 window.setWinners = setWinners;	
+window.saveWinners = saveWinners;
+window.closeWinnersEditor = closeWinnersEditor;
 window.clearAlerts = clearAlerts;
 window.clearFeedback = clearFeedback;
 window.showLastFeedback = showLastFeedback;
@@ -1567,5 +1570,62 @@ window.showFeedbackPrev = showFeedbackPrev;
 window.showLeaderboardCount  = showLeaderboardCount ;
 
 </script>
+	<style>
+	  .winners-overlay {
+		display: none;
+		position: fixed;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.7);
+		z-index: 1000;
+		align-items: center;
+		justify-content: center;
+	  }
+
+	  .winners-overlay.open {
+		display: flex;
+	  }
+
+	  .winners-card {
+		background: #1a1a1a;
+		border-radius: 8px;
+		box-shadow: 0 0 10px #0005;
+		padding: 20px;
+		width: 340px;
+		max-width: 92vw;
+		box-sizing: border-box;
+	  }
+
+	  .winners-card label {
+		color: #bbb;
+		font-size: 14px;
+	  }
+
+	  .winners-card input {
+		width: 100%;
+		box-sizing: border-box;
+	  }
+	</style>
+
+	<!-- Set Winners editor (hidden until "Set Winners" is clicked) -->
+	<div id="winnersEditor" class="winners-overlay">
+		<div class="winners-card">
+			<h3 style="margin-top:0;">Set Winners</h3>
+
+			<label>1st place:</label><br>
+			<input id="winnerFirst" type="text"><br>
+
+			<label>2nd place:</label><br>
+			<input id="winnerSecond" type="text"><br>
+
+			<label>3rd place:</label><br>
+			<input id="winnerThird" type="text"><br>
+
+			<label>Month label:</label><br>
+			<input id="winnerMonthLabel" type="text"><br><br>
+
+			<button class="primary-btn" onclick="saveWinners()">Save</button>
+			<button class="cancel-btn" onclick="closeWinnersEditor()">Cancel</button>
+		</div>
+	</div>
 </body>
 </html>
