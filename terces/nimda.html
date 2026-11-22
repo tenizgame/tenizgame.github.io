@@ -252,7 +252,7 @@
 	  <button class="admin-btn" onclick="clearDuplicates()">Clear Duplicates</button>
 	  <button class="admin-btn" onclick="clearOld()">Clear Prev Month</button>
 	  <button class="admin-btn" onclick="clearWriteFailuresOffline()">Clear Failures</button>
-	  <button class="admin-btn" onclick="clearWrongUpdates()">Wrong Updates</button>	
+	  <button class="admin-btn" onclick="setWinners()">Set Winners</button>	
 	  <button class="admin-btn" onclick="clearAlerts()">Clear Alerts</button>
 	  <button class="admin-btn" onclick="clearFeedback()">Clear Feedback</button>
 	  <button class="admin-btn" onclick="showLeaderboardCount()">Total Players</button>
@@ -453,64 +453,74 @@ async function clearWriteFailuresOffline() {
 }
 
 /* ---------------------------------------------------------
-   Clear Wrong Updates: missing updatedUTC
+   Set Winners: top 3 → winnerlst/latest
 --------------------------------------------------------- */
-async function clearWrongUpdates() {
-    if (!confirm('Delete all leaderboard entries missing updatedUTC and notify affected users?')) return;
+async function setWinners() {
+    try {
+        // ⭐ Read the top 3 by stars, skipping "Sankar" (same exclusion as the game leaderboard)
+        const names = [];
+        let lastDoc = null;
+        let exhausted = false;
 
-    const snap = await getDocs(collection(db, "leaderboard"));
+        while (names.length < 3 && !exhausted) {
+            const needed = 3 - names.length;
+            const constraints = [orderBy("stars", "desc"), limit(needed)];
+            if (lastDoc) constraints.push(startAfter(lastDoc));
 
-    if (snap.empty) {
-        alert("Leaderboard is empty.");
-        return;
-    }
+            const snap = await getDocs(query(collection(db, "leaderboard"), ...constraints));
 
-    let deleted = 0;
-
-    for (const docSnap of snap.docs) {
-        const data = docSnap.data();
-
-        // ⭐ Correct check: updatedUTC field is missing
-        if (!("updatedUTC" in data)) {
-
-            const uid = docSnap.id;
-            const playerName = data.name || "Player";
-
-            // ⭐ Write popup message into users collection
-            if (uid) {
-                const userRef = doc(db, "users", uid);
-
-                const message = `Hey ${playerName} - Looks like you are running an outdated version of the game. Please refresh the page to get the latest version. Reach us at info@thechnlnk.com for support. Cheers!`;	
-
-                await updateDoc(userRef, {
-                    popup: {
-                        type: "announcement",
-                        message,
-                        seen: false
-                    }
-                }).catch(async err => {
-                    // If user doc doesn't exist, create it
-                    if (err.message.includes("No document")) {
-                        await setDoc(userRef, {
-                            popup: {
-                                type: "announcement",
-                                message,
-                                seen: false
-                            }
-                        });
-                    } else {
-                        throw err;
-                    }
-                });
+            if (snap.empty) {
+                exhausted = true;
+                break;
             }
 
-            // ⭐ Delete the leaderboard record
-            await deleteDoc(docSnap.ref);
-            deleted++;
-        }
-    }
+            for (const docSnap of snap.docs) {
+                lastDoc = docSnap;
+                const name = docSnap.data().name;
+                if (name !== "Sankar") names.push(name);
+                if (names.length >= 3) break;
+            }
 
-    alert(`Cleanup complete.\nDeleted ${deleted} leaderboard entries missing updatedUTC.`);
+            if (snap.docs.length < needed) exhausted = true;
+        }
+
+        if (names.length < 3) {
+            alert("Not enough players on the leaderboard to set winners.");
+            return;
+        }
+
+        const [first, second, third] = names;
+
+        // ⭐ Default month label, e.g. "Nov 2026"
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const now = new Date();
+        const defaultLabel = `${monthNames[now.getMonth()]} ${now.getFullYear()}`;
+
+        const label = prompt(
+            `Set winners:\n1. ${first}\n2. ${second}\n3. ${third}\n\nMonth label (edit if needed):`,
+            defaultLabel
+        );
+
+        if (label === null) return; // Cancelled — no write
+
+        const monthLabel = label.trim();
+        if (!monthLabel) {
+            alert("Month label cannot be empty. Winners not updated.");
+            return;
+        }
+
+        // ⭐ Overwrite winnerlst/latest (full overwrite, exactly four fields)
+        await setDoc(doc(db, "winnerlst", "latest"), {
+            first,
+            second,
+            third,
+            monthLabel
+        });
+
+        alert(`Winners updated for ${monthLabel}:\n1. ${first}\n2. ${second}\n3. ${third}`);
+    } catch (err) {
+        alert(err.message);
+    }
 }
 
 /* ---------------------------------------------------------
@@ -1512,7 +1522,7 @@ window.onPopupTypeChange  = onPopupTypeChange;
 window.clearDuplicates = clearDuplicates;
 window.clearOld = clearOld;
 window.clearWriteFailuresOffline = clearWriteFailuresOffline;
-window.clearWrongUpdates = clearWrongUpdates;	
+window.setWinners = setWinners;	
 window.clearAlerts = clearAlerts;
 window.clearFeedback = clearFeedback;
 window.showLastFeedback = showLastFeedback;
