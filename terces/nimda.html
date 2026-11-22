@@ -457,39 +457,73 @@ async function clearWriteFailuresOffline() {
 --------------------------------------------------------- */
 async function setWinners() {
     try {
-        // ⭐ Read the top 3 by stars, skipping "Sankar" (same exclusion as the game leaderboard)
-        const names = [];
-        let lastDoc = null;
-        let exhausted = false;
+        // ⭐ Pick the Top 3 with the EXACT logic of the game's loadLeaderboard():
+        // current-month docs only (where month == monthKey), ordered
+        // stars desc, wins desc, winpct desc, updated asc; fetch 4
+        // (= 3 + 1 to compensate for the admin removal — the same N+1
+        // pattern the game uses with limit(11) for its Top 10); "Sankar"
+        // is filtered out by name; then keep the first 3 rows — the
+        // game's podium order (ties resolve by the game's own ordering).
+        // "updated" is the game's local-time timestamp — a YYYYMMDDhhmmss
+        // number chnlnk.js writes from the player's own clock (NOT the
+        // updatedUTC server timestamp) — so a full tie on stars/wins/winpct
+        // breaks to whoever finished first in their own timezone.
+        const ADMIN_NAME = "Sankar";
+        const nowLb = new Date();
+        const monthKey = `${nowLb.getFullYear()}-${String(nowLb.getMonth() + 1).padStart(2, "0")}`;
 
-        while (names.length < 3 && !exhausted) {
-            const needed = 3 - names.length;
-            const constraints = [orderBy("stars", "desc"), limit(needed)];
-            if (lastDoc) constraints.push(startAfter(lastDoc));
+        const topQ = query(
+            collection(db, "leaderboard"),
+            where("month", "==", monthKey),
+            orderBy("stars", "desc"),
+            orderBy("wins", "desc"),
+            orderBy("winpct", "desc"),
+            orderBy("updated", "asc"),
+            limit(4)
+        );
 
-            const snap = await getDocs(query(collection(db, "leaderboard"), ...constraints));
+        const topSnap = await getDocs(topQ);
 
-            if (snap.empty) {
-                exhausted = true;
-                break;
-            }
+        // Filter out admin by name
+        let top3 = [];
+        topSnap.forEach(docSnap => {
+            const d = { id: docSnap.id, ...docSnap.data() };
+            if (d.name !== ADMIN_NAME) top3.push(d);
+        });
 
-            for (const docSnap of snap.docs) {
-                lastDoc = docSnap;
-                const name = docSnap.data().name;
-                if (name !== "Sankar") names.push(name);
-                if (names.length >= 3) break;
-            }
+        // Always keep exactly 3 rows
+        top3 = top3.slice(0, 3);
 
-            if (snap.docs.length < needed) exhausted = true;
-        }
-
-        if (names.length < 3) {
+        if (top3.length < 3) {
             alert("Not enough players on the leaderboard to set winners.");
             return;
         }
 
-        const [first, second, third] = names;
+        const names = top3.map(p => p.name);
+        let [first, second, third] = names;
+
+        // ⭐ Each name can be corrected before writing (Cancel or a blank name aborts — no write)
+        const placeLabels = ["1st", "2nd", "3rd"];
+        const fetchedNames = [first, second, third];
+        const finalNames = [];
+
+        for (let i = 0; i < 3; i++) {
+            const answer = prompt(
+                `Set Winners — ${placeLabels[i]} place (edit if needed):`,
+                fetchedNames[i]
+            );
+
+            if (answer === null) return; // Cancelled — no write
+
+            const name = answer.trim();
+            if (!name) {
+                alert(`${placeLabels[i]} place name cannot be empty. Winners not updated.`);
+                return;
+            }
+            finalNames.push(name);
+        }
+
+        [first, second, third] = finalNames;
 
         // ⭐ Default month label, e.g. "Nov 2026"
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
